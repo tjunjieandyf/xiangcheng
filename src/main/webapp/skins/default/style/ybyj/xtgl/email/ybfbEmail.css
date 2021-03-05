@@ -1,0 +1,59 @@
+.divhead{width: 60%;height:60px;margin-left: auto;margin-right: auto; position: relative;}
+.contents{
+	width: 65%;margin-left: auto;margin-right: auto;
+}
+.container{width: 100%;overflow: auto;}
+h3{
+	font-size: 22px; color:#74B2F1;
+}
+h2{
+	font-size: 28px; color:#74B2F1;
+	padding-top: 20px 0;
+	width: 100%;
+	text-align: center;
+}
+hr{
+	width:90%;
+	border-color: #74B2F1;
+	position: relative;
+	left:-5%;
+}
+.textcontents{
+	padding: 20px 0 20px 40px;
+	
+}
+.textInfo{
+	width:150px;
+	border-top-style: none;
+	border-right-style: none;
+	border-left-style: none;
+}
+textarea{
+	overflow:auto;
+}
+.tdLeft{
+	text-align: right;
+}
+.sendBtn{
+	position: relative;
+	left: 70%;
+}
+.sendInfo_scucess{
+	width: 24px;
+	height: 24px;
+	background: url(/images/ybyj/xtgl/email/send_scuess.png) no-repeat center;display: inline-block;
+}
+.sendInfo_fail{
+	width: 24px;
+	height: 24px;
+	background: url(/images/ybyj/xtgl/email/send_fail.png) no-repeat center;display: inline-block;
+}
+.sendInfo_none{
+	display: none;
+}
+.input_text{
+	width:120px;border-top-style: none;border-right-style: none;border-left-style: none;height: 24px;
+}
+.icon_send{background:#74B2F1 url(../../../../images/ybyj/xtgl/email/icon_send.png) no-repeat 5px center; display: inline-block;*display: inline;*zoom:1; height: 25px; line-height: 25px; padding: 0 5px 0 25px; font:normal 14px/25px "SimSun"; color: white; text-decoration: none; border-radius: 2px; }
+.icon_deft{margin-left:20px; background:#74B2F1 url(../../../../images/ybyj/xtgl/email/icon_deft.png) no-repeat 5px center; display: inline-block;*display: inline;*zoom:1; height: 25px; line-height: 25px; padding: 0 5px 0 25px; font:normal 14px/25px "SimSun"; color: white; text-decoration: none; border-radius: 2px;}
+.icon_deft:hover,.icon_send:hover{ background-color: #5e9cf2;}

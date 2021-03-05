@@ -1,0 +1,793 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	~ Copyright (C) 2018 ShenZhen Powerdata Information Technology Co.,Ltd
+	~ All Rights Reserved.
+	~ 本软件为深圳博安达开发研制，
+	~ 未经深圳博安达正式书面同意，其他任何个人、团体不得使用，复制、修改或发布本软件.
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<sqls>
+	
+	<!-- 启动会商-应急发布等级-->
+    <sql id="QUERY_QDHS_YJFB_YJDJ">
+        <both><![CDATA[
+		SELECT FJ.XYDJJB,FJ.XYDJMC FROM T_YJYA_YJXYFJ FJ,T_YJYA_ZWRYJFB_INFO FO 
+		WHERE FJ.XH = FO.YJDJXH
+		AND FO.XH =?
+	    ]]></both>
+    </sql> 
+	
+		<!-- 启动会商-应急发布等级-->
+    <sql id="QUERY_YJYA_YJFB_YJDJ">
+        <both><![CDATA[
+	 	SELECT * FROM T_YJYA_YJXYFJ WHERE XH = ?
+	    ]]></both>
+    </sql> 
+    <!-- 启动会商-启动应急(根据编号获取预警发布数据)-->
+    <sql id="QUERY_QDHS_YJFB_XH">
+        <both><![CDATA[
+	 	SELECT 
+	 		XH,HSJGXH,TO_CHAR(QDSJ,'yyyy-MM-dd HH24:mm:ss') QDSJ,YJDJ,YJBM,BGNR,JKTS,YXCS,BCZT,
+			CJR,TO_CHAR(CJSJ,'yyyy-MM-dd HH24:mm:ss') CJSJ,XGR,TO_CHAR(XGSJ,'yyyy-MM-dd HH24:mm:ss') XGSJ,ORGID 
+		FROM 
+			T_JCSJZX_QDHS_YJFB WHERE XH = ?
+	    ]]></both>
+    </sql> 
+    
+    <!-- 启动会商-启动应急(根据会商结果编号获取预警发布数据)-->
+    <sql id="QUERY_QDHS_YJFB_HSJGXH">
+        <both><![CDATA[
+	 	SELECT 
+		 	XH,HSJGXH,TO_CHAR(QDSJ,'yyyy-MM-dd HH24:mm:ss') QDSJ,YJDJ,YJBM,BGNR,JKTS,YXCS,BCZT,
+			CJR,TO_CHAR(CJSJ,'yyyy-MM-dd HH24:mm:ss') CJSJ,XGR,TO_CHAR(XGSJ,'yyyy-MM-dd HH24:mm:ss') XGSJ,ORGID 
+		FROM 
+			T_JCSJZX_QDHS_YJFB WHERE HSJGXH = ?
+	    ]]></both>
+    </sql>
+    
+    <!-- 新增-预警发布数据-->
+    <sql id="INSERT_QDHS_YJFB">
+        <both><![CDATA[
+	 	INSERT INTO 
+	 		T_JCSJZX_QDHS_YJFB(XH,HSJGXH,QDSJ,YJDJ,YJBM,BGNR,JKTS,YXCS,BCZT,CJR,CJSJ,XGR,XGSJ,ORGID) 
+	 	VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+	    ]]></both>
+    </sql>
+    
+    <!-- 修改-预警发布数据-->
+    <sql id="UPDATE_QDHS_YJFB">
+        <both><![CDATA[
+	 	UPDATE 
+	 		T_JCSJZX_QDHS_YJFB 
+	 	SET 
+	 		HSJGXH=?,QDSJ=?,YJDJ=?,YJBM=?,BGNR=?,JKTS=?,YXCS=?,BCZT=?,XGR=?,XGSJ=? 
+	 	WHERE XH=?
+	    ]]></both>
+    </sql>
+    
+    <!-- 工业源减排措施-根据会商结果序号获取对应的数据-->
+    <sql id="QUERY_QDHS_GYYJP_GYYGKQY">
+        <both><![CDATA[
+	 	SELECT 
+			GKQD.QYMC,GKQD.SSXZQ,GKQD.QXMC,GKQD.SSHY,GKQD.SFNRHT,GKQD.JD,GKQD.WD,GYYJP.SFSCGKMD,
+			GKJG.SCXGX,GKJG.ZYCP,GKJG.CNGM,GKJG.ZYCPCL,GKJG.YFCPFL,GKJG.SO2PFL,GKJG.NOXPFL,GKJG.VOCPFL,
+			GYYJP.TCCS,GYYJP.YFCGSJPL,GYYJP.SO2GSJPL,GYYJP.NOXGSJPL,GYYJP.VOCGSJPL,GYYJP.XH AS XH,GYYJP.HSJGXH AS HSBH
+		FROM 
+			T_JCSJZX_QDHS_GYYJP GYYJP 
+			LEFT JOIN T_JCSJZX_QDHS_GYYGKJG GKJG ON GYYJP.GYYJGXH = GKJG.XH 
+			LEFT JOIN T_JCSJZX_QDHS_GYYGKQD GKQD ON GKJG.QYXH = GKQD.XH
+		WHERE 1=1 #WHERESTRING#
+	    ]]></both>
+    </sql>
+    
+        <!-- 工业源减排措施-根据预警等级序号获取对应的数据 NEW-->
+    <sql id="QUERY_YJYA_GYJPCS">
+        <both><![CDATA[
+		SELECT MD.*,JP.*
+		FROM T_YJYA_ZWRYJ_GYYGKMD MD LEFT JOIN T_YJYA_ZWRYJ_GYYJP JP ON MD.XH=JP.GYYJGXH WHERE JP.YJYAXH = ?
+	    ]]></both>
+    </sql>
+    
+    <!-- 工业源减排措施-根据会商结果序号获取对应的数据-->
+    <sql id="QUERY_QDHS_GYYJP_GYYGKQY_HSBH">
+        <both><![CDATA[
+	 	SELECT 
+			*
+		FROM 
+			T_YJYA_ZWRYJ_GYYGKMD
+		WHERE YJYAXH = ?
+	    ]]></both>
+    </sql>
+    
+    <!-- 工业源减排措施-选择过滤企业进行-->
+    <sql id="QUERY_QDHS_GKQD_OPT_XH">
+        <both><![CDATA[
+	 	SELECT 
+			GKQD.XH AS QYBH,GKQD.QYMC,GKQD.SSXZQ,GKQD.QXMC,GKQD.SSHY,GKQD.SFNRHT,GKQD.JD,GKQD.WD,
+			GKJG.XH AS GXBH,GKJG.SCXGX,GKJG.ZYCP,GKJG.CNGM,GKJG.ZYCPCL,
+			CASE GSLX.YJDJ WHEN '1' THEN GSLX_BLUE WHEN '3' THEN GSLX_ORANGE WHEN '4' THEN GSLX_RED ELSE GSLX_YELLOW END JPCS,
+			CASE GSLX.YJDJ WHEN '1' THEN GSLX_BLUE_YFC WHEN '3' THEN GSLX_ORANGE_YFC WHEN '4' THEN GSLX_RED_YFC ELSE GSLX_YELLOW_YFC END YFCPFL,
+			CASE GSLX.YJDJ WHEN '1' THEN GSLX_BLUE_SO2 WHEN '3' THEN GSLX_ORANGE_SO2 WHEN '4' THEN GSLX_RED_SO2 ELSE GSLX_YELLOW_SO2 END SO2PFL,
+			CASE GSLX.YJDJ WHEN '1' THEN GSLX_BLUE_NOX WHEN '3' THEN GSLX_ORANGE_NOX WHEN '4' THEN GSLX_RED_NOX ELSE GSLX_YELLOW_NOX END NOXPFL,
+			CASE GSLX.YJDJ WHEN '1' THEN GSLX_BLUE_VOCS WHEN '3' THEN GSLX_ORANGE_VOCS WHEN '4' THEN GSLX_RED_VOCS ELSE GSLX_YELLOW_VOCS END VOCPFL
+		FROM 
+			  T_JCSJZX_QDHS_GYYGKSCX GKJG 
+				LEFT JOIN T_JCSJZX_QDHS_GYYGKMD GKQD ON GKJG.QYXH = GKQD.XH
+				,(
+					SELECT YJDJ FROM T_JCSJZX_QDHS_YJFB
+					WHERE BCZT ='2' AND HSJGXH = ? 
+				) GSLX
+		WHERE 
+			  GKQD.XH IS NOT NULL  AND GKQD.XH NOT IN 
+			  (
+					SELECT 
+							GKQD.XH
+					FROM T_JCSJZX_QDHS_GYYJP GYYJP 
+						LEFT JOIN T_JCSJZX_QDHS_GYYGKJG GKJG ON GYYJP.GYYJGXH = GKJG.XH 
+						LEFT JOIN T_JCSJZX_QDHS_GYYGKQD GKQD ON GKJG.QYXH = GKQD.XH
+						WHERE GYYJP.HSJGXH = ?
+			  ) #OPTS#
+	    ]]></both>
+    </sql>
+    <!-- 工业源减排措施-选择企业-->
+    <sql id="QUERY_QDHS_GKQD">
+        <both><![CDATA[
+		SELECT WRYBH,ITEMID,HS.QYMC,DZ,XZBH,PFYMC,JD,WD,PM10,PM25,SO2,NOX,VOCS FROM T_WL_TYDCB QY 
+		LEFT JOIN T_APEI_QDFX_QYPFWTJ HS ON QY.YWXTBH = HS.WRYBH WHERE HS.WRYBH IS NOT NULL  #OPTS#
+	    ]]></both>
+    </sql>
+    
+    <!-- 工业源-检查工业源减排措施名单存在情况-企业和工序是否已经在清单中-->
+    <sql id="QUERY_QDHS_GYYGKJG_ISEXIST">
+        <both><![CDATA[
+	 	SELECT A.QYTOTAL,B.GXTOTAL FROM 
+		(SELECT COUNT(XH) AS QYTOTAL FROM T_JCSJZX_QDHS_GYYGKQD WHERE XH = ? ) A,
+		(SELECT COUNT(XH) AS GXTOTAL FROM T_JCSJZX_QDHS_GYYGKJG WHERE QYXH = ?) B
+	    ]]></both>
+    </sql>
+    
+        <!-- 工业源-检查工业源减排措施名单存在情况-企业和工序是否已经在清单中-->
+    <sql id="QUERY_YJYA_GYYGKJG_ISEXIST">
+        <both><![CDATA[
+	 	SELECT A.QYTOTAL FROM (SELECT COUNT(XH) AS QYTOTAL FROM T_YJYA_ZWRYJ_GYYGKMD WHERE QYBH = ? AND YJYAXH = ? ) A
+	    ]]></both>
+    </sql>
+    
+    <!-- 工业源-减排清单增加一个减排名单的数据值-->
+    <sql id="INSERT_QDHS_GYYGKQD_FROM_GYYGKMD">
+        <both><![CDATA[
+	 	INSERT INTO T_JCSJZX_QDHS_GYYGKQD(XH,WRYZXGLXH,QYMC,SSXZQ,XZQDM,QXMC,QXDM,SSHY,SFNRHT,JD,WD,CJR,CJSJ,XGR,XGSJ,ORGID,SFYX)
+		SELECT 
+			XH,GLBH,QYMC,SSXZQ,XZQDM,QXMC,QXDM,SSHY,SFNRHT,JD,WD,'SYSTEM',?,'SYSTEM',?,'420100','1' 
+		FROM T_JCSJZX_QDHS_GYYGKMD 
+		WHERE XH = ?
+	    ]]></both>
+    </sql>
+    
+        <!-- 工业源-减排清单增加一个减排名单的数据值-->
+    <sql id="INSERT_YJYA_GYYGKQD_FROM_GYYGKMD">
+        <both><![CDATA[
+	 	INSERT INTO T_YJYA_ZWRYJ_GYYGKMD(XH,YJYAXH,QYMC,QYDZ,SSXZQ,XZQDM,SSHY,JD,WD,CJR,CJSJ,XGR,XGSJ,ORGID,QYBH)
+		VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)	
+	    ]]></both>
+    </sql>
+    <!-- 工业源-减排清单工序增加一个减排名单工序的数据值-->
+    <sql id="INSERT_QDHS_GYYGKJG_FROM_GYYGKSCX">
+        <both><![CDATA[
+	 	INSERT INTO T_JCSJZX_QDHS_GYYGKJG(XH,QYXH,SCXGX,ZYCP,CNGM,ZYCPCL,YFCPFL,SO2PFL,NOXPFL,VOCPFL,CJR,CJSJ,XGR,XGSJ,ORGID,SFYX)
+		SELECT 
+			XH,QYXH,SCXGX,ZYCP,CNGM,ZYCPCL,NULL,NULL,NULL,NULL,'SYSTEM',?,'SYSTEM',?,'420100','1' 
+		FROM T_JCSJZX_QDHS_GYYGKSCX 
+		WHERE QYXH = ?
+	    ]]></both>
+    </sql>
+    
+    <!-- 工业源减排措施-选择企业工序-->
+    <sql id="QUERY_QDHS_GYYGKJG">
+        <both><![CDATA[
+	 	SELECT XH,SCXGX FROM T_JCSJZX_QDHS_GYYGKJG WHERE QYXH = ?
+	    ]]></both>
+    </sql>
+    
+        <!-- 工业源减排措施-选择企业工序NEW-->
+    <sql id="QUERY_YJYA_GYYGKJG">
+        <both><![CDATA[
+	 	SELECT XH FROM T_YJYA_ZWRYJ_GYYGKMD WHERE QYBH = ?
+	    ]]></both>
+    </sql>
+    
+            <!-- 扬尘源减排措施-扬尘信息 new-->
+    <sql id="QUERY_YJYA_YCYGKJG">
+        <both><![CDATA[
+	 	SELECT XH FROM T_YJYA_ZWRYJ_YCYGKMD WHERE YQDXH = ?
+	    ]]></both>
+    </sql>
+    
+        <!-- 机动车减排措施-扬尘信息 new -->
+    <sql id="QUERY_YJYA_JDCGKJG">
+        <both><![CDATA[
+	 	SELECT XH FROM T_YJYA_ZWRYJ_JDCGKMD WHERE YQDXH = ?
+	    ]]></both>
+    </sql>
+    <!-- 工业源减排措施-存在工序-->
+    <sql id="QUERY_QDHS_GYYJP_EXIST">
+        <both><![CDATA[
+	 	SELECT COUNT(XH) AS TOTAL FROM T_JCSJZX_QDHS_GYYJP WHERE GYYJGXH = ? AND HSJGXH = ?
+	    ]]></both>
+    </sql>
+    
+        <!-- 工业源减排措施 NEW -->
+    <sql id="QUERY_YJYA_GYYJP_EXIST">
+        <both><![CDATA[
+	 	SELECT COUNT(XH) AS TOTAL FROM T_YJYA_ZWRYJ_GYYJP WHERE GYYJGXH = ? 
+	    ]]></both>
+    </sql>
+    
+    <!-- 工业源-减排清单增加一个减排名单的数据值-->
+    <sql id="INSERT_QDHS_YCYGKQD_FROM_YCYGKMD">
+        <both><![CDATA[
+	 	INSERT INTO  T_JCSJZX_QDHS_YCYGKQD(XH,YCZXGLXH,YCYMC,YCYLX,SSXZQ,XZQDM,QXMC,QXDM,JD,WD,ZDMJ,CJR,CJSJ,XGR,XGSJ,ORGID,SFYX)
+		SELECT 
+			XH,GLBH,NAME,CASE YCYLX WHEN '工地扬尘' THEN 'G' WHEN '道路扬尘' THEN 'D' WHEN '水泥搅拌站' THEN 'S' END YCYLX,
+			SSXZQ,XZQDM,QXMC,QXDM,JD,WD,AREA,'SYSTEM',GETDATE(),'SYSTEM',GETDATE(),'420100','1'
+		FROM T_JCSJZX_DUST_JBXX WHERE XH = ?
+	    ]]></both>
+    </sql>
+    
+    <sql id="INSERT_YJYA_YCYGKQD_FROM_YCYGKMD">
+        <both><![CDATA[
+	 	INSERT INTO  T_YJYA_ZWRYJ_YCYGKMD(XH,YJXH,YCYMC,YCYLX,SSXZQ,JTDZ,ZDMJ,CJR,CJSJ,XGR,XGSJ,ORGID,YQDXH)
+	 	VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)
+	    ]]></both>
+    </sql>
+    <!-- 增加-工业源减排 NEW-->
+    <sql id="INSERT_QDHS_GYYJP">
+        <both><![CDATA[
+	 	INSERT INTO T_YJYA_ZWRYJ_GYYJP(XH,GYYJGXH,YJYAXH,CJR,CJSJ,XGR,XGSJ,ORGID) VALUES(?,?,?,?,?,?,?,?)
+	    ]]></both>
+    </sql>
+    
+        <!-- 增加-工业源减排 -->
+    <sql id="INSERT_YJYA_GYYJP">
+        <both><![CDATA[
+	 	INSERT INTO T_JCSJZX_QDHS_GYYJP(XH,GYYJGXH,HSJGXH,CJR,CJSJ,XGR,XGSJ,ORGID) VALUES(?,?,?,?,?,?,?,?)
+	    ]]></both>
+    </sql>
+    
+    <!-- 工业源减排措施-删除估算数据-->
+    <sql id="DEL_QDHS_GYYJP_HSBH_XH">
+        <both><![CDATA[
+	 	DELETE FROM T_JCSJZX_QDHS_GYYJP WHERE HSJGXH = ? AND XH = ?
+	    ]]></both>
+    </sql>
+    
+        <!-- 工业源减排措施-删除估算数据 NEW-->
+    <sql id="DEL_YJYA_GYYJP_HSBH_XH">
+        <both><![CDATA[
+	 	DELETE FROM T_YJYA_ZWRYJ_GYYJP WHERE GYYJGXH = ? 
+	    ]]></both>
+    </sql>
+    <sql id="DEL_YJYA_GYYJPMD_HSBH_XH">
+        <both><![CDATA[
+	 	DELETE FROM T_YJYA_ZWRYJ_GYYGKMD WHERE XH = ? 
+	    ]]></both>
+    </sql>
+    
+    <!-- 工业源更改管控名单 -->
+    <sql id="UPDATE_QDHS_GYYJP_GKMD">
+        <both><![CDATA[
+	 	UPDATE T_JCSJZX_QDHS_GYYJP SET SFSCGKMD =? WHERE HSJGXH=?
+	    ]]></both>
+    </sql>
+    
+    <!-- 工业源更改措施 -->
+    <sql id="UPDATE_QDHS_GYYJP_JPCS">
+        <both><![CDATA[
+	 	UPDATE T_JCSJZX_QDHS_GYYJP SET TCCS=?,YFCGSJPL=?,SO2GSJPL=?,NOXGSJPL=?,VOCGSJPL=? WHERE XH = ? AND HSJGXH=?
+	    ]]></both>
+    </sql>
+    
+        <!-- 工业源更改措施 NEW-->
+    <sql id="UPDATE_YJYA_GYYJP_JPCS">
+        <both><![CDATA[
+	 	UPDATE T_YJYA_ZWRYJ_GYYJP SET TCCS=?,PM25GSJPL=?,PM10GSJPL=?,SO2GSJPL=?,NOXGSJPL=?,VOCGSJPL=? WHERE  GYYJGXH=?
+	    ]]></both>
+    </sql>
+    
+    <!-- 扬尘源-清单中是否有指定编号的名单 -->
+    <sql id="QUERY_QDHS_YCYGKQD_ISEXIST">
+        <both><![CDATA[
+	 	SELECT COUNT(XH) TOTAL FROM T_JCSJZX_QDHS_YCYGKQD WHERE XH = ?
+	    ]]></both>
+    </sql>
+    
+        <!-- 扬尘源-是否有指定编号的名单 new-->
+    <sql id="QUERY_YJYA_YCYGKQD_ISEXIST">
+        <both><![CDATA[
+	 	SELECT COUNT(XH) TOTAL FROM T_YJYA_ZWRYJ_YCYGKMD WHERE YQDXH = ? AND YJXH = ?
+	    ]]></both>
+    </sql>
+    
+     <!-- 扬尘源列表 new -->
+    <sql id="QUERY_QDHS_YCYJP_HSBH">
+        <both><![CDATA[
+	 	SELECT 
+			*
+		FROM 
+			T_YJYA_ZWRYJ_YCYGKMD
+		WHERE YJXH = ?
+	    ]]></both>
+    </sql>
+    
+    <!-- 扬尘源列表 -->
+    <sql id="QUERY_QDHS_YCYJP">
+        <both><![CDATA[
+	 	SELECT 
+			YCYJP.XH AS XH,YCYJP.KZCS,YCYJP.YCGSJPL,YCYJP.SFSCGKMD,YCGK.YCYMC,YCGK.SSXZQ,YCGK.QXMC,YCGK.JD,YCGK.WD,YCGK.ZDMJ
+		FROM 
+			T_JCSJZX_QDHS_YCYJP YCYJP 
+			LEFT JOIN T_JCSJZX_QDHS_YCYGKQD YCGK 
+			ON YCYJP.GKQDXH = YCGK.XH
+		WHERE 1=1 #WHERESTRING#
+	    ]]></both>
+    </sql>
+    
+        <!-- 扬尘源列表 -->
+    <sql id="QUERY_YJYA_YCYJP">
+        <both><![CDATA[
+   		SELECT ID AS XH,NAME AS YCYMC,COUNTY AS SSXZQ,ADDRESS AS QXMC,CONSTRUCTION_AREA FROM T_APEI_SITEDUST
+	    ]]></both>
+    </sql>
+    
+            <!-- 扬尘源列表 new-->
+    <sql id="QUERY_YJYA_YCYJPMD">
+        <both><![CDATA[
+		SELECT MD.XH,MD.YCYMC,MD.JTDZ AS SSXZQ,MD.ZDMJ,JP.KZCS,JP.YCGSJPL FROM T_YJYA_ZWRYJ_YCYGKMD MD LEFT JOIN T_YJYA_ZWRYJ_YCYJP JP ON MD.XH=JP.GKQDXH
+		WHERE 1=1 #WHERESTRING#
+	    ]]></both>
+    </sql>
+    
+                <!-- 扬尘源列表 new -->
+    <sql id="QUERY_YJYA_YCYJPMD_1">
+        <both><![CDATA[
+		SELECT * FROM T_YJYA_ZWRYJ_YCYGKMD MD LEFT JOIN T_YJYA_ZWRYJ_YCYJP JP ON MD.XH=JP.GKQDXH
+		WHERE 1=1 AND MD.YJXH = ?
+	    ]]></both>
+    </sql>
+    
+            <!-- 扬尘源列表 -->
+    <sql id="QUERY_YJYA_YCYXX">
+        <both><![CDATA[
+   		SELECT * FROM T_APEI_SITEDUST WHERE ID =  ?
+	    ]]></both>
+    </sql>
+    
+    <!-- 扬尘源清单选择 -->
+    <sql id="QUERY_QDHS_YCYGKQD_HSBH">
+        <both><![CDATA[
+		SELECT XH,NAME AS YCYMC,SSXZQ,QXMC,JD,WD,AREA AS ZDMJ,YCYLX FROM T_JCSJZX_DUST_JBXX WHERE 1=1 #OPTS# AND XH NOT IN (
+			SELECT 
+				YCGK.XH
+			FROM 
+				T_JCSJZX_QDHS_YCYJP YCYJP LEFT JOIN T_JCSJZX_QDHS_YCYGKQD YCGK ON YCYJP.GKQDXH = YCGK.XH 
+			WHERE 
+				HSJGXH = ?
+			)
+	    ]]></both>
+    </sql>
+    
+    <!-- 扬尘源清单选择 -->
+    <sql id="QUERY_QDHS_YCYGKQD">
+        <both><![CDATA[
+        SELECT XH,NAME AS YCYMC,SSXZQ,QXMC,JD,WD,AREA AS ZDMJ, YCYLX FROM T_JCSJZX_DUST_JBXX
+	 	WHERE 1=1 #OPTS#
+	    ]]></both>
+    </sql>
+    
+        <!-- 扬尘源清单选择 -->
+    <sql id="QUERY_YJYA_YCYGKQD">
+        <both><![CDATA[
+        SELECT * FROM T_APEI_SITEDUST WHERE 1=1 #OPTS#
+	    ]]></both>
+    </sql>
+    
+    <!-- 扬尘减排是否存在 -->
+    <sql id="QUERY_QDHS_YCYGKQD_HSBH_GKBH">
+        <both><![CDATA[
+	 	SELECT COUNT(XH) AS TOTAL FROM T_JCSJZX_QDHS_YCYJP WHERE GKQDXH = ? AND HSJGXH = ?
+	    ]]></both>
+    </sql>
+        <!-- 扬尘减排是否存在 NEW -->
+    <sql id="QUERY_YJYA_YCYGKQD_HSBH_GKBH">
+        <both><![CDATA[
+	 	SELECT COUNT(XH) AS TOTAL FROM T_YJYA_ZWRYJ_YCYJP WHERE GKQDXH = ? 
+	    ]]></both>
+    </sql>
+    
+    <!-- 扬尘减排-新增数据 -->
+    <sql id="INSERT_QDHS_YCYJP">
+        <both><![CDATA[
+	 	INSERT INTO T_JCSJZX_QDHS_YCYJP(XH,GKQDXH,HSJGXH,CJR,CJSJ,XGR,XGSJ,ORGID) VALUES(?,?,?,?,?,?,?,?)
+	    ]]></both>
+    </sql>
+    
+        <!-- 扬尘减排-新增数据 NEW-->
+    <sql id="INSERT_YJYA_YCYJP">
+        <both><![CDATA[
+	 	INSERT INTO T_YJYA_ZWRYJ_YCYJP(XH,GKQDXH,YJYAXH,CJR,CJSJ,XGR,XGSJ,ORGID) VALUES(?,?,?,?,?,?,?,?)
+	    ]]></both>
+    </sql>
+    
+    <!-- 扬尘减排-删除数据 -->
+    <sql id="DEL_QDHS_YCYJP">
+        <both><![CDATA[
+	 	DELETE FROM T_JCSJZX_QDHS_YCYJP WHERE XH = ?
+	    ]]></both>
+    </sql>
+    
+        <!-- 扬尘减排-删除数据  new-->
+    <sql id="DEL_YJYA_YCYJPMD">
+        <both><![CDATA[
+	 	DELETE FROM T_YJYA_ZWRYJ_YCYGKMD WHERE XH = ?
+	    ]]></both>
+    </sql>
+    
+            <!-- 扬尘减排-删除数据 new-->
+    <sql id="DEL_YJYA_YCYJP">
+        <both><![CDATA[
+	 	DELETE FROM T_YJYA_ZWRYJ_YCYJP WHERE GKQDXH = ?
+	    ]]></both>
+    </sql>
+    
+    <!-- 扬尘减排-管控名单 -->
+    <sql id="UPDATE_QDHS_YCYJP_GKMD">
+        <both><![CDATA[
+	 	UPDATE T_JCSJZX_QDHS_YCYJP SET SFSCGKMD = ? WHERE HSJGXH = ?
+	    ]]></both>
+    </sql>
+    
+        <!-- 扬尘减排-管控名单 -->
+    <sql id="UPDATE_YJYA_YCYJP_GKMD">
+        <both><![CDATA[
+	 	UPDATE T_YJYA_YJXYFJ_YCYJP SET SFSCGKMD = ? WHERE GKQDXH = ?
+	    ]]></both>
+    </sql>
+    
+    <!-- 扬尘减排-保存  NEW-->
+    <sql id="SAVE_DUST_QDHS">
+        <both><![CDATA[
+	 	UPDATE T_YJYA_ZWRYJ_YCYJP SET KZCS = ?, YCGSJPL = ? WHERE GKQDXH = ?
+	    ]]></both>
+    </sql>
+    
+    <!-- 机动车减排-存在数据量-->
+    <sql id="QUERY_QDHS_JDCJP_EX">
+        <both><![CDATA[
+	 	SELECT COUNT(XH) AS TOTAL FROM T_JCSJZX_QDHS_JDCJP WHERE HSJGXH = ?
+	    ]]></both>
+    </sql>
+    
+    <!-- 机动车源-清单是否存在某一个编号的值-->
+    <sql id="QUERY_QDHS_JDCGKQD_EXIST">
+        <both><![CDATA[
+	 	SELECT COUNT(XH) TOTAL FROM T_JCSJZX_QDHS_JDCGKQD WHERE XH = ?
+	    ]]></both>
+    </sql>
+    
+        <!-- 机动车源-清单是否存在某一个编号的值-->
+    <sql id="QUERY_YJYA_JDCGKQD_EXIST">
+        <both><![CDATA[
+	 	SELECT COUNT(XH) TOTAL FROM T_YJYA_ZWRYJ_JDCGKMD WHERE YQDXH = ? AND YJXH=?
+	    ]]></both>
+    </sql>
+    
+    <!-- 机动车源-指定名单内容增加到清单中-->
+    <sql id="INSERT_QDHS_JDCGKQD_FROM_JDCGKMD">
+        <both><![CDATA[
+	 	INSERT INTO  T_JCSJZX_QDHS_JDCGKQD(XH,SSXZQ,XZQDM,JDCLX,JDCGG,G0BYL,G1BYL,G2BYL,G3BYL,G4BYL,G5BYL,CJR,CJSJ,XGR,XGSJ,ORGID,SFYX) 
+			SELECT XH,SSXZQ,XZQDM,JDCLX,JDCGG,G0BYL,G1BYL,G2BYL,G3BYL,G4BYL,G5BYL,'SYSTEM',GETDATE(),'SYSTEM',GETDATE(),'420100','1' FROM T_JCSJZX_QDHS_JDCGKMD
+			WHERE XH = ?
+	    ]]></both>
+    </sql>
+    
+        <!-- 机动车源-指定名单内容增加到清单中 NEW-->
+    <sql id="INSERT_YJYA_JDCGKQD_FROM_JDCGKMD">
+        <both><![CDATA[
+	 	INSERT INTO  T_YJYA_ZWRYJ_JDCGKMD(XH,YJXH,SSXZQ,DXQC,MXQC,XXQC,WXQC,DXHC,MXHC,XXHC,WXHC,SLQC,DSHC,PTMTC,QBMTC,ZXGC,MXGC,QXGC,CJR,CJSJ,XGR,XGSJ,ORGID,YQDXH) 
+	 	VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+	    ]]></both>
+    </sql>
+    
+    <!-- 机动车减排-减 数据-->
+    <sql id="QUERY_QDHS_JDCJP">
+        <both><![CDATA[
+	 	SELECT 
+			JDCJP.XH,JDCJP.HSJGXH,JDCJP.XXCS,JDCJP.PMGSJPL,JDCJP.NOXGSJPL,JDCJP.VOCSGSJPL,JDCJP.SFSCGKMD,
+			JDCGKQD.SSXZQ,JDCGKQD.JDCLX,JDCGKQD.JDCGG,JDCGKQD.G0BYL,JDCGKQD.G1BYL,JDCGKQD.G2BYL,JDCGKQD.G3BYL,JDCGKQD.G4BYL,JDCGKQD.G5BYL
+		FROM 
+			T_JCSJZX_QDHS_JDCJP JDCJP LEFT JOIN T_JCSJZX_QDHS_JDCGKQD JDCGKQD ON JDCJP.GKQDXH = JDCGKQD.XH
+		WHERE 1=1 #WHERESTRING#
+	    ]]></both>
+    </sql>
+    
+        <!-- 机动车减排-减 数据 -->
+    <sql id="QUERY_YJYA_JDCJP">
+        <both><![CDATA[
+        SELECT MD.*,JP.GKQDXH,JP.XXCS,JP.PMGSJPL,JP.NOXGSJPL,JP.VOCSGSJPL,JP.SFSCGKMD 
+        FROM T_YJYA_ZWRYJ_JDCGKMD MD LEFT JOIN T_YJYA_ZWRYJ_JDCJP JP ON MD.XH=JP.GKQDXH WHERE 1=1 #WHERESTRING# 
+	    ]]></both>
+    </sql>
+    
+            <!-- 机动车减排-减 数据 NEW-->
+    <sql id="QUERY_YJYA_JDCJP_1">
+        <both><![CDATA[
+        SELECT MD.*,JP.XXCS,JP.PMGSJPL,JP.NOXGSJPL,JP.VOCSGSJPL,JP.SFSCGKMD 
+        FROM T_YJYA_ZWRYJ_JDCGKMD MD LEFT JOIN T_YJYA_ZWRYJ_JDCJP JP ON MD.XH=JP.GKQDXH WHERE MD.YJXH = ?
+	    ]]></both>
+    </sql>
+    <!-- 机动车减排-选择-->
+    <sql id="QUERY_QDHS_JDCJP_HSXZ">
+        <both><![CDATA[
+	 	SELECT 
+			JDCGKQD.XH,JDCGKQD.SSXZQ,JDCGKQD.JDCLX,JDCGKQD.JDCGG,JDCGKQD.G0BYL,JDCGKQD.G1BYL,JDCGKQD.G2BYL,JDCGKQD.G3BYL,JDCGKQD.G4BYL,JDCGKQD.G5BYL
+		FROM 
+			T_JCSJZX_QDHS_JDCGKMD JDCGKQD
+		WHERE 
+			JDCGKQD.XH NOT IN 
+		(
+			SELECT GKQDXH FROM T_JCSJZX_QDHS_JDCJP WHERE HSJGXH = ?
+		) #OPTS#
+	    ]]></both>
+    </sql>
+    
+        <!-- 机动车减排-选择-->
+    <sql id="QUERY_YJYA_JDCJP_HSXZ">
+        <both><![CDATA[
+		SELECT * FROM T_WL_JDCTJ WHERE 1=1 #OPTS#
+	    ]]></both>
+    </sql>
+    <!-- 机动车减排-->
+    <sql id="UPDATE_QDHS_JDCJP_GKMD">
+        <both><![CDATA[
+	 	UPDATE T_JCSJZX_QDHS_JDCJP SET SFSCGKMD = ? WHERE HSJGXH=?
+	    ]]></both>
+    </sql>
+    
+        <!-- 机动车减排-->
+    <sql id="UPDATE_YJYA_JDCJP_GKMD">
+        <both><![CDATA[
+	 	UPDATE T_YJYA_YJXYFJ_JDCJP SET SFSCGKMD = ? WHERE HSXH=?
+	    ]]></both>
+    </sql>
+    
+    <!-- 机动车减排 删除-->
+    <sql id="DELETE_QDHS_JDCJP_GKMD">
+        <both><![CDATA[
+	 	DELETE FROM T_JCSJZX_QDHS_JDCJP WHERE XH=? AND HSJGXH=?
+	    ]]></both>
+    </sql>
+    
+        <!-- 机动车减排 删除 new -->
+    <sql id="DELETE_YJYA_JDCJP_GKMD">
+        <both><![CDATA[
+	 	DELETE FROM T_YJYA_ZWRYJ_JDCGKMD WHERE XH=?
+	    ]]></both>
+    </sql>
+    
+            <!-- 机动车减排 删除 new -->
+    <sql id="DELETE_YJYA_JDCJP">
+        <both><![CDATA[
+	 	DELETE FROM T_YJYA_ZWRYJ_JDCJP WHERE GKQDXH=?
+	    ]]></both>
+    </sql>
+    
+    <!-- 机动车减排新增-->
+    <sql id="INSERT_QDHS_JDCJP_GKMD">
+        <both><![CDATA[
+	 	INSERT INTO T_JCSJZX_QDHS_JDCJP(XH,GKQDXH,HSJGXH,CJR,CJSJ,XGR,XGSJ,ORGID)
+	 	VALUES(
+	 		?,?,?,?,?,?,?,?
+	 	)
+	    ]]></both>
+    </sql>
+    
+        <!-- 机动车减排新增-->
+    <sql id="INSERT_YJYA_JDCJP">
+        <both><![CDATA[
+	 	INSERT INTO T_YJYA_ZWRYJ_JDCJP(XH,GKQDXH,YJYAXH,CJR,CJSJ,XGR,XGSJ,ORGID)
+	 	VALUES(
+	 		?,?,?,?,?,?,?,?
+	 	)
+	    ]]></both>
+    </sql>
+    
+    <!-- 机动车减排清单选择-->
+    <sql id="QUERY_QDHS_JDCJP_GKQD_OPT">
+        <both><![CDATA[
+	 	SELECT XH,SSXZQ,XZQDM,JDCLX,JDCGG,SFYX,G0BYL,G1BYL,G2BYL,G3BYL,G4BYL,G5BYL FROM T_JCSJZX_QDHS_JDCGKQD
+		WHERE XH NOT IN 
+		(
+			SELECT GKQDXH FROM T_JCSJZX_QDHS_JDCJP WHERE HSJGXH = ?
+		)
+	    ]]></both>
+    </sql>
+    <!-- 机动车减排清单选择-->
+    <sql id="QUERY_QDHS_JDCJP_GKQD_ALL">
+        <both><![CDATA[
+	 	SELECT XH,SSXZQ,XZQDM,JDCLX,JDCGG,SFYX,G0BYL,G1BYL,G2BYL,G3BYL,G4BYL,G5BYL FROM T_JCSJZX_QDHS_JDCGKQD
+	    ]]></both>
+    </sql>
+    <!-- 工业源更改措施 -->
+    <sql id="UPDATE_QDHS_JDCJP">
+        <both><![CDATA[
+	 	UPDATE T_YJYA_ZWRYJ_JDCJP SET XXCS=?,PMGSJPL=?,NOXGSJPL=?,VOCSGSJPL=?,XGR=?,XGSJ=? WHERE GKQDXH = ?
+	    ]]></both>
+    </sql>
+    
+        <!-- 更改措施 -->
+    <sql id="UPDATE_YJYA_JDCJP">
+        <both><![CDATA[
+	 	UPDATE T_YJYA_YJXYFJ_JDCJP SET XXCS=?,PMGSJPL=?,NOXGSJPL=?,VOCSGSJPL=?,XGR=?,XGSJ=? WHERE GKQDXH = ?
+	    ]]></both>
+    </sql>
+    
+     <!-- 工业源更改措施 new-->
+    <sql id="QUERY_VEHICLE_CHOICE_BY_HSBH_FOR_AUTH">
+        <both><![CDATA[
+	 	SELECT * FROM T_YJYA_ZWRYJ_JDCGKMD WHERE YJXH = ?
+	    ]]></both>
+    </sql>
+    
+    <!-- 工业源-估算值-->
+    <sql id="QUERY_QDHS_GYYGKSCX_XH">
+        <both><![CDATA[
+	 	SELECT 
+			GSLX_RED,GSLX_RED_YFC,GSLX_RED_SO2,GSLX_RED_NOX,GSLX_RED_VOCS,
+			GSLX_ORANGE,GSLX_ORANGE_YFC,GSLX_ORANGE_SO2,GSLX_ORANGE_NOX,GSLX_ORANGE_VOCS,
+			GSLX_YELLOW,GSLX_YELLOW_YFC,GSLX_YELLOW_SO2,GSLX_YELLOW_NOX,GSLX_YELLOW_VOCS,
+			GSLX_BLUE,GSLX_BLUE_YFC,GSLX_BLUE_SO2,GSLX_BLUE_NOX,GSLX_BLUE_VOCS
+		FROM 
+			T_JCSJZX_QDHS_GYYGKSCX WHERE XH =?
+	    ]]></both>
+    </sql>
+    <!-- 工业源-更新估算值-->
+    <sql id="UPDATE_QDHS_GYYJP_GSLX">
+        <both><![CDATA[
+	 	UPDATE T_JCSJZX_QDHS_GYYJP SET TCCS=?,YFCGSJPL=?,SO2GSJPL=?,NOXGSJPL=?,VOCGSJPL=? WHERE  HSJGXH = ? AND GYYJGXH =?
+	    ]]></both>
+    </sql>
+    
+    <!-- 扬尘-估算值-->
+    <sql id="QUERY_QDHS_YCYGKMD_XH">
+        <both><![CDATA[
+	 	SELECT 
+	 		REDKZCS,REDGSJPL,ORANGEKZCS,ORANGEGSJPL,YELLOWKZCS,YELLOWGSJPL,BLUEKZCS,BLUEGSJPL 
+	 	FROM 
+	 		T_JCSJZX_DUST_JBXX  
+	 	WHERE 
+	 		XH =?
+	    ]]></both>
+    </sql>
+    <!-- 扬尘-更新估算值-->
+    <sql id="UPDATE_QDHS_YCYJP_GSLX">
+        <both><![CDATA[
+	 	UPDATE T_JCSJZX_QDHS_YCYJP SET KZCS=?,YCGSJPL=? WHERE  HSJGXH=? AND GKQDXH =?
+	    ]]></both>
+    </sql>
+    
+    <!-- 机动车-估算值-->
+    <sql id="QUERY_QDHS_JDCGKMD_XH">
+        <both><![CDATA[
+	 	SELECT 
+			GSLX_RED,GSLX_RED_YFC,GSLX_RED_SO2,GSLX_RED_NOX,GSLX_RED_VOCS,
+			GSLX_ORANGE,GSLX_ORANGE_YFC,GSLX_ORANGE_SO2,GSLX_ORANGE_NOX,GSLX_ORANGE_VOCS,
+			GSLX_YELLOW,GSLX_YELLOW_YFC,GSLX_YELLOW_SO2,GSLX_YELLOW_NOX,GSLX_YELLOW_VOCS,
+			GSLX_BLUE,GSLX_BLUE_YFC,GSLX_BLUE_SO2,GSLX_BLUE_NOX,GSLX_BLUE_VOCS 
+		FROM 
+			T_JCSJZX_QDHS_JDCGKMD 
+		WHERE 
+			XH = ?
+	    ]]></both>
+    </sql>
+    <!-- 机动车-更新估算值-->
+    <sql id="UPDATE_QDHS_JDCJP_GSLX">
+        <both><![CDATA[
+	 	UPDATE T_JCSJZX_QDHS_JDCJP SET XXCS=?,PMGSJPL=?,NOXGSJPL=?,VOCSGSJPL=? WHERE HSJGXH =? AND GKQDXH=?
+	    ]]></both>
+    </sql>
+    
+        <!-- 查询源清单库内的企业信息-->
+    <sql id="QUERY_YJYA_QYXX">
+        <both><![CDATA[
+	 	SELECT * FROM (
+		SELECT QY.QYMC,GY.* FROM T_WL_TYDCB QY LEFT JOIN T_WL_TYDCB_SCGDGYXX GY ON GY.RECORDERID = QY.RECORDERID) B
+		LEFT JOIN T_APEI_QDFX_QYPFWTJ A
+		ON A.QYMC = B.QYMC WHERE WRYBH = ?
+	    ]]></both>
+    </sql>
+    
+        <sql id="QUERY_YJYA_JDCXX">
+        <both><![CDATA[
+	 	SELECT * FROM	T_WL_JDCTJ where BH = ?
+	    ]]></both>
+    </sql>
+    
+    <!-- 新增应急预案工业源管控名单 NEW -->
+     <sql id="INSERT_YJYA_GYYGKMD">
+        <both><![CDATA[
+	 	INSERT INTO T_YJYA_ZWRYJ_GYYGKMD(XH,YJYAXH,QYBH,QYMC,QYDZ,SSXZQ,XZQDM,SSHY,JD,WD,CJR,CJSJ,ORGID,YQDXH)
+		VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)	
+	    ]]></both>
+    </sql>
+    
+    <!-- 新增应急预案工业源减排措施 NEW -->
+     <sql id="INSERT_YJYA_GYYJPCS">
+        <both><![CDATA[
+	 	INSERT INTO T_YJYA_ZWRYJ_GYYJP(XH,GYYJGXH,TCCS,SO2GSJPL,NOXGSJPL,VOCGSJPL,CJR,CJSJ,ORGID,YJYAXH,PM25GSJPL,PM10GSJPL,GYXH)
+		VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)	
+	    ]]></both>
+    </sql>
+    
+     <!-- 工业源减排措施-根据应急预等级取对应的数据 NEW-->
+    <sql id="QUERY_YJYA_GYJPCS_YJDJ">
+        <both><![CDATA[
+		SELECT MD.*,JP.*
+		FROM T_YJYA_YJXYFJ_GYYGKMD MD LEFT JOIN T_YJYA_YJXYFJ_GYYJP JP ON MD.XH=JP.GYYJGXH WHERE JP.HSXH = ?
+	    ]]></both>
+    </sql>
+    
+            <!-- 工业源减排措施-根据应急预案序号获取对应的数据 NEW-->
+    <sql id="QUERY_YJYA_GYJPCS_YJXH">
+        <both><![CDATA[
+		SELECT MD.*,JP.*
+		FROM T_YJYA_ZWRYJ_GYYGKMD MD LEFT JOIN T_YJYA_ZWRYJ_GYYJP JP ON MD.XH=JP.GYYJGXH WHERE MD.YJYAXH = ?
+	    ]]></both>
+    </sql>
+    
+             <!-- 扬尘源列表  new-->
+    <sql id="QUERY_YJYA_YCYJPMD_YJDJ">
+        <both><![CDATA[
+		SELECT MD.*,JP.KZCS,JP.YCGSJPL FROM T_YJYA_YJXYFJ_YCYGKMD MD LEFT JOIN T_YJYA_YJXYFJ_YCYJP JP ON MD.XH=JP.GKQDXH
+		WHERE JP.HSXH = ?
+	    ]]></both>
+    </sql>
+    
+    <!-- 新增应急预案扬尘源管控名单 NEW -->
+    <sql id="INSERT_YJYA_YCYMD">
+        <both><![CDATA[
+	 	INSERT INTO  T_YJYA_ZWRYJ_YCYGKMD(XH,YJXH,YCYMC,YCYLX,SSXZQ,XZQDM,JTDZ,JD,WD,ZDMJ,CJR,CJSJ,ORGID,YQDXH)
+	 	VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+	    ]]></both>
+    </sql>
+    
+    <!-- 新增应急预案扬尘源减排措施 NEW -->
+     <sql id="INSERT_YJYA_YCYJPCS">
+        <both><![CDATA[
+	 	INSERT INTO T_YJYA_ZWRYJ_YCYJP(XH,GKQDXH,KZCS,YCGSJPL,CJR,CJSJ,ORGID,YJYAXH)
+		VALUES (?,?,?,?,?,?,?,?)	
+	    ]]></both>
+    </sql>
+    
+        <!--应急预案机动车减排-减 数据 new-->
+    <sql id="QUERY_YJYA_JDCJPMD_YJDJ">
+        <both><![CDATA[
+        SELECT MD.*,JP.GKQDXH,JP.XXCS,JP.PMGSJPL,JP.NOXGSJPL,JP.VOCSGSJPL,JP.SFSCGKMD 
+        FROM T_YJYA_YJXYFJ_JDCGKMD MD LEFT JOIN T_YJYA_YJXYFJ_JDCJP JP ON MD.XH=JP.GKQDXH WHERE JP.HSXH = ?
+	    ]]></both>
+    </sql>
+    
+    <!-- 新增应急预案机动车管控名单 NEW -->
+    <sql id="INSERT_YJYA_JDCGKMD">
+        <both><![CDATA[
+	 	INSERT INTO  T_YJYA_ZWRYJ_JDCGKMD(XH,YJXH,SSXZQ,XZQDM,JDCLX,DXQC,MXQC,XXQC,WXQC,DXHC,MXHC,XXHC,WXHC,SLQC,DSHC,PTMTC,QBMTC,ZXGC,MXGC,QXGC,CJR,CJSJ,ORGID,YQDXH)
+	 	VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+	    ]]></both>
+    </sql>
+    
+    <!-- 新增应急预案机动车减排措施 NEW -->
+     <sql id="INSERT_YJYA_JDCJPCS">
+        <both><![CDATA[
+	 	INSERT INTO T_YJYA_ZWRYJ_JDCJP(XH,GKQDXH,XXCS,PMGSJPL,NOXGSJPL,VOCSGSJPL,CJR,CJSJ,ORGID,YJYAXH)
+		VALUES (?,?,?,?,?,?,?,?,?,?)	
+	    ]]></both>
+    </sql>
+</sqls>

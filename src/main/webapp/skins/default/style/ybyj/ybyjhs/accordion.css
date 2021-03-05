@@ -1,0 +1,14 @@
+.nav {width: 213px; padding: 40px 28px 25px 0; font-family: "Microsoft yahei", Arial, Helvetica, sans-serif;} 
+ul.nav {padding: 0; margin: 0;  list-style: none;} 
+ul.nav li {} 
+ul.nav li .head{color:#ffffff;background: #5fb7fc url(../../../images/ybyj/zbrw/collapsed.png)  no-repeat scroll 180px 4px;}
+ul.nav li a {line-height: 10px; font-size: 14px; padding: 10px 5px; color: #000; display: block; text-decoration: none; font-weight: bolder;}
+#navigation li a.head.selected{color:#ffffff;background: #5fb7fc url(../../../images/ybyj/zbrw/expanded.png)  no-repeat scroll 180px 4px;}
+ul.nav ul { margin: 0; padding: 0;display: none;} 
+ul.nav ul li { margin: 0; padding: 0; clear: both;} 
+ul.nav ul li a { padding-left: 20px; font-size: 12px; font-weight: normal;}
+ul.nav ul li a:hover {background-color:#d2f0fc; color:#303030;}
+ul.nav ul li a.selected {background-color:#d2f0fc; color:#303030;}
+ul.nav ul ul li a {color:silver; padding-left: 40px;} 
+ul.nav ul ul li a:hover { background-color:#d2f0fc; color:#303030;} 
+ul.nav span{float:right;}

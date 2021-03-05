@@ -1,0 +1,94 @@
+.icon-arrow-close{
+	background:url('../icons/ext/arrows.png') no-repeat 0 0;
+}
+.icon-arrow-open{
+	background:url('../icons/ext/arrows.png') no-repeat -16px 0;
+}
+.icon-save-insert{
+	background:url('../icons/ext/save-insert.png') no-repeat center center;
+}
+ .icon-table{
+	background:url('../icons/ext/table.png') no-repeat center ;
+	width:17px;
+}  
+.icon-select{
+	background:url('../icons/ext/select_options.png') no-repeat center center;
+	  width:16px; height:14px; 
+}
+.icon-select:hover{
+	background:url('../icons/ext/select_options_hover.png') no-repeat center center;
+}
+.icon-manager-ext{
+	background:url('../icons/ext/manager.png') no-repeat center center;
+	display:inline-block;width:18px;height:18px;
+}
+.icon-close{
+	background:url('../icons/ext/close.png') no-repeat center center;
+}
+.icon-yq{
+	background:url('../icons/ext/ys.png') no-repeat center center;
+	height: 18px;
+}
+.icon-zf{
+	background:url('../icons/edit_remove.png') no-repeat center center;
+	height: 18px;
+}
+.icon-hs{
+	background:url('../icons/ext/hs.png') no-repeat center center;
+	height: 18px;
+}
+.icon-lz{
+	background:url('../icons/ext/lz.png') no-repeat center center;
+	height: 18px;
+}
+.icon-zk{
+	background:url('../icons/ext/zk.png') no-repeat center center;
+	height: 18px;
+}
+.icon-ff{
+	background:url('../icons/undo.png') no-repeat center center;
+	height: 18px;
+}
+.icon-order{
+	background:url('../icons/ext/order.png') no-repeat center center;
+}
+.icon-tran{
+	background:url('../icons/ext/tran.png') no-repeat center center; position:relative; top:2px;
+}
+.icon-pre{
+	background:url('../icons/ext/pre.png') no-repeat center center;
+	display: inline-block;
+    width: 18px;
+}
+.icon-btn-close{
+	background:url('../icons/ext/btn-close.png') no-repeat center ;
+	width:17px;
+}
+.icon-pencil{
+	background:url('../icons/pencil.png') no-repeat center ;
+	width:18px;
+}
+.icon-btn-down{
+	background:url('../icons/ext/down_single.png') no-repeat center ;
+	width:17px;
+}
+.icon-msgInfo{
+	background:url('../icons/ext/msg-info.png') no-repeat center ;
+	width:17px;
+}
+.icon-play{
+	background:url('../icons/ext/play_24.png') no-repeat center ;
+	width:17px;
+}
+.icon-pause{
+	background:url('../icons/ext/pause_24.png') no-repeat center ;
+	width:17px;
+}
+.icon-replay{
+	background:url('../icons/ext/restart_24.png') no-repeat center ;
+	width:17px;
+}
+.icon-stop{
+	background:url('../icons/ext/stop_24.png') no-repeat center ;
+	width:17px;
+}

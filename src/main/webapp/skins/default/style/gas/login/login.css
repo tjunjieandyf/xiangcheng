@@ -1,0 +1,206 @@
+@charset: "utf-8";
+
+/*头部*/
+.login-head{
+	height: 90px;
+}
+.login-head .logo{
+	box-sizing: border-box;
+	margin: 0 auto;
+	padding-left: 60px;
+	display: block;
+	width: 1200px;
+	height: 90px;
+	line-height: 90px;
+/* 	background: url(../../../images/gas/login/login-logo.png) 0 center no-repeat; */
+}
+.login-head .logo strong{
+	font-size: 28px;
+	color: #2886e8;
+	font-weight: normal;
+}
+.login-head .logo span{
+	display: inline-block;
+	padding: 0 3px;
+	height: 16px;
+	line-height: 16px;
+	color: #fff;
+	background-color: #5ba3df;
+	border-radius: 2px;
+}
+
+.login-ctn{
+	position: relative;
+	width: 100%;
+	height: 488px;
+/* 	background: url(../../../images/gas/login/loginBg.png) center no-repeat; */
+}
+.login-foot{
+    width: 100%;
+    height: 30px;
+    margin-top: 15px;
+}
+.login-foot p{
+    line-height: 1.6em;
+    text-align: center;
+    color: #757575;
+    font-size: 12px;
+}
+
+.loginTxt{
+	position: absolute;
+	top: 78px;
+	right: 50%;
+	margin-right: -100px;
+	width: 697px;
+	height: 332px;
+/* 	background: url(../../../images/gas/login/loginTxt.png); */
+	-webkit-animation: slideIn 0.6s;
+	        animation: slideIn 0.6s;
+}
+
+@-webkit-keyframes slideIn{
+	0% {
+		-webkit-transform: translateX(-300px);
+		        transform: translateX(-300px);
+		opacity: 0;
+	}
+	100% {
+		-webkit-transform: translateX(0);
+		        transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+@keyframes slideIn{
+	0% {
+		-webkit-transform: translateX(-300px);
+		        transform: translateX(-300px);
+		opacity: 0;
+	}
+	100% {
+		-webkit-transform: translateX(0);
+		        transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+.login-wrap{
+	position: absolute;
+	top: 50px;
+	left: 50%;
+	margin-left: 192px;
+	box-sizing: border-box;
+	width: 370px;
+	height: 390px;
+	background: #fff;
+	border-radius: 5px;
+}
+.login-box{
+	margin: 0 20px;
+}
+.login-box h1{
+	height: 59px;
+	line-height: 59px;
+	font-size: 26px;
+	color: #2886e8;
+	border-bottom: solid 1px #d9dfe4;
+}
+.login-form{
+	padding: 10px 0;
+}
+.login-block{
+	position: relative;
+	height: 44px;
+	margin-top: 20px;
+}
+.login-block .input-txt{
+	position: absolute;
+	z-index: 11;
+	top: 0;
+	left: 0;
+	box-sizing: border-box;
+	width: 100%;
+	height: 44px;
+	line-height: 44px;
+	border: none;
+	outline: none;
+	padding-left: 52px;
+	text-indent: 10px;
+	background: url(../../../images/gas/login/login-input.png) center no-repeat;
+}
+.login-block .input-txt:focus{
+	background: url(../../../images/gas/login/login-input_on.png) center no-repeat;
+}
+.login-block .input-label{
+	position: absolute;
+	z-index: 12;
+	top: 0;
+	left: 0;
+	width: 52px;
+	height: 44px;
+}
+.login-block .input-label.user{
+	background: url(../../../images/gas/login/login-user.png);
+}
+.login-block .input-label.password{
+	background: url(../../../images/gas/login/login-password.png);
+}
+.login-block .input-txt.verification-code{
+    padding-left: 0;
+    width: 130px;
+    background-size: 100% 100%;
+}
+/*复选框*/
+.checkbox{
+	display: inline-block;
+	padding: 0 5px;
+	height: 16px;
+	overflow: hidden;
+	vertical-align: middle;
+}
+.checkbox .checkbox-icon{
+	float: left;
+	display: block;
+	width: 16px;
+	height: 16px;
+	background: url(../../../images/gas/login/uncheck.png);
+	cursor: pointer;
+}
+.checkbox .checkbox-icon.on{
+	background: url(../../../images/gas/login/checked.png);
+}
+.checkbox input[type="checkbox"]{
+	display: none;
+}
+.checkbox .checkbox-txt{
+	display: block;
+	float: left;
+	margin-top: 2px;
+	padding-left: 2px;
+	font-size: 14px;
+	line-height: 14px;
+}
+
+.login-btn{
+	padding: 0;
+	margin: 0 auto;
+	width: 330px;
+	height: 44px;
+	color: #fff;
+	font-size: 18px;
+	line-height: 44px;
+	background: #2886e8;
+	border: none;
+	cursor: pointer;
+}
+.reg-btn{
+	display: block;
+	padding: 0;
+	margin: 0 auto;
+	width: 330px;
+	color: #f08800;
+	text-align: center;
+	font-size: 14px;
+	background: #fff;
+}

@@ -1,0 +1,114 @@
+.con-lf {
+    position: absolute;
+    left: 0;
+    top: 0px;
+    bottom: 0;
+    width: 100%;
+    border-right: 1px solid #bfd9ee;
+}
+
+.con-lf .tit {
+    height: 32px;
+    line-height: 32px;
+    font-size: 14px;
+    color: #aeaeae;
+    border-bottom: 1px dashed #aeaeae;
+}
+.con-lf .tit span {
+    float: left;
+    position: relative;
+    padding-left: 25px;
+}
+.con-lf .tit span:before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 6px;
+    height: 17px;
+    left: 10px;
+    top: 7px;
+    background: #aeaeae;
+}
+
+
+.qylist-2 {
+    height: 100%;
+    overflow:auto;
+}
+.qylist-2 li {
+    cursor: pointer;
+    position: relative;
+    box-sizing: border-box;
+    height: 60px;
+    border: 1px solid #eff5fd;
+    box-shadow: 0 0 8px rgba(32,139,209,.3);
+    padding-left: 50px;
+    margin-right: 15px;
+    margin-top: 10px;
+    margin-left: 5px;
+    background: url(pages_22.png) 10px center no-repeat;
+}
+
+.qylist-2 li.on,
+.qylist-2 li:hover {
+    border-color: #3993ff;
+}
+.qylist-2 li.on:before, 
+.qylist-2 li:hover:before {
+    position: absolute;
+    content: '';
+    display: block;
+    width: 15px;
+    height: 16px;
+    background: url(bfjt.png) center no-repeat;
+    right: -15px;
+    top: 22px;
+}
+
+.qylist-2 li b {
+    line-height: 60px;
+    float: left; 
+    font-size: 14px;
+    color: #333333;
+    margin-right: 20px;
+}
+.qylist-2 li span {
+    line-height: 60px;
+    float: right; 
+    font-size: 12px;
+    margin-right: 10px;
+}
+.qylist-2 li i {
+    display: block;
+    width: 30px;
+    height: 60px;
+    float: right;
+}
+.qylist-2 li i.icon-ok {
+    background: url(dx_a.png) center no-repeat;
+}
+.qylist-2 li i.icon-no {
+    background: url(warning.png) center no-repeat;
+}
+
+
+.btn-sd {
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 40px;
+    text-align: center;
+    background: #3993ff url(icon_add.png) 115px center no-repeat;
+}
+.btn-sd span {
+    padding-left: 20px;
+}
+.btn-sd:hover{
+    background: #0079c9 url(icon_add.png) 115px center no-repeat;
+}

@@ -1,0 +1,6 @@
+.tips{border:none;height:26px;line-height: 26px;background: #CF0000;color:white;font-size: 12px;text-align:center;cursor: pointer;display: inline-block;width:65px;}
+.tipsW{border:none;height:26px;line-height: 26px;background: #0078CF;color:white;font-size: 12px;text-align:center;cursor: pointer;display: inline-block;width:65px;}
+.tipsNo{border:none;height:26px;line-height: 26px;background: #27BC71;color:white;font-size: 12px;text-align: center;display: inline-block;width:65px;}
+.fontsome{font-family: "Microsoft YaHei","iconfont","FontAwesome"  !important;margin:5px 5px 5px 5px;}
+a.pr_item{float: left;display: inline;border: #e5e5e5 solid 1px;width: 230px;height: 26px;margin: 8px 50px;cursor: pointer;}
+p.pri_left {float: left;display: inline;width: 165px;height: 100%;line-height: 26px;text-align: left;overflow: hidden;font-size: 14px;color: #000;background-color: #959595;}

@@ -1,0 +1,22 @@
+@charset "utf-8";
+/* CSS Document */
+body, h1, h2, h3, h4, h5, h6, p, div, form, img, ul, ol, li, dl, dt, dd, label{margin:0;padding:0; list-style:none; font-size:12px;}
+div,form,img,ul,ol,li,dl,dt,dd {margin:0; padding:0; border:0; }
+li{list-style-type:none;}
+img{vertical-align:top;}
+em,i {font-style:normal;}
+h1,h2,h3,h4,h5,h6 { margin:0;padding:0;font-size:12px;font-weight:normal;}
+
+/*clear*/
+.clear{ clear:both; font-size:1px; line-height:1px;}
+
+.op-button{background-color: #fff;padding: 3px 12px;border: 1px solid #1380e0;margin-left: 10px}
+.op-button:hover{background-color: #1380e0;color: white}
+
+.radiobox{display:inline-block;position: relative;padding: 0 5px;*zoom:1;height: 17px;}
+.radiobox .radio-icon{display:inline-block;width: 17px;height: 17px;background: url("images/radio.png") no-repeat;position: relative;top: 3px;*top:-10px;}
+.radiobox .radio-icon.on{background: url("images/radio_check.png") no-repeat;}
+.radiobox span{*position: relative;*top:-10px;}
+
+
+input[type=checkbox]{background: url("images/checkbox.png") no-repeat;}

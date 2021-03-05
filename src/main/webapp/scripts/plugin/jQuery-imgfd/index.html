@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>jQuery图片内部缩放和平移插件jquery.zoom.js</title>
+	<style type="text/css">
+		/* styles unrelated to zoom */
+		* { border:0; margin:0; padding:0; }
+		p { position:absolute; top:3px; right:28px; color:#555; font:bold 13px/1 sans-serif;}
+		.jq22{ width: 900px; margin-left: auto; margin-right: auto; }
+		h1{ font-size: 16px; color: #A2A2A2; line-height: 60px; }
+		body{ background-color: #2D2D2D; }
+		/* these styles are for the demo, but are not required for the plugin */
+		.zoom {
+			display:inline-block;
+			position: relative;
+		}
+		
+		/* magnifying glass icon */
+		.zoom:after {
+			content:'';
+			display:block; 
+			width:33px; 
+			height:33px; 
+			position:absolute; 
+			top:0;
+			right:0;
+			background:url(img/icon.png);
+		}
+
+		.zoom img {
+			display: block;
+		}
+
+		.zoom img::selection { background-color: transparent; }
+
+		#ex2 img:hover { cursor: url(img/grab.cur), default; }
+		#ex2 img:active { cursor: url(img/grabbed.cur), default; }
+		
+	</style>
+	<!--[if IE]>
+		<script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<div class="jq22">
+
+			<h1>图片内部缩放和平移jQuery插件 <span>A plugin to enlarge images on touch, click, or mouseover.</span></h1>
+		
+		<div class="jq22-content">
+			<span class='zoom' id='ex'>
+				<img src='img/design.jpg' width='325' height='420' alt='web design'/>
+				<p>Hover</p>
+			</span>
+			<span class='zoom' id='ex'>
+				<img src='img/women.jpg' width='420' height='320' alt='women'/>
+				<p>Grab</p>
+			</span>
+			<span class='zoom' id='ex'>
+				<img src='img/horse1.jpg' width='555' height='320' alt='horse'/>
+				<p>Click to activate</p>
+			</span>
+			<!--<span class='zoom' id='ex'>
+				<img src='img/women2.jpg' width='290' height='320' alt='women2'/>
+				<p>Click to toggle</p>
+			</span>-->
+		</div>
+		
+	</div>
+	
+	<script src="http://www.jq22.com/jquery/1.11.1/jquery.min.js"></script>
+	<script src='js/jquery.zoom.js'></script>
+	<script>
+		$(document).ready(function(){
+			$(".zoom").zoom();
+		})
+	</script>
+</body>
+</html>

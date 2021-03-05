@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szboanda.dqxt.rwzx.dao.TaskCenterDAO">
+
+	<resultMap type="java.util.Map" id="TaskMap">
+		<result column="XH" property="XH" jdbcType="VARCHAR" javaType="string" />
+		<result column="RWBH" property="RWBH" jdbcType="VARCHAR" javaType="string" />
+		<result column="RWNR" property="RWNR" jdbcType="VARCHAR" javaType="string" />
+		<result column="SJKSSJ" property="SJKSSJ" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" />
+		<result column="SJJSSJ" property="SJJSSJ" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" />
+		<result column="RWCSYY" property="RWCSYY" jdbcType="VARCHAR" javaType="string" />
+		<result column="YQBJSJ" property="YQBJSJ" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" />
+		<result column="SFCQ" property="SFCQ" jdbcType="VARCHAR" javaType="string" />
+		<result column="FZJG" property="FZJG" jdbcType="VARCHAR" javaType="string" />
+		<result column="BLR" property="BLR" jdbcType="VARCHAR" javaType="string" />
+		<result column="YWLX" property="YWLX" jdbcType="VARCHAR" javaType="string" />
+		<result column="YWZLX" property="YWZLX" jdbcType="VARCHAR" javaType="string" />
+	</resultMap>
+
+	<!-- 设置业务所有字段信息 -->
+	<sql id="allColumns">
+		<trim prefix="" suffixOverrides="," suffix="">
+			XH,
+			YWLX,
+			YWZLX,
+			YWGLXH,
+			RWBH,
+			RWLY,
+			RWMC,
+			RWNR,
+			SJKSSJ,
+			SJJSSJ,
+			RWCSYY,
+			YQBJSJ,
+			SFCQ,
+			FZJG,
+			BLR,
+			BZ,
+			CJSJ,
+			CJR,
+			XGSJ,
+			XGR,
+			ORGID,
+			BJQK
+		</trim>
+	</sql>
+	
+	<!-- 查询业务信息集合 -->
+	<select id="queryTasks" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT A.XH, A.YWLX, A.YWZLX, A.YWGLXH, A.RWBH, A.RWLY, A.RWMC, A.RWNR, A.SJKSSJ, A.SJJSSJ, A.RWCSYY, 
+		A.YQBJSJ, A.SFCQ, A.FZJG, A.BLR, A.BZ, A.CJSJ, A.CJR, A.XGSJ, A.XGR, A.BJQK,A.FKR ,A.FKSJ ,A.FKNR ,A.SFBJ,
+		TO_CHAR(A.SJKSSJ, 'yyyy-MM-dd HH24:mi:ss') BJSJ, A.TYPE,
+		 C.YHMC, B.ZZJC
+		FROM 
+			T_GZRW_JBXX A 
+		LEFT JOIN U_WRYDTGL_XC.T_ADMIN_RMS_ZZJG B ON A .FZJG = B.ZZBH
+		LEFT JOIN U_WRYDTGL_XC.T_ADMIN_RMS_YH C ON A .BLR = C.YHID
+		WHERE 
+		    1=1
+	    	<if test="STARTTIME != null and STARTTIME !=''">
+	      		AND A.CJSJ <![CDATA[>=]]> to_date(#{STARTTIME},'yyyy-mm-dd,hh24:mi:ss')
+			</if>
+			<if test="ENDTIME != null and ENDTIME !=''">
+		      	AND A.CJSJ <![CDATA[<=]]> to_date(#{ENDTIME},'yyyy-mm-dd,hh24:mi:ss')
+			</if>
+			<if test="YWLX != null and YWLX !=''">
+			 AND A.YWLX = #{YWLX}
+			</if>
+			<if test="FZJG != null and FZJG !=''">
+			 AND A.FZJG = #{FZJG}
+			</if>
+			<if test="BJQK != null and BJQK !=''">
+			 AND A.BJQK = #{BJQK}
+			</if>
+			<if test="SFCQ != null and SFCQ !=''">
+			 AND A.SFCQ = #{SFCQ}
+			</if>
+			<if test="search != null and search !=''">
+			 AND (A.RWNR LIKE #{search} OR B.ZZJC LIKE #{search} OR C.YHMC LIKE #{search})
+			</if>
+			<if test="YHID != null and YHID !=''">
+				AND C.XTZH = #{YHID}
+			</if>
+	</select>
+	
+	<!-- 查询超期任务 -->
+	<select id="queryOvertimeTasks" parameterType="java.util.Map" resultMap="TaskMap">
+		SELECT
+			XH,
+			YQBJSJ,
+			ROUND (TO_NUMBER(SYSDATE - YQBJSJ)) AS OVERTIME
+		FROM 
+			T_GZRW_JBXX 
+		WHERE 
+		    ROUND(TO_NUMBER(SYSDATE - SJKSSJ) * 24 * 60 * 60) >ROUND(TO_NUMBER(YQBJSJ - SJKSSJ) * 24 * 60 * 60) AND BJQK = '0'
+		    <if test="STARTTIME != null and STARTTIME !=''">
+			 	AND CJSJ <![CDATA[>=]]> to_date(#{STARTTIME},'yyyy-mm-dd,hh24:mi:ss') 
+			</if>
+		    <if test="ENDTIME != null and ENDTIME !=''">
+			 	AND CJSJ <![CDATA[<=]]> to_date(#{ENDTIME},'yyyy-mm-dd,hh24:mi:ss') 
+			</if>
+			<if test="YWLX != null and YWLX !=''">
+			 AND YWLX = #{YWLX}
+			</if>
+			<if test="FZJG != null and FZJG !=''">
+			 AND FZJG = #{FZJG}
+			</if>
+	</select>
+	
+	<!-- 根据XH查询某个业务信息 -->
+	<select id="getTaskById" parameterType="string" resultMap="TaskMap">
+		<!-- SELECT A.TYPE,A.XH, A.YWLX, A.YWZLX, A.YWGLXH, A.RWBH, A.RWLY, A.RWMC, A.RWNR, A.SJKSSJ, A.SJJSSJ, A.RWCSYY, A.TYPE, 
+		A.YQBJSJ, A.SFCQ, A.FZJG, A.BLR, A.BZ, A.CJSJ, A.CJR, A.XGSJ, A.XGR, A.BJQK,A.FKR ,A.FKSJ ,A.FKNR ,A.SFBJ, C.YHMC, B.ZZJC FROM T_GZRW_JBXX A LEFT 
+		JOIN T_ADMIN_RMS_ZZJG B ON A.FZJG = B.ZZBH LEFT JOIN T_ADMIN_RMS_YH C
+		ON A .BLR = C.XTZH WHERE A.XH = #{XH} -->
+		SELECT 
+			A.BLR as CBBLR,A.FKSJ,A.FKNR,A.FKR,A.TYPE,A.XH,A.RWBH,A.YWGLXH,A.SJKSSJ,A.YQBJSJ,A.RWNR,A.YWLX,A.YWZLX,A.RWLY,A.SFBJ,A.BJQK,A.LZZT,B.ZZQC AS ZZJC,C.YHMC 
+		FROM (
+			SELECT 
+				*
+			FROM 
+				T_GZRW_JBXX 
+			WHERE
+				XH = #{XH} 
+			)A LEFT JOIN (
+			SELECT ZZBH,ZZQC FROM T_ADMIN_RMS_ZZJG
+		)B ON A.FZJG = B.ZZBH 
+		LEFT JOIN (
+			SELECT
+				XTZH,
+				YHMC
+			FROM
+				T_ADMIN_RMS_YH
+		) C ON A .BLR = C.XTZH
+	</select>
+
+	<!-- 根据ID查询附件信息 -->
+	<select id="queryFjxx" parameterType="string" resultType="java.util.Map">
+		SELECT WJID AS FJXH,WJMC AS FJMC,MLSY AS FJPATH, 
+		CASE WHEN WJDX/1024>=1 THEN Round(WJDX/1024, 2) || 'MB' WHEN WJDX<![CDATA[<]]>1 THEN '小于1KB'   
+		ELSE Round(WJDX,2) || ' KB' END AS FJDX, WJLX AS FJHZ,SCR AS SCR FROM T_PLATFORM_WJ_WJXX 
+		WHERE YWSJID= #{XH}
+	</select>
+	
+	<!--根据关键字模糊查询  -->
+	<select id="getAllDepartments" resultType="java.util.Map">
+		SELECT ZZBH, ZZJC FROM T_ADMIN_RMS_ZZJG WHERE SFYX = '1'
+	</select>
+	
+	<!-- 任务反馈 -->
+	<update id="taskFeedback">
+		UPDATE T_GZRW_JBXX SET 
+		FKR = #{FKR}, FKSJ = #{FKSJ}, FKNR = #{FKNR}, SFBJ = #{SFBJ},MARKTYPE=#{MARKTYPE},
+		BJQK = '1'
+		WHERE XH = #{XH}
+	</update>
+	
+</mapper>

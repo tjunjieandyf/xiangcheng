@@ -1,0 +1,109 @@
+.aqi-input{
+	width: 50px;
+  	text-align: center;
+}
+.yubao-title {
+  font-size: 14px;
+  margin: 10px 0;
+  font-weight: normal;
+}
+.table-bordered {
+  border: 1px solid #e4eaee;
+  border-left: 0;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+table.table tr td, table.table tr th {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table thead th {
+  vertical-align: bottom;
+  background-color: #f5f8fa;
+  background-image: -moz-linear-gradient(top, #f2f8fc, #eaf4fa);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f2f8fc), to(#eaf4fa));
+  background-image: -webkit-linear-gradient(top, #f2f8fc, #eaf4fa);
+  background-image: -o-linear-gradient(top, #f2f8fc, #eaf4fa);
+  background-image: linear-gradient(to bottom, #f2f8fc, #eaf4fa);
+  background-repeat: repeat-x;
+}
+.table-bordered th, .table-bordered td {
+  border-left: 1px solid #e4eaee;
+}
+.table th {
+  font-weight: bold;
+}
+.table th, .table td {
+  padding: 8px;
+  line-height: 20px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid #e4eaee;
+}
+
+table.table tr td, table.table tr th {
+  text-align: center;
+  vertical-align: middle;
+}
+table.table td {
+  padding: 7px 8px;
+}
+.table-bordered th, .table-bordered td {
+  border-left: 1px solid #e4eaee;
+}
+.table th, .table td {
+  padding: 8px;
+  line-height: 20px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid #e4eaee;
+}
+.radioDiv {
+  padding: 5px 6px 3px 6px;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  margin-bottom: 8px;
+  background: #edf6fb;
+}
+.icon-question-sign {
+  background: url(images/icon-ts.png) no-repeat;
+  display: inline-block;
+  width: 14px; 
+  height: 14px;
+  margin-top: 5px;
+}
+.toolDiv-header{
+	border-radius: 5px 5px 0 0;
+	font-size: 15px;
+	border-bottom: 1px solid #ddd;
+	padding: 5px 15px;
+	margin: -5px -5px 0 -5px;
+	background-color: #F7F7F7;
+}
+.toolDiv-content{
+	font-size: 13px;
+  	padding: 5px 10px;
+  	width:235px;
+}
+.imgDiv{
+	padding-left: 30px;
+}
+.decriDiv {
+  padding-top: 5px;
+  margin-top: 10px;
+  border-top: solid 1px #888;
+}
+.a-btn{
+	cursor: pointer;
+	margin-left: 10px;
+	text-decoration: none;
+	color:#003DFF;
+}
+label{
+  margin-bottom: 5px;
+  display:inline-block;
+  color:black;
+}

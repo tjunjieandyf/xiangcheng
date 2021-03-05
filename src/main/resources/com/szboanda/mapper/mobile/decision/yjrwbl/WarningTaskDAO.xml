@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szboanda.mobile.decision.yjrwbl.dao.WarningTaskDAO">
+	
+	<resultMap type="java.util.Map" id="TaskMap">
+		<result column="XH" property="XH" jdbcType="VARCHAR" javaType="string" />
+		<result column="RWBH" property="RWBH" jdbcType="VARCHAR" javaType="string" />
+		<result column="RWLY" property="RWLY" jdbcType="VARCHAR" javaType="string" />
+		<result column="RWMC" property="RWMC" jdbcType="VARCHAR" javaType="string" />
+		<result column="RWNR" property="RWNR" jdbcType="VARCHAR" javaType="string" />
+		<result column="SJKSSJ" property="SJKSSJ" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" />
+		<result column="SJJSSJ" property="SJJSSJ" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" />
+		<result column="RWCSYY" property="RWCSYY" jdbcType="VARCHAR" javaType="string" />
+		<result column="YQBJSJ" property="YQBJSJ" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" />
+		<result column="SFCQ" property="SFCQ" jdbcType="VARCHAR" javaType="string" />
+		<result column="FZJG" property="FZJG" jdbcType="VARCHAR" javaType="string" />
+		<result column="BLR" property="BLR" jdbcType="VARCHAR" javaType="string" />
+		<result column="BZ" property="BZ" jdbcType="VARCHAR" javaType="string" />
+		<result column="CJSJ" property="CJSJ" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" />
+		<result column="CJR" property="CJR" jdbcType="VARCHAR" javaType="string" />
+		<result column="XGSJ" property="XGSJ" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" />
+		<result column="XGR" property="XGR" jdbcType="VARCHAR" javaType="string" />
+		<result column="ORGID" property="ORGID" jdbcType="VARCHAR" javaType="string" />
+		<result column="BJQK" property="BJQK" jdbcType="INTEGER" javaType="int" />
+	</resultMap>
+
+	<!-- 设置业务所有字段信息 -->
+	<sql id="allColumns">
+		<trim prefix="" suffixOverrides="," suffix="">
+			XH,
+			YWLX,
+			YWZLX,
+			YWGLXH,
+			RWBH,
+			RWLY,
+			RWMC,
+			RWNR,
+			SJKSSJ,
+			SJJSSJ,
+			RWCSYY,
+			YQBJSJ,
+			SFCQ,
+			FZJG,
+			BLR,
+			BZ,
+			CJSJ,
+			CJR,
+			XGSJ,
+			XGR,
+			ORGID,
+			BJQK
+		</trim>
+	</sql>
+	
+	<!-- 查询业务信息集合 -->
+	<!-- <select id="queryTasks" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT 
+			A.XH,A.RWBH,A.YWGLXH,A.RWMC,A.SJKSSJ,A.RWLY,A.SJJSSJ,A.YQBJSJ,A.RWNR,A.YWLX,A.YWZLX,B.ZZQC AS FZJG,C.YHMC AS BLR
+		FROM (
+			SELECT 
+				*
+			FROM 
+				T_GZRW_JBXX 
+			WHERE 
+			    1=1
+			    <if test="RWMC != null and RWMC !=''">
+				 AND RWMC LIKE #{RWMC}
+				</if>
+				<choose>
+					type为true办结，type为false办理中 
+			      <when test='TYPE=="1"'>
+			        AND BJQK = 1
+			      </when>
+			      <when test='TYPE=="0"'>
+			      	AND BJQK = 0
+			      </when>
+			      <otherwise>
+			      </otherwise>
+			    </choose>
+				<choose>
+					任务状态 此处的超期问题需要解决，不能再使用SFCQ字段
+			      <when test='SFCQ=="0"'>
+			        AND SFCQ = '0'
+			      </when>
+			      <when test='SFCQ=="1"'>
+			      	AND SFCQ = '1'
+			      </when>
+			      <otherwise>
+			      </otherwise>
+			    </choose>
+				<choose>
+			      <when test='CJSJ=="week"'>
+			        AND  CJSJ <![CDATA[>=]]> TRUNC(NEXT_DAY(SYSDATE-8,1)+1) AND CJSJ <![CDATA[<]]> TRUNC(NEXT_DAY(SYSDATE-8,1)+7)+1
+			      </when>
+			      <when test='CJSJ=="month"'>
+			      	AND TO_CHAR(CJSJ,'YYYY-MM')=TO_CHAR(SYSDATE,'YYYY-MM')
+			      </when>
+			      <otherwise>
+			      </otherwise>
+			    </choose>
+				<if test="YWLX != null and YWLX !=''">
+				 AND YWLX = #{YWLX}
+				</if>
+				)A LEFT JOIN (
+				SELECT ZZBH,ZZQC FROM T_ADMIN_RMS_ZZJG
+			)B ON A.FZJG = B.ZZBH 
+			LEFT JOIN (
+				SELECT
+					XTZH,
+					YHMC
+				FROM
+					T_ADMIN_RMS_YH
+			) C ON A .BLR = C.XTZH WHERE 1=1
+			<if test="YHID != null and YHID !=''">
+				AND C.XTZH = #{YHID}
+			</if>
+			ORDER BY A.SJKSSJ DESC
+	</select> -->
+	
+	<!-- 查询业务信息集合 -->
+	<select id="queryTasks" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT 
+			A.XH,A.RWBH,A.YWGLXH,A.RWMC,A.SJKSSJ,A.RWLY,A.SJJSSJ,A.YQBJSJ,A.RWNR,A.YWLX,A.YWZLX,A.BJQK,A.LZZT,B.ZZQC AS FZJG,C.YHMC AS BLR
+		FROM (
+		select distinct * from(
+			select DISTINCT jbxx.* from t_gzrw_jbxx jbxx left join t_gzrw_lzxx lzxx
+			on jbxx.xh = lzxx.RWBH
+			WHERE 
+			    1=1
+			    <if test="RWMC != null and RWMC !=''">
+				 AND jbxx.RWMC LIKE #{RWMC}
+				</if>
+				<choose>
+					<!--type为true办结，type为false办理中  -->
+			      <when test='TYPE=="1"'>
+			        and ((jbxx.BJQK = 1  
+			        <if test="YHID != null and YHID !=''">
+			        and jbxx.BLR = #{YHID} OR lzxx.BLR = #{YHID}
+			        </if>) or (
+			        jbxx.BJQK = 0 and jbxx.LZZT <![CDATA[<>]]>  0 
+			        <if test="YHID != null and YHID !=''">
+			        and lzxx.BLR = #{YHID}
+			        </if>
+			        ))
+			      </when>
+			      <when test='TYPE=="0"'>
+			      	and jbxx.BJQK = 0 and ((jbxx.LZZT = 0
+			      	<if test="YHID != null and YHID !=''">
+			      		and jbxx.blr = #{YHID}
+			      	</if>) or (jbxx.LZZT = 1 and lzxx.FKZT = 0
+			      	<if test="YHID != null and YHID !=''">
+			      	and lzxx.XBBLR = #{YHID} and lzxx.BLR <![CDATA[<>]]> #{YHID}
+			      	</if>
+			      	))
+			      </when>
+			      <otherwise>
+			      <!-- 全部 -->
+			      	<if test="YHID != null and YHID !=''">
+			      		AND  (jbxx.BLR = #{YHID}
+    					OR (lzxx.BLR = #{YHID} OR lzxx.XBBLR = #{YHID}))
+			      	</if>
+			      </otherwise>
+			    </choose>
+				<choose>
+					<!-- 任务状态 此处的超期问题需要解决，不能再使用SFCQ字段 -->
+			      <when test='SFCQ=="0"'>
+			        AND SYSDATE <![CDATA[<=]]> jbxx.YQBJSJ
+			      </when>
+			      <when test='SFCQ=="1"'>
+			      	AND SYSDATE <![CDATA[>]]> jbxx.YQBJSJ
+			      </when>
+			      <otherwise>
+			      </otherwise>
+			    </choose>
+				<choose>
+			      <when test='CJSJ=="week"'>
+			        AND  jbxx.CJSJ <![CDATA[>=]]> TRUNC(NEXT_DAY(SYSDATE-8,1)+1) AND jbxx.CJSJ <![CDATA[<]]> TRUNC(NEXT_DAY(SYSDATE-8,1)+7)+1
+			      </when>
+			      <when test='CJSJ=="month"'>
+			      	AND TO_CHAR(jbxx.CJSJ,'YYYY-MM')=TO_CHAR(SYSDATE,'YYYY-MM')
+			      </when>
+			      <otherwise>
+			      </otherwise>
+			    </choose>
+				<if test="YWLX != null and YWLX !=''">
+				 AND jbxx.YWLX = #{YWLX}
+				</if>
+				union all
+				select DISTINCT jbxx.* from (SELECT * FROM 
+					t_gzrw_lzxx WHERE 1=1
+					<choose>
+					    <when test='CJSJ=="week"'>
+					    AND  FKSJ <![CDATA[>=]]> TRUNC(NEXT_DAY(SYSDATE-8,1)+1) AND FKSJ <![CDATA[<]]> TRUNC(NEXT_DAY(SYSDATE-8,1)+7)+1
+					    </when>
+					    <when test='CJSJ=="month"'>
+					    AND TO_CHAR(FKSJ,'YYYY-MM')=TO_CHAR(SYSDATE,'YYYY-MM')
+					    </when>
+					    <otherwise>
+					    </otherwise>
+					</choose>) lzxx
+					LEFT JOIN T_GZRW_JBXX jbxx ON
+					jbxx.xh = lzxx.RWBH 
+				WHERE 
+				    1=1
+				    <if test="RWMC != null and RWMC !=''">
+					 AND jbxx.RWMC LIKE #{RWMC}
+					</if>
+					<choose>
+						<!--type为true办结，type为false办理中  -->
+				      <when test='TYPE=="1"'>
+				        and ((jbxx.BJQK = 1  
+				        <if test="YHID != null and YHID !=''">
+				        and jbxx.BLR = #{YHID} OR lzxx.BLR = #{YHID}
+				        </if>) or (
+				        jbxx.BJQK = 0 and jbxx.LZZT <![CDATA[<>]]>  0 
+				        <if test="YHID != null and YHID !=''">
+				        and lzxx.BLR = #{YHID}
+				        </if>
+				        ))
+				      </when>
+				      <when test='TYPE=="0"'>
+				      	and jbxx.BJQK = 0 and ((jbxx.LZZT = 0
+				      	<if test="YHID != null and YHID !=''">
+				      		and jbxx.blr = #{YHID}
+				      	</if>) or (jbxx.LZZT = 1 and lzxx.FKZT = 0
+				      	<if test="YHID != null and YHID !=''">
+				      	and lzxx.XBBLR = #{YHID} and lzxx.BLR <![CDATA[<>]]> #{YHID}
+				      	</if>
+				      	))
+				      </when>
+				      <otherwise>
+				      <!-- 全部 -->
+				      	<if test="YHID != null and YHID !=''">
+				      		AND  (jbxx.BLR = #{YHID}
+	    					OR (lzxx.BLR = #{YHID} OR lzxx.XBBLR = #{YHID}))
+				      	</if>
+				      </otherwise>
+				    </choose>
+					<choose>
+						<!-- 任务状态 此处的超期问题需要解决，不能再使用SFCQ字段 -->
+				      <when test='SFCQ=="0"'>
+				        AND SYSDATE <![CDATA[<=]]> jbxx.YQBJSJ
+				      </when>
+				      <when test='SFCQ=="1"'>
+				      	AND SYSDATE <![CDATA[>]]> jbxx.YQBJSJ
+				      </when>
+				      <otherwise>
+				      </otherwise>
+				    </choose>
+					<if test="YWLX != null and YWLX !=''">
+					 AND jbxx.YWLX = #{YWLX}
+					</if>
+				))A LEFT JOIN (
+				SELECT ZZBH,ZZQC FROM T_ADMIN_RMS_ZZJG
+			)B ON A.FZJG = B.ZZBH 
+			LEFT JOIN (
+				SELECT
+					XTZH,
+					YHMC
+				FROM
+					T_ADMIN_RMS_YH
+			) C ON A .BLR = C.XTZH 
+			ORDER BY A.SJKSSJ DESC
+	</select>
+	
+	<!-- 根据XH查询某个业务信息 -->
+	<select id="getTaskById" parameterType="string" resultMap="TaskMap">
+		SELECT 
+			A.BLR as CBBLR,A.FKSJ,A.FKNR,A.FKR,A.TYPE,A.XH,A.RWBH,A.YWGLXH,A.SJKSSJ,A.YQBJSJ,A.RWNR,A.YWLX,A.YWZLX,A.RWLY,A.SFBJ,A.BJQK,A.LZZT,B.ZZQC AS FZJG,C.YHMC AS BLR 
+		FROM (
+			SELECT 
+				*
+			FROM 
+				T_GZRW_JBXX 
+			WHERE
+				XH = #{XH} 
+			)A LEFT JOIN (
+			SELECT ZZBH,ZZQC FROM T_ADMIN_RMS_ZZJG
+		)B ON A.FZJG = B.ZZBH 
+		LEFT JOIN (
+			SELECT
+				XTZH,
+				YHMC
+			FROM
+				T_ADMIN_RMS_YH
+		) C ON A .BLR = C.XTZH
+	</select>
+	
+	<!-- 根据ID查询附件信息 -->
+	<select id="queryFjxx" parameterType="string" resultType="java.util.Map">
+		SELECT WJID AS FJXH,WJMC AS FJMC,MLSY AS FJPATH, 
+		CASE WHEN WJDX/1024>=1 THEN Round(WJDX/1024, 2) || 'MB' WHEN WJDX<![CDATA[<]]>1 THEN '小于1KB'   
+		ELSE Round(WJDX,2) || ' KB' END AS FJDX, WJLX AS FJHZ,SCR AS SCR FROM T_PLATFORM_WJ_WJXX 
+		WHERE YWSJID= #{XH}
+	</select>
+	
+	<!--保存反馈信息 -->
+	<update id="saveTaskFeedBack">
+		<!-- UPDATE T_GZRW_JBXX SET 
+			FKR = #{FKR}, FKSJ = #{FKSJ}, FKNR = #{FKNR}, SFBJ = #{SFBJ},
+			BJQK = '1'
+		WHERE XH = #{XH} -->
+		UPDATE T_GZRW_JBXX SET XH=XH
+			<if test="BJQK != null and BJQK !='' ">
+			,BJQK = #{BJQK}
+			</if>
+			<if test="SFBJ != null and SFBJ !='' ">
+			,SFBJ = #{SFBJ}
+			</if>
+			<if test="LZZT != null and LZZT !='' ">
+			,LZZT = #{LZZT}
+			</if>
+			<if test="MARKTYPE != null and MARKTYPE !='' ">
+			,MARKTYPE = #{MARKTYPE}
+			</if>
+		WHERE XH = #{XH}
+	</update>
+	
+	<!-- 插入流转信息 -->
+	<insert id="insertLzxx">
+		INSERT INTO T_GZRW_LZXX(XH,RWBH,FKSJ
+		) VALUES(#{XH},#{RWBH},#{FKSJ})
+	</insert>
+	
+	<update  id="updateLzxx">
+		UPDATE T_GZRW_LZXX SET XH=XH 
+		<if test="BLR!=null and BLR!=''">
+		,BLR=#{BLR}
+		</if>
+		<if test="XBBLR!=null and XBBLR!=''">
+		,XBBLR=#{XBBLR}
+		</if>
+		<if test="FKNR!=null and FKNR!=''">
+		,FKNR=#{FKNR}
+		</if>
+		<if test="FKSJ!=null">
+		,FKSJ=#{FKSJ}
+		</if>
+		<if test="FKZT!=null and FKZT!=''">
+		,FKZT=#{FKZT}
+		</if>
+		WHERE XH = #{XH}
+	</update>
+	
+	<select id="queryFknr" resultType="map">
+		SELECT XH,FKNR FROM T_GZRW_LZXX WHERE RWBH=#{RWBH}
+	</select>
+	
+	<!-- 获取流转状态 -->
+	<select id="queryLzzt" resultType="string">
+		SELECT LZZT FROM T_GZRW_JBXX WHERE XH = #{XH}
+	</select>
+	
+	<!-- 获取用户列表 -->
+	<select id="listUsers" resultType="map">
+		SELECT YHMC,XTZH FROM T_ADMIN_RMS_YH
+	</select>
+	
+	<!-- 获取该任务的流转记录 -->
+	<select id="listLzxx" resultType="map">
+		SELECT a.XH,a.RWBH,a.FKNR,a.FKSJ,b.YHMC as BLR FROM T_GZRW_LZXX  a LEFT JOIN T_ADMIN_RMS_YH b ON a.BLR = b.XTZH 
+		WHERE a.RWBH=#{RWBH} ORDER BY a.FKSJ ASC
+	</select>
+	
+	<select id="queryLzxx" resultType="int">
+		SELECT COUNT(1) FROM T_GZRW_LZXX WHERE RWBH=#{RWBH} AND BLR =#{BLR}
+	</select>
+</mapper>

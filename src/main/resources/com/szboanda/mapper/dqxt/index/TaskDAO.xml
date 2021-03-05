@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szboanda.dqxt.index.dao.TaskDAO">
+
+	<!-- 查询各科室待办报警任务方法 -->
+	<select id="getNeedHandleTasksGroupByDept" resultType="java.util.Map">
+		SELECT
+			A.NUM,
+			B.ZZJC AS FZJG
+		FROM
+			(
+				SELECT
+					COUNT (DISTINCT(RWBH)) AS NUM,
+					FZJG
+				FROM
+					T_GZRW_JBXX
+				WHERE
+					BJQK = '0'
+				GROUP BY
+					FZJG
+			) A
+		LEFT JOIN (
+			SELECT
+				ZZBH,
+				ZZJC
+			FROM
+				U_WRYDTGL_XC.T_ADMIN_RMS_ZZJG
+		) B ON A.FZJG = B.ZZBH
+	</select>
+	
+	<!-- 查询各科室待办报警任务总数 -->
+	<select id="getTaskCountGroupByDept" resultType="java.util.Map">
+		SELECT
+			A.NUM,
+			B.ZZQC AS FZJG
+		FROM
+			(
+				SELECT
+					COUNT (DISTINCT(RWBH)) AS NUM,
+					FZJG
+				FROM
+					T_GZRW_JBXX
+				GROUP BY
+					FZJG
+			) A
+		LEFT JOIN (
+			SELECT
+				ZZBH,
+				ZZQC
+			FROM
+				T_ADMIN_RMS_ZZJG
+		) B ON A.FZJG = B.ZZBH
+		ORDER BY
+			NUM 
+		DESC
+	</select>
+	
+	<!-- 查询各科室待办报警超期任务数 -->
+	<select id="getOvertimeTaskCountGroupByDept" parameterType="string" resultType="java.util.Map">
+		SELECT
+			A.NUM,
+			B.ZZJC AS FZJG
+		FROM(
+			SELECT 
+				COUNT (DISTINCT(RWBH)) AS NUM,FZJG 
+			FROM 
+				T_GZRW_JBXX
+			WHERE 
+				YQBJSJ <![CDATA[<=]]> SYSDATE AND BJQK = '0'
+				<choose>
+			      <when test='type=="month"'>
+			        AND TO_CHAR(CJSJ,'YYYY-MM')=TO_CHAR(SYSDATE,'YYYY-MM')
+			      </when>
+			      <when test='type=="year"'>
+			      	AND TRUNC(CJSJ) = TRUNC(SYSDATE,'YYYY') 
+			      </when>
+			      <when test='type=="week"'>
+			      	AND CJSJ <![CDATA[>=]]> TRUNC(NEXT_DAY(SYSDATE-8,1)+1) AND 
+					CJSJ <![CDATA[<]]> TRUNC(NEXT_DAY(SYSDATE-8,1)+7)+1
+			      </when>
+			      <otherwise>
+			      	<!-- 为all不用考虑时间 -->
+			      </otherwise>
+			    </choose>
+			GROUP BY 
+				FZJG
+			) A LEFT JOIN (
+			SELECT
+				ZZBH,
+				ZZJC
+			FROM
+				U_WRYDTGL_XC.T_ADMIN_RMS_ZZJG
+		) B ON A.FZJG = B.ZZBH
+	</select>
+	
+	<!-- 查询存在超期任务的科室 -->
+	<select id="getOvertimeDepts" resultType="string">
+		SELECT
+			B.ZZJC AS FZJG
+		FROM
+			(
+			SELECT
+				DISTINCT FZJG
+			FROM
+				T_GZRW_JBXX
+			WHERE
+				SYSDATE <![CDATA[>]]> YQBJSJ AND BJQK = '0') A
+		LEFT JOIN (
+			SELECT
+				ZZBH,
+				ZZJC
+			FROM
+				U_WRYDTGL_XC.T_ADMIN_RMS_ZZJG ) B ON
+			A.FZJG = B.ZZBH
+	</select>
+	
+	<!-- 查询当月/当年任务总数 -->
+	<select id="getAllTaskCount" parameterType="boolean" resultType="int">
+		SELECT 
+			COUNT(DISTINCT(RWBH)) AS NUM 
+		FROM 
+			T_GZRW_JBXX 
+		WHERE 1=1
+		<choose>
+	      <when test='type=="month"'>
+	        AND TO_CHAR(CJSJ,'YYYY-MM')=TO_CHAR(SYSDATE,'YYYY-MM')
+	      </when>
+	      <when test='type=="year"'>
+	      	AND TO_CHAR(CJSJ,'YYYY') = TO_CHAR(SYSDATE,'YYYY') 
+		  </when>
+		  <when test='type=="week"'>
+	      	AND CJSJ <![CDATA[>=]]> TRUNC(NEXT_DAY(SYSDATE-8,1)+1) AND 
+			CJSJ <![CDATA[<]]> TRUNC(NEXT_DAY(SYSDATE-8,1)+7)+1
+	      </when>
+	      <otherwise>
+	      	<!-- 为all不用考虑时间 -->
+	      </otherwise>
+	    </choose>
+			
+	</select>
+	
+	<!-- 查询各报警来源当月/当年任务数 -->
+	<select id="getTaskCountGroupByLy" parameterType="boolean" resultType="java.util.Map">
+		SELECT
+			NUM,
+			DMJMC
+		FROM(
+			SELECT 
+				COUNT(DISTINCT(RWBH)) AS NUM,YWLX
+			FROM 
+				T_GZRW_JBXX 
+			WHERE 1=1
+			<choose>
+		      <when test='type=="month"'>
+		        AND TO_CHAR(CJSJ,'YYYY-MM')=TO_CHAR(SYSDATE,'YYYY-MM')
+		      </when>
+		      <when test='type=="year"'>
+		      	AND TO_CHAR(CJSJ,'YYYY') = TO_CHAR(SYSDATE,'YYYY') 
+			  </when>
+			  <when test='type=="week"'>
+		      	AND CJSJ <![CDATA[>=]]> TRUNC(NEXT_DAY(SYSDATE-8,1)+1) AND 
+				CJSJ <![CDATA[<]]> TRUNC(NEXT_DAY(SYSDATE-8,1)+7)+1
+		      </when>
+		      <otherwise>
+		      	<!-- 为all不用考虑时间 -->
+		      </otherwise>
+		    </choose>
+			GROUP BY 
+				YWLX	
+			) A
+		LEFT JOIN (
+			SELECT
+				*
+			FROM
+				T_PLATFORM_GGDMJ
+		) B ON A .YWLX = B.DMJBH	
+	</select>
+	
+	<!-- 查询当月/当年倒序排列各科室任务数列表排在前五的 -->
+	<select id="getOrderedTaskCountGroupbyDept" parameterType="String" resultType="java.util.Map">
+	SELECT G.FZJG,G.NUM,G.BJ FROM (
+	　　	SELECT T.*, ROWNUM R FROM (
+	　　　　	SELECT 
+				*
+			FROM(
+				SELECT
+					Y.ZZJC AS FZJG,
+					X.NUM,
+					X.BJ
+				FROM(
+					SELECT
+						A.FZJG,
+						A.NUM,
+						B.NUM AS BJ
+					FROM
+							(SELECT 
+								FZJG,COUNT(DISTINCT(RWBH)) AS NUM 
+							FROM 
+								T_GZRW_JBXX 
+							WHERE 1=1
+								<choose>
+							      <when test='type=="month"'>
+							        AND TO_CHAR(CJSJ,'YYYY-MM')=TO_CHAR(SYSDATE,'YYYY-MM')
+							      </when>
+							      <when test='type=="year"'>
+							      	AND TO_CHAR(CJSJ,'YYYY') = TO_CHAR(SYSDATE,'YYYY') 
+								  </when>
+								  <when test='type=="week"'>
+							      	AND CJSJ <![CDATA[>=]]> TRUNC(NEXT_DAY(SYSDATE-8,1)+1) AND 
+									CJSJ <![CDATA[<]]> TRUNC(NEXT_DAY(SYSDATE-8,1)+7)+1
+							      </when>
+							      <otherwise>
+							      	<!-- 为all不用考虑时间 -->
+							      </otherwise>
+							    </choose>
+							GROUP BY 
+								FZJG) A
+							LEFT JOIN
+							(SELECT 
+								COUNT(DISTINCT(RWBH)) AS NUM,FZJG 
+							FROM 
+								T_GZRW_JBXX 
+							WHERE 
+								<!-- 办结情况需要改变 -->
+								BJQK = '1'
+								<choose>
+							      <when test='type=="month"'>
+							        AND TO_CHAR(CJSJ,'YYYY-MM')=TO_CHAR(SYSDATE,'YYYY-MM')
+							      </when>
+							      <when test='type=="year"'>
+							      	AND TO_CHAR(CJSJ,'YYYY') = TO_CHAR(SYSDATE,'YYYY') 
+								  </when>
+								  <when test='type=="week"'>
+							      	AND CJSJ <![CDATA[>=]]> TRUNC(NEXT_DAY(SYSDATE-8,1)+1) AND 
+									CJSJ <![CDATA[<]]> TRUNC(NEXT_DAY(SYSDATE-8,1)+7)+1
+							      </when>
+							      <otherwise>
+							      	<!-- 为all不用考虑时间 -->
+							      </otherwise>
+							    </choose>
+							GROUP BY 
+								FZJG) B
+						ON 
+							A.FZJG = B.FZJG 
+						) X
+					LEFT JOIN (
+						SELECT
+							ZZBH,
+							ZZJC
+						FROM
+							U_WRYDTGL_XC.T_ADMIN_RMS_ZZJG
+					) Y ON X.FZJG = Y.ZZBH	
+				)
+				ORDER BY 
+					NUM
+				DESC	
+	　　) T WHERE ROWNUM <![CDATA[<=]]>5
+	) G WHERE R <![CDATA[>]]> 0
+	</select>
+	
+	<select id="listTaskGroupByMarkType" resultType="map">
+		SELECT
+			Y.zzjc AS FZJG,
+			B.NUM,
+			B.MARKTYPE
+		FROM
+			(
+			SELECT
+				COUNT(DISTINCT(RWBH)) AS NUM,
+				FZJG,
+				MARKTYPE
+			FROM
+				T_GZRW_JBXX
+			WHERE
+				BJQK = '1'
+				<choose>
+			      <when test='type=="month"'>
+			        AND TO_CHAR(CJSJ,'YYYY-MM')=TO_CHAR(SYSDATE,'YYYY-MM')
+			      </when>
+			      <when test='type=="year"'>
+			      	AND TO_CHAR(CJSJ,'YYYY') = TO_CHAR(SYSDATE,'YYYY') 
+				  </when>
+				  <when test='type=="week"'>
+			      	AND CJSJ <![CDATA[>=]]> TRUNC(NEXT_DAY(SYSDATE-8,1)+1) AND 
+					CJSJ <![CDATA[<]]> TRUNC(NEXT_DAY(SYSDATE-8,1)+7)+1
+			      </when>
+			      <otherwise>
+			      	<!-- 为all不用考虑时间 -->
+			      </otherwise>
+			    </choose>
+			GROUP BY
+				FZJG,
+				MARKTYPE) B
+		LEFT JOIN(
+			SELECT
+				ZZBH,
+				ZZJC
+			FROM
+				U_WRYDTGL_XC.T_ADMIN_RMS_ZZJG ) Y ON
+			B.FZJG = Y.ZZBH
+	</select>
+	
+	<!-- 获取当年的每个月的任务数和办结情况 -->
+	<select id="getAnnualTrend" resultType="java.util.Map">
+	SELECT
+		A.NUM AS TOTAL,
+		A.CJSJ AS CJSJ,
+		B.NUM AS BJ
+	FROM
+		(
+			SELECT
+				COUNT (DISTINCT(RWBH)) AS NUM,
+				TO_CHAR (CJSJ, 'MM') AS CJSJ
+			FROM
+				T_GZRW_JBXX
+			WHERE
+				TO_CHAR( CJSJ, 'YYYY' ) = TO_CHAR( SYSDATE, 'YYYY' )
+			GROUP BY
+				TO_CHAR (CJSJ, 'MM')
+		) A
+	LEFT JOIN (
+		SELECT
+			COUNT (DISTINCT(RWBH)) AS NUM,
+			TO_CHAR (CJSJ, 'MM') AS CJSJ
+		FROM
+			T_GZRW_JBXX
+		WHERE
+			BJQK = 1
+		AND TO_CHAR( CJSJ, 'YYYY' ) = TO_CHAR( SYSDATE, 'YYYY' )
+		GROUP BY
+			TO_CHAR (CJSJ, 'MM')
+	) B ON A.CJSJ = B.CJSJ
+	</select>
+	
+	<select id="getPCAnnualTrend" resultType="map">
+		SELECT T.NUM,T.YF,T.BJQK,Z.DMJMC FROM (
+		SELECT COUNT (1) NUM,TO_CHAR (CJSJ, 'MM') YF,YWLX,BJQK
+		FROM
+			T_GZRW_JBXX
+		WHERE
+			TO_CHAR (CJSJ, 'YYYY') = TO_CHAR (SYSDATE, 'YYYY')
+		GROUP BY
+			TO_CHAR (CJSJ, 'MM'),YWLX,BJQK) T LEFT JOIN T_PLATFORM_GGDMJ Z ON T.YWLX = Z.DMJBH
+	</select>
+	
+	<!--业务 规则插入对应的负责人 -->
+	<insert id="save">
+	INSERT INTO T_GZRW_RWDYZRKSBLGXB (XH, YWLX, YWZLX, ZRKSXH, KSCLR, CJSJ, CJR, BLQX)
+	VALUES (#{XH}, #{YWLX}, #{YWZLX}, #{ZRKSXH}, #{KSCLR}, #{CJSJ}, #{CJR}, #{BLQX})
+	</insert>
+	
+	<!--业务 规则插入对应的负责人 -->
+	<insert id="insertTaskRecord">
+	INSERT INTO T_GZRW_JBXX (XH, YWLX, YWZLX, YWGLXH, RWBH, RWLY, RWMC, RWNR, SJKSSJ, SJJSSJ,
+   	RWCSYY, YQBJSJ, FZJG, BLR, CJSJ, CJR, TYPE)
+	VALUES (#{XH}, #{YWLX}, #{YWZLX}, #{YWGLXH}, #{RWBH}, #{RWLY}, #{RWMC}, #{RWNR}, #{SJKSSJ}, 
+	#{SJJSSJ}, #{RWCSYY}, #{YQBJSJ}, #{FZJG}, #{BLR}, #{CJSJ}, #{CJR}, #{TYPE})
+	</insert>
+	
+	<!-- 根据业务查询负责人和科室 -->
+	<select id="getTransactorByBusinessId" resultType="map">
+		SELECT ZRKSXH, KSCLR, BLQX  FROM T_GZRW_RWDYZRKSBLGXB  
+		 WHERE YWLX = #{YWLX} AND YWZLX = #{YWZLX}
+	</select>
+	
+	<!-- 根据业务查询负责人和科室 -->
+	<update id="updateAllExpiredWarningTask">
+		UPDATE T_GZRW_JBXX SET SFCQ = '1' WHERE SFCQ = '0' AND BJQK = '0'
+		AND YQBJSJ <![CDATA[<]]> SYSDATE
+	</update>
+	
+</mapper>

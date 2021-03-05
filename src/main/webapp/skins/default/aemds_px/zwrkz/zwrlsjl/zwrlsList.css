@@ -1,0 +1,73 @@
+.gap{height: 10px;width: 100%;}
+.raster{padding: 0 10px; margin: 0 auto;}
+
+.row{margin: 0 -5px;}
+.row:before, .row:after{content: ''; display: table; clear: both;}
+.col{min-height: 1px; float: left; position: relative; padding: 0 5px; box-sizing: border-box;}
+.col-12{width: 100%;}
+
+.grid{background: #fff; box-shadow: 0 3px 5px #eee;}
+.grid-hd{padding: 10px; overflow: hidden; position: relative;}
+.grid-hd:before{content: ''; position: absolute; left: 10px; right: 10px; top: 50%; margin-top: -1px; height: 1px; background: #e4e8ee;}
+.grid-hd strong:before{content: ''; position: absolute; width: 6px; height: 14px; left: 0; top: 0; background: #3993ff; border-radius: 5px;}
+.grid-hd strong{background: #fff; color: #1f1f1f; font-size: 14px; padding: 0 12px; float: left; position: relative; line-height: 1;}
+.grid-hd strong span{font-size: 12px; color: #3993ff; font-weight: normal; margin-left: 10px;}
+.grid-bd{padding: 8px 10px 10px;}
+
+.qylist li {
+    cursor: pointer;
+    position: relative;
+    box-sizing: border-box;
+    height: 60px;
+    border: 1px solid #eff5fd;
+    box-shadow: 0 0 8px rgba(32,139,209,.3);
+    padding-left: 60px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    background: url(pages_numbg.png) 10px center no-repeat;
+}
+
+.qylist li.on,
+.qylist li:hover {
+    border-color: #3993ff;
+}
+.qylist li.on:before, 
+.qylist li:hover:before {
+    position: absolute;
+    content: '';
+    display: block;
+    width: 15px;
+    height: 16px;
+    background: url(bfjt.png) center no-repeat;
+    right: -15px;
+    top: 22px;
+}
+
+.qylist li b {
+    line-height: 60px;
+    float: left; 
+    font-size: 14px;
+    color: #333333;
+    margin-right: 20px;
+}
+.qylist li span {
+    line-height: 60px;
+    float: left; 
+    font-size: 12px;
+}
+.qylist li i {
+    display: block;
+    width: 30px;
+    height: 60px;
+    float: right;
+}
+.qylist li i.icon-a {
+    background: url(icon_a.png) center no-repeat;
+}
+.qylist li i.icon-b {
+    background: url(icon_b.png) center no-repeat;
+}
+.qylist li i.icon-c {
+    background: url(unlocked.png) center no-repeat;
+    background-size:20px;
+}

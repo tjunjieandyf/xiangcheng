@@ -1,0 +1,70 @@
+.users{width:700px;height:500px;margin:0 auto;background-color: #FBFBFB;}
+#serCon1,#serCon2{height:300px; padding-top:0px;}
+/*用户分组信息*/
+.users .center{float:left;}
+.users .content{width:585px; height:500px; border:1px solid #C9D8EF;}
+.users .content .group{width:100%; height:35px;border-bottom:1px solid #C9D8EF;}
+.users .content .group ul{width:100%; height:35px; line-height:35px; background-color:#E5F0F9;}
+.users .content .group ul li{float:left; width:70px;text-align:center; color:#7fa2d5; cursor:pointer;font-size: 14px;}
+.users .content .group ul li.no{width:160px; height:16px; color:red; vertical-align: bottom;}
+.users .content .group ul li.current-tab{background-color:#0088CC; color:#fff;}
+.users .content .group ul li.last{float:right;width:135px;line-height:0;position: relative;top:5px;}
+.users .content .group ul li.last .search{position: absolute;left:0;width:100%;border:none;outline:none;height:24px;line-height:22px;text-indent:22px;background:url(../../../images/platform/workflow-v2/search.png) no-repeat; cursor: text;}
+/**分组内容信息*/
+.users .content .group-content .result{overflow: hidden;}
+.users .content .group-content .ul{overflow: auto;}
+.users .content .group-content .ul .li{min-height:30px; line-height:25px;}
+.users .content .group-content .table{width:100%;border:none;}
+.users .content .group-content .table .title{font-weight: bold;color:#333;}
+.users .content .group-content .table .title td{border-bottom:2px solid #C9D8EF;}
+.users .content .group-content .title .item-check{width:20px;}
+.users .content .group-content .title .item-check input{vertical-align: middle;;margin-top:-2px;width:100%;cursor: pointer;}
+.users .content .group-content .title .item{vertical-align: bottom;cursor: pointer;width:100%;}
+.users .content .group-content .title .item-split{text-indent: 5px;}
+.users .content .group-content .title .next-item{text-align: left;}
+.users .content .group-content .title .next-item a{cursor: pointer;}
+.users .content .group-content .table .name td{padding:5px 5px 5px 15px;height:25px;line-height:25px;}
+.users .content .group-content .table .name .name-content{display: inline-block;cursor: pointer;margin:1px;padding:0 5px}
+.users .content .group-content .table .name .name-check{cursor: pointer;margin: 0px; padding: 0px; vertical-align: middle;;margin-top:-2px;}
+.users .content .group-content .table .name .name-style{width:58px;vertical-align:middle; text-align:left; display:inline-block;margin: 0px; padding: 0px;overflow: hidden ;white-space: nowrap; text-overflow: ellipsis;}
+.users .content .group-content .table .name .name-style2{width:148px;vertical-align:middle; text-align:left; display:inline-block;margin: 0px; padding: 0px;overflow: hidden ;white-space: nowrap; text-overflow: ellipsis;}
+.users .content .group-content .table .name .name-style-filter{color:#FF0000;}
+.users .content .group-content .table .name .name-content:hover,.users .content .group-content .table .name .name-checked{background-color: #F2F2F2;}
+.users .content .group-content .table .name .name-empty{color:#F25018;}
+/**字母分组信息*/
+.users .content .group-content .letter .list{height:30px;line-height:30px;width:100%; border-bottom:1px solid #b4c9ea;background-color: #F6F6F6;}
+.users .content .group-content .letter .list a,.users .content .group-content .letter .next-item a{width:15px;height:25px;line-height:25px;padding:0 3px;color:#2A6496;text-decoration: none;}
+.users .content .group-content .letter .list a:hover,.users .content .group-content .letter .next-item a:hover{background-color: #0088CC;color:#fff;}
+.users .content .group-content .letter .ul{height:430px;width:100%;overflow-x:hidden;}
+.users .content .group-content .letter .table{table-layout: fixed;}
+.users .content .group-content .letter .item{width:40px;}
+.users .content .group-content .letter .next-item{width:520px;}
+.users .content .group-content .letter .next-item a{color:#777;}
+/**部门分组信息*/
+.users .content .group-content .department-tree .result{height:460px;}
+.users .content .group-content .department-tree .list{width:175px; height:100%;float: left;border-right:1px solid #C9D8EF;overflow: auto;}
+.users .content .group-content .department-tree .list .li{height:26px;line-height:26px;overflow: hidden ;white-space: nowrap; text-overflow: ellipsis;}
+.users .content .group-content .department-tree .list .li a{text-decoration: none;color:#2a6496;}
+.users .content .group-content .department-tree .list .li .split{display: inline-block;width:10px;}
+.users .content .group-content .department-tree .list .li .dept-next-down{width:10px;cursor:pointer;background:url(../../../images/platform/workflow-v2/arrow_down.png) left center no-repeat;}
+.users .content .group-content .department-tree .list .li .dept-next-right{width:10px;cursor:pointer;background:url(../../../images/platform/workflow-v2/arrow_right.png) left center no-repeat;}
+.users .content .group-content .department-tree .list .li:hover{background-color:#F2F2F2;}
+.users .content .group-content .department-tree .list .li:hover a{text-decoration: underline;}
+.users .content .group-content .department-tree .ul{width:400px; height:100%; float: right;}
+.users .content .group-content .department-tree .item{width:380px;}
+.users .content .group-content .department-tree .list .li .current-dept
+,.users .content .group-content .department-tree .ul .current-dept{font-weight: bold;color:#53A5F6;}
+.users .content .group-content .name-content .current-user{font-weight: bold;color:#53A5F6;}
+/**选中用户的信息*/
+.users .right{width:110px;height:500px; border:1px solid #c9d8ef;float:right;}
+.users .right .title{height:35px;line-height:35px;text-align:center;color:#7fa2d5;background-color:#E5F0F9;border-bottom:1px solid #C9D8EF;cursor: pointer;}
+.users .right .title .clear-img{display:inline-block;width:20px;height:20px;position:relative;top:5px;background:url(../../../images/platform/workflow-v2/sc.jpg) center no-repeat;}
+.users .right .title:hover{background-color:#0088CC; color:#fff;}
+.users .right .result{height:432px; overflow: auto;background-color: #FAFAFA;}
+.users .right .result .ul li{color:#2a6496;height:26px;line-height:26px;padding-left:10px;}
+.users .right .result .ul li .clear{display:none;float:right;width:14px;height:14px;position:relative;top:5px;right:3px;cursor:pointer;background:url(../../../images/platform/workflow-v2/sc.jpg) center no-repeat;}
+.users .right .result .ul li:hover{background-color:#F2F2F2;}
+.users .right .result .ul li:hover .clear{display:inline-block;}
+/**提交按钮*/
+.users .submit{width:110px; height:30px;}
+.users .submit .btn{width:110px; height:30px;border:none;background:url(../../../images/platform/workflow-v2/sub.png) no-repeat; }

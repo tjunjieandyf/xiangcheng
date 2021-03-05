@@ -1,0 +1,16 @@
+*{margin: 0;padding: 0;}
+.content table{width: 100%;}
+.content p.no{text-align: center;padding-top: 3px;}
+.content td.mylabel{text-align: right;height: 20px;line-height: 20px;}
+.content td.mytext{text-align: left;}
+.content .buttonDiv{height: 28px;position: absolute;bottom: 5px;right: 25px;}
+.content div.buttonDiv input.btn{padding:3px 16px; height: 28px; border: 1px solid #8fc0ef; color: white; 
+				margin: 0 5px; font-size: 12px; cursor: pointer; background: #107add;}
+
+#explan a {
+	color:blue;
+}
+#explan a:hover, a:active{
+ color:red;
+ text-decoration:none;
+}

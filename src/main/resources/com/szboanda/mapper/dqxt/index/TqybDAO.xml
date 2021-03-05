@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.szboanda.dqxt.index.dao.TqybDAO">
+ 
+ 	<!-- 插入天气预报的数据 -->
+ 	<insert id="insertBatchTqybData">
+ 		BEGIN  
+ 		<foreach collection="tqybs" item="tqyb" separator="">
+ 		INSERT INTO T_FORECAST_WEATHER_DAY (XH,"TYPE",YCSJ,WD,TQ,FX,FS,PUBLISHTIME) 
+ 		VALUES (#{tqyb.xh},#{tqyb.type},#{tqyb.ycsj},#{tqyb.wd},
+ 		#{tqyb.tq},#{tqyb.fx}, #{tqyb.fs},#{tqyb.publishtime});
+ 		</foreach>
+ 		COMMIT;  
+     	END;	  
+ 	</insert>
+ 	
+ 	<!-- 查询各科室待办报警任务方法 -->
+ 	<select id="getTqybData" resultType="java.util.Map">
+ 		SELECT *
+ 		FROM T_FORECAST_WEATHER_DAY tfwd 
+ 		WHERE TFWD.PUBLISHTIME = ( SELECT MAX(PUBLISHTIME ) FROM T_FORECAST_WEATHER_DAY tfwd2 )
+ 	</select>
+ 	
+ </mapper>

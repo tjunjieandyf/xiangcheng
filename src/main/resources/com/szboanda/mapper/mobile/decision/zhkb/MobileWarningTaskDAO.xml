@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szboanda.mobile.decision.zhkb.dao.MobileWarningTaskDAO">
+
+	<!-- 设置业务所有字段信息 -->
+	<sql id="allColumns">
+		<trim prefix="" suffixOverrides="," suffix="">
+		</trim>
+	</sql>
+
+	<!-- 查询各科室待办报警任务方法 -->
+	<select id="getNeedHandleTasksGroupByDept" parameterType="string" resultType="java.util.Map">
+		SELECT A.NUM,B.ZZQC AS FZJG
+		FROM(
+			SELECT 
+				COUNT(1) AS NUM,FZJG 
+			FROM 
+				T_GZRW_JBXX 
+			WHERE 
+				BJQK <![CDATA[<>]]> 1 
+				<choose>
+					<when test='type=="month"'>
+						AND TO_CHAR(CJSJ,'YYYY-MM')=TO_CHAR(SYSDATE,'YYYY-MM')
+					</when>
+					<when test='type=="today"'>
+						<!-- 今日 -->
+						AND TO_CHAR(CJSJ,'YYYY-MM-DD')=TO_CHAR(SYSDATE,'YYYY-MM-DD')
+					</when>
+					<otherwise>
+			      	</otherwise>
+				</choose>
+			GROUP BY 
+				FZJG
+			)A LEFT JOIN (
+				SELECT
+					ZZBH,ZZQC
+				FROM
+					T_ADMIN_RMS_ZZJG
+			) B ON A.FZJG = B.ZZBH 
+	</select>
+	
+	
+	<!-- 查询各科室待办报警任务方法 -->
+	<select id="getTaskCountGroupByType"  resultType="java.util.Map">
+		SELECT COUNT(DISTINCT(RWBH)) NUM,BJQK FROM T_GZRW_JBXX WHERE 1=1
+		<choose>
+			<when test='type=="month"'>
+				AND TO_CHAR(CJSJ,'YYYY-MM')=TO_CHAR(SYSDATE,'YYYY-MM')
+			</when>
+			<when test='type=="year"'>
+				AND TO_CHAR(CJSJ,'YYYY')=TO_CHAR(SYSDATE,'YYYY')
+			</when>
+			<when test='type=="premonth"'>
+				<!-- 上月 -->
+	      		AND TO_CHAR(CJSJ,'YYYY-MM')=TO_CHAR(ADD_MONTHS(SYSDATE,-1),'YYYY-MM')
+			</when>
+			<otherwise>
+	      	</otherwise>
+		</choose>
+		GROUP BY BJQK
+	</select>
+	
+	<!-- 	查询预警任务总数 -->
+	<select id="getTaskCount"  resultType="int">
+		SELECT COUNT(DISTINCT(RWBH)) FROM T_GZRW_JBXX WHERE 1=1
+		<choose>
+			<when test='type=="month"'>
+				AND TO_CHAR(CJSJ,'YYYY-MM')=TO_CHAR(SYSDATE,'YYYY-MM')
+			</when>
+			<when test='type=="year"'>
+				AND TO_CHAR(CJSJ,'YYYY')=TO_CHAR(SYSDATE,'YYYY')
+			</when>
+			<when test='type=="premonth"'>
+				<!-- 上月 -->
+	      		AND TO_CHAR(CJSJ,'YYYY-MM')=TO_CHAR(ADD_MONTHS(SYSDATE,-1),'YYYY-MM')
+			</when>
+			<otherwise>
+	      	</otherwise>
+		</choose>
+	</select>
+	
+	<select id="listLoginLogs" resultType="map">
+		SELECT YHMC,count(*) SL FROM T_DINGDING_LOGIN_LOG  
+		WHERE 1=1
+		<choose>
+			<when test='type=="month"'>
+				AND TO_CHAR(LOGINDATE,'YYYY-MM')=TO_CHAR(SYSDATE,'YYYY-MM')
+			</when>
+			<when test='type=="year"'>
+				AND TO_CHAR(LOGINDATE,'YYYY')=TO_CHAR(SYSDATE,'YYYY')
+			</when>
+			<when test='type=="today"'>
+				AND TO_CHAR(LOGINDATE,'YYYY-MM-DD')=TO_CHAR(SYSDATE,'YYYY-MM-DD')
+			</when>
+			<when test='type=="week"'>
+	      		AND LOGINDATE <![CDATA[>=]]> TRUNC(NEXT_DAY(SYSDATE-8,1)+1) AND 
+				LOGINDATE <![CDATA[<]]> TRUNC(NEXT_DAY(SYSDATE-8,1)+7)+1
+			</when>
+			<otherwise>
+	      	</otherwise>
+		</choose>
+		GROUP BY yhmc
+	</select>
+</mapper>

@@ -1,0 +1,96 @@
+.viewer {
+    -ms-touch-action: none;
+}
+.viewer img {
+    image-orientation: from-image;
+}
+.iviewer_common {
+    position:absolute;
+    top:10px;
+    border: 1px  solid #000;
+    height: 28px;
+    z-index: 5000;
+}
+
+.iviewer_cursor {
+    cursor: url(img/hand.cur) 6 8, pointer;
+}
+
+.iviewer_drag_cursor {
+    cursor: url(img/grab.cur) 6 8, pointer;
+}
+
+.iviewer_button {
+    width: 28px;
+    cursor: pointer;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.iviewer_zoom_in {
+    left: 10px;
+    background: url(img/iviewer.zoom_in.gif) center center no-repeat;
+}
+
+.iviewer_zoom_out {
+    left: 45px;
+    background: url(img/iviewer.zoom_out.gif) center center no-repeat;
+}
+
+.iviewer_zoom_zero {
+    left: 80px;
+    background: url(img/iviewer.zoom_zero.gif) center center no-repeat;
+}
+
+.iviewer_zoom_fit {
+    left: 115px;
+    background: url(img/iviewer.zoom_fit.gif) center center no-repeat;
+}
+
+.iviewer_zoom_status {
+    left: 10px;
+    top: 50px;
+    font: 1em/28px Sans;
+    color: #000;
+    background-color: #fff;
+    text-align: center;
+    width: 60px;
+}
+
+.iviewer_rotate_left {
+    left: 77px;
+    top: 50px;
+    background: #fff url(img/iviewer.rotate_left.png) center center no-repeat;
+}
+
+.iviewer_rotate_right {
+    left: 112px;
+    top: 50px;
+    background: #fff url(img/iviewer.rotate_right.png) center center no-repeat;
+}
+
+/*自定义扩展样式*/
+.viewer
+  {
+	  width:90%;
+	  height:90%;
+      border: 1px solid black;
+      position: relative;
+      left:5%;
+      top:5%;
+  }
+.img_loading
+{
+     border: 1px solid black;
+     position: absolute;
+     left:5%;top:5%;right:4%;bottom:4%;
+	 z-index:2000;
+}
+.img_loading_bg{
+	background: #fff url(img/progress.gif) no-repeat center center;
+}
+.img_loading span{ position:absolute;top:50%; display:none;}
+.img_loadederror_bg
+{
+	background: #fff url(img/imgLoad_error.gif) no-repeat center center;
+}

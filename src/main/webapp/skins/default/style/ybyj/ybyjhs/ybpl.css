@@ -1,0 +1,36 @@
+/* -- display && float -- */
+.dn{display:none;}
+.db{display:block;}
+.fl{float:left;}
+.fr{float:right;}
+/* -- position -- */
+.rel{position: relative;}
+.abs{position: absolute;}
+/* -- others -- */
+.gap{height: 15px;width: 100%;}
+.auto{margin: 0 auto;}
+/* -- clear -- */
+.clear { clear: both;}
+.clearfix:before, .clearfix:after { content: '\0020'; display: block; overflow: hidden; visibility: hidden; width: 0; height: 0; }
+.clearfix:after { clear: both }
+.clearfix { *zoom: 1 } /*触发hasLayout 清除浮动*/
+
+/* -- 3.0 Main structure -- */
+.chat-box{position: relative;width:100%;border-bottom:1px solid #a6d4ea;}
+.chat-box .inner{padding: 15px;}
+.chat-box .date{color:#9b9b9b;text-align: right;padding-right: 32px}
+.user-logo{float: left;width:20px;}
+.user-logo img{margin-top: 6px;}
+.user-main{float: left;width: 90%;}
+.user-main h2{color: #1f57ae;}
+.user-ctn{position: relative;padding:0 16px;margin-top: 5px;background: #edf2fb;border:1px solid #bcbfc4;color: #666;border-radius: 5px;}
+.user-ctn .arrow{position: absolute;left:-8px;top:0px;width:8px;height: 12px;background: url(../../../images/ybyj/ybyjhs/icon_arrow.png) no-repeat;}
+
+.user-ctn {
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	position:relative;
+	z-index:2;
+	behavior: url($../../../images/ybyj/ybyjhs/iecss3.htc)
+}

@@ -1,0 +1,20 @@
+
+/*表格样式 list_table_1*/  
+table#list_table_1{border: 1px solid #95B8E7; border-bottom:none; border-right:none; background:#fff; font-size:12px;}
+table#list_table_1 tr td{font-size: 12px;padding:0px 4px; line-height:22px; background: #fff;border-right:1px solid #95B8E7; border-bottom:1px solid #95B8E7;}
+table#list_table_1 thead td{text-align:center;background: #33CCFF; color:#ffffff; font-weight:bold; line-height:22px; height:22px; border-bottom:1px solid #95B8E7;}
+table#list_table_1 tbody td{table-layout: fixed;word-wrap:break-word;word-break:break-all;}
+
+/*表格上面行样式*/
+table#list_table_1 tr td.tabletit,
+table.list_table_sub tr td.tabletit{font-weight:bold;height:30px;line-height:30px;background:#E6F1FF url(../../../images/platform/workflow-v2/table.png) 5px 8px no-repeat; color:#031d40; text-indent:20px;}
+table#list_table_1 tr td.tabletit{}
+table.list_table_sub tr td.tabletit{text-align:left; float:left;}
+
+.td-lable{background-color: #E2EFFA;text-align:right;color: #333333;}
+
+/*表格样式 list_table_5*/  
+table#list_table_5{border: 1px solid #95B8E7; border-bottom:none; border-right:none; background:#fff; font-size:12px;}
+table#list_table_5 tr td{font-size: 12px;padding:0px 4px; line-height:22px; background: #fff;border-right:1px solid #95B8E7; border-bottom:1px solid #95B8E7;}
+table#list_table_5 thead td{text-align:center;background: #B1D3FA; color:#000; font-weight:bold; line-height:22px; height:22px; border-bottom:1px solid #95B8E7;}
+table#list_table_5 tbody td{table-layout: fixed;word-wrap:break-word;word-break:break-all;}

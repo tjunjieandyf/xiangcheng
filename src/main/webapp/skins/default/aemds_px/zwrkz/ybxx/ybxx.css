@@ -1,0 +1,90 @@
+.tab-wrap-2 {
+    margin: 20px 80px;
+}
+
+.qy-list li {
+    height: 38px;
+    width: 230px;
+    overflow: hidden;
+    float: left;
+    background-color: #fbfff7;
+/*     padding: 0 10px; */
+    border: 1px solid #e2f7cd;
+    margin: 5px
+}
+.qy-list li span {
+    line-height: 38px;
+    float: left;
+    margin-left: 15px;
+    font-size: 14px;
+    color: #5b8c2b;
+    float: left;
+    display:block;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    -o-text-overflow: ellipsis;
+    white-space:nowrap;
+    width:180px;
+}
+.qy-list li i.close {
+    display: block;
+    float: right;
+    width: 20px;
+    height: 20px;
+    margin-top: 9px;
+    background: url(del.png) center no-repeat;
+}
+
+.table-query-2 {border-collapse: collapse; border-spacing: 0; width: 100%;height: 100%; border: 1px solid #bfd9ee;}
+.table-query-2 tr td{color: #010101; font-size: 14px; border-right: 1px solid #bfd9ee; border-bottom: 1px solid #bfd9ee; height: 36px;position: relative;}
+.table-query-2 tr td.td-hd{color: #396d98; background: #e2f2ff; text-align: right;}
+.table-query-2 tr td.td-hd i{color: #ff0000;}
+.table-query-2 tr td p{position: relative; height: 36px; line-height: 36px; padding: 0 20px; font-size: 14px;}
+
+.btn-qy {
+    color: white;
+    font-size: 14px;
+    width: 110px;
+    height: 26px;
+    line-height: 26px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    box-sizing: border-box;
+    padding-left: 40px;
+    background: #3993ff url(icon_add.png) 10px center no-repeat;
+}
+
+/*下拉框*/
+.selectBox {
+    float: left;
+    position: relative;
+    background: white url(icon_arrow_bot.png) no-repeat 95% center;
+    overflow: hidden;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+/*     width: 104px; */
+/*     height: 24px; */
+/*     border: 1px solid #d1d1d1; */
+/*     border-radius: 3px; */
+}
+
+.selectBox select {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer;
+}
+
+.selectBox span {
+    display: inline-block;
+/*     line-height: 24px; */
+    text-indent: 5px;
+}

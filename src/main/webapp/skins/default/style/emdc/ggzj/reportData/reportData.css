@@ -1,0 +1,10 @@
+.yjTip{display:none; min-width:120px; background:#F0F0F0;border:1px solid #C7C7C7;padding-left:15px;position:absolute;z-index:10000;}
+.yjTip ul{list-style-type:none;}
+.yjTip ul li{ height:25px; line-height:25px;padding-left:5px; cursor:pointer;color:#000;border-left:1px solid #fff;}
+.yjTip ul li:hover{background:#4892f6; color:#ffffff;}
+.yjTipTd {background:#DDEDFF}
+
+.panel-tool a.layout-button-left{margin-top: 6px;}
+
+#dateTable td.fixedLeft{background: white;position: relative;left: 0;z-index: 0;}
+#dateTable td.fixedHead{z-index: 1;}

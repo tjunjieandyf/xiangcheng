@@ -1,0 +1,176 @@
+.Layout {
+	width: 100%;
+	height: 100%;
+	background-color: #eef9ff;
+}
+
+.Layout .LayoutTable {
+	border-collapse: collapse;
+	table-layout: fixed;
+	width: 100%;
+	height: 100%;
+	border: none;
+	background-color: #eef9ff;
+}
+
+.Layout .LayoutTable colgroup {
+	background-color: #eef9ff;
+}
+
+.Layout .LayoutTable col {
+	background-color: #eef9ff;
+}
+
+.Layout .LayoutCell {
+	border: none;
+	vertical-align: top;
+	padding: 5px;
+	padding-bottom: 0;
+	overflow: hidden;
+	background-color: #eef9ff;
+}
+
+.Layout .LayoutItem {
+	border: 1px solid #9BB667;
+	width: 100%;
+	margin-bottom: 8px;
+	background-color: #eef9ff;
+}
+
+.Layout .LayoutItem iframe {
+	background-color: #eef9ff;
+	display: none;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	z-index: -1;
+}
+
+.Layout .LayoutItemMouseDown {
+	position: absolute;
+	background-color: #eef9ff;
+}
+
+.Layout .LayoutItemHead {
+	width: 100%;
+	background: url("../../images/platform/portal/oa_block_bg.gif");
+	border-collapse: collapse;
+	border-left: 1px solid #FFF;
+	border-top: 1px solid #FFF;
+	height: 28px;
+	line-height: 20px;
+	text-align: left;
+	font-size: 12px;
+	table-layout: fixed;
+	background-color: #eef9ff;
+}
+
+.Layout .LayoutItemMouseDown .LayoutItemHead {
+	border-left: 1px solid #DCD9B8;
+	border-top: 1px solid #DCD9B8;
+	border-bottom: 1px solid #C0C0C0;
+	background-color: #eef9ff;
+}
+
+.Layout .LayoutItemBody {
+	width: 100%;
+	background-color: white;
+	overflow: hidden;
+}
+
+.Layout .LayoutItemHead TD {
+	padding: 0;
+}
+
+.Layout .LayoutItemHead .StatusCell {
+	text-align: center;
+	width: 22px;
+}
+
+.Layout .LayoutItemHead .ButtonCell {
+	width: 65px;
+	text-align: right;
+}
+
+.Layout .LayoutItemHead .Icon {
+	background-image: url("../../images/platform/portal/LayoutIcons.gif")
+		;
+	width: 16px;
+	height: 16px;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+.Layout .LayoutItemHead .CollapseIcon {
+	cursor: hand;
+	background-position-x: -17px;
+}
+
+.Layout .LayoutItemHead .ExpandIcon {
+	cursor: hand;
+	background-position-x: 0;
+}
+
+.Layout .LayoutItemHead .ConfigIcon {
+	cursor: hand;
+	background-position-x: -68px;
+}
+
+.Layout .LayoutItemHead .RefreshIcon {
+	cursor: hand;
+	background-position-x: -51px;
+}
+
+.Layout .LayoutItemHead .CloseIcon {
+	cursor: hand;
+	background-position-x: -34px;
+}
+
+.Layout .LayoutItemHead .Text {
+	height: 100%;
+	padding-top: 5px;
+}
+
+@CHARSET "UTF-8"; 
+.loading-indicator {font-size: 11px;background-position: left;padding-left: 20px;line-height: 16px; margin: 3px;}
+#loading{position:absolute;left:45%;top:40%;padding:2px;z-index:20001;height:auto;border:1px solid #ccc;}
+#loading-msg{font:normal 9px arial,tahoma,sans-serif;}
+
+#main{}
+
+#page_message{}
+/*按钮区*/
+.page_buttons{width:98%; margin:4px auto 0px auto; text-align:right;height: 30px;}
+
+/*按钮样式*/ 
+input.btn{border:1px solid #6694cf; padding:0 4px; margin-left:4px; background:#fff url(../../images/platform/workflow/user/btn_bg.gif) repeat-x bottom left; height:24px; line-height:20px;}
+.css_submit1{cursor:hand;background-repeat:no-repeat;height:20;border-style:solid;border-width:0;background-position:center 50%;font-size:9pt; }
+
+/**页面验证*/
+div.errorMessage {
+	border: 1px solid #AFAFAF;
+	background: #FEFCD8 url(../images/ebcm/common/tipsicon.gif) no-repeat top left;
+	text-indent: 26px;
+	line-height: 24px;
+	font-size: 12px;
+}
+
+/**删除和编辑图标*/
+.icoEdit{background-image:url(../images/ebcm/common/ico_pen.gif); background-repeat:no-repeat}
+.icoDel{background-image:url(../images/ebcm/common/ico_del.gif); background-repeat:no-repeat}
+.icoDmj{background-image:url(../images/ebcm/common/ico_dmj.gif); background-repeat:no-repeat}
+.icoSave{background-image:url(../images/ebcm/common/ico_lst.gif); background-repeat:no-repeat}
+.icoUpload{background-image:url(../images/ebcm/common/uparrow.gif); background-repeat:no-repeat}
+
+/**分页按钮*/
+span.btnWssb {font-size: 12px;width:98%;display: block;text-align: center;margin-top: 3px;}
+span.btnWssb input{border:1px solid #6694cf; line-height:20px; height:20px; padding:0; padding-left:3px;}
+span.btnWssb span.page_normal {}
+span.btnWssb span.page_select {}
+span.btnWssb span.page_input {}
+span.btnWssb span.page_input input#P_CURRENT{width:15px;height:20px;}
+span.btnWssb span.page_status {}
+span.btnWssb span.page_order {}
+
+/**退出按钮*/
+.success {border:1px dotted #390; background: #dfa; color: #390; padding: 20px;}

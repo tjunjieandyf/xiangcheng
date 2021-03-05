@@ -1,0 +1,165 @@
+.play-bar{position: absolute; bottom: 60px; width: 74%; left: 50%;transform: translate(-50%, 0); min-width: 500px;}
+.play-bar *{box-sizing: border-box;}
+.play-bar>.time-list{
+	    position: relative;
+    top: 12px;
+    left: 68px;
+}
+.play-bar>.time-list>li{
+	height: 6px;
+    float: left;
+    background: #3573B8;
+    position: relative;
+    cursor: pointer;
+    list-style: none;
+}
+.play-bar>.time-list>li.prev, .play-bar>.time-list>li.on{
+	background: #fff;
+}
+.play-bar .btn{
+	background: #FFF;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    cursor: pointer;
+    padding-top: 9px;
+    padding-left: 10px;
+}
+.play-bar .btn:before{
+	content: '';
+    width: 16px;
+    height: 16px;
+    display: block;
+    background: url(icons.png) 0 -80px no-repeat;
+}
+.play-bar .pause:before{
+    background-position: 0 -96px;
+}
+.play-bar .prev:before{
+	background-position: 0 -48px;
+}
+.play-bar .next:before{
+	background-position: 0 -64px;
+}
+.play-bar .slide-tip {
+    position: absolute;
+    padding: 4px 8px;
+    height: 26px;
+    left: 50%;
+    bottom: 20px;
+    background: rgba(41,147,183,.9);
+    color: #fff;
+    z-index: 1002;
+    border-radius: 4px;
+    width: 140px;
+    transform: translate(-50%,0);
+    display: none;
+}
+.play-bar li.on .slide-tip{
+	display: block;
+}
+.play-bar .slide-tip .bb {
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    position: absolute;
+    margin-left: -10px;
+    left: 50%;
+    top: 26px;
+    border-top-color: rgba(41,147,183,.9);
+}
+.play-bar .slide-tip .cc {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 38px;
+    background: white;
+    margin-left: -7px;
+}
+.day-div{
+	    position: relative;
+    top: 7px;
+    color: white;
+    width: 100px;
+    height: 10px;
+    border-left: 1px solid #3573B8
+}
+.day-span{
+	position: absolute;
+    top: 12px;
+    left: -40px;
+}
+
+.dateBg {
+    font-size: 12px;
+    position: absolute;
+    cursor: pointer;
+    width: 116px;
+    height: 28px;
+    line-height: 28px;
+    top: -10px;
+    left: 200px;
+    background: #FFF;
+    padding-left: 15px;
+    z-index: 101;
+    border-radius: 15px;
+    color: #3597d1;
+}
+.dateBg i {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    width: 16px;
+    height: 16px;
+    background: url(./icons.png) 0 -207px no-repeat;
+}
+
+ .middle-box{
+	position: absolute;
+	top:36px;
+	left:100px;
+	right:100px;
+	bottom:100px;
+	margin: auto;
+}
+
+.laydate-btns-clear{
+	display: none!important;
+}
+.laydate-btns-now{
+	display: none!important;
+}
+.play-bar>.time-list {
+    position: relative;
+    top: 12px;
+    left: -46px;
+}
+.play-bar {
+    position: absolute;
+    bottom: 73px;
+    width: 74%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    min-width: 500px;
+}
+.day-div {
+    position: relative;
+    top: 7px;
+    color: #3573B8;
+    width: 100px;
+    height: 10px;
+    border-left: 1px solid #3573B8;
+}
+.play-bar>.time-list>li {
+    height: 6px;
+    float: left;
+    background: #3573B8;
+    position: relative;
+    cursor: pointer;
+    list-style: none;
+    border-rigtht: 1px solid white;
+    border-right: 1px solid white;
+}

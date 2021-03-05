@@ -1,0 +1,527 @@
+/************* 公共样式 ********************/
+*{ margin:0; padding:0;}
+body,input,textarea{font-size:12px; font-family:'微软雅黑';outline:none;}
+textarea{overflow: auto;}
+ul,dl dd{ list-style-type:none; margin:0; padding:0;}
+img{border:none;}
+html{scrollbar-arrow-color: #666; /*三角箭头的颜色*/
+scrollbar-face-color: #E6E6E6; /*立体滚动条的颜色*/
+scrollbar-3dlight-color: #ccc; /*立体滚动条亮边的颜色*/
+scrollbar-highlight-color: #fff; /*滚动条空白部分的颜色*/
+scrollbar-shadow-color: #fff; /*立体滚动条阴影的颜色*/
+scrollbar-darkshadow-color: #ccc; /*立体滚动条强阴影的颜色*/
+scrollbar-track-color: #F7F7F7; /*立体滚动条背景颜色*/
+scrollbar-base-color:#ccc; /*滚动条的基本颜色*/}
+::-webkit-scrollbar {width:8px; }
+::-webkit-scrollbar-track {-webkit-box-shadow: inset 0 0 6px #ccc;border-radius: 10px; }
+::-webkit-scrollbar-thumb {border-radius: 10px;background:#ccc;-webkit-box-shadow: inset 0 0 6px #ccc; }
+::-webkit-scrollbar-thumb:window-inactive {background:#ccc; }
+
+.task-msg{display:none;position: absolute;top:35px;width:270px;height:85px;line-height:85px;background: url(../../../images/platform/workflow-v2/msg.png) left center no-repeat;color:#4A9E12;z-index:100000;text-align:center;}
+.task-msg-info{display:inline-block;width:24px;margin-right:10px;background: url(../../../images/platform/workflow-v2/msg-info.png) left center no-repeat;}
+
+.master-user-div{padding:0 10px;position:absolute;z-index: 10000;background-color: #fff;border:1px solid #C1D3E7;overflow: auto;display: none;overflow-x:hidden;}
+.master-user-div .close-div{display:inline-block;width:20px;position: absolute;top:-5px;background: url(../../../images/platform/workflow-v2/close.png) left center no-repeat;cursor: pointer;}
+.master-user-div .close-div:hover{background-position: 1px center;}
+.master-user-div .dept-name{text-align: right;font-weight: bold;vertical-align: top;padding-right:5px;width:100px;}
+.master-user{height:26px;line-height:26px;display: inline-block;padding-right:5px;padding-left:20px; cursor: pointer;width:70px;}
+.master-user2{width:168px;}
+.master-dept{cursor: pointer;width:100%;display: inline-block;}
+.master-user:hover,.master-dept:hover{background-color: #EAF2FF;}
+.master-user-checked,.master-dept-checked{background: url(../../../images/platform/workflow-v2/select.png) 3px center no-repeat  #EAF2FF;}
+.user-select{border:1px solid #C1D3E7;background-color: #fff;margin-left:5px;width:98%;line-height:28px;min-height: 28px;}
+.user-select .user-li{cursor: default;display: inline-block;height:26px;line-height: 26px;width:70px;padding-left:5px;white-space: nowrap;}
+.user-select .user-cut{display:inline-block;visibility:hidden;width:20px;background: url(../../../images/platform/workflow-v2/close.png) left center no-repeat;cursor: pointer;}
+.user-select .user-add{margin-left:10px;display:inline-block;width:0;background: url(../../../images/platform/workflow-v2/add.png) left center no-repeat;cursor: pointer;}
+.user-select .user-select-add{width:20px;}
+.edit_table tr:hover .user-select .user-add{width:20px;}
+.user-select .user-li:hover{background-color:#EAF2FF;borde:1px solid #C1D3E7;}
+.user-select .user-li:hover .user-cut{visibility:visible;}
+.error{margin:20px; color:red; font-size:12px; min-height:50px; padding-left:35px; padding-top:5px; background:url(../../../images/platform/workflow-v2/error.png) no-repeat;}
+/*编辑页面验证错误样式*/
+div.errorMessage {border: 1px solid #AFAFAF;background: #FEFCD8 url(../../../images/ebcm/common/tipsicon.gif) no-repeat top left;text-indent: 26px;line-height: 24px;font-size: 12px;}
+/**页面样式*/
+.wrap{width:100%;border:none;}
+.wrap .top{height:30px;line-height: 30px;background-color: #bcdef9;color:#333;}
+.wrap .top .title{color:#4376b0;padding:0 10px;float:left;text-indent:13px;background:url(../../../images/platform/workflow-v2/table.png) 3px center no-repeat;}
+.wrap .top .content-title{text-indent:5px;background-color: #E6F1FF;height:30px;line-height:30px;float:right;width:100%;border:1px solid #C1D3E7;color:#0C46A3;}
+.wrap .top .btns{float:right;margin-right:5px;}
+.wrap .top .btns .btn{float:left;height:30px;line-height:30px;padding:0 4px;color:#666;text-decoration: none;}
+.wrap .top .btns .btn:hover{background-color: #fff;cursor: pointer;}
+.wrap .top .btns .btn .ok{ background:url(../../../images/platform/workflow-v2/ybrw.png) left center no-repeat;width:20px;display: inline-block;}
+.wrap .top .btns .btn .close{ background:url(../../../images/platform/workflow-v2/close.png) left center no-repeat;width:20px;display: inline-block;}
+.wrap .top .btns .btn .add{ background:url(../../../images/platform/workflow-v2/add.png) left center no-repeat;width:20px;display: inline-block;}
+.wrap .top .btns .btn .search{ background:url(../../../images/platform/workflow-v2/searchbtn.png) left center no-repeat;width:20px;display: inline-block;}
+.wrap .top .btns .btn .setting{ background:url(../../../images/platform/workflow-v2/pz.png) left center no-repeat;width:20px;display: inline-block;}
+.wrap .top .message{position: relative;left:50px;top:3px;padding:0 5px;display: inline-block;height:25px;line-height:25px;font-weight: bold;}
+.wrap .top .message span{margin-left:10px;color:#666;}
+.wrap .top .message span:hover{cursor: pointer;color:#000;font-weight: bold;}
+.wrap .top .success{background-color: #DFF0D8;color:#3c763d;}
+.wrap .top .info{background-color: #D9EDF7;color:#31708f;}
+.wrap .top .warning{background-color: #FCF8E3;color:#8a6d3b;}
+.wrap .top .error{background-color: #F2DEDE;color:#a94442;}
+.wrap .container{width:100%;margin:0;padding:0;overflow: auto;}
+
+/** 编辑表格样式 */
+.edit_table {width:98%;color:#333;}
+.edit_table .readonly{background: #fff;}
+.edit_table tr {}
+.edit_table tr td {height:30px; line-height:30px;border-top:1px solid #F7FBFF;border-bottom:1px solid #F7FBFF;}
+.edit_table tr td input[type='text']{margin-left:5px; width:98%;height:20px; line-height:20px; border:1px solid #b4cde8;}
+.edit_table tr td input[type='radio']{margin-left:5px;vertical-align: middle;;margin-top:-2px;}
+.edit_table tr td textarea{margin-left:5px;margin-top:3px;margin-bottom:3px; width:98%;border:1px solid #C1D3E7;}
+table tr td .tdIcon{ display:inline-block; width:18px; height:18px;text-align: left;vertical-align: middle;;margin-top:-2px;}
+table tr td .m1{ background:url(../../../images/platform/workflow-v2/dr.png) left center no-repeat;cursor:pointer;}
+.edit_table tr td .m2{ background:url(../../../images/platform/workflow-v2/dm.png) left center no-repeat; top:5px; cursor:pointer;}
+.edit_table label{cursor: pointer;}
+  
+/** 列表表格样式 */
+.list_table {}
+.list_table tr {}
+.list_table tr td {height:30px; line-height:30px;}
+.list_table tr td input{}
+.list_table tr td textarea{}
+
+td.td-label{ text-align:right;padding-right:3px;}
+
+/** 展示表格样式 */
+.disply_table {table-layout: fixed;} 
+.disply_table thead th{height:30px;line-height:30px; background:#e6f1ff; color:#1e7be4; text-align:center; border-bottom:1px solid #c1d3e7;  border-top:1px solid #c1d3e7; }
+.disply_table tr td { width:30%; height:30px; line-height:30px;overflow: hidden ;white-space: nowrap; text-overflow: ellipsis; color:#1e7eb4; padding-left:10px;}
+.disply_table tbody tr:hover td{background-color: #CFE3FA;}
+.disply_table tr td input{}
+.disply_table tr td textarea{}
+
+/** 查询条件的样式*/
+.serInput{background:#fff; border:1px solid #c1d3e7;padding:0 18px 0 5px;outline: none;}
+.serText{display:inline-block; width:70px; height:23px;line-height:23px;}
+.serBtn{display:inline-block; width:15px;height:23px;position: absolute;top:1px;background:#fff url(../../../images/platform/workflow-v2/ser.png) left center no-repeat;;cursor: pointer;}
+
+/************ 发起新任务页面 ***************/
+.startMain{ width:100%; overflow: hidden;}
+.startMain .left{position: absolute; left:0; top:0; width:160px; height: 100%; background:#f7fbff;overflow: auto; border:1px solid #c5daf0;overflow-x:hidden;}
+.startMain .center{position: absolute; left:163px; top:0; right: 352px;bottom:0;}
+.startMain .right{position: absolute; right:0; top:0; width: 350px; height: 100%;border-left:1px solid #c5daf0; }
+.startMain .finishedContent{display:none;position: absolute; left:163px;right:0; top:0;bottom:0;}
+
+.startMain .left .rwUl li.rwOneli{line-height:25px;  color:#4376b0; background:#BCDEF9; text-align: left; margin-bottom: 1px;}
+.startMain .left .rwUl li.rwOneli b{padding-left:20px;line-height: 20px;margin: 4px 0 2px 0;display: inline-block;}
+.startMain .left .rwUl li.fqrw b{background:url(../../../images/platform/workflow-v2/fqrw.png) left center no-repeat;}
+.startMain .left .rwUl li.ybrw b{background:url(../../../images/platform/workflow-v2/ybrw.png) left center no-repeat;}
+
+.startMain .left .rwUl{ width:100%;} 
+.startMain .left .rwTwoul{ background:#f7fbff;}
+.startMain .left .rwTwoul li.rw-module{font-weight:bold;background-color:#EFF6FF;padding-left:10px;border-bottom:1px solid #C1D3E7;border-top:1px solid #C1D3E7;overflow: hidden ;white-space: nowrap; text-overflow: ellipsis;}
+.startMain .left .rwTwoul li.rw-li{color:#4c4c4c; cursor:pointer; height:25px; line-height:25px; overflow: hidden ;white-space: nowrap; text-overflow: ellipsis; padding-left:15px;text-align: left;}
+.startMain .left .rwTwoul li.rw-li:hover,.startMain .left .rwTwoul li.rwTwoHover{color:#4376af;background:#e1eefc url(../../../images/platform/workflow-v2/rwjtrit.png) 140px center no-repeat;padding-right: 20px;}
+.startMain .left .rwTwoul li.rw-li .rwSpan{ color:#fff; background:#ff6600; padding:0 3px; height:20px; line-height:20px;border-radius: 3px;moz-border-radius: 3px; position:relative; left:-3px; top:-5px;}
+.startMain .left .bottomP{ position:fixed;left:0;right:0;bottom:0;width:160px; height:25px; line-height:25px; text-align:center; color:#4376b0;border-top:1px solid #c1d3e7;border-bottom:1px solid #c1d3e7; background:#f3f9ff url(../../../images/platform/workflow-v2/rwjtrit.png) 270px center no-repeat; cursor:pointer;}
+.startMain .left .bottomP b{ text-decoration: underline;color:#FF6600;}
+.startMain .left .bottomP:hover{background-color: #BCDEF9;border-right:1px solid #c1d3e7;}
+
+.startMain .right .rwTop{line-height:30px;color:#4376b0; background:#BCDEF9; text-align: left;}
+.startMain .right .rwTop b{background:url(../../../images/platform/workflow-v2/fzrw.png) 3px center no-repeat;padding-left:25px;line-height: 22px;
+margin: 4px 0 4px 0;display: inline-block;}
+.startMain .right .rwTs{display:inline-block;line-height:30px; padding-left:50px;  text-align: right;}
+.startMain .right .no{ background:url(../../../images/platform/workflow-v2/no.png) left center no-repeat; padding-left:20px; height:30px; display: inline-block;color:#666;}
+.startMain .right .ok{ background:url(../../../images/platform/workflow-v2/ok.png) left center no-repeat; padding-left:20px; height:30px; display: inline-block;color:#666;}
+.startMain .right .rightCon{overflow:auto;}
+.startMain .status{position: relative;top:2px;cursor: pointer;}
+
+.page{ height:30px; line-height:30px; text-align:center; color:#4376b0;border-top:1px solid #c1d3e7; background:#f3f9ff;}
+.pageBtn{cursor:pointer;border:1px solid #ccc;background: #fff;padding: 3px 5px;}
+.pageBtnHover{background: #CFE3FA;}
+#pageup{border-right:0;}
+.startMain .right .serInput{width:240px;background:#fff url(../../../images/platform/workflow-v2/ser.png) 2px center no-repeat;color:#777; height:20px;line-height:20px;padding:2px 15px;padding-right:5px;}
+
+.formControl{color:#999;}
+.formControlFocus{color:#000;}
+
+.dropdown-wrapper{position:relative;}
+.dropdown-btn{width:15px;height:20px;position:absolute;top:3px;right:0;background:#fff url(../../../images/platform/workflow-v2/drp.png) 5px center no-repeat;cursor: pointer;}
+.dropdown-text{color:#666;border:1px solid #c1d3e7;padding: 4px 0;}
+.dropdown-list{position:absolute; left:0;top:25px; background:#fff;border:1px solid #dfdfdf;z-index:999999; display:none;}
+.dropdown-list p{line-height:20px;text-indent: 5px;cursor:pointer;margin-top:1px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+.dropdown-list p.dropdown-hover{background:#1e7be4;color:#fff;}
+
+.rwTable{width:100%;border-top:1px solid #c1d3e7;border-bottom:1px solid #c1d3e7;table-layout: fixed;}
+.rwTable thead td{background:#eff6ff;font-weight:bold;text-align:center;}
+.rwTable thead tr td{text-align:center; padding:0;}
+.rwTable tbody .trOdd{background:#eff6ff;}
+.rwTable tbody .trclickHover,.rwTable tbody .trHover{background:#CFE3FA;}
+.rwTable td{color:#666; line-height:30px; border-right: 1px dotted #C5DAF0;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+.rwTable td.info{text-align: center; width:30px;}
+.rwTable .emptyInfo{text-align: center;color:#999;}
+
+/**  没有内容页面样式 */
+.noContent{text-align:center;margin-top:50px;color:#1e7be4;background:url(../../../images/platform/workflow-v2/noCon.png) top center no-repeat;height:200px;}
+.noContent span{margin-top:115px;display:inline-block;margin-left:10px;font-size:16px;}
+.noContent p{height:4px;}
+.noHandle{background:url(../../../images/platform/workflow-v2/noCon1.png) top center no-repeat;position:absolute;top:25%;margin-top:-80px;left:100%;margin-left:-125px;width:120px;padding-top:80px;}
+.noHandle span{margin-left:0;margin-top:10px;font-size:12px;}
+
+/************ 待办任务页面 ***************/
+/*块布局*/
+.underwayMain{ width:100%; }
+.underwayMain .dbrwLeft{ width:310px; height: 100%; float:left; background:#f7fbff; border:1px solid #c5daf0;position: relative;}
+.underwayMain .dbrwRight{ background:#f7fbff; position:absolute;left:315px;top:0; right:0;bottom:2px;} 
+.underwayMain .middle{ background:#f7fbff;border:1px solid #c5daf0;position:absolute;left:0;top:0;right:130px;bottom:2px;}
+.underwayMain .right{border:1px solid #c5daf0;position:absolute;top:0;right:0;bottom:2px;width:125px; background:#f7fbff;}
+.underwayMain .batchTransition{ background:#f7fbff; position:absolute; left:0; top:0; bottom:2px;right:0;border:1px solid #c5daf0;}
+.underwayMain .showSteps{position: absolute;bottom: 36px;width:100%;display: none;z-index:9;background: #F7FBFF;border:1px solid #C1D3E7;}
+.underwayMain .showSteps .stepTitle{height: 30px;line-height: 30px;background: #E6F1FF;border-bottom:1px solid #C1D3E7;}
+.underwayMain .showSteps .stepTitle .title{float:left;font-weight: bold;padding-left:10px;}
+.underwayMain .showSteps .stepTitle .close{float:right;width:20px;}
+.underwayMain .showSteps .stepList{overflow: auto;}
+.underwayMain .tips{display:inline-block;padding:0 5px;cursor:pointer;height:18px;line-height:18px;font-size:10px;position:relative;top:-5px;color:#fff;background-color:#FF6600;text-align:center;white-space:nowrap;border-radius:10px}
+.underwayMain .text-overflow{overflow:hidden;white-space:nowrap;text-overflow:ellipsis;display: inline-block;}
+.underwayMain .close-btn{padding:3px;padding-left:20px;}
+.underwayMain .close-btn:hover{background-color: #ffffff;}
+.underwayMain .showSteps .stepTitle .close
+,.underwayMain .close-btn{float:right;background:url(../../../images/platform/workflow-v2/close.png) left center no-repeat;cursor: pointer;}
+
+/*左边内容*/
+.underwayMain .zrfptop{color:#4376b0; background:#c4defb; padding:2px 0 3px 10px; }
+.underwayMain .zrfptop b{background:url(../../../images/platform/workflow-v2/dbrw.png) left center no-repeat;padding-left: 20px;line-height: 22px;display: inline-block;float: left;}
+.underwayMain .blurB{color:#1e7be4;display:inline-block;padding: 0 3px;float:right;}
+.underwayMain .rwName{display:inline-block; width:85px; line-height:23px;margin-top:1px; }
+.underwayMain .rwName span{max-width:60px;padding:0 0 0 3px; display:inline-block;overflow: hidden ;white-space: nowrap; text-overflow: ellipsis;float:left;cursor:pointer;}
+.underwayMain .rwNum{color:#ff7800;display:inline-block;padding:0 3px 0 0;}
+.underwayMain .rwNameClick span,.underwayMain .rwNameClick b,.underwayMain .rwNameClick a{text-decoration:none;color:#fff;background:#1E7BE4;}
+.underwayMain .stepDesc{ color:#ff7800;overflow: hidden ;white-space: nowrap; text-overflow: ellipsis;display: hidden;width:90px;line-height:20px;height:20px;vertical-align: middle;;margin-top:-2px;}
+.underwayMain .ssjt{ width:100%; height:8px; border-top:1px solid #c8dbf0; border-bottom:1px solid #c8dbf0; background:url(../../../images/platform/workflow-v2/rwjt.png) center no-repeat; cursor:pointer;}
+.underwayMain .ssjtDown{ background:url(../../../images/platform/workflow-v2/rwjtDown.png) center no-repeat; }
+.underwayMain .rwblTitle {height:25px;line-height:25px;display:inline-block;position: relative;left:85px;}
+.underwayMain .rwblTitle li{float:left;height:25px;padding-right:3px;}
+.underwayMain .drpDown{ background:#fff url(../../../simages/platform/workflow-v2/ser.png) 2px center no-repeat;color:#666;display:inline-block;width:140px;height:23px;line-height:23px;border:1px solid #c1d3e7; }
+.drpHover{background:#4376B0;color:#fff;}
+.underwayMain .rwTabTitle{ height:30px; line-height:30px; border-top:1px solid #c1d3e7;border-bottom: 1px solid #c1d3e7; background:#e6f1ff; color:#4376b0;}
+.underwayMain .rwConTab{ width:100%; overflow:auto; overflow-x:hidden; height:500px;}
+.underwayMain .rwTab{ color:#777; }
+.underwayMain .rwTab th{ height:28px; line-height:28px; color:#1e7be4;border-bottom: 1px solid #c1d3e7;}
+.underwayMain .rwTab td{ line-height:23px;border-bottom: 1px solid #c1d3e7;}
+.underwayMain .navTrjt{display:inline-block;width:6px;height:11px;background:url(../../../images/platform/workflow-v2/rwjtrit.png) center no-repeat;position:absolute;left:332px;top:206px;}
+.underwayMain .bottomP{ height:28px; line-height:28px; text-align:center;position:absolute;left:0;right:0;bottom:0; color:#4376b0;border-top:1px solid #c1d3e7; cursor:pointer;}
+.underwayMain .bottomP b{text-decoration: underline;color:#FF6600;}
+.underwayMain .bottomP:hover{background-color: #BCDEF9;border-right:1px solid #c1d3e7;}
+.underwayMain .bottomP .bottom-desc{display:inline-block;vertical-align:middle;overflow: hidden;white-space: nowrap; text-overflow: ellipsis;}
+.underwayMain .bot{background:#f3f9ff url(../../../images/platform/workflow-v2/rwjt.png) 270px center no-repeat;}
+.underwayMain .bot b{text-decoration: none;}
+.underwayMain .imgSpan{padding:0 5px 0 15px; display:inline-block; cursor:pointer;margin-right:10px;font-weight: bold;}
+.underwayMain .imgSpan:hover{ background-color:#9AC0F0;}
+.underwayMain .btnSpan{background:url(../../../images/platform/workflow-v2/lz.png) center no-repeat;width:16px;height:28px;display:inline-block; cursor:pointer;line-height:28px;vertical-align: middle;top:2px;}
+.underwayMain .moreSpan{background:url(../../../images/platform/workflow-v2/select_options.png) center no-repeat;margin-right:15px;}
+.underwayMain .imgSpan:hover,.underwayMain .btnSpan:hover{ background-color:#9AC0F0;}
+.underwayMain .dwSpan{ display:inline-block; width:100%;overflow: hidden ;white-space: nowrap; text-overflow: ellipsis; color:#1e7be4;}
+.underwayMain .stepSpan{ background:url(../../../images/platform/workflow-v2/rwsl.png) 5px center no-repeat;padding: 0 5px 0 20px;display: inline-block;cursor: pointer;width:160px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;float:left;}
+.underwayMain .timeSpan{ background:url(../../../images/platform/workflow-v2/timer.png) left center no-repeat;padding: 0 5px 0 18px;display: inline-block;cursor: pointer;}
+.underwayMain .personSpan{ background:url(../../../images/platform/workflow-v2/ren.png) left center no-repeat;padding: 0 5px 0 18px;display: inline-block;cursor: pointer; }
+.underwayMain .rwTab td img{ margin:0 5px; position:relative; top:2px;}
+.underwayMain .workflowBtnUl{height:40px;line-height:40px;width:2000px;overflow: hidden;}
+.underwayMain .workflowBtnUltoggle{height:auto;}
+.underwayMain .workflowBtnUl li{ float:left;height: 25px;line-height: 25px;margin:5px 0 5px 5px; background:url(../../../images/platform/workflow-v2/bleft.png) left center no-repeat; padding-left:11px; cursor:pointer; position:relative;}
+.underwayMain .workflowBtnUl li span{ background:url(../../../images/platform/workflow-v2/bMid.png) repeat-x; height: 25px;display:inline-block;float: left;}
+.underwayMain .workflowBtnUl li em{display: inline-block; background:url(../../../images/platform/workflow-v2/bRight.png) no-repeat; width:11px; height:25px;}
+.underwayMain .workflowBtnUl li.workflowBtnLiHover{ background:url(../../../images/platform/workflow-v2/bleft_h.png) left center no-repeat;}
+.underwayMain .workflowBtnUl li.workflowBtnLiHover  span{ background:url(../../../images/platform/workflow-v2/bMid_h.png) repeat-x; color:#fff;}
+.underwayMain .workflowBtnUl li.workflowBtnLiHover em{ background:url(../../../images/platform/workflow-v2/bRight_h.png) no-repeat;}
+.underwayMain .workflowBtnUl li.workflowBtnLiHover i{ display:inline-block; width:7px; height:4px; background:url(../../../images/platform/workflow-v2/jtb.png) no-repeat; position:absolute; top:25px; left:47%;}
+.underwayMain .workflowBtn{padding:0 30px 0 0;}
+.underwayMain .moreUl{width:90px;height:auto; position:relative;top:20px;left:-40px;display:none;z-index:1000;background:#fff;border:1px solid #D4D4D4;}
+.underwayMain .moreUl li{float:none;}
+
+.underwayMain .reader-btns{width:85px;height:60px; position:absolute;top:5px;display:none; z-index:10000;background:url(../../../images/platform/workflow-v2/yd.png) left top no-repeat;}
+.underwayMain .reader-btn{ text-align:center;width:60px; height:25px;line-height:25px;padding-left:11px;cursor: pointer;margin:1px;
+background:url(../../../images/platform/workflow-v2/yleft.png) left center no-repeat;}
+.underwayMain .reader-btn span{display:inline-block;width:48px;height:25px;float:left;background:url(../../../images/platform/workflow-v2/ymid.png) left center repeat-x;}
+.underwayMain .reader-btn em{display:inline-block;width:12px;height:25px;background:url(../../../images/platform/workflow-v2/yright.png) -1px center no-repeat;}
+
+.underwayMain .reader-btnHover{background:url(../../../images/platform/workflow-v2/wleft.png) left center no-repeat;color:#fff;}
+.underwayMain .reader-btnHover span{background:url(../../../images/platform/workflow-v2/wmid.png) left center repeat-x;}
+.underwayMain .reader-btnHover em{background:url(../../../images/platform/workflow-v2/wright.png) left center no-repeat;}
+
+.underwayMain .transition-btns{border-radius:10px;position:absolute;display: none;top:30px;border: 1px solid #C8DBF0;background-color: #fff;z-index:100000;}
+/* .underwayMain .transition-btns{position:absolute;display: none;top:30px;}
+.underwayMain .transition-btns table td{background-color:#fff;}
+.underwayMain .transition-btns .tdleft{width:8px;height:8px;background:url(../../../images/platform/workflow-v2/tyl.png) left top no-repeat;}
+.underwayMain .transition-btns .tdrig{width:8px;height:8px;background:url(../../../images/platform/workflow-v2/tyr.png) left top no-repeat;}
+.underwayMain .transition-btns .tdbleft{width:8px;height:8px;background:url(../../../images/platform/workflow-v2/tylb.png) left top no-repeat;}
+.underwayMain .transition-btns .tdbrig{width:8px;height:8px;background:url(../../../images/platform/workflow-v2/tyrb.png) left top no-repeat;}
+.underwayMain .transition-btns .tdmid{border-top:1px solid #C8DBF0;}
+.underwayMain .transition-btns .tdmleft{border-left:1px solid #C8DBF0;}
+.underwayMain .transition-btns .tdmrig{border-right:1px solid #C8DBF0;}
+.underwayMain .transition-btns .tdbmid{border-bottom:1px solid #C8DBF0;} */
+
+
+.underwayMain .transition-btn{ height:25px;line-height:25px;padding-left:11px;cursor: pointer;margin:1px;
+background:url(../../../images/platform/workflow-v2/yleft.png) left center no-repeat;}
+.underwayMain .transition-btn span{display:inline-block;height:25px;float:left;background:url(../../../images/platform/workflow-v2/ymid.png) left center repeat-x;}
+.underwayMain .transition-btn em{display:inline-block;width:12px;height:25px;background:url(../../../images/platform/workflow-v2/yright.png) -1px center no-repeat;}
+
+.underwayMain .transition-btnHover{background:url(../../../images/platform/workflow-v2/wleft.png) left center no-repeat;color:#fff;}
+.underwayMain .transition-btnHover span{background:url(../../../images/platform/workflow-v2/wmid.png) left center repeat-x;}
+.underwayMain .transition-btnHover em{background:url(../../../images/platform/workflow-v2/wright.png) left center no-repeat;}
+
+
+.underwayMain .BtnSlide{display:none;width:20px;height:20px;cursor:pointer; background:url(../../../images/platform/workflow-v2/rwjt.png) center no-repeat;position: absolute;right: 10px;top: 10px;}
+
+.underwayMain .wtjcTitle{ height:30px; line-height:30px; background:#e6f1ff; text-align:center; border-bottom:1px solid #c1d3e7;  border-top:1px solid #c1d3e7; }
+.underwayMain .contentDiv{overflow:auto;}
+.underwayMain .bot{ background-position:99% center; text-align:left; padding:0 10px;}
+
+.underwayMain .bj1{background: url(../../../images/platform/workflow-v2/bj1.png) center no-repeat;display:inline-block;width:12px;height:21px;}
+.underwayMain .bj2{background: url(../../../images/platform/workflow-v2/bj2.png) center no-repeat;display:inline-block;width:12px;height:21px;}
+.underwayMain .bj3{background: url(../../../images/platform/workflow-v2/bj3.png) center no-repeat;display:inline-block;width:12px;height:21px;}
+
+.underwayMain .bj4{background: url(../../../images/platform/workflow-v2/bj1.png) center no-repeat;width:12px;height:12px;cursor: default;}
+.underwayMain .bj5{background: url(../../../images/platform/workflow-v2/bj2.png) center no-repeat;width:12px;height:12px;cursor: default;}
+.underwayMain .bj6{background: url(../../../images/platform/workflow-v2/bj3.png) center no-repeat;width:12px;height:12px;cursor: default;}
+
+.underwayMain .slideBtn{width:16px;height:16px;border:none;background:url(../../../images/platform/workflow-v2/select_options.png) center no-repeat;position:absolute;left:295px;top:85px;cursor:pointer;display:none;}
+.underwayMain .ssjtDown{background:url(../../../images/platform/workflow-v2/rwjtDown.png) center no-repeat;}
+
+.underwayMain .right .noContent  span{width:12px;}
+
+/**任务首页*/
+.task-tips-container{text-align: center;}
+
+.todo-task
+,.todo-task div
+,.task-tips
+,.newtask-li
+,.task-type-name{display:inline-block;*display:inline;*zoom:1;}
+.task-tips{
+	width:100px;
+	text-align: center;
+	margin: 10px 20px 5px 20px;
+}
+.task-tip{font-weight: bold;font-size:14px;color: #fff;position: relative;top: -40px;cursor: pointer;}
+.index-todo
+,.index-normal
+,.index-overtime
+,.index-warning
+,.index-newtask{
+	display:block;
+	text-align:center;
+	text-decoration:none;
+	font-size:24px;
+	font-weight:bold;
+	color:#fff;
+	width:100px;
+    height:105px;
+    line-height:95px;
+    background-repeat:no-repeat;
+    background-position:0 -1px;
+}
+.index-todo{background-image:url(../../../images/platform/workflow-v2/db.png);}
+.index-normal{background-image:url(../../../images/platform/workflow-v2/zc.png);}
+.index-warning{background-image:url(../../../images/platform/workflow-v2/bj.png);}
+.index-overtime{background-image:url(../../../images/platform/workflow-v2/cs.png);}
+.index-todo:hover
+,.index-warning:hover
+,.index-normal:hover
+,.index-overtime:hover{background-position:0 -108px;}
+.index-newtask{background-image:url(../../../images/platform/workflow-v2/fq.png);font-size:14px;}
+.newtask-tips{float:right;}
+.newtask-tips:hover .newtask{background-color:#589EFF;border:2px solid #C1D3E7;border-bottom:2px solid #fff;-moz-border-radius: 0;-webkit-border-radius: 0;border-radius:0;}
+.newtask-tips:hover .newtask-list{display: block;}
+.newtask-list{z-index:1000000;display: none;width:170px;background-color:#fff;position: absolute;right:16px;top:108px;text-align: left;border:2px solid #C1D3E7;}
+.newtask-li{width:165px;height:30px;line-height:30px;overflow: hidden;white-space: nowrap; text-overflow: ellipsis;}
+
+.todo-list{overflow: auto;width:800px;margin: 0 auto;}
+.todo-task{width:380px;line-height: 23px;padding:5px;margin-bottom: 5px;border:1px solid #DFDFDF;background-color: #fff;}
+.todo-task:hover{border: 1px solid #00B5E5;padding: 5px;}
+.todo-task:hover .task-batch{visibility: visible;}
+.todo-list .todo-left{float:left;width:380px;text-align: right;margin-right: 20px;}
+.todo-list .todo-right{float:left;width:380px;}
+
+.task-title{text-align: left;width:100%;color:#1e7be4;font-weight: bold;height: 23px;}
+.task-type1{width:330px;}
+.task-type2{width:290px;}
+.task-type-name{height: 20px;line-height:20px;}
+.task-batch{ visibility: hidden;}
+.task-more
+,.task-batch{width:40px;text-align: center;}
+.task-li:hover
+,.newtask-li:hover{cursor: pointer;background-color: #E0ECFF;}
+.task-more:hover
+,.task-batch:hover
+,.task-type-name:hover
+,.task-li:hover .task-name
+,.newtask-li:hover .workflow-name{text-decoration: underline;cursor: pointer;}
+
+.task-list{text-align: left;width:100%;}
+.task-li{height:23px;color:#666;width: 100%;margin-top: 2px;position: relative;}
+.task-li .img
+,.newtask-li .img{vertical-align: middle;/* margin-left:5px; */}
+.task-name{vertical-align:middle;overflow: hidden;white-space: nowrap; text-overflow: ellipsis;position: absolute;left: 20px;right: 75px;top: 0;}
+.task-time{
+    position: absolute;
+    right: 5px;
+}
+
+.no-content{color:red;}
+
+/*右边内容*/
+.right .rightBtn{width:90px;padding:0 13px;margin:5px;height:30px;line-height:30px;position:relative;background:url(../../../images/platform/workflow-v2/btnBlur-0.png) left center no-repeat;}
+.right .rightBtn .btn{color:#1e7be4; display:inline-block;padding:0px 0px 0px 18px;background-position:left center; background-repeat:no-repeat;  cursor:pointer;width:70px;overflow: hidden ;white-space: nowrap; text-overflow: ellipsis;}
+.right .rightBtn .tipBtn{position:absolute;height:21px;display:inline-block;top:-5px;right:-5px;width:44px;background:url(../../../images/platform/workflow-v2/bxcl.png) center no-repeat;}
+.right .rightBtn .tipBtnReadonly{position:absolute;height:20px;display:inline-block;top:-5px;right:-5px;width:32px;background:url(../../../images/platform/workflow-v2/zd.png) center no-repeat;}
+
+.right .rightBtn .no{background-image:url(../../../images/platform/workflow-v2/no.png);}
+.right .rightBtn .ok{background-image:url(../../../images/platform/workflow-v2/ok.png);}
+.right .rightBtn .normal{background-image:url(../../../images/platform/workflow-v2/normalAction.png);}
+
+.right .rightBtnHover{background:url(../../../images/platform/workflow-v2/btnBlur-1.png) left center no-repeat;}
+.right .rightBtnClick{background:url(../../../images/platform/workflow-v2/btnBlur.png) left center no-repeat;}
+.right .rightBtnHover .b1,.right .rightBtnClick .b1{color:#fff;background-image:url(../../../images/platform/workflow-v2/wwc-0.png);}
+.right .rightBtnHover .b2,.right .rightBtnClick .b2{color:#fff;background-image:url(../../../images/platform/workflow-v2/ywc-0.png);}
+/*  手工流转页面   */
+.Manual{margin-bottom:10px;}
+.commonTitle{border-top:1px solid #c1d3e7;border-bottom:1px solid #c1d3e7;min-height:30px;line-height:30px; background:#e6f1ff;padding-left:10px;text-align: left;}
+.btnSpan1{background:url(../../../images/platform/workflow-v2/back.png) 2px center no-repeat;}
+.lzImg{background:url(../../../images/platform/workflow-v2/lzr.png) 0px center no-repeat;float:right;}
+.Manual .shortCuts{line-height:20px;}
+.Manual .opin{width:140px;display:inline-block;overflow: hidden ;white-space: nowrap; text-overflow: ellipsis;}
+.Manual .opin span{cursor:pointer;}
+.Manual .userLabel{ padding-top:5px; width:65px;display:inline-block;overflow: hidden;white-space: nowrap; text-overflow: ellipsis;}
+
+/****退回************/
+.goBack{margin-bottom:10px;}
+.goBack .backTab td{ border-right:1px solid #b4cde8; border-bottom:1px solid #b4cde8; line-height:22px;}
+.goBack .backTab td.tdCon{ border-right:0; padding:10px; }
+.goBack .stepDl dd{ margin-left:15px;}
+.sendback .currentStep{float:left;}
+.sendback .backStep{float:left;margin-left:20px;}
+
+/**批量流转页面***********/
+.underwayMain  .btnSpan2{ background:url(../../../images/platform/workflow-v2/goback.png) 5px center no-repeat; float:right; padding-left:15px;height:25px;line-height:25px;}
+#massTransfer .massP{height:30px;line-height:30px;margin-left:10px;margin-top:5px;}
+#massTransfer .massP .cnt{position: absolute; left:250px; float:left;overflow: hidden;white-space: nowrap; text-overflow: ellipsis;}
+.underwayMain .massTab{border-top:1px solid #b4cde8;border-bottom:none;}
+.underwayMain .massTab th{ border-top:1px solid #b4cde8; border-bottom:1px solid #b4cde8;}
+.underwayMain .massTab td{ line-height:23px; text-align:center;}
+.underwayMain .massTab .th{background-color: #EAF2FF;}
+.underwayMain .massTab tr.trHover{background-color:#EAF2FF}
+.underwayMain .massTab tr.trSelect{background:#EAF2FF}
+.underwayMain .massTab td.massTd{ text-align:left; background:none;  padding:0 10px;}
+input[type='checkbox']{vertical-align:middle;width:14px; height:14px;margin-top:-3px;}
+
+.underwayMain .batch{overflow:hidden;}
+.underwayMain .rwmcTd{overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color:#1e7be4;}
+
+/**已完成任务页面***********/
+.finishedWorkflows .left{float:left;width:400px;border:1px solid #C1D3E7;}
+.finishedWorkflows .left .content{overflow: auto;}
+.finishedWorkflows .queryBtn{margin-left:320px;}
+.finishedWorkflows .zrfptop{color:#4376b0; background:#c4defb; padding:2px 0 3px 10px; }
+.finishedWorkflows .zrfptop b{background:url(../../../images/platform/workflow-v2/ybrw.png) left center no-repeat;padding-left: 20px;line-height: 22px;display: inline-block;float: left;}
+.finishedWorkflows .serInput{ background:#fff url(../../../images/platform/workflow-v2/ser.png) 2px center no-repeat;color:#777; height:23px;line-height:23px;padding:2px 15px;padding-right:0;}
+.finishedWorkflows .right{margin-left:405px;overflow: auto;border:1px solid #C1D3E7;}
+/**已完成步骤页面***********/
+.stepTable{}
+.stepTable .btnSpan1{width:20px;}
+.stepTable .title td{line-height:30px;text-indent: 5px;}
+.stepTable .deal-user{color:#0000ff;}
+.stepTable .deal-time{color:#0000ff;font-size:16px;}
+.stepTable .step-content .time{text-align: left;width:120px;border-bottom:1px solid #E1E1E8;}
+.stepTable .step-content .step-line{text-align:left;width:13px;height:10px;margin-left:60px;z-index:100;background: url(../../../images/platform/workflow-v2/iconjiantoudown.png) left bottom no-repeat;}
+.stepTable .step-content .line{width:6px;height:100%;border-right:1px solid #B9D4F5;z-index:100;}
+.stepTable .step-content .step-name{padding-top:4px;text-align: center;width:120px;font-weight: bold;color:#307FE3;z-index:200;}
+.stepTable .step-content .time-span{z-index:200;top:-2px;color:#307FE3;margin-left:50px;}
+.stepTable .step-content .opinion{border-bottom:1px solid #E1E1E8;}
+.stepTable .step-content .opinion .desc{padding-left:5px;line-height:28px;}
+.stepTable .step-content .opinion .master{color:#2D75CF;}
+.stepTable .step-content .opinion .reader{color:#666;}
+.stepTable .step-content .opinion .reader-indent{padding-left: 36px;width:62px;}
+.stepTable .step-content .opinion .reader-list{color:#666;cursor: pointer;}
+.stepTable .step-content .opinion .reader-list:hover{font-weight: bold;text-decoration: underline;}
+.stepTable .step-processer{display: inline-block;width:98px;margin-right:5px;}
+.stepTable .step-time{display: inline-block;width:110px;}
+.stepTable .dealing{color:#FF6600;}
+.stepTable .backImg{display:inline-block; width:18px;height:20px; background:url(../../../images/platform/workflow-v2/t.png) 0 0 no-repeat;}
+.stepTable .agree{display:inline-block;height:25px;padding-left:17px;background:url(../../../images/platform/workflow-v2/tyleft.png) 0 3px no-repeat;}
+.stepTable .agree .desc{display:inline-block;overflow: hidden ;white-space: nowrap; text-overflow: ellipsis;min-width:120px;color:#1e7be4;height:25px;float: left;background:url(../../../images/platform/workflow-v2/tymid.png) 0 3px repeat-x;}
+.stepTable .agree i{display:inline-block;height:25px;width:12px;background:url(../../../images/platform/workflow-v2/tyrig.png) 0 3px no-repeat;}
+.READER,
+.HELPER{display: none;}
+.stepTable .step-send-back .name{color:#307FE3;}
+.step-revoke{display:none;width:30px;background:url(../../../images/platform/workflow-v2/back.png) 2px center no-repeat;padding-left:18px;height:25px;line-height: 25px;}
+.step-revoke:hover{cursor: pointer;background-color: #9AC0F0;color:#fff;}
+
+/**流程附件*/
+.workflowAttachment{text-align: left;}
+.workflowAttachment .no{display:inline-block;width:18px;background:url(../../../images/platform/workflow-v2/no.png) left 6px no-repeat;}
+.workflowAttachment .ok{display:inline-block;width:18px;background:url(../../../images/platform/workflow-v2/ok.png) left 6px no-repeat;}
+.workflowAttachment .title{background-color: #E6F1FF;height:30px;line-height:30px;float:right;width:100%;border:1px solid #C1D3E7;color:#0C46A3;}
+.workflowAttachment .uploadBtn{float: right;width:80px;}
+.workflowAttachment .scanUploadBtn{float: right;background:url(../../../images/platform/workflow-v2/sm.png) left 8px no-repeat;height:30px;line-height:30px;width:80px;text-align: center;cursor: pointer;color:#3D84DE;font-weight: bold;}
+.workflowAttachment .scanUploadBtn:hover{background-color: #B1D3FA;}
+.attachment{width:100%;table-layout: fixed;}
+.attachment .download{background: url(../../../images/platform/workflow-v2/download.png) 2px 5px no-repeat;}
+.attachment .download,.attachment .preview{width:55px;display: none;text-align: center;cursor: pointer;color:#1e7eb4;text-indent: 0;text-indent: 15px;}
+.attachment .download:hover,.attachment .preview:hover{background-color: #B1D3FA;color:#fff;}
+.attachment .attachmentTr:hover td{background-color: #EAF2FF;}
+.attachment .attachmentTr:hover .download,.attachment .attachmentTr:hover .preview{display: inline-block;}
+.attachment .hd{font-weight: bold;text-align: left;}
+.attachment tr td{height:30px;line-height: 30px;border-bottom:1px dotted #C1D3E7;}
+.attachment .info{width:40px;text-align: center;}
+.attachment .no-record{color:#666;}
+.attachment .fileName{overflow: hidden ;white-space: nowrap; text-overflow: ellipsis;}
+.attachment .fileName .info{width:18px;display: inline-block;text-align: center;}
+.attachment .fileName a{text-decoration: none;overflow: hidden ;white-space: nowrap; text-overflow: ellipsis; }
+.attachment .fileName .none{color:#333;cursor: default;}
+.attachment .fileName .has{color:#0000ff;}
+.attachment .fileName .has:hover{text-decoration: underline;}
+.attachment .del{cursor: pointer;background: url(../../../images/platform/workflow-v2/close.png) 5px no-repeat;display: inline-block;width:25px;}
+.attachment .time{width:140px;text-align: center;}
+.attachment .uploader{width:80px;}
+.attachment .opera{text-align: left;width:100px;}
+
+/**处理意见*/
+.opinions .opinion{float:left;width:440px;height:24px;line-height:24px;}
+.opinions .opinion input{width:390px;border:none;height:24px;line-height:24px;background: none;padding-right:60px;}
+.opinions .opinion a,.opinions .opera a{text-decoration: none;display: inline-block;width:30px;text-align: center;color:#1e7eb4;}
+.opinions .opinion a.save{position:absolute;left:420px;display: none;}
+.opinions .opinion a.del{position:absolute;left:450px;display: none;}
+.opinions .opinion a:hover,.opinions .opera a:hover{background-color: #CFE3FA;}
+.opinions .opinion input.hover{border:1px solid #B4CDE8;}
+.opinions .opera{float:right;height:26px;line-height:26px;margin-right:1px;}
+.opinions .opera a.sel{}
+
+/*设置作息时间*/
+.timerMain{width:640px;border:1px solid #b4cde8;color:#333; margin:30px auto;padding:0 0 10px 0;}
+.timerMain .timerTop{height:30px;line-height:30px;background:#C4DEFB;padding:0 10px;}
+.timerMain .timerTop b{float:left;background: url(../../../images/platform/workflow-v2/underway.png) 0 center no-repeat;padding-left:28px;}
+.timerMain .timerTop ul{float:right;}
+.timerMain .timerTop ul li{float:left;position:relative;height:25px;}
+.timerMain .timerTop ul li .btn{display:inline-block;border:1px solid #1e7be4;height:20px;line-height:20px;color:#1e7be4;cursor:pointer;
+ padding:0 10px;margin:4px 0 0 5px;vertical-align: top;}
+.timerMain .timerTop ul li .btn:hover{background:#1e7be4;color:#fff;}
+.timerMain .timerTop ul li .drptime{display:none; position:absolute;top:25px;left:5px;background:#fff;border:1px solid #1e7be4;border-top:0;width:68px;}
+.timerMain .timerTop ul li .drptime p{padding-left:10px;height:23px;line-height:23px;cursor:pointer;}
+.timerMain .timerTop ul li .drptime p:hover{background:#1e7be4;color:#fff;}
+.timerMain .allTime{height:35px;line-height:35px;}
+.timerMain .addTime{border-top:1px solid #C4DEFB;}
+.timerMain .addTime .yearTime{margin:5px;}
+.timerMain .addTime .yearTime span{display:inline-block;width:15px;height:15px;background:url(../../../images/platform/workflow-v2/timer.png)}
+.timerMain .timeLeft{float:left;width:130px;padding-left:10px;line-height: 35px;}
+.timerMain input[type='text']{width:90px;border:1px solid #c7c7c7;height:20px;line-height:20px;vertical-align: middle;color:#666;}
+.timerMain .timeP{height:30px;line-height:30px;}
+.timerMain .tImg{display:inline-block;width:16px;height:22px;vertical-align: middle;background: url(../../../images/platform/workflow-v2/time.gif) 0 center no-repeat;}
+.timerMain .timeSlot{height:35px;}
+.timerMain .timeSpecial .timeLeft{margin-top:5px;}
+
+/**步骤附件*/
+.attachment-title{height:30px;line-height: 30px;background: #B9D6FF;text-indent: 10px;color:#4376b0;}
+.step-list-div{width:360px;float:left;border-right:1px solid #C3D8EF;height:580px;overflow-x:hidden;overflow: auto;}
+.step-list-table{margin-left:365px;text-align: left;height:100%;display: none;}
+.listDiv,.listTable{overflow: auto;overflow-x:hidden;}
+.step-attachment-list{width:100%; float:left;overflow:visible; border-top:1px solid #c3d8ef; border-right:1px solid #c3d8ef;  } 
+.step-attachment-list li{height:28px; text-indent:20px; line-height:28px; padding-left:3px;border-bottom:1px solid  #c3d8ef; border-right:1px solid  #c3d8ef;position:relative; right:-1px; color:#666666; cursor:pointer;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+.step-attachment-list li:hover,
+.step-attachment-list .attachment-li-click {background-color:#DDEDFF;border-left:2px solid #76A3DF;border-right:1px solid #F7FBFF; color:#1e7be4;right:-2px;}
+.step-attachment-list .attachment-li-saved{background-image: url(../../../images/platform/workflow-v2/ybrw.png);background-position: 3px center;background-repeat: no-repeat;} 
+
+.tbxz{background:url(../../../images/platform/workflow-v2/tb.png) left center no-repeat;display:inline-block;width:18px;height:18px;margin-right:5px;}
+.ybxz{background:url(../../../images/platform/workflow-v2/yb.png) left center no-repeat;display:inline-block;width:18px;height:18px;}

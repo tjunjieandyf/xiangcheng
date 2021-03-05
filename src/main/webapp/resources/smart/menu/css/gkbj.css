@@ -1,0 +1,20 @@
+/* 增加 国控弹窗报警样式 */
+.mask{opacity: .6; filter: alpha(opacity=60);}
+.pd-dlg{position: absolute; left: 50%; top: 50%; background: #053850; border-radius: 5px; overflow: hidden; z-index: 1000;}
+.pd-dlg.dlg1{width: 970px; height: 650px; margin: -325px 0 0 -485px;}
+
+.pd-dlghd{height: 50px; background: #056a99;}
+.pd-dlghd span{float: left; line-height: 50px; font-size: 20px; color: white; padding-left: 20px;}
+.pd-dlghd .dlgcls{float: right; background: url(../images/dlgcls.png) no-repeat center; width: 60px; height: 50px; cursor: pointer;}
+
+.pd-ullst1{padding: 0 20px;}
+.pd-ullst1 li{padding: 15px 0;}
+.pd-ullst1 li h1{overflow: hidden;}
+.pd-ullst1 li h1 span{font-size: 22px; color: white; float: left; position: relative; padding-left: 10px; line-height: 38px;}
+.pd-ullst1 li h1 span:before{content: ''; position: absolute; left: 0; top: 50%; width: 8px; height: 8px; background: #0096dc; border-radius: 50%;}
+.pd-ullst1 li h1 a{float: right; width: 98px; height: 38px; background: #056a99; font-size: 18px; color: white; line-height: 38px; text-align: center; text-decoration: none;}
+.pd-ullst1 li h1 a:hover{background: #076793;}
+.pd-ullst1 li p{font-size: 18px; color: white; line-height: 1.9; padding-top: 8px;}
+.pd-ullst1 li p em{color: #1dd2ff; font-size: 18px;}
+.pd-ullst1 li p i{color: #f87c12; font-size: 18px;}
+.pd-ullst1 li + li{border-top: 1px solid #396376;}

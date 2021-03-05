@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~ Copyright (C) 2018 ShenZhen Powerdata Information Technology Co.,Ltd
+  ~ All Rights Reserved.
+  ~ 本软件为深圳博安达开发研制。未经本公司正式书面同意，其他任何个人、团体不得使用、
+  ~ 复制、修改或发布本软件.
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+        version="2.0">
+    
+  <description>JSTL 1.1 functions library</description>
+  <display-name>JSTL functions</display-name>
+  <tlib-version>1.1</tlib-version>
+  <short-name>xss</short-name>
+  <uri>http://www.boanda.com.cn/jsp/jstl/xss</uri>
+
+    <function>
+        <description>编码JS中使用的字符</description>
+        <name>js</name>
+        <function-class>com.szboanda.platform.v3.util.taglib.PowerELEncodeUtil</function-class>
+        <function-signature>java.lang.String encodeForJavaScript(java.lang.String)</function-signature>
+        <example>${xss:js(js)}</example>
+    </function>
+
+    <function>
+        <description>编码HTML中使用的字符</description>
+        <name>html</name>
+        <function-class>com.szboanda.platform.v3.util.taglib.PowerELEncodeUtil</function-class>
+        <function-signature>java.lang.String encodeForHTML(java.lang.String)</function-signature>
+        <example>${xss:html(html)}</example>
+    </function>
+
+    <function>
+        <description>编码HTML属性中使用的字符</description>
+        <name>attr</name>
+        <function-class>com.szboanda.platform.v3.util.taglib.PowerELEncodeUtil</function-class>
+        <function-signature>java.lang.String encodeForHTMLAttribute(java.lang.String)</function-signature>
+        <example>${xss:attr(attr)}</example>
+    </function>
+
+    <function>
+        <description>编码CSS中使用的字符</description>
+        <name>css</name>
+        <function-class>com.szboanda.platform.v3.util.taglib.PowerELEncodeUtil</function-class>
+        <function-signature>java.lang.String encodeForCSS(java.lang.String)</function-signature>
+        <example>${xss:css(css)}</example>
+    </function>
+
+    <function>
+        <description>编码URL中使用的字符</description>
+        <name>url</name>
+        <function-class>com.szboanda.platform.v3.util.taglib.PowerELEncodeUtil</function-class>
+        <function-signature>java.lang.String encodeForURL(java.lang.String)</function-signature>
+        <example>${xss:url(url)}</example>
+    </function>
+
+    <function>
+        <description>编码Orcl中使用的字符</description>
+        <name>osql</name>
+        <function-class>com.szboanda.platform.v3.util.taglib.PowerELEncodeUtil</function-class>
+        <function-signature>java.lang.String encodeForSQLOracle(java.lang.String)</function-signature>
+        <example>${xss:osql(sql)}</example>
+    </function>
+
+    <function>
+        <description>编码XML中使用的字符</description>
+        <name>xml</name>
+        <function-class>com.szboanda.platform.v3.util.taglib.PowerELEncodeUtil</function-class>
+        <function-signature>java.lang.String encodeForXML(java.lang.String)</function-signature>
+        <example>${xss:xml(xml)}</example>
+    </function>
+
+
+</taglib>

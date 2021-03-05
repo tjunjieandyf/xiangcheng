@@ -1,0 +1,68 @@
+@charset "utf-8";
+/*--
+Styles Index
+=======
+1.0 Reset
+2.0 Common style
+3.0 Main structure
+--*/
+
+/* -- 1.0 Reset -- */
+body,ul,dl,dd,h1,h2,h3,h4,h5,h6,p,form,input,textarea,select,button{margin:0;padding:0;font:12px 'Microsoft YaHei',Arial,Helvetica,sans-serif;}
+ul,ol{padding-left:0;list-style-type:none;}
+img{border:0 none;}
+em,i{font-style:normal;}
+a:link{color:#4F14F7; text-decoration: none;}
+a:visited{color:#551a8b;}
+a:hover{color:#FF9900;text-decoration: underline;}
+a:active{color: #cc0000;}
+/* -- 2.0 Common style -- */
+.dn{display:none;}
+.db{display:block;}
+.fl{float:left;}
+.fr{float:right;}
+.rel{position: relative;}
+.abs{position: absolute;}
+.gap{height: 10px;width: 100%;}
+.auto{margin: 0 auto;}
+.clear{clear: both;}
+.clearfix:after{ content: "\200B"; display: block; height: 0; clear: both;}
+.clearfix{*zoom: 1;} 
+
+/* -- 3.0 Main structure -- */
+
+.item-mod{width: 230px;}
+.item-mod dt{height: 32px; background: #0099ff; padding-left: 10px;}
+.item-mod dt strong{font-size: 14px; color: white; float: left; background-repeat: no-repeat; background-position: left center; line-height: 32px;}
+.item-mod dt .tit1{background-image: url(../images/icon_time.png); padding-left: 24px;}
+.item-mod dt .tit2{background-image: url(../images/icon_condition.png); padding-left: 21px;}
+.item-mod dt i{background: url(../images/icon_arrow_down.png) no-repeat center; float: right; width: 34px; height: 32px; cursor: pointer;}
+.item-mod dd{padding: 0 10px; border: 1px solid #e8ebef; border-top: 0; padding-bottom: 10px;}
+
+.time-choose{padding-top: 10px; overflow: hidden;}
+.time-choose b{margin-left:10px;background: url(../../../../default/images/gas/wbqxsj/icon_swich.png) no-repeat left center; padding-left: 25px; line-height: 24px; font-size: 14px; color: #0099ff; float: left; cursor: pointer;margin-right: 9px;}
+.time-choose b.on{background-image: url(../../../../default/images/gas/wbqxsj/icon_swich_on.png);}
+.time-choose strong{margin-left:10px;line-height: 24px; font-size: 14px; color: #0099ff; float: left; padding-left: 11px; position: relative;}
+.time-choose strong:before{content: ''; position: absolute; width: 6px; height: 6px; left: 0; top: 50%; margin-top: -3px; border-radius: 50%; background: #0099ff;}
+.time-choose p{float: left; height: 20px; padding: 2px 0;}
+.time-choose p i{float: left; font-size: 14px; color: #7d7d7d; line-height: 20px; border-radius: 4px; padding: 0 4px; cursor: pointer;}
+.time-choose p:hover i,
+.time-choose p.on i{background: #0099ff; color: white;}
+
+.input-date{border: 1px solid #e8ebef; border-radius: 2px; height: 22px; line-height: 22px; color: #313131; font-size: 14px; background: url(../../../../default/images/gas/wbqxsj/icon_swich.png) no-repeat 95% center; float: right; padding-left: 10px;}
+
+.time-area{border: 1px solid #e8ebef; border-radius: 4px; padding: 8px 0; margin-top: 10px; height: 170px; overflow-y: auto; overflow-x: hidden;}
+.time-area li{font-size: 14px; color: #434343; text-align: center; height: 20px; line-height: 20px; cursor: pointer; border-radius: 2px;}
+.time-area li + li{margin-top: 5px;}
+.time-area li.on{background: #0099ff; color: white;}
+
+.condition-choose{position: relative;}
+.condition-choose h1{width:70px;text-align: right;font-size: 14px; color: #313131; position: absolute; top: 10px; line-height: 24px;}
+.condition-choose ul{margin-left: 60px; overflow: hidden;}
+.condition-choose ul li{color: #7d7d7d; font-size: 12px; height: 24px; line-height: 24px; text-align: center; border: 1px solid #bfbfbf; border-radius: 2px; float: left; cursor: pointer; margin: 10px 0 0 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;width:70px;}
+.condition-choose ul li:hover,
+.condition-choose ul li.on{background: #0099ff; color: white; border-color: #0099ff;}
+/* .condition-choose ul.type li{width: 65px;} */
+
+.select-css{width: 95%;border:1px solid #e8ebef; border-radius:4px; margin:10px auto 0; display:block; padding-top: 5px; outline:none; font-size:14px; text-align:center;}
+.select-css option{background-color:transparent; border-color:transparent;}

@@ -1,0 +1,831 @@
+@charset "utf-8";
+/*page*/
+
+
+
+/* style for "login.html" @2016-06-22 14:22 by 张锦雄 */
+.login-page{
+  height: 100%;
+  background: url(../../../../images/emdc/mobile/air//login_bg.jpg);
+  background-size: 100% 100%;
+  position: relative;
+}
+.login-box{
+  width:28rem;
+  margin: 0 auto;
+  position: relative;
+  top: 25%;
+}
+.login-box-hd{
+  text-align: center;
+}
+.login-box-logo{
+  margin-bottom: 1rem;
+}
+.login-box-tit{
+  color: #fff;
+  font-size: 2rem;
+  font-weight: bold;
+}
+.login-form{
+  margin-top: 1rem;
+  padding: 1rem 0;
+  width: 28rem;
+  text-align: center;
+}
+.login-form > .input-block{
+  width: 70%;
+  height: 3.5rem;
+  margin: 0 auto 0.5rem;
+}
+.login-form > .input-block > .input-txt{
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  padding-left: 2.5rem;
+  border-bottom: solid 1px #fff;
+  color: #fff;
+}
+.login-form > .input-block > .input-label{
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 2.5rem;
+  height: 3.5rem;
+}
+.login-form > .input-block > .input-label > .icon{
+  width: 100%;
+  height: 100%;
+}
+.login-form > .input-block > .input-txt::-webkit-input-placeholder {
+color: #cee7ff; 
+} 
+.login-form > .form-group{
+  width: 82%;
+  margin: 1.5rem 4rem;
+}
+.login-form > .form-group > .btn{
+  width: 100%;
+  height: 4rem;
+  font-size: 1.8rem;
+  color: #fff;
+  background: #1278d8;
+}
+.foot-info{
+  position: absolute;
+  bottom: 1.5rem;
+  width: 100%;
+  text-align: center;
+  color: #1574ce;
+}
+
+
+/* style for "全省空气质量状况分析.html" @2016-06-22 14:22 by 张锦雄 */
+.page-tab{
+  position: relative;
+  height: 100%;
+}
+.tabTit{
+  height: 45px;
+  padding-left: 10px;
+  background-color: #29f;
+}
+.tabTit > span{
+  display: block;
+  float: left;
+  height: 39px;
+  border-top: 4px solid #29f;
+  margin-top: 6px;
+  padding: 0 15px;
+  line-height: 39px;
+  font-size: 1.6rem;
+  color: #9cf;
+  background-color: #27c;
+  border-radius: 8px 8px 0 0;
+}
+.tabTit > span + span{
+  margin-left: -5px;
+}
+.tabTit > span.on{
+  border-color: #fe1;
+  background-color: #fff;
+  position: relative;
+  z-index: 9;
+  border-radius: 4px 4px 0 0;
+  color: #333;
+}
+.tabPanel{
+  position: absolute;
+  width: 100%;
+  top: 45px;
+  bottom: 0;
+}
+.tabPanel .con{
+  background-color: #f0f3f7;
+  height: 100%;
+}
+.tabPanel .row{
+  background-color: #fff;
+}
+
+  /*工具栏*/
+.tools-bar{
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 100;
+}
+.tools-bar .icon-calendar{
+  width: 15px;
+  height: 15px;
+  vertical-align: text-bottom;
+}
+.tools-bar .icon-power{
+  width: 25px;
+  height: 25px;
+  margin: 10px;
+}
+.tools-bar > .input-block{
+  position: relative;
+  top: -20px;
+}
+.btn-choose-date{
+  background-color: transparent;
+  border:none;
+  height: 25px;
+  color: #fff;
+  padding-right: 20px;
+  position: relative;
+  outline: none;
+}
+.btn-choose-date:after{
+  content: '';
+  display: block;
+  position: absolute;
+  top: 10px;
+  right: 0;
+  border-width: 4px 4px 0 4px;
+  border-style: solid;
+  border-color: #fff transparent; 
+}
+
+/* 卡片 */
+.slide-box{
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 0 10px;
+  background-color: #fff;
+}
+.default-mod .hd{
+  padding: 10px 0;
+  position: relative;
+}
+.default-mod .hd h2{
+  height: 15px;
+  line-height: 15px;
+  border-left: solid 5px #29f;
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-indent: 0.5rem;
+}
+.slide-box .bd{
+  position: relative;
+}
+.slide-box .bd .slide-btn{
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  border:none;
+  width: 230px;
+  height: 30px;
+  margin-top: -1px;
+  margin-left: -115px;
+  background: url(../../../../images/emdc/mobile/air/slideBtn_bg.png);
+  text-align: center;
+  line-height: 30px;
+  cursor: pointer;
+}
+.slide-box .bd .slide-btn .icon{
+  width: 13px;
+  height: 13px;
+}
+.card-pannel{
+  padding: 0;
+  overflow: hidden;
+}
+.card-pannel .row + .row{
+  display: none;
+}
+.card-pannel.active .row + .row{
+  display: block;
+}
+.card-pannel.active + .slide-btn .icon{
+  transform: rotate(-180deg);
+}
+.card-pannel .col-3:after{
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background-image: linear-gradient(#fff 0%, #d7d7d7 50%, #fff 100%);
+}
+.card-pannel  .col-3:last-child:after{
+  display: none;
+}
+.card-pannel .card-mod{
+  width: 100%;
+  position: relative;
+  margin: 0 auto;
+  background-color: #fff;
+}
+.table-card{
+  width: 100%;
+  margin: 10px 0;
+}
+.table-card .wrw{
+  display: inline-block;
+  width: 7.5rem;
+  height: 5rem;
+  background: #0cb266;
+  color: #fff;
+  text-align: center;
+  line-height: 5rem;
+  border-radius: 4px;
+  font-size: 2rem;
+  font-weight: bold;
+}
+.table-card .icon{
+  width: 17px;
+  height: 2.5rem;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+.table-card .data{
+  display: inline-block;
+  height: 2.5rem;
+  line-height: 1.2;
+  vertical-align: middle;
+  color: #0cb266;
+  border:solid 1px #0cb266;
+  border-radius: 4px;
+  padding: 0 5px;
+}
+.table-card td{
+	font-size: 12px;
+}
+/*排行榜*/
+.ranking-list-box{
+  padding: 10px 10px 0;
+  overflow: hidden;
+}
+.ranking-list{
+  margin: 0 -10px;
+}
+.ranking-list li{
+  width: 23%;
+  height: 39px;
+  float: left;
+  padding: 7px 10px;
+  margin-bottom: 5px;
+  position: relative;
+}
+.ranking-list li table{
+  width: 80%;
+  margin: 0 auto;
+  background-color: #daedff;
+  border-radius: 25px;
+  height: 25px;
+}
+.ranking-list li table .name,
+.ranking-list li table .s1,
+.ranking-list li table .s2{
+  width: 33.33%;
+  text-align: right;
+  font-size: 12px;
+}
+.ranking-list li table .name{
+  color: #000;
+  font-weight: bold;
+}
+.ranking-list li table .s1{
+  color: #6a839b;
+}
+.ranking-list li table .s2{
+  color: #29f;
+  padding-right: 10px;
+}
+.ranking-list li span{
+  position: absolute;
+  top: 7px;
+  left: 10%;
+  display: block;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  color: #fff;
+  background-color: #29f;
+  border-radius: 100%;
+}
+.ranking-list li span:after{
+  content: '';
+  display: block;
+  width: 31px;
+  height: 31px;
+  background: url(../../../../images/emdc/mobile/air/yh_blue.png) center no-repeat;
+  position: absolute;
+  top: -4px;
+  left: 10%;
+  margin-left: -10px;
+}
+
+.ranking-list .first table,
+.ranking-list .second table,
+.ranking-list .third table{
+  background-color: #fdd;
+}
+.ranking-list .first span,
+.ranking-list .second span,
+.ranking-list .third span{
+  background-color: #f55;
+}
+.ranking-list .first span:after,
+.ranking-list .second span:after,
+.ranking-list .third span:after{
+  background: url(../../../../images/emdc/mobile/air/yh_red.png) center no-repeat;
+}
+.ranking-list .first span:before,
+.ranking-list .second span:before,
+.ranking-list .third span:before{
+  content: '';
+  display: block;
+  position: absolute;
+  top: -10px;
+  left: -15px;
+  width: 15px;
+  height: 15px;
+}
+.ranking-list .first span:before{
+  background: url(../../../../images/emdc/mobile/air//crown_gold.png) center no-repeat;
+}
+.ranking-list .second span:before{
+  background: url(../../../../images/emdc/mobile/air//crown_sliver.png) center no-repeat;
+}
+.ranking-list .third span:before{
+  background: url(../../../../images/emdc/mobile/air//crown_copper.png) center no-repeat;
+}
+
+.ranking-list .first table .s1,
+.ranking-list .second table .s1,
+.ranking-list .third table .s1{
+  color: #966;
+}
+.ranking-list .first table .s2,
+.ranking-list .second table .s2,
+.ranking-list .third table .s2{
+  color: #f55;
+}
+
+
+/* 城市下拉菜单 */
+.slide-bar{
+  position: fixed;
+  z-index: 1001;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.slide-bar .hd{
+  box-shadow: 0 1px 1px rgba(0,0,0,.4);
+}
+.slide-bar .bd{
+  display: none;
+}
+.slide-bar.active .bd{
+  display: block;
+}
+.slide-bar .bd .city-box{
+  width: 560px;
+  overflow: hidden;
+  padding: 10px 10px 0;
+  box-shadow: 0 0 1px rgba(0,0,0,.5);  
+  background-color: #fff;
+  margin: 5px 10px 0;
+}
+.city-box .row{
+  margin-bottom: 10px;
+}
+.city-box .row .col a{
+  display: block;
+  text-align: center;
+  height: 35px; 
+  line-height: 35px; 
+  border: solid 1px #999;
+  color: #777;
+  background-color: #f0f0f0;
+  font-size: 14px;
+}
+.city-box .row .col a:hover{
+  border-color: #29f;
+  color: #29f;
+  background-color: #eff;
+}
+
+.city-dd{
+  display: inline-block;
+  padding: 0 25px 0 15px;
+  margin-left: 10px;
+  height: 25px;
+  line-height: 25px;
+  position: relative;
+  font-size: 16px;
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+}
+.city-dd:before{
+  content: '';
+  position: absolute;
+  top: 7px;
+  left: 0;
+  display: block;
+  width: 5px;
+  height: 5px;
+  border: solid 2px #29f;
+  border-radius: 100%;
+  background-color: #fff;
+}
+.city-dd:after{
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin-top: -4px;
+  display: block;
+  width: 0;
+  height: 0;
+  border-width: 6px 6px 0 6px;
+  border-style: solid;
+  border-color: #777 transparent;
+}
+.slide-bar.active .city-dd:after{
+  transform: rotate(180deg);
+}
+
+.city-wr-detail{
+  width: 100%;
+}
+.city-wr-detail td[rowspan="2"]{
+  width: 25%;
+  position: relative;
+}
+.city-wr-detail td[rowspan="2"]:after{
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  height: 100%;
+  width: 1px;
+  background-image: linear-gradient(transparent 0%, #d7d7d7 50%, transparent 100%);
+
+}
+
+.lv-box{
+  width: 80%;
+  margin: 10px auto;
+  height: 90px;
+  background: url(../../../../images/emdc/mobile/air/icon_tree.png) 10px center no-repeat;
+  border-radius: 4px;
+  position: relative;
+}
+.lv-box h4{
+  position: absolute;
+  top: 0;
+  right: 5px;
+  height: 55px;
+  line-height: 55px;
+  color: #fff;
+  text-align: right;
+  font-size: 40px;
+}
+.lv-box h4 span{
+  font-size: 16px;
+}
+.lv-box p{
+  position: absolute;
+  top: 55px;
+  right: 0;
+  width: 65%;
+  padding-left: 15px;
+  height: 25px;
+  line-height: 25px;
+  background-color: rgba(255,255,255,.3);
+  color: rgba(0,0,0,.5);
+  border-radius: 25px 0 0 25px;
+}
+.lv-span{
+  display: inline-block;
+  margin: 0 15px;
+  width: 5.5rem;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 13px;
+  color: #fff;
+  border-radius: 5px;
+  position: relative;
+}
+.lv-span:after{
+  content: '>>';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  padding: 0 2px;
+  transform: translate(0,-50%);
+}
+.lv-1{
+  background-color: #6d3;
+}
+.lv-2{
+  background-color: #fd3;
+}
+.lv-3{
+  background-color: #f91;
+}
+.lv-4{
+  background-color: #f44;
+}
+.lv-5{
+  background-color: #904;
+}
+.lv-6{
+  background-color: #700;
+}
+.lv-1.lv-span:after{
+  color: #6d3;
+}
+.lv-2.lv-span:after{
+  color: #fd3;
+}
+.lv-3.lv-span:after{
+  color: #f91;
+}
+.lv-4.lv-span:after{
+  color: #f44;
+}
+.lv-5.lv-span:after{
+  color: #904;
+}
+.lv-6.lv-span:after{
+  color: #700;
+}
+
+.title-a{
+  padding:  10px;
+  font-size: 14px;
+  color: #000;
+  position: relative;
+}
+.title-a:before{
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 100%;
+  margin-top: -3px;
+  background-color: #fff;
+  border: solid 1px #1ce;
+}
+
+.pie-mod{
+  padding: 20px 0;
+  position: relative;
+}
+.pie-mod:after{
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background-image: linear-gradient(transparent 0%, #d7d7d7 50%, transparent 100%);
+}
+.pie-mod .hd{
+  margin-bottom: 20px;
+}
+.pie-mod .bd{
+  text-align: center;
+}
+.wr-info-box{
+  display: inline-block;
+  width: 138px;
+  height: 20px;
+  line-height: 20px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 4px;
+  background: transparent;
+}
+.wr-lv{
+  display: block;
+  float: left;
+  width: 42%;
+  color: #fff;
+  border-radius: 4px 0 0 4px;
+}
+.wr-lv-data{
+  display: block;
+  float: left;
+  width: 58%;
+}
+.wr-lv-data em{
+  display: block;
+  float: left;
+  width: 50%;
+  text-align: center;
+}
+.wr-info-box.lv-1{
+  border-color: #6d3;
+}
+.wr-info-box.lv-2{
+  border-color: #fd3;
+}
+.wr-info-box.lv-3{
+  border-color: #f91;
+}
+.wr-info-box.lv-4{
+  border-color: #f44;
+}
+.wr-info-box.lv-5{
+  border-color: #904;
+}
+.wr-info-box.lv-6{
+  border-color: #700;
+}
+.wr-info-box.lv-1 .wr-lv{
+  background-color: #6d3;
+}
+.wr-info-box.lv-2 .wr-lv{
+  background-color: #fd3;
+}
+.wr-info-box.lv-3 .wr-lv{
+  background-color: #f91;
+}
+.wr-info-box.lv-4 .wr-lv{
+  background-color: #f44;
+}
+.wr-info-box.lv-5 .wr-lv{
+  background-color: #904;
+}
+.wr-info-box.lv-6 .wr-lv{
+  background-color: #700;
+}
+
+.wr-info-box.lv-1 .wr-lv-data{
+  color: #6d3;
+}
+
+.wr-info-box.lv-2 .wr-lv-data{
+  color: #fd3;
+}
+
+.wr-info-box.lv-3 .wr-lv-data{
+  color: #f91;
+}
+
+.wr-info-box.lv-4 .wr-lv-data{
+  color: #f44;
+}
+
+.wr-info-box.lv-5 .wr-lv-data{
+  color: #904;
+}
+.wr-info-box.lv-6 .wr-lv-data{
+  color: #700;
+}
+
+
+.cbwrw-mod{
+  padding: 20px 0;
+  position: relative;
+}
+.cbwrw-box{
+  position: absolute;
+  text-align: center;
+  color: #fff;
+}
+.cbwrw-box span{
+  color: #26649d;
+}
+.cbwrw-box.big{
+  width: 120px;
+  height: 120px;
+  top: 30px;
+  left: 50%;
+  margin-left: -60px;
+}
+.cbwrw-box.big p{
+  font-size: 14px;
+  margin: 30px 0 0;
+}
+.cbwrw-box.big h5{
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0 0 20px;
+}
+.cbwrw-box.big span{
+  font-size: 14px;
+}
+.cbwrw-box.mid{
+  width: 90px;
+  height: 90px;
+  top: 148px;
+  left: 50%;
+  margin-left: -198px;
+}
+.cbwrw-box.mid p{
+  margin-top: 20px;
+}
+.cbwrw-box.mid h5{
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.cbwrw-box.sml{
+  width: 69px;
+  height: 69px;
+  top: 180px;
+  left: 50%;
+  margin-left: 130px;
+}
+.cbwrw-box.sml p{
+  margin-top: 15px;
+}
+.cbwrw-box.sml h5{
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+/* 退出确认 */
+.logout-box{
+  position: absolute;
+  z-index: 1002;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 480px;
+  height: 295px;
+  background-color: #fff;
+  border-radius: 4px;
+  display: none;
+}
+.logout-box .hd{
+  background: url(../images/logout_bg.png);
+  height: 171px;
+  position: relative;
+}
+.logout-box .hd .icon{
+  position: absolute;
+  top: -45px;
+  right: -45px;
+  width: 40px;
+  height: 40px;
+}
+.logout-box .bd{
+  text-align: center;
+}
+.logout-box .bd h4{
+  font-size: 20px;
+  color: #000;
+  margin: 20px 0;
+}
+.logout-box .bd .btn{
+  font-size: 18px;
+  margin: 0 10px;
+}
+.logout-box .bd .btn.no{
+  border: 1px solid #bbb;
+  background-color: #ccc;
+  color: #fff;
+}
+.logout-box .bd .btn.no:hover{
+  background-color: #bbb;
+}
+.logout-box .bd .btn.ok{
+  border: 1px solid #29f;
+  background-color: #8cf;
+  color: #fff;
+}
+.logout-box .bd .btn.ok:hover{
+  background-color: #29f;
+}

@@ -1,0 +1,90 @@
+@charset "utf-8";
+/*--
+Styles Index
+=======
+1.0 Reset
+2.0 Common style
+3.0 Main structure
+--*/
+
+/* -- 1.0 Reset -- */
+body,ul,dl,dd,h1,h2,h3,h4,h5,h6,p,form,input,textarea,select,button{margin:0;padding:0;font:12px 'Microsoft YaHei',Arial,Helvetica,sans-serif;}
+ul,ol{padding-left:0;list-style-type:none;}
+img{border:0 none;}
+em,i{font-style:normal;}
+a:link{color:#4F14F7; text-decoration: none;}
+a:visited{color:#551a8b;}
+a:hover{color:#FF9900;text-decoration: underline;}
+a:active{color: #cc0000;}
+/* -- 2.0 Common style -- */
+.dn{display:none;}
+.db{display:block;}
+.fl{float:left;}
+.fr{float:right;}
+.rel{position: relative;}
+.abs{position: absolute;}
+.gap{height: 10px;width: 100%;}
+.auto{margin: 0 auto;}
+.clear{clear: both;}
+.clearfix:after{ content: "\200B"; display: block; height: 0; clear: both;}
+.clearfix{*zoom: 1;} 
+
+/* -- 3.0 Main structure -- */
+.pop-chos{position: relative;}
+.pop-chos dt{font-size: 14px; color: #484848; float: left; line-height: 25px;}
+.pop-chos dd{margin-right: 5px; float: left; position: relative;}
+.btn-chos{border: 0; height: 20px; border: 1px solid #d2d2d2; border-radius: 4px; cursor: pointer; background: white; color: #444; position: relative; padding: 0 28px 0 10px; outline: none; overflow: hidden;display: inline-block;}
+.btn-chos i{/*content: '';*/ width: 22px; position: absolute; right: 0; top: 0; bottom: 0; border-left: 1px solid #d2d2d2; background:white url(../../../../../images/emdc/ggzj/datareport/check/icon_arrow_bot.png) no-repeat center;}
+
+.btn-chos.on{border-color: #3c98f7; background: #3c98f7; color: white;}
+.btn-chos.on i{/*content: '';*/ background: #2f85dd url(../../../../../images/emdc/ggzj/datareport/check/icon_arrow_boton.png) no-repeat center; border-left-color: #2f85dd;}
+
+/*弹出框*/
+.drop-box{border: 1px solid #d8d8d8; border-radius: 5px; background: white; position: absolute; top: 130%; padding: 10px 0; display: none; z-index: 100;}
+.drop-box:after{content: ''; position: absolute; background: url(../../../../../images/emdc/ggzj/datareport/check/icon_lay_arrow.png) no-repeat; width: 12px; height: 7px; top: -7px; left: 40px;}
+.drop-box td{white-space: nowrap; padding: 0 30px 0 10px !important; height: 25px;}
+.drop-box td em,
+.drop-box td i{color: #ff5d15; vertical-align: middle; margin-right: 8px;}
+.drop-box td i{display: none;}
+.drop-box td i input[type='text']{border: 1px solid #d2d2d2; border-radius: 3px; color: #5d5d5d; width: 40px; text-align: center;}
+.drop-box td img{vertical-align: middle; cursor: pointer;}
+.drop-box td img.btn-true{vertical-align: text-top; margin-left: 8px;}
+.drop-box td img.btn-false{vertical-align: text-top; margin-left: 4px;}
+
+/*单选框*/
+.radioBox{display:inline-block;}
+.radioBox .radio-icon{display:inline-block; background: url(../../../../../images/emdc/ggzj/datareport/check/icon_radio.png) no-repeat; width: 12px; height: 12px; margin-right: 5px;}
+.radioBox .radio-icon.on{background: url(../../../../../images/emdc/ggzj/datareport/check/icon_radio_check.png) no-repeat;}
+.radioBox span{vertical-align: middle; font-size: 12px; color: #333;}
+
+/* 复选框 */
+.checkBox{display:inline-block;}
+.checkBox .checkBox-icon{display:inline-block; background: url(../../../../../images/emdc/ggzj/datareport/check/icon_checkbox.png) no-repeat; width: 12px; height: 12px; margin-right: 5px;}
+.checkBox .checkBox-icon.on{background: url(../../../../../images/emdc/ggzj/datareport/check/icon_checkbox_on.png) no-repeat;}
+.checkBox span{vertical-align: middle; color: #333;}
+
+/* border: 0; height: 20px; border: 1px solid #d2d2d2; border-radius: 4px; cursor: pointer; background: white; color: #444; position: relative; padding: 0 28px 0 10px; outline: none; overflow: hidden;display: inline-block; */
+.query-btn{float: none;margin:0;width:40px;height: 21px; background-color: #2490f4; color: #fff; 
+border-radius: 0;outline: transparent;border: 1px solid transparent;cursor: pointer;font: 12px 'Microsoft YaHei',Arial,Helvetica,sans-serif;}
+.query-btn.view{width: 86px;margin-left: 10px;}
+.query-btn span{margin-left: 0;}
+
+/** 验证结果 错误样式渲染*/
+.check-error-tr{background-color: rgba(255, 0, 0, 0.0980392156862745);}
+.check-error-td{color: #FF0000; font-weight: 700;}
+.check-tip-li{line-height: 16px; margin: 11px 5px 11px 20px; color: #1a70c0;}
+.check-tip-icon{background-position: 0 50%;}
+    
+/* 超标检查 */
+.checkType-icon-CBJC{background: url(../../../../../images/emdc/ggzj/datareport/check/icon-CBJC.png) no-repeat 0% 3px;}
+/* 检出状态检查 */
+.checkType-icon-JCZTJC{background: url(../../../../../images/emdc/ggzj/datareport/check/icon-JCZTJC.png) no-repeat 0% 3px;}
+/* 突变值检查*/
+.checkType-icon-TBZJC{background: url(../../../../../images/emdc/ggzj/datareport/check/icon-TBZJC.png) no-repeat 0% 3px;}
+/* 有效性检查 */
+.checkType-icon-YXXJC{background: url(../../../../../images/emdc/ggzj/datareport/check/icon-YXXJC.png) no-repeat 0% 3px;}
+/* 相关性检查 */
+.checkType-icon-XGXJC{background: url(../../../../../images/emdc/ggzj/datareport/check/icon-XGXJC.png) no-repeat 0% 3px;}
+
+.legendImg{vertical-align:middle;margin-right:2px;position: relative;top: -6px;}
+#checkTd{overflow:visible !important}

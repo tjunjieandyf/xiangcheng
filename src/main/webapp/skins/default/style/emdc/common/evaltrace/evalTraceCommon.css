@@ -1,0 +1,49 @@
+.eval-data-table{border-bottom: 1px solid #ddd; border-right: 1px solid #ddd;}
+.eval-data-table thead tr th{padding-left: 12px;}
+.eval-data-table thead tr{background-color: #b7dbfc;color: #1a70c0;height:40px;line-height: 40px;}
+.eval-data-table tbody tr {height:40px;line-height: 40px;}
+.eval-data-table tbody tr td{border-top: 1px solid #ddd;border-left: 1px solid #ddd;padding-left: 12px;}
+.trace-level-1{margin-left: 32px;}
+.trace-level-2{margin-left: 48px;display: none;}
+.trace-level-3{margin-left: 72px;display: none;}
+.trace-level-4{margin-left: 96px;display: none;}
+.trace-detail{height: 40px; line-height: 40px;}
+.trace-bottom{display: inline-block;width:45%;}
+.trace-level-1>div{border-bottom: 1px solid #333;}
+.trace-detail:before{    
+    content: '';
+    position: absolute;
+    left: -32px;
+    top: 50%;
+    width: 22px;
+    height: 1px;
+    border-top: 1px dashed #b4c7de;
+}
+.trace-detail:after{
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    width: 5px;
+    height: 5px;
+    background: #9fbbdc;
+    margin-top: -2px;
+}
+
+.trace-level-1,.trace-level-2,.trace-level-3,.trace-level-4,.trace-bottom,.trace-detail{position: relative;}
+.trace-level-1:before,.trace-level-2:before,.trace-level-3:before,.trace-level-4:before,.trace-bottom:before{
+content: '';
+    position: absolute;
+    left: -33px;
+    top: 0;
+    width: 1px;
+    height: 100%;
+    border-left: 1px solid #b4c7de;
+}
+
+a:hover{text-decoration: underline;color:#0000ff;}
+.sign-label{color: #ff0000;}
+.no-data{text-align: center;color:#ff0000;}
+
+.hide-query-condition{height: 20px;line-height:20px;color: #4892D6;}
+.hide-query-condition span{display: inline-block;}

@@ -1,0 +1,154 @@
+@charset "utf-8";
+html{height:100%;}
+.inputBox{
+    background: none; 
+}
+.inputBox:before{background:url(../../typeswitch/themes/default/img/inputBox_shd_b.png) repeat-x;position: absolute;bottom: -9px;left:1px;}
+.inputBox:after{background:url(../../typeswitch/themes/default/img/inputBox_shd_r.png) repeat-y;;position: absolute;top: 5px;right:-8px;}
+.inputBox-arrow{width:13px;height:8px;position: absolute;top: 2px;background: url(../img/inputBox_arrow.png) no-repeat;z-index: 9;}
+.allcategorys {
+	position: relative;
+	border:1px solid #84bdf7;
+	top: 8px;
+	background: #FAFAFA;
+	border-radius: 5px;
+	height: 400px;
+	overflow-y: auto;
+	overflow-x:hidden;
+	  
+}
+.choiceInput{
+	padding: 1px 0px 1px 2px;
+	border: 1px solid #c4c4c4;
+	height: 18px;
+	line-height: 18px;
+	width: 80px;
+	font-size: 12px;
+	vertical-align: middle;
+	background: url(../img/icon_location.jpg) no-repeat 65px 0px;
+}
+.allcategorys .sublist {
+	position: absolute;
+	padding: 5px 0 0 20px;
+}
+.allcategorys .sublist li {
+	float: left;
+	width: 235px; 
+	padding: 10px 6px 15px 6px;	
+}
+
+.allcategorys .sublist li h3.mcate-item-hd {
+	font-family: '微软雅黑';
+	padding-left: 2px;
+	font-size: 14px;
+	height: 26px;
+	line-height: 26px;
+}
+.allcategorys .sublist li h3.mcate-item-hd a{
+	font-family: '微软雅黑';
+	color:#3C8CED; 
+	padding: 3px 0px;
+	font-weight: bold;
+	font-size: 13px;
+}
+.allcategorys .sublist li h3.mcate-item-hd a:hover{
+	color: #0087d1;
+	background:#daeef5;
+	text-decoration: none;
+}
+
+.allcategorys .sublist li p.mcate-item-bd {
+	padding-left: 0px; 
+	text-decoration: none;
+	display: inline-block;
+	
+}
+
+.allcategorys .sublist li p.mcate-item-bd a {
+	height: 26px;
+	line-height: 26px;
+	margin:2px 5px 2px 5px;
+	font-size: 10px;
+	color:#555555;
+	text-decoration: none;
+	display: inline-block;
+	width: 100px;
+	text-align: center;
+	border: 1px dotted #ccc;
+	border-radius: 3px;
+}
+
+.allcategorys .sublist li p.mcate-item-bd .checkbox {
+	height: 26px;
+	line-height: 26px;
+	margin:2px 5px 2px 5px;
+	font-size: 10px;
+	color:#555555;
+	text-decoration: none;
+	display: inline-block;
+	width: 100px;
+	text-align: center;
+	border: 1px dotted #ccc;
+	border-radius: 3px;
+}
+
+.allcategorys .sublist li p.mcate-item-bd a:hover {
+	color: #6c5143;
+	background:rgb(156,200,231);
+	text-decoration: none;
+}
+
+.allcategorys .sublist_city {
+	position: absolute;
+	width: 280px;
+	padding: 5px 0 0 10px;
+}
+.allcategorys .sublist_city li {
+	float: left;
+	width: 70px;
+	margin: 2px 0px;
+}
+.allcategorys .sublist_city li h3.mcate-item-hd {
+	font-family: '微软雅黑';
+	padding-left: 2px;
+	font-size: 12px;
+	height: 26px;
+	line-height: 26px;
+}
+.allcategorys .sublist_city li h3.mcate-item-hd a{
+	font-family: '微软雅黑';
+	color:#3C8CED;
+	padding: 5px;
+	font-size: 14px;
+}
+.allcategorys .sublist_city li h3.mcate-item-hd a:hover{	
+	color: #555;
+	background: #daeef5;
+	text-decoration: none;	
+}
+
+.allcategorys .citysel {
+	color:#3C8CE !important; 
+	background: #daeeff!important;
+}
+
+.allcategorys .stasel {
+	color: #ffffff!important;
+	background: rgb(156, 200, 231)!important;
+}
+.allcategorys .divider{
+	/* border-bottom:1px dashed #c1c1c1; */
+}
+
+.allcategorys .outer {
+	 zoom: 1;  /*==for IE6/7 Maxthon2==*/
+}
+
+.allcategorys .outer :after {   /* 清除浮动 */
+	clear: both;
+	content: '';
+	display: block;
+	width: 0;
+	height: 0;
+	visibility: hidden;
+}

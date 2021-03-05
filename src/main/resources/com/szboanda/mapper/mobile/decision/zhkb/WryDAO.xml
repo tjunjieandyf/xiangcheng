@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szboanda.mobile.decision.zhkb.dao.WryDAO">
+	<resultMap type="java.util.Map" id="WryResult">
+		<result column="CJSJ" property="CJSJ" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" />
+		<result column="XGSJ" property="XGSJ" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" />
+	</resultMap>
+
+	<!-- 设置业务所有字段信息 -->
+	<sql id="allColumns">
+		<trim prefix="" suffixOverrides="," suffix="">
+			XGSJ,
+			XGR,
+			CLZT,
+			ZFRY,
+			ZFSJ,
+			XH,
+			PFYZDM,
+			PFYZLM,
+			PFYZMC,
+			PFYZLX,
+			PFYZDW,
+			YJSJ,
+			DWMC,
+			WRYBH,
+			PKMC,
+			PKXH,
+			BZSX,
+			BZXX,
+			YZND,
+			CBBS,
+			CBYY,
+			ORGID,
+			CJSJ,
+			CJR,
+		</trim>
+	</sql>
+
+	<!-- 查询【污染源在线监控】业务集合方法 -->
+	<select id="queryFqqys" parameterType="java.util.Map" resultMap="WryResult">
+		SELECT <include refid="allColumns" />
+		FROM T_SJZX_WRYZX_FQ_BJSJ
+		<where>
+		
+				</where>
+				ORDER BY
+			<trim prefix="" suffixOverrides="," suffix="">
+						  XH,
+			 </trim>
+	</select>
+
+	<!-- 查询【污染源在线监控】某个业务方法 -->
+	<select id="getFqqyById" parameterType="java.util.Map"  resultMap="WryResult">
+		SELECT <include refid="allColumns" />
+		FROM T_SJZX_WRYZX_FQ_BJSJ
+		<where>
+			     <if test="XH != null and  XH !='' ">AND XH = #{XH}</if>
+		</where>
+	</select>
+
+
+	<!-- 添加【污染源在线监控】业务方法 -->
+	<insert id="addFqqy" parameterType="java.util.Map">
+		INSERT INTO T_SJZX_WRYZX_FQ_BJSJ
+		<trim prefix="(" suffixOverrides="," suffix=")">
+			<include refid="allColumns" />
+		</trim>
+		<trim prefix=" VALUES(" suffixOverrides="," suffix=")">
+			#{XGSJ},
+			#{XGR},
+			#{CLZT},
+			#{ZFRY},
+			#{ZFSJ},
+			#{XH},
+			#{PFYZDM},
+			#{PFYZLM},
+			#{PFYZMC},
+			#{PFYZLX},
+			#{PFYZDW},
+			#{YJSJ},
+			#{DWMC},
+			#{WRYBH},
+			#{PKMC},
+			#{PKXH},
+			#{BZSX},
+			#{BZXX},
+			#{YZND},
+			#{CBBS},
+			#{CBYY},
+			#{ORGID},
+			#{CJSJ},
+			#{CJR},
+		</trim>
+	</insert>
+
+	<!-- 修改【污染源在线监控】业务方法 -->
+	<update id="updateFqqy" parameterType="java.util.Map">
+		UPDATE T_SJZX_WRYZX_FQ_BJSJ
+		<set>
+			<if test="XGR != null and XGR !=''" > XGR = #{XGR}, </if>
+			<if test="XGSJ != null " > XGSJ = #{XGSJ}, </if>
+		</set>
+		<where>
+		
+			AND XH = #{XH}
+		</where>
+	</update>
+
+	<!-- 删除【污染源在线监控】业务方法 -->
+	<delete id="deleteFqqy" parameterType="java.util.Map">
+		DELETE FROM  T_SJZX_WRYZX_FQ_BJSJ
+        <where>
+			AND XH IN
+			 <foreach collection="delXHs" item="xh" open="(" close=")" separator=",">
+				 #{xh}
+			</foreach>
+		</where>
+	</delete>
+</mapper>

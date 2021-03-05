@@ -1,0 +1,55 @@
+@charset "utf-8";
+* {font-family: "Microsoft YaHei","iconfont","FontAwesome"  !important;}
+.container{width: 100%;height:100%; heoverflow: auto;}
+.divHead{
+	text-align: center;
+	margin-top: 10px;
+}
+h3{
+	font-size: 22px; color:#387DDC;
+}
+.contentDiv h3{
+	font-size: 18px; color:#387DDC;
+}
+h2{
+	color:#387DDC;
+	width: 100%;
+	margin: 0;
+}
+.contents{
+	width: 80%;margin-left: auto;margin-right: auto;
+}
+.contentDiv{
+	width: 90%;
+	height: 400px;
+}
+.textcontents{
+	padding: 20px 0 20px 40px;
+	
+}
+textarea{
+	overflow:auto;
+}
+hr{
+	width:90%;
+	border-color: #387DDC;
+	position: relative;
+	left:-5%;
+}
+.btnDiv{
+ width: 90%;
+ text-align: right;
+}
+.rightBtn{
+	margin-top:8px;
+	background-color:#71A4F0;
+	display: inline-block;*display: inline;*zoom:1; height: 25px; line-height: 25px; padding: 0 15px 0 35px; font:normal 14px/25px "SimSun"; color:white; text-decoration: none;
+}
+.input_text{
+	width:120px;border-top-style: none;border-right-style: none;border-left-style: none;height: 24px;
+}
+.icon_opentxl{background: url(../../../../images/ewaq_sy/ybyj/xxfb/opentxl.png) no-repeat center; }
+.icon_ok{background:#71A4F0 url(../../../../images/ewaq/ybyjhs/ybfb/ok.png) no-repeat 15px center;}
+.icon_send{background:#71A4F0 url(../../../../images/ewaq_sy/ybyj/xxfb/icon_send.png) no-repeat 15px center;}
+.icon_deft{background:#71A4F0 url(../../../../images/ewaq_sy/ybyj/xxfb/icon_deft.png) no-repeat 15px center;}
+.icon_ok:hover,.icon_deft:hover,.icon_send:hover{ background-color: #1c81e9; color: white;}

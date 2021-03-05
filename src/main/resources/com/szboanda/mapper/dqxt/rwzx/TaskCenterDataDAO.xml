@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szboanda.dqxt.rwzx.dao.TaskCenterDataDAO">
+	<resultMap type="java.util.Map" id="TaskMap">
+		<result column="XH" property="XH" jdbcType="VARCHAR" javaType="string" />
+		<result column="SBWZ" property="SBWZ" jdbcType="VARCHAR" javaType="string" />
+		<result column="BJSJ" property="BJSJ" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" />
+		<result column="IMG" property="IMG" jdbcType="VARCHAR" javaType="string" />
+	</resultMap>
+	
+	<!-- 查询空气站分钟数据-->
+	<select id="queryAirStationMinuteData" resultType="java.util.Map">
+		SELECT CDMC, CDBH, JCSJ, AQI, SO2, NO2,PM10,CO,PM25,O3_1H O3 FROM T_SJZX_HJZL_DQZD_FZPJSJ 
+		WHERE CDBH = #{CDBH} AND JCSJ <![CDATA[>=]]>
+		TO_DATE( #{STARTTIME}, 'yyyy-MM-dd HH24:mi:ss') AND JCSJ <![CDATA[<=]]>
+		TO_DATE(#{ENDTIME}, 'yyyy-MM-dd HH24:mi:ss') ORDER BY JCSJ DESC
+	</select>
+	
+	<!-- 查询乡镇站空气站分钟数据-->
+	<select id="queryAirStationXZMinuteData" resultType="java.util.Map">
+		SELECT CDMC, CDBH, JCSJ, AQI, SO2, NO2,PM10,CO,PM25,O3_1H O3 FROM T_SJZX_HJZL_DQXZZ_FZPJSJ 
+		WHERE CDBH = #{CDBH} AND JCSJ <![CDATA[>=]]>
+		TO_DATE( #{STARTTIME}, 'yyyy-MM-dd HH24:mi:ss') AND JCSJ <![CDATA[<=]]>
+		TO_DATE(#{ENDTIME}, 'yyyy-MM-dd HH24:mi:ss') ORDER BY JCSJ DESC
+	</select>
+	
+	<!--查询空气站小时数据  -->
+	<select id="queryAirStationHourData" resultType="java.util.Map">
+		SELECT CDMC, CDBH, JCSJ, AQI, SO2, NO2,PM10,CO,PM25,O3_1H O3 FROM T_SJZX_HJZL_DQZD_XSPJSJ
+		WHERE CDBH = #{CDBH} AND JCSJ <![CDATA[>=]]> 
+		TO_DATE( #{STARTTIME}, 'yyyy-MM-dd HH24:mi:ss') AND JCSJ <![CDATA[<=]]>
+		TO_DATE(#{ENDTIME}, 'yyyy-MM-dd HH24:mi:ss') ORDER BY JCSJ DESC
+	</select>
+	
+	<!--查询自动水站小时数据  -->
+	<select id="queryWaterStationHourData" resultType="java.util.Map">
+		SELECT CDMC, CDBH,JCSJ,SZLB,SW,PH,PHJB,NH3,NH3JB,ZL,ZLJB,GMSJ,GMSJJB,RJY,RJYJB,DDL,ZD,TN FROM T_SJZX_HJZL_DBSZD_XSSJ 
+		WHERE CDBH = #{CDBH} AND JCSJ >= 
+		TO_DATE( #{STARTTIME}, 'yyyy-MM-dd HH24:mi:ss') AND JCSJ <![CDATA[<=]]>
+		TO_DATE(#{ENDTIME}, 'yyyy-MM-dd HH24:mi:ss') ORDER BY JCSJ DESC
+	</select>
+	
+	<!-- 重点水域小时数据 -->
+	<select id="queryKeyPointWaterStationHourData" resultType="java.util.Map">
+		SELECT CDMC, CDBH,JCSJ,SZLB,SW,PH,PHJB,NH3,NH3JB,ZL,ZLJB,GMSJ,GMSJJB,RJY,RJYJB,DDL,ZD,TN FROM T_SJZX_HJZL_DBSZD_XSSJ_HM 
+		WHERE CDBH = #{CDBH} AND JCSJ >= 
+		TO_DATE( #{STARTTIME}, 'yyyy-MM-dd HH24:mi:ss') AND JCSJ <![CDATA[<=]]>
+		TO_DATE(#{ENDTIME}, 'yyyy-MM-dd HH24:mi:ss') ORDER BY JCSJ DESC
+	</select>
+	
+	<!--查询污染源在线废气小时数据   -->
+	<select id="queryFQStationHourData" resultType="java.util.Map">
+		SELECT WRYBH,JCSJ,YQWD,YQYL,YQLS,YQLL,O2,SO2,SO2ZS,SO2PFL,NOX,NOXZS,NOXPFL,YC,YCZS,YCPFL FROM T_SJZX_WRYZX_FQ_XSSJ
+		WHERE WRYBH = #{WRYBH} AND PKXH = #{PKXH} AND JCSJ <![CDATA[>=]]> 
+		TO_DATE( #{STARTTIME}, 'yyyy-MM-dd HH24:mi:ss') AND JCSJ <![CDATA[<=]]>
+		TO_DATE(#{ENDTIME}, 'yyyy-MM-dd HH24:mi:ss') ORDER BY JCSJ DESC
+	</select>
+	
+	<!--查询污染源在线废水小时数据  -->
+	<select id="queryFSStationHourData" resultType="java.util.Map">
+		SELECT WRYBH,JCSJ,LL,LJLL,PH,COD,NH3,TN,ZL,CU,ZN,FLZ,LJG,SJG,WRW1 FROM T_SJZX_WRYZX_FS_XSSJ
+		WHERE WRYBH = #{WRYBH} AND PKXH = #{PKXH} AND JCSJ <![CDATA[>=]]> 
+		TO_DATE( #{STARTTIME}, 'yyyy-MM-dd HH24:mi:ss') AND JCSJ <![CDATA[<=]]>
+		TO_DATE(#{ENDTIME}, 'yyyy-MM-dd HH24:mi:ss') ORDER BY JCSJ DESC
+	</select>
+	
+	<!--查询秸秆焚烧数据 -->
+	<select id="queryJGData" resultMap="TaskMap">
+		SELECT XH,SBWZ,BJSJ,IMG FROM T_SPJK_JG_BJXX WHERE XH=#{YWGLXH}
+	</select>
+	
+	<update id="updateMark" parameterType="java.util.Map">
+		UPDATE T_SPJK_JG_BJXX SET SFSCRW ='1'  WHERE XH=#{YWGLXH}
+	</update>
+	
+	<select id="querySubRecord" resultType="int">
+		select count(*) from T_WSGZ_RHPWKDWXX_ZPK where PWKXH = #{PWKXH}
+	</select>
+	
+	<delete id="delete">
+		delete from  T_WSGZ_RHPWKDWXX where xh = #{XH}
+	</delete>
+	
+	<delete id="deleteSubRecord">
+		delete from  T_WSGZ_RHPWKDWXX_ZPK where PWKXH = #{PWKXH}
+	</delete>
+</mapper>

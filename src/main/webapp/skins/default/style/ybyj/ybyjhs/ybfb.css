@@ -1,0 +1,59 @@
+.container{width: 100%;height:100%; heoverflow: auto;}
+.divHead{
+	text-align: center;
+	margin-top: 10px;
+}
+h3{
+	font-size: 22px; color:#387DDC;
+}
+.contentDiv h3{
+	font-size: 18px; color:#387DDC;
+}
+h2{
+	font-size: 28px; color:#387DDC;
+	width: 100%;
+	text-align: center;
+	margin: 0;
+}
+.contents{
+	margin-left: auto;margin-right: auto;
+	height: 100%;
+}
+.contentDiv{
+	width: 90%;
+	height: 400px;
+}
+.textcontents{
+	padding: 20px 0 20px 40px;
+	
+}
+textarea{
+	overflow:auto;
+}
+hr{
+	width:90%;
+	border-color: #387DDC;
+	position: relative;
+	left:-5%;
+}
+.btnDiv{
+ width: 90%;
+ text-align: right;
+}
+.sendMsg{
+	margin-top:8px;
+	background-color:#387ddc;
+	display: inline-block;*display: inline;*zoom:1; height: 25px; line-height: 25px; padding: 0 5px 0 25px; font:normal 14px/25px "SimSun"; color: white; text-decoration: none; border-radius: 2px;
+}
+.input_text{
+	width:120px;border-top-style: none;border-right-style: none;border-left-style: none;height: 24px;
+}
+.icon_opentxl{background: url(../../../images/ybyj/ybyjhs/opentxl.png) no-repeat center; }
+.icon_ok{background:#387ddc url(../../../images/ybyj/ybyjhs/ok.png) no-repeat 5px center; display: inline-block;*display: inline;*zoom:1; height: 25px; line-height: 25px; padding: 0 5px 0 25px; font:normal 14px/25px "SimSun"; color: white; text-decoration: none; border-radius: 2px; }
+.icon_send{background:#387ddc url(../../../images/ybyj/xtgl/email/icon_send.png) no-repeat 5px center; display: inline-block;*display: inline;*zoom:1; height: 25px; line-height: 25px; padding: 0 5px 0 25px; font:normal 14px/25px "SimSun"; color: white; text-decoration: none; border-radius: 2px; }
+.icon_deft{margin-left:20px; background:#387ddc url(../../../images/ybyj/xtgl/email/icon_deft.png) no-repeat 5px center; display: inline-block;*display: inline;*zoom:1; height: 25px; line-height: 25px; padding: 0 5px 0 25px; font:normal 14px/25px "SimSun"; color: white; text-decoration: none; border-radius: 2px;}
+.icon_opentxl:hover,.icon_ok:hover,.icon_deft:hover,.icon_send:hover{ background-color: #5e9cf2;}
+.sendBtn1{
+	background-color:#387ddc;
+	display: inline-block;*display: inline;*zoom:1; height: 25px; line-height: 25px; padding: 0 15px 0 15px; font:normal 14px/25px "SimSun"; color: white; text-decoration: none; border-radius: 2px;
+}

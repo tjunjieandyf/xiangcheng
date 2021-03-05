@@ -1,0 +1,721 @@
+@CHARSET "UTF-8";
+/*整个网页的背景颜色*/
+body {margin:0 auto; text-align:center; font-size:12px; background:#FFFFFF;}
+img {border: 0}
+a {color: blue; text-decoration: none;}
+a:hover {text-decoration: underline;}
+
+/***文本输入框效果*****/
+/* input[type="text"]{border:1px solid #808080;} 
+textarea{border:1px solid #808080;}
+select{border:1px solid #808080;}
+input:hover,input.sfhover,
+input:focus,input.sffocus,  
+textarea:hover,textarea.sfhover,
+textarea:focus,textarea.sffocus,
+select:hover,select.sfhover, 
+select:focus,select.sffocus{ 
+background:#ffffff url(../../images/platform/input_hover.gif) repeat-x top left;
+} */
+/****文本输入框end***/
+
+/***针对textarea中的pre写的一个样式**/
+pre {
+    line-height: normal;  
+	white-space: pre-wrap; 
+	white-space: -moz-pre-wrap;
+	white-space: -pre-wrap;
+	white-space: -o-pre-wrap;
+	word-wrap: break-word;
+	white-space : normal ;     
+	margin: 0px;
+	line-height:22px;
+}
+/****textarea结束**/
+/** 页面基本组成部分样式 START**********************************************************************************************************************／
+	 /* 页面所处DIV*/
+	#main{}
+	 /* 页面导航区*/
+	.pagetitle{ width:98%; margin:2px auto; text-align:left; line-height:30px; height:30px; border:1px solid #cccccc;text-indent:20px; background:url(../../images/platform/workflow/user/pagetitle_bg.gif) repeat-x bottom left; font-size:14px; font-weight:bold;}
+	 /* 按钮区*/
+	.page_buttons{width:98%; margin:4px auto 0px auto; text-align:right;height: 30px;}
+	 /* 查询区*/
+	#page_query{ margin:2px auto;}
+	 /* 页面操作后的提示内容区*/
+	#page_message{} 
+	 /* 列表页面数据存放的DIV*/
+	#page_others{margin:5px auto;}
+	 /* 页尾预留区*/
+	#page_blank{}
+	
+	
+	/* 按钮样式*/
+	button.btn,input.btn{border:1px solid #6694cf; padding:0 4px; margin-left:4px; background:#fff url(../../images/platform/workflow/user/btn_bg.gif) repeat-x bottom left; height:24px; line-height:20px;}
+	/* 输入框样式*/
+	input.input_text{border:1px solid #6694cf; line-height:20px; height:20px; padding:0; padding-left:3px;}
+	
+	td.td-label {text-align: right;}
+	td.td-textarea {height: 100px; vertical-align: top;}
+	tr.title {text-align: center; font-weight: bold;}
+	td.title {font-weight: bold; color: blue; text-indent: 20px;}
+
+	/* 页面等待加载的样式*/
+	.loading-indicator {font-size: 11px;background-position: left;padding-left: 20px;line-height: 16px; margin: 3px;}
+	#loading{position:absolute;left:45%;top:40%;padding:2px;z-index:20001;height:auto;border:1px solid #ccc;}
+	#loading-msg{font:normal 9px arial,tahoma,sans-serif;}
+	
+/** 页面基本组成部分样式 END*********************************************************************************************************************／	
+
+/** 表格 START************************************************************************************************************************************/
+
+	/*表格样式 list_table_1*/  
+	table#list_table_1{border: 1px solid #365d86; border-bottom:none; border-right:none; background:#fff; font-size:12px;}
+	table#list_table_1 tr td{font-size: 12px;padding:0px 4px; line-height:22px; background: #fff;border-right:1px solid #365d86; border-bottom:1px solid #365d86;}
+	table#list_table_1 thead td{text-align:center;background: #508dd0; color:#ffffff; font-weight:bold; line-height:22px; height:22px; border-bottom:1px solid #365d86;}
+	table#list_table_1 tbody td{table-layout: fixed;word-wrap:break-word;word-break:break-all;}
+	table#list_table_1 tbody tr.even td{background: #F4F9FF;}
+	table#list_table_1 tbody tr.selected td{background: #3d80df;color: #ffffff;}/*自然状态*/ 
+	table#list_table_1 tbody tr.ruled td{color: #000;background-color:#CBE1FF; }/*鼠标经过*/
+	table#list_table_1 tbody tr.chlick td{color: #000;background-color:#cbe1ff; }/*鼠标点击*/
+	table#list_table_1 tr td font{font-size: 12px;}
+	
+	/*表格样式 list_table_5*/  
+	table#list_table_5{border: 1px solid #365d86; border-bottom:none; border-right:none; background:#fff; font-size:12px;}
+	table#list_table_5 tr td{font-size: 12px;padding:0px 4px; line-height:22px; background: #fff;border-right:1px solid #365d86; border-bottom:1px solid #365d86;}
+	table#list_table_5 thead td{text-align:center;background: #508dd0; color:#ffffff; font-weight:bold; line-height:22px; height:22px; border-bottom:1px solid #365d86;}
+	table#list_table_5 tbody td{table-layout: fixed;word-wrap:break-word;word-break:break-all;}
+	table#list_table_5 tbody tr.even td{background: #F4F9FF;}
+	table#list_table_5 tbody tr.selected td{background: #3d80df;color: #ffffff;}/*自然状态*/ 
+	table#list_table_5 tbody tr.ruled td{color: #000;background-color:#CBE1FF; }/*鼠标经过*/
+	table#list_table_5 tr td font{font-size: 12px;}
+	/*表格样式 list_table_btn*/  
+	table#list_table_btn{border: 1px solid #365d86; border-bottom:none; border-right:none; background:#fff; font-size:12px;}
+	table#list_table_btn tr td{font-size: 12px;padding:0px 4px; line-height:24px; background: #fff;border-right:1px solid #365d86; border-bottom:1px solid #365d86;}
+	table#list_table_btn thead td{text-align:center;background: #508dd0; color:#ffffff; font-weight:bold; line-height:24px; height:24px; border-bottom:1px solid #365d86;}
+	table#list_table_btn tbody td{table-layout: fixed;word-wrap:break-word;word-break:break-all;}
+	table#list_table_btn tbody tr.even td{background: #F4F9FF;}
+	table#list_table_btn tbody tr.selected td{background: #3d80df;color: #ffffff;}/*自然状态*/ 
+	table#list_table_btn tbody tr.ruled td{color: #000;background-color:#CBE1FF; }/*鼠标经过*/
+	table#list_table_btn input{border:1px solid gray; line-height:22px; height:22px; padding:0; padding-left:3px;}
+	table#list_table_btn tr td font{font-size: 12px;}
+	/*表格样式 list_table_btn*/  
+	table#list_table_info{border: 1px solid #9a9a9a; border-bottom:none; border-right:none; background:#fcffff; font-size:12px;}
+	table#list_table_info tr td{font-size: 12px;padding:0px 4px; line-height:24px; background: #fff;border-right:1px solid #9a9a9a; border-bottom:1px solid #9a9a9a;}
+	table#list_table_info thead td{text-align:center;background: #fcffff; color:#ffffff; font-weight:bold; line-height:24px; height:24px; border-bottom:1px solid #9a9a9a;}
+	table#list_table_info tbody td{table-layout: fixed;word-wrap:break-word;word-break:break-all;}
+	table#list_table_info tr td font{font-size: 12px;}
+/** 表格 END*************************************************************************************************************************/	
+
+/** tab样式 START*************************************************************************************************************************/
+	.dis{ display:block;}
+	.undis{ display:none;}
+	
+	.tit{ border-bottom:none; background:url(../../images/platform/workflow/user/tab_bg.gif) repeat-x bottom left; margin:0 auto; text-align:left;line-height:30px; font-weight:bold; font-size:12px;height:30px;}
+	.tit a{ padding:0 9px;display:block; margin-left:5px; line-height:25px; margin-top:5px; float:left; font-size:12px; color:#444444;}
+	.tit a.topC0{border-right:1px solid #28a5e8; border-left:1px solid #28a5e8; background:url(../../images/platform/workflow/user/tab_off_bg.gif) repeat-x bottom left; color:#ffffff;}
+	.tit a.topC1{border-right:1px solid #28a5e8; border-left:1px solid #28a5e8; text-decoration:none; background:url(../../images/platform/workflow/user/tab_on_bg.gif) repeat-x bottom left; color:#000066;}
+	.tit i{ float:right; margin-top:6px; margin-right:10px;}
+	.content{ margin:0 auto; font-size:12px; text-align:left; line-height:18px; border-top:none; background:#ffffff;}
+	.content span{ padding:8px; text-align:center;}
+	
+	#tab2{ background:url(../../images/platform/workflow/user/tab1_bg.gif) repeat-x top; height:29px; width:98%; margin:5px auto;}
+	#tab2_tit a{text-align:left;}
+	#tab2_tit a.topC0{ background:url(../../images/platform/workflow/user/tab1_bg_off.gif) no-repeat top right;width:110px; font-size:12px; color:#3184D7; line-height:29px; text-indent:25px; display:block; float:left; height:29px; border-right:1px solid #E2EDF5; }
+	#tab2_tit a.topC1{ background:url(../../images/platform/workflow/user/tab1_bg_on.gif) repeat-x top; width:110px; font-size:12px; color:#3184D7; line-height:29px; text-indent:25px; display:block; float:left; height:29px; }
+	#tab2_content{ clear:both; padding:5px; border:1px solid #BCCFDD; border-top:none; text-align:left;}
+	#tab2_content span{ margin:0; margin-top:10px; padding:0; line-height:20px; text-indent:15px; border-bottom:1px dashed #DCDBE0;}
+	
+	
+	#tab1{ background:url(../../images/platform/workflow/user/tab_bg.gif) repeat-x top; height:29px; width:98%; margin:5px auto;}
+	#tab1_tit a{padding:0 9px;display:block; margin-left:5px; line-height:25px; margin-top:5px; float:left; font-size:12px; color:#444444;}
+	#tab1_tit a.topC0{border-right:1px solid #28a5e8; border-left:1px solid #28a5e8; background:url(../../images/platform/workflow/user/tab_off_bg.gif) repeat-x bottom left; color:#ffffff;}
+	#tab1_tit a.topC1{border-right:1px solid #28a5e8; border-left:1px solid #28a5e8; text-decoration:none; background:url(../../images/platform/workflow/user/tab_on_bg.gif) repeat-x bottom left; color:#000066;}
+	#tab1_content{ clear:both; padding:5px; border:1px solid #28a5e8; border-top:none; text-align:left;}
+	#tab1_content span{ margin:0; margin-top:10px; padding:0; line-height:20px;  border-bottom:1px dashed #DCDBE0;}
+	
+	#tab4{ background:url(../../images/platform/workflow/user/tab3bg.gif) repeat-x top; height:29px; width:98%; margin:5px auto;}
+	#tab4_tit a{padding:0 9px;display:block; margin-left:5px; line-height:25px; margin-top:5px; float:left; font-size:12px; color:#444444;}
+	#tab4_tit a.topC0{border-right:1px solid #28a5e8; border-left:1px solid #28a5e8; background:url(../../images/platform/workflow/user/tab3left.gif) repeat-x bottom left; color:#ffffff;}
+	#tab4_tit a.topC1{border-right:1px solid #28a5e8; border-left:1px solid #28a5e8; text-decoration:none; background:url(../../images/platform/workflow/user/tab3right.gif) repeat-x bottom left; color:#000066;}
+	#tab4_content{ clear:both; padding:5px; border:1px solid #28a5e8; border-top:none; text-align:left;}
+	#tab4_content span{ margin:0; margin-top:10px; padding:0; line-height:20px; text-indent:15px; border-bottom:1px dashed #DCDBE0;}
+	
+	
+	#tab3 {padding-right: 0px; padding-left: 0px; padding-bottom: 0px; padding-top: 0px; height: 23px; margin: 0px 0px 0px 10px}
+	#tab3 li {background: url(../../images/platform/workflow/user/tab3left.gif) no-repeat left bottom; float: left; margin-right: 1px; list-style-type: none; height: 23px}
+	#tab3 li A {padding-right: 10px; padding-left: 10px; background: url(../../images/platform/workflow/user/tab3right.gif) no-repeat right bottom; float: left; padding-bottom: 0px; color: #999;line-height: 23px; padding-top: 0px; height: 23px; text-decoration: none}
+	#tab3 li.emptyTag { background: none transparent scroll repeat 0% 0%; width: 4px }
+	#tab3 li.selectTag {background-position: left top; margin-bottom: -2px; position: relative; height: 25px}
+	#tab3 li.selectTag A {background-position: right top; color: #000; line-height: 25px; height: 25px; font-size:12px;}
+	#tab3Content {border-right: #aecbd4 1px solid; padding-right: 1px; border-top: #aecbd4 1px solid; padding-left: 1px; padding-bottom: 1px; border-left: #aecbd4 1px solid;padding-top:1px; border-bottom: #aecbd4 1px solid; background-color: #fff}
+	#tab3Content span{padding-right: 10px;padding-left: 10px; background: url(../../images/platform/workflow/user/tab3bg.gif) repeat-x; padding-bottom: 10px; color: #474747; padding-top: 10px; height: 250px}
+	
+	/**/
+	div.tabs_window {border: 1px solid #539ee1;background: #539ee1;}
+	div.tabs_window span.title {position: absolute; left: 5px; top: 5px;}
+	div.tabs_window span.close {position: absolute;right: 5px;top: 5px;width: 15px;height: 15px;cursor: pointer;background: url('../../images/platform/workflow/user/close.gif');}
+	div.tabs_window div.tabs {margin-top: 25px; width: 100%; height: 25px; line-height: 25px; background: white;}
+	div.tabs_window div.tabs span {background: url('../../images/platform/workflow/user/tab_off_bg.gif');color: white;width: 50px;height: 25px;float: left;font-size: 12px;text-align: center;cursor: pointer;font-weight: bold;}
+	div.tabs_window div.tabs span iframe {display: none; position: absolute; left: 0; bottom: 0; width: 100%;}
+	div.tabs_window div.tabs span.current {background: url('../../images/platform/workflow/user/tab_on_bg.gif') repeat-x; color: black;}
+	div.tabs_window div.tabs span.current iframe {display: block; width: 100%;}
+	
+/** tab样式 END*************************************************************************************************************************/
+
+/** 页面滚动条 START*************************************************************************************************************************/
+	html{
+		scrollbar-3dlight-color:#D4D0C8; /*- 最外左 -*/
+		scrollbar-highlight-color:#fff; /*- 左二 -*/
+		scrollbar-face-color:#E4E4E4; /*- 面子 -*/
+		scrollbar-arrow-color:#666; /*- 箭头 -*/
+		scrollbar-shadow-color:#808080; /*- 右二 -*/
+		scrollbar-darkshadow-color:#D7DCE0; /*- 右一 -*/
+		scrollbar-base-color:#D7DCE0; /*- 基色 -*/
+		scrollbar-track-color:#;/*- 滑道 -*/
+	}
+	
+/** 页面滚动条 END*************************************************************************************************************************/
+
+
+/** 表单相关样式 START*************************************************************************************************************************/
+	select {font-size: 12px;color: #902222;}
+	form{margin-top:0px;}
+	input.readonly {background: #EEEEEE;}
+	input.date {width: 90px;}
+	input.number {width: 90px; text-align: right;}
+	
+	/*编辑页面验证错误样式*/
+	div.errorMessage {border: 1px solid #AFAFAF;background: #FEFCD8 url(../../images/ebcm/common/tipsicon.gif) no-repeat top left;text-indent: 26px;line-height: 24px;font-size: 12px;}
+	
+	/*美化select*/
+	#mh_sel{ width:252px; margin-top:9px; font-size:12px; text-align:left; height:20px; padding:3px; background:#d4e8fa; display:block;}
+	#mh_sel select{width:252px; padding:0 4px; line-height:20px;}
+	#mh_sel div.tag_select{background:transparent url("../../images/platform/workflow/user/select_bg.gif") no-repeat top left; padding:0 4px; line-height:20px;}
+	#mh_sel div.tag_select_hover{background:transparent url("../../images/platform/workflow/user/select_bg_hover.gif") no-repeat top left; padding:0 4px; line-height:20px;}
+	#mh_sel div.tag_select_open{background:transparent url("../../images/platform/workflow/user/select_bg_hover.gif") no-repeat top left;  padding:0 4px; line-height:20px;}
+	#mh_sel ul.tag_options{position:absolute; z-index:100; margin:0;background:transparent url("../../images/platform/workflow/user/select_li.gif") no-repeat top left;list-style:none;margin:0;width:252px;}
+	#mh_sel ul.tag_options li{ z-index:100; background:transparent url("../../images/platform/workflow/user/select_li.gif") no-repeat top left;display:block;width:252px;height:20px;text-decoration:none;line-height:20px;color:#000;}
+	#mh_sel ul.tag_options li.open_hover{ z-index:100; background: url("../../images/platform/workflow/user/select_li_hover.gif") no-repeat top left; color:#000}
+	#mh_sel ul.tag_options li.open_selected{ z-index:100; background: url("../../images/platform/workflow/user/select_li_hover.gif") no-repeat top left;color:#19555F}
+	
+	.css_submit1{cursor:hand;background-repeat:no-repeat;height:20;border-style:solid;border-width:0;background-position:center 50%;font-size:9pt;}
+	
+	.td-lable,.query-text{background-color: #E2EFFA;text-align:right;color: #333333;}
+	.td-lable_must {background-color: #E2EFFA;text-align:right;color: #0000FF;}
+	.td-text,.query-input{background-color: #FFFFFF;text-align:left;} 
+	#input_table_div .td-text input{width:expression(this.type=='text' ? '100%' : '');}           
+	#input_table_div .td-text select{width:100%}       
+	#input_table_div .td-text textarea{width:100%}    
+/** 表单相关样式 END***************************************************************************************************************************/
+
+
+/** 列表相关样式 START*************************************************************************************************************************/
+	 /**删除和编辑图标*/
+	.icoEdit{background-image:url(../../images/ebcm/common/ico_pen.gif); background-repeat:no-repeat;padding-right: 12px;}
+	.icoDel{background-image:url(../../images/ebcm/common/ico_del.gif); background-repeat:no-repeat;padding-right: 12px;}
+	.icoDmj{background-image:url(../../images/ebcm/common/ico_dmj.gif); background-repeat:no-repeat;padding-right: 12px;}
+	.icoSave{background-image:url(../../images/ebcm/common/ico_lst.gif); background-repeat:no-repeat;padding-right: 12px;}
+	.icoConfig{background-image:url(../../images/ebcm/common/config.gif); background-repeat:no-repeat;padding-right: 12px;}
+	
+	 /**分页标签*/
+	span.btnWssb {font-size: 12px;width:98%;display: block;text-align: center;margin-top: 3px;padding-bottom: 3px;}
+	span.btnWssb input{border:1px solid #6694cf; line-height:20px; height:20px; padding:0; padding-left:3px;padding-bottom: 3px;}
+	span.btnWssb span.page_normal {}
+	span.btnWssb span.page_select {}
+	span.btnWssb span.page_input {}
+	span.btnWssb span.page_input input#P_CURRENT{width:15px;height:20px;}
+	span.btnWssb span.page_status {}
+	span.btnWssb span.page_order {}
+	
+	span.page_control2 {font-size: 12px;width:98%;display: block;text-align: right;margin-top: 3px;}
+	span.page_control2 input {border:1px solid #6694cf; line-height:20px; height:20px; padding:0; padding-left:3px;}
+	span.page_control2 span.page_normal {}
+	span.page_control2 span.page_select {display: none;}
+	span.page_control2 span.page_input {display: none;}
+	span.page_control2 span.page_status {display: none;}
+	span.page_control2 span.page_order {display: none;}
+
+	span.page_control {font-size: 12px;width:98%;display: block;text-align: right;margin-top: 3px;}
+	span.page_control input{border:1px solid #6694cf; line-height:20px; height:20px; padding:0; padding-left:3px;}
+	span.page_control span.page_normal {}
+	span.page_control span.page_select {}
+	span.page_control span.page_input {}
+	span.page_control span.page_input input#P_CURRENT{width:15px;height:20px;}
+	span.page_control span.page_status {}
+	span.page_control span.page_order {}
+	
+	/**查询页面的查询提示*/
+	#toolTip{border:1px solid #CCC;background-color:#F9F9F9;width:300px;position:absolute;visibility: hidden;overflow: hidden;font-family: Tahoma,"宋体";font-size: 11px;font-weight: normal;color:#333;}
+	#toolTip h1{display:block;font-family: Tahoma,"宋体";font-size: 12px;font-weight: bold;background-color:#F1F1F1;border-bottom:1px solid #CCC;margin:0px;padding:0px 2px;}
+	#toolTip p {margin:0px;padding:4px 2px;}
+/** 列表相关样式 END***************************************************************************************************************************/
+
+
+/** 大的按钮 START*********************************************************************************************************************************/
+	#mianbody{ background:url(../../images/platform/workflow/user/mianbody_bg.gif) repeat-x top left; width:100%;padding-top:15px; }
+	
+	/*大按钮模块*/
+	#area{ width:750px; overflow:hidden; margin:0 auto;}
+	#area i,#area em{ font-style:normal;}
+	#area a{ text-decoration:none;}
+	.block{width:354px; height:124px; overflow:hidden; display:block; text-align:left; font-size:12px; float:left; margin-bottom:8px; margin-left:3px; }
+	.block h3{ margin-top:13px; margin-bottom:0; line-height:20px; padding:0;}
+	.block h3 em{ font-weight:bold; font-size:14px; margin-left:20px; color:#573a00;}
+	.block h3 i{ float:right; margin-top:-20px; font-size:12px; margin-right:33px;}
+	.block h3 i a:link{ color:#573a00;}
+	.block .img{width:78px; height:77px; background-image:url(../../images/platform/workflow/user/icon.png); background-repeat:no-repeat; margin-top:5px; margin-right:10px; margin-left:12px !important; *margin-left:6px;display:block; float:left;}
+	.icon11{background-position:-10px -10px;}  /*接口*/
+	.icon12{background-position:-10px -97px;}/*用户*/
+	.icon13{background-position:-10px -184px;}/*部门*/
+	.icon14{background-position:-10px -271px;}/*用户组*/
+	.icon15{background-position:-98px -10px;}/*菜单*/
+	.icon16{background-position:-98px -97px;}/*角色*/
+	.icon17{background-position:-98px -184px;}/*系统用户*/
+	.icon18{background-position:-98px -271px;}/*功能*/
+	.icon19{background-position:-186px -10px;}/*系   统*/
+	.icon20{background-position:-186px -97px;}/*组织结构*/
+	
+	.lanmu1{background:url(../../images/platform/workflow/user/gz_lanmu1.gif) no-repeat top left;}
+	.lanmu1 .text{ float:left; width:230px; margin-right:14px; margin-top:4px; color:#0b6a80; text-align:left; text-indent:24px; font-size:12px; line-height:18px;}
+	.lanmu1 .list{ line-height:22px; float:left;}
+	.lanmu1 .list p{ margin:0; padding:0;}
+	.lanmu1 .list p em{ background:url(../../images/platform/workflow/user/gz_txt1.gif) no-repeat top left; padding-left:14px;}
+	.lanmu1 .list i{ float:right; margin-top:-22px; margin-right:10px; color:#666666;}
+	.lanmu1 .list a:link{ color:#235248;}
+	
+	.lanmu2{background:url(../../images/platform/workflow/user/gz_lanmu2.gif) no-repeat top left;}
+	.lanmu2 .text{ float:left; width:230px; margin-right:14px; margin-top:4px; color:#3c5b03; text-align:left; text-indent:24px; font-size:12px; line-height:18px;}
+	.lanmu2 .list{ line-height:22px; float:left;}
+	.lanmu2 .list p{ margin:0; padding:0;}
+	.lanmu2 .list p em{ background:url(../../images/platform/workflow/user/gz_txt2.gif) no-repeat top left; padding-left:14px;}
+	.lanmu2 .list i{ float:right; margin-top:-22px; margin-right:10px; color:#666666;}
+	.lanmu2 .list a:link{ color:#7c3a00;}
+	
+	.lanmu3{background:url(../../images/platform/workflow/user/gz_lanmu3.gif) no-repeat top left;}
+	.lanmu3 .text{ float:left; width:230px; margin-right:14px; margin-top:4px; color:#ff8d13; text-align:left; text-indent:24px; font-size:12px; line-height:18px;}
+	.lanmu3 .list{ line-height:22px; float:left;}
+	.lanmu3 .list p{ margin:0; padding:0;}
+	.lanmu3 .list p em{ background:url(../../images/platform/workflow/user/gz_txt2.gif) no-repeat top left; padding-left:14px;}
+	.lanmu3 .list i{ float:right; margin-top:-22px; margin-right:10px; color:#666666;}
+	.lanmu3 .list a:link{ color:#7c3a00;}
+	
+	.lanmu4{background:url(../../images/platform/workflow/user/gz_lanmu4.gif) no-repeat top left;}
+	.lanmu4 .text{ float:left; width:230px; margin-right:14px; margin-top:4px; color:#3c5b03; text-align:left; text-indent:24px; font-size:12px; line-height:18px;}
+	.lanmu4 .list{ line-height:22px; float:left;}
+	.lanmu4 .list p{ margin:0; padding:0;}
+	.lanmu4 .list p em{ background:url(../../images/platform/workflow/user/gz_txt1.gif) no-repeat top left; padding-left:14px;}
+	.lanmu4 .list i{ float:right; margin-top:-22px; margin-right:10px; color:#666666;}
+	.lanmu4 .list a:link{ color:#235248;}
+/** 大的按钮 END*********************************************************************************************************************************/
+	/**退出按钮*/
+	.success {border:1px dotted #390; background: #dfa; color: #390; padding: 20px;}
+/** Power样式 START***************************************************************************************************************************/
+	.mask-div {position: absolute;left: 0;top: 0;opacity: 0.4;-moz-opacity: 0.4;filter: alpha(opacity=40);zoom: 1;}
+	.mask-iframe {position: absolute;left: 0;top: 0;border: none;opacity: 0;-moz-opacity: 0;filter: alpha(opacity=0);zoom: 1;}
+	.mask-waiting {position: absolute;background: url('../../images/Power/progress bar.gif') center no-repeat;width: 100px;height: 15px;}
+	.shadow-div {position : absolute;opacity: 0.5;-moz-opacity: 0.5;filter: alpha(opacity=50);zoom: 1;}
+	
+/** Power样式 END***************************************************************************************************************************/
+
+/** 其他通用样式（请标明用处） START*************************************************************************************************************************/
+	/**导航样式*/
+	.dh_title{ width:90%; margin:10px auto 0 auto; background:url(../../images/zhbg/navigation/dh_h2_bg.gif) repeat-x top left; height:35px; line-height:35px;}
+	.dh_title h2{text-align:left;height:35px;overflow:hidden; margin:0; padding:0; font-size:14px; background:url(../../images/zhbg/navigation/dh_right.gif) no-repeat top right;}
+	.dh_title h2 em{ font-style:normal;  background:url(../../images/zhbg/navigation/dh_h2_dot.gif) no-repeat left; display:block; height:35px; text-indent:30px; color:#b7e8f7;}
+	.dh_title h2 i{ float:right; margin-top:-32px; margin-right:10px; font-size:12px; font-weight:100; font-style:normal;}
+	.dh_title h2 i a{ color:#92bded; text-decoration:none;}
+	.dh_title h2 i a:hover{ color:#FFFF99; text-decoration:underline;}
+/** 其他通用样式 END*************************************************************************************************************************/
+
+/** 树形结构样式 START*************************************************************************************************************************/
+	.dtree {font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;font-size: 11px;color: #666;white-space: nowrap;text-align: left;}
+	.dtree img {border: 0px;vertical-align: middle;}
+	.dtree a {color: #333;text-decoration: none;}
+	.dtree a.node, .dtree a.nodeSel {white-space: nowrap;padding: 1px 2px 1px 2px;}
+	.dtree a.node:hover, .dtree a.nodeSel:hover {color: #333;text-decoration: underline;}
+	.dtree a.nodeSel {background-color: #c0d2ec;}
+	.dtree .clip {overflow: hidden;}
+/** 树形结构样式 END*************************************************************************************************************************/
+
+/** 门户样式 START*******************************************************************************************************************************/
+	.Layout {width: 100%;height: 100%;overflow: auto;}
+	.Layout .LayoutTable {border-collapse: collapse;table-layout: fixed;width: 100%;height: 100%;border: none;}
+	.Layout .LayoutCell {border: none;vertical-align: top;padding: 5px;padding-bottom: 0;overflow: hidden;}
+	.Layout .LayoutItem {border: 1px solid #9BB667;width: 100%;margin-bottom: 8px;}
+	.Layout .LayoutItemMouseDown {position: absolute;}
+	.Layout .LayoutItemHead {width: 100%;background: url(../../images/platform/portal/oa_block_bg.gif);border-collapse: collapse;border-left: 1px solid #FFF;border-top: 1px solid #FFF;height: 28px;line-height:18px;text-align:left;table-layout: fixed;}
+	.Layout .LayoutItemMouseDown .LayoutItemHead {border-left: 1px solid #DCD9B8;border-top: 1px solid #DCD9B8;border-bottom: 1px solid #C0C0C0;}
+	.Layout .LayoutItemBody {width: 100%;background-color:white;overflow: hidden;}
+	.Layout .LayoutItemHead TD {padding: 0;}
+	.Layout .LayoutItemHead .StatusCell {text-align: center;width: 22px;}
+	.Layout .LayoutItemHead .ButtonCell {width: 65px;text-align: right;}
+	.Layout .LayoutItemHead .Icon {background-image: url(../../images/platform/portal/LayoutIcons.gif);width: 16px;height: 16px;margin-left: 2px;margin-right: 2px;}
+	.Layout .LayoutItemHead .CollapseIcon {cursor: hand;background-position-x: -17px;}
+	.Layout .LayoutItemHead .ExpandIcon {cursor: hand;background-position-x: 0;}
+	.Layout .LayoutItemHead .ConfigIcon {cursor: hand;background-position-x: -68px;}
+	.Layout .LayoutItemHead .RefreshIcon {cursor: hand;background-position-x: -51px;}
+	.Layout .LayoutItemHead .CloseIcon {cursor: hand;background-position-x: -34px;}
+	.Layout .LayoutItemHead .Text {height: 100%;padding-top: 5px;}
+/** 门户样式 END*******************************************************************************************************************************/
+
+/** 框架样式 START*******************************************************************************************************************************/
+	#header{ height:65px; }
+	#logo{ float:left; width:455px;}
+	
+	/**左边菜单容器*/
+	#left{ width:180px; height:100%;}
+	#slider{ position:absolute; top:150px; left:168px;}
+	
+	/**显示用户信息 START**********************************************************************************************************************************/
+		#info{ float:right;width:auto; margin-right:20px;font-size:12px; margin-top:12px; line-height:18px;}
+		#info span.left{ float:right; height:45px; width:auto; background:url(../../images/platform/framework/spanleft.gif) no-repeat top left; padding-left:30px;}
+		#info span.right{float:right; height:45px; width:216px; margin-left:10px;}
+		#info span.left p{ margin:0; padding:0; line-height:22px;}
+		
+		#info span.right ul{ margin:0; list-style:none; padding:0; }
+		#info span.right ul li{ list-style:none; display:block; padding:0; margin:0; float:left;}
+		#info span.right a{ text-decoration:none; color:#000000; font-size:14px; display:block; width:37px; padding-left:35px; height:45px; line-height:45px;}
+		#info span.right a:hover{color:#0066FF; font-weight:bold;}
+		#info span.right a.home{ background:url(../../images/platform/framework/home.gif) no-repeat top left;}
+		#info span.right a.help{ background:url(../../images/platform/framework/help.gif) no-repeat top left;}
+		#info span.right a.exit{ background:url(../../images/platform/framework/exit.gif) no-repeat top left;}
+		#info span.right a.desktop{ background:url(../../images/platform/framework/desktop.gif) no-repeat top left;}
+	/**显示用户信息 END**********************************************************************************************************************************/
+	
+	/**导航按钮样式 START**********************************************************************************************************************************/
+		#menut {clear:both; height:30px; line-height:30px;background:url(../../images/platform/framework/menu_bg.gif) repeat-x; position:relative;}
+		#menut ul{ margin:0; list-style:none; padding:0; }
+		#menut ul li{ list-style:none; padding:0; margin:0; float:left; display:block; white-space: nowrap;}
+		#menut a{padding:0 12px;text-decoration:none; color:#000000; font-size:12px; display:block; background:url(../../images/platform/framework/menu_a.gif) no-repeat top right; float:left; height:30px; display:inline;}
+		#menut a.dis{ padding:0 12px; text-decoration:none; color:#ACA899; font-size:12px; display:block; background:url(../../images/platform/framework/menu_a.gif) no-repeat top right;}
+		#menut a:hover{ background:url(../../images/platform/framework/menu_a_on.gif) no-repeat top right; color:#0066FF;}
+		#menut span.right{ float:right; margin-right:50px; margin-top:5px;}
+	/**导航按钮样式 START**********************************************************************************************************************************/
+	 
+	
+	/**左边导航下拉菜单（先为使用） START*******************************************************************************************************************************/
+	
+	.menu1021{width:201px; float:left;text-align:left;}
+		.menu1021 h3,.menu1021 h3.a1{ font-size:12px; margin:0 auto; padding:0; font-weight:bold; text-indent:20px; line-height:30px; height:30px; overflow:hidden; background:url(../../images/platform/menu1021/l_tit_bg11.gif) no-repeat top left;}
+		.menu1021 h3 a{ text-decoration:none; color:#000000;}
+		.menu1021 h3 a:hover{ color:#990000;}
+		.menu1021 ul{ margin:0;margin-left: 2px; text-align:left; list-style:none; padding:0;margin-top: 0px;}
+		.menu1021 ul li{width:199px; float:left; margin:0; padding:0; line-height:26px; height:26px;font-size:12px; list-style:none;}
+		.menu1021 ul li a{ width:100%; display:block; float:left; color:#333333; text-decoration:none; text-indent:28px; background:url(../../images/platform/menu1021/i111.gif) no-repeat top left;}
+		.menu1021 ul li a:hover{background:#f6f9fd url(../../images/platform/menu1021/i211.gif) top left no-repeat; color:#2a8ce8; text-decoration:none;}
+		
+		
+		/*台帐左边样式*/
+		.menu0613{width:201px; float:left;text-align:left;}
+		.menu0613 h3,.menu0613 h3.a1{ font-size:12px; margin:0 auto; padding:0; font-weight:bold; text-indent:20px; line-height:30px; height:30px; overflow:hidden; background:url(../../images/platform/menu1021/l_tit_bg11.gif) no-repeat top left;}
+		.menu0613 h3 a{ text-decoration:none; color:#000000;}
+		.menu0613 h3 a:hover{ color:#990000;}
+		.menu0613 ul{ margin:0;margin-left: 2px; text-align:left; list-style:none; padding:0;margin-top: 0px;}
+		.menu0613 ul li{width:199px; float:left; margin:0; padding:0; line-height:26px; height:26px;font-size:12px; list-style:none;}
+		.menu0613 ul li a{ width:100%; display:block; float:left; color:#333333; font-weight:bold; text-decoration:none; text-indent:32px; /*background:url(../../images/platform/menu1021/i111.gif) no-repeat top left;*/}
+		
+		.menu0613 ul li a span{text-align:24px; display:block;}
+		.menu0613 ul li a span em{color:#aeaead; font-weight:100;}
+		.menu0613 ul li a span.icot0{background:url(../../images/platform/menu1021/icot0.png) no-repeat top left;}
+		.menu0613 ul li a span.icot1{background:url(../../images/platform/menu1021/icot1.png) no-repeat top left;}
+		.menu0613 ul li a span.icot2{background:url(../../images/platform/menu1021/icot2.png) no-repeat top left;}
+		.menu0613 ul li a span.icot3{background:url(../../images/platform/menu1021/icot3.png) no-repeat top left;}
+		.menu0613 ul li a span.icot4{background:url(../../images/platform/menu1021/icot4.png) no-repeat top left;}
+		.menu0613 ul li a span.icot5{background:url(../../images/platform/menu1021/icot5.png) no-repeat top left;}
+		.menu0613 ul li a span.icot6{background:url(../../images/platform/menu1021/icot6.png) no-repeat top left;}
+		.menu0613 ul li a span.icot7{background:url(../../images/platform/menu1021/icot7.png) no-repeat top left;}
+		.menu0613 ul li a span.icot8{background:url(../../images/platform/menu1021/icot8.png) no-repeat top left;}
+		.menu0613 ul li a span.icot9{background:url(../../images/platform/menu1021/icot9.png) no-repeat top left;}
+		.menu0613 ul li a span.icot10{background:url(../../images/platform/menu1021/icot10.png) no-repeat top left;}
+		.menu0613 ul li a span.icot11{background:url(../../images/platform/menu1021/icot11.png) no-repeat top left;}
+		.menu0613 ul li a span.icot12{background:url(../../images/platform/menu1021/icot12.png) no-repeat top left;}
+		.menu0613 ul li a span.icot13{background:url(../../images/platform/menu1021/icot13.png) no-repeat top left;}
+		.menu0613 ul li a span.icot14{background:url(../../images/platform/menu1021/icot14.png) no-repeat top left;}
+		.menu0613 ul li a span.icot15{background:url(../../images/platform/menu1021/icot15.png) no-repeat top left;}
+		.menu0613 ul li a span.icot16{background:url(../../images/platform/menu1021/icot16.png) no-repeat top left;}
+		.menu0613 ul li a span.icot17{background:url(../../images/platform/menu1021/icot17.png) no-repeat top left;}
+		.menu0613 ul li a span.icot18{background:url(../../images/platform/menu1021/icot18.png) no-repeat top left;}
+		.menu0613 ul li a span.icot19{background:url(../../images/platform/menu1021/icot19.png) no-repeat top left;}
+		.menu0613 ul li a span.icot20{background:url(../../images/platform/menu1021/icot20.png) no-repeat top left;}
+		.menu0613 ul li a span.icot21{background:url(../../images/platform/menu1021/icot21.png) no-repeat top left;}
+		.menu0613 ul li a:hover{background:url(../../images/platform/menu1021/bghovert.png)  repeat-x top left; color:#2a8ce8; text-decoration:none;}
+		.menu0613 ul li a.hovert{background:url(../../images/platform/menu1021/bghovert.png)  repeat-x top left; color:#2a8ce8; text-decoration:none;}
+	/**左边导航下拉菜单 END*******************************************************************************************************************************/ 
+	 
+	/**左边导航树 START*******************************************************************************************************************************/
+		.webfx-tree-container {margin: 0px;padding: 0px;font: icon;white-space: nowrap;}
+		.webfx-tree-item {padding: 0px;margin: 0px;font: icon;color: black;white-space: nowrap;}
+		.webfx-tree-item a, .webfx-tree-item a:active, .webfx-tree-item a:hover {margin-left: 3px;padding: 1px 2px 1px 2px;}
+		.webfx-tree-item a {color: black;text-decoration: none;font-size: 12px;}
+		.webfx-tree-item a:hover {color: blue;text-decoration: underline;}
+		.webfx-tree-item a:active {background: highlight;color: highlighttext;text-decoration: none;}
+		.webfx-tree-item img {vertical-align: middle;border: 0px;}
+		.webfx-tree-icon {width: 16px;height: 16px;}
+		.webfx-tree-item a.selected {color: selectedtext;background: selected;}
+		.webfx-tree-item a.selected-inactive {color: windowtext;background: buttonface;}
+	/**左边导航树 END**********************************************************************************************************************************/
+/** 框架样式 END*******************************************************************************************************************************/
+
+
+/** 工作流-待办任务容器样式 START*****************************************************************************************************************/
+	.liebiao{width:100%; margin:0 auto; border-bottom:1px dashed #2385e8; text-align:center; margin-bottom:2px; margin-top:0px;}
+	.liebiao .left{ float:left; width:50px;}
+	.liebiao .right{ width:*; text-align:left;} 
+	.liebiao .right h3{ margin:0; padding:0; font-size:12px; font-weight:100; font-family:"黑体", "宋体", "Arial Black"; height:36px; overflow:hidden; color:#000000; line-height:36px;}
+	.liebiao .right ul{ margin:0; padding:0;}
+	.liebiao .right ul li{ margin:0; padding:0; line-height:20px; background:#ffffff url(../images/workflow/dot.gif) no-repeat left; font-size:12px; padding-left:10px;}
+	.liebiao .right ul li i{ float:right; margin-top:-20px; font-style:normal; color:#254f7b;}
+	.liebiao .right ul li span{ font-weight:bold; color:#FF6600;}
+	.liebiao a{ text-decoration:none;}
+	.liebiao a:link{ color:#254f7b;}
+	.liebiao a:hover{color:#000000;}
+	.liebiao a:visited{ color:#254f7b;} 
+/** 工作流-待办任务容器样式 END*****************************************************************************************************************/
+
+
+/** 工作流-待办任务查询样式 START*****************************************************************************************************************/
+	.top_search{ margin:5px auto 0 auto; background:#ebf3ff url(../../images/platform/workflow/gzl_bg.gif) repeat-x top left; height:40px; width:98%; border:1px solid #2385e8;}
+	.top_search table{ line-height:40px; font-size:12px;}
+/** 工作流-待办任务查询样式 END*****************************************************************************************************************/
+
+
+/** 工作流-已办任务查询框样式 START*****************************************************************************************************************/
+	.top_dbrw{ margin:5px auto 0 auto; background:#ebf3ff url(../../images/platform/workflow/gzl_bg.gif) repeat-x top left; height:70px; width:98%; border:1px solid #2385e8;}
+	.top_dbrw table{ font-size:12px;}
+	.shade{width:98%; border:1px solid #dcdcdc; height:0; margin:0 auto; clear:both; overflow:hidden;}
+/** 工作流-已办任务查询框样式 END*****************************************************************************************************************/
+
+
+/** 工作流-下拉框的样式（不是全用，只有很少部分在用） START*****************************************************************************************************************/
+	#mh_sel{ width:258px; font-size:12px; text-align:left; height:20px; padding:3px; background:#d4e8fa; display:block;}
+	#mh_sel select{width:258px; padding:0 4px; line-height:20px;}
+	#mh_sel div.tag_select{background:transparent url(../../images/platform/workflow/select_bg.gif) no-repeat top left; padding:0 4px; line-height:20px;}
+	#mh_sel div.tag_select_hover{background:transparent url(../../images/platform/workflow/select_bg_hover.gif) no-repeat top left; padding:0 4px; line-height:20px;}
+	#mh_sel div.tag_select_open{background:transparent url(../../images/platform/workflow/select_bg_hover.gif) no-repeat top left;  padding:0 4px; line-height:20px;}
+	#mh_sel ul.tag_options{position:absolute; z-index:100; margin:0;background:transparent url(../../images/platform/workflow/select_li.gif) no-repeat top left;list-style:none;margin:0;width:258px;}
+	#mh_sel ul.tag_options li{ z-index:100; background:transparent url(../../images/platform/workflow/select_li.gif) no-repeat top left;display:block;width:258px;height:20px;text-decoration:none;line-height:20px;color:#000;}
+	#mh_sel ul.tag_options li.open_hover{ z-index:100; background: url(../../images/platform/workflow/select_li_hover.gif) no-repeat top left; color:#000}
+	#mh_sel ul.tag_options li.open_selected{ z-index:100; background: url(../../images/platform/workflow/select_li_hover.gif) no-repeat top left;color:#19555F}
+/** 工作流-已办任务查询框样式 END*****************************************************************************************************************/
+
+
+/* 工作流-任务控制台 START *****************************************************************************************************************/
+	/*最上面的用户信息*/
+	#top_info{ width:100%; font-size:12px; color:#666666; overflow:hidden; padding:0; margin:0; line-height:26px; text-align:left; height:32px; margin-left:0; background:url(../../images/platform/workflow/lcxx_bg1.gif) repeat-x top left;}
+	#top_info span{ margin-left:30px;}
+	#top_info span.user{ background:url(../../images/platform/workflow/user.gif) no-repeat left; padding-left:22px;}
+	#top_info span.date{ background:url(../../images/platform/workflow/date.gif) no-repeat left; padding-left:22px;}
+	
+	/*导航按钮容器*/
+	#big_menu{ background:url(../../images/platform/workflow/lcxx_menu_bg.gif) repeat-x top left; height:57px; margin:0; overflow:hidden;}
+	#big_menu a img{ border:none;}
+	
+	/*流程按钮容器 （手动流程，回退等）*/
+	#top_menu2{ width:100%; font-size:12px; color:#666666; text-align:left; height:28px; overflow:hidden; margin-left:0; background:url(../../images/platform/workflow/lcxx_bg2.gif) repeat-x top left;}
+	#top_menu2 span{ width:30px; float:left; display:block;}
+	#top_menu2 a{ line-height:24px; margin-top:2px; color:#0f3d65; text-decoration:none; padding:0px 5px; display:block; float:left;}
+	#top_menu2 a:hover{ color:#ff0000; display:block;}
+
+	/*流程动作按钮容器 （用户自定的动作等）*/
+	#top_menu3{ width:100%; font-size:12px; color:#666666; line-height:32px; text-align:left; height:32px; margin-left:0; background:url(../../images/platform/workflow/lcxx_bg3.gif) repeat-x top left;}
+	#top_menu3 span{ width:30px; float:left; display:block;}
+	#top_menu3 a{ line-height:24px; margin-top:4px; color:#003cd5; text-decoration:none; font-size:12px; padding:0px 5px; display:block; float:left;}
+	#top_menu3 a:hover{ background:#009cff; color:#ffffff; display:block;}
+	
+	/*流程信息*/
+	#lcxx{width:95%;height:100%; margin:14px auto; border:1px solid #709ce3; background:#ffffff url(../../images/platform/workflow/top_bg.gif) repeat-x top left;}
+	#lcxx h2{ clear:both; font-weight:bold; color:#3f4140; padding:0; font-size:20px; height:30px; font-family:"微软雅黑","黑体", "宋体", "Arial Black" line-height:20px; text-indent:20px; text-align:left; margin:4px auto 0 4px;}
+	#lcxx h2 i{ color:#FF6600; font-style:normal;}  
+	#lcxx h2 strong{ float:right; font-size:16px; margin-right:20px; margin-top:-22px;}
+	.clear{ clear:both;}       
+	.rwnr{ clear:both; margin:10px auto; font-size:12px; line-height:22px;}   
+	.rwnr table tr td.nr{padding-left:10px; text-align:left; color:#990000; font-weight:bold;}
+/* 工作流-任务控制台 END *****************************************************************************************************************/
+
+
+/* 工作流-消息中心 END *****************************************************************************************************************/
+	table.table_list {border-left: 1px solid gray; border-top: 1px solid gray;}
+	table.table_list td {border-right: 1px solid gray; border-bottom: 1px solid gray;}
+	table.table_edit {border-left: 1px solid gray; border-top: 1px solid gray;}
+	table.table_edit td {border-right: 1px solid gray; border-bottom: 1px solid gray;}
+	div.msg_content {}
+/* 工作流-消息中心 END *****************************************************************************************************************/
+
+
+/* 工作流-收藏夹 END *****************************************************************************************************************/
+	div.favorite{width: 98%;margin-top: 10px;background-color: white;}
+	tr.header td{height:34px;border-top:1px solid #DDDAD5;background: url('../../images/platform/favorites/news_bg_53.gif') no-repeat top left #F5F5F5;}
+	tr.folder td{height:34px;border-top:1px solid #DDDAD5;border-bottom:1px solid #DDDAD5;FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#8CC6FF,endColorStr=#FFFFFF);}
+	tr.open_folder td{height:34px;border-top:1px solid #DDDAD5;border-bottom:1px solid #DDDAD5;FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#FFFFFF,endColorStr=#8CC6FF);}
+	tr.content{background:expression(this.rowIndex%2==0?"#EEF9D0":"#FFD7F4");  text-indent: 50px; line-height: 30px;border-bottom: 1px solid #390FFF;}
+	a:link span.header{color:#FFFFFF;text-indent:20px;font-weight:bold;text-decoration: none;}
+	a:visited span.header{color:#FFFFFF;text-indent:20px;font-weight:bold;text-decoration: none;}
+	a:link span.folder{color:#244FA6;text-indent:20px;font-weight:bold;text-decoration: none;}
+	a:visited span.folder{color:#244FA6;text-indent:20px;font-weight:bold;text-decoration: none;}
+
+	/*菜单的样式*/
+	#menu{display:none;position:absolute;top:0px;left:0px;width:110px;background:#FFFFFF;border:1px solid #C2E1FF;}
+	.icon{text-align:center;width:20px;height:20px;padding:3px;background:#C2E1FF;}
+	.item a{text-indent:5px;color:black;text-decoration:none;font-size: 14px;}
+	.item a:hover{text-indent:5px;color:black;text-decoration:underline;font-size: 14px;}
+/* 工作流-收藏夹 END *****************************************************************************************************************/
+
+
+/* 工作流-流程定制 START *****************************************************************************************************************/
+	workflowconfig_BODY {border: none;}
+	workflowconfig_tableContainer {clear: both;border: 1px solid #bdd5df;height: 100%;overflow: auto;width: 100%;}
+	.workflowconfig_tbody.scrollContent td, workflowconfig_tbody.scrollContent tr.normalRow td { 
+		background: #C4D6FC; 
+		border-bottom: 1px solid; 
+		border-left: 1px solid; 
+		border-right: 1px solid; 
+		border-top: 1px solid; 
+		padding: 2px 3px 
+	} 
+	.workflowconfig_toolbox{
+		BACKGROUND: url(../../skins/default/images/platform/workflow/config/tools_bg.gif) repeat-x top left;
+		border:1px solid #bdd5df;
+		MARGIN: 0pt; 
+		PADDING-BOTTOM: 0pt; 
+		PADDING-LEFT: 0pt;
+		PADDING-RIGHT: 0pt;
+		PADDING-TOP: 0pt;
+		border-right: none;
+	}
+	.workflowcong_gridstyle{
+		margin:0px auto;
+		border-left:1px solid #bdd5df;
+		background: url(../../skins/default/images/platform/workflow/config/table_bg.gif) top left;
+		overflow:hidden;
+		border-collapse:separate;
+	}
+	
+	.workflowcong_gridstyle tr.hdr td,th{
+		font-family:arial;
+		font-size:12px;
+		background-Color:#eefaff;
+		border: 1px solid;
+		border-color : white #8ca6b1 #8ca6b1 white;
+		text-align: left;
+		margin:0px;
+		padding:3px 0px 3px 0px ;
+		font-weight:normal;
+		border-right:none;
+	    -moz-user-select:none;
+	    overflow:hidden;
+	}
+	
+	.workflowcong_gridstyle tr.obj td {
+		border: 1px solid;
+		border-color : white #8ca6b1 #8ca6b1 white;
+		font-family:Arial;
+		font-size:12px;
+	    -moz-user-select:none;
+	    overflow:hidden;
+	    padding-top:0px;
+	    border-right:none;
+	    padding-bottom:0px;
+	}
+	.workflowconfig_cButton{
+		background-image:url(/_CommitSys/Images/Icons/button.gif);
+		BORDER-RIGHT: darkgray 1px solid; BORDER-TOP: darkgray 1px solid; FONT-SIZE: 9pt; BORDER-LEFT: darkgray 1px solid; CURSOR: hand; BORDER-BOTTOM: darkgray 1px solid; FONT-FAMILY: verdana; HEIGHT: 22px; BACKGROUND-COLOR: white
+	}
+	
+	#tools{ border:1px solid #bdd5df;}
+/* 工作流-流程定制 END *****************************************************************************************************************/
+
+
+
+/******************************* 流转页面 ******************************************************************/
+
+#transition{width:800px; height:630px; margin:0px auto; overflow:hidden; display:block; padding-bottom:8px;}
+#transition .liuzhuantop{ height:30px; background:url(../../images/platform/transition/bgliuzhuan.gif) repeat-x; line-height:33px; text-align:right; padding-right:8px; padding-top:3px;}
+#transition .dangqian{height:37px; background:url(../../images/platform/transition/bgbz.gif) repeat-x; color:#323232; line-height:39px; font-weight:bold;}
+#transition .dangqian ul{}
+#transition .dangqian ul li{float:left; padding-left:46px;}
+#transition .dangqian ul li.dqbz{ background:url(../../images/platform/transition/danqian.gif) no-repeat 6px 4px; height:37px; line-height:39px; width:auto; display:block;}
+#transition .dangqian ul li.nextbz{background:url(../../images/platform/transition/nextbuz.gif) no-repeat 6px 4px; height:37px; line-height:39px; display:block;}
+#transition .dangqian ul li.nextbz table tr td{line-height:39px; height:37px;font-size: 12px;font-weight: bold;}
+
+#transition .zhuti{text-align:center;}
+#transition #list_table_pingtai{margin-top:1px;border: 1px solid #bdd5ee; border-bottom:none; border-right:none; background:#f4f9ff;}
+#transition #list_table_pingtai tr td{padding:3px 8px; line-height:22px; background:#f4f9ff;border-right:1px solid #bdd5ee; border-bottom:1px solid #bdd5ee;}
+#transition #xiaotable{border:none; text-align:left;}
+#transition #xiaotable tr td{border:none;}
+#transition .kuang1{width:650px; height:55px; border:1px solid #eaf1f7;overflow:auto;}
+#transition .cl2{font-weight:bold;font-size: 12px;margin: 0;padding: 0;}
+#transition .xuanxian{height:40px; line-height:40px; padding-top: 8px;}
+
+#transition .leftbanli{text-align:left; width:470px; overflow:hidden; float:left;}
+#transition .leftall{width:460px; height:311px; border:1px solid #eaf1f7; background:#fff;color:#474646;}
+#transition .leftzu{width:460px; height:188px; border:1px solid #eaf1f7;border-bottom:0; background:#fff;color:#474646;overflow: auto;}
+#transition .leftyh{width:460px; height:121px; border:1px solid #eaf1f7;border-top:0; background:#fff; margin-top:2px; color:#474646;overflow: auto;}
+#transition .centerbanli{width:35px; float:left; padding-top:120px;}
+#transition .centerbanli a{margin-top:8px; width:27px; height:27px; display:block;}
+#transition .rightbanli{float:right; text-align:left;}
+#transition .yixuan{height:40px; line-height:40px;}
+#transition .yxyonghuming{padding-top:0px; width:265px; height:311px; display:block; border:1px solid #eaf1f7; background:#fff url(../../images/platform/transition/bgyongh.gif) right repeat-y;}
+#transition .yonghu{width:219px; float:left; height:311px;}
+#transition .yonghu select{width:219px; height:311px;margin-bottom: 0px;border: none;}
+#transition .liebiao{padding: 0px; margin: 0px;width:40px; height:311px; border: none;} 
+#transition .liebiao ul{ text-align:right; font-weight:bold;}
+#transition .liebiao ul li{color:gray; height:100px; display:block; padding-right:12px;margin-bottom:2px; padding-top:10px;cursor: pointer;background:url(../../images/platform/transition/qiehuanbg.gif) no-repeat;}
+#transition .liebiao ul .li2{height:155px;background:url(../../images/platform/transition/qiehuanbg2.gif) no-repeat;}
+#transition .liebiao ul .li3{color:gray; height:127px; display:block; padding-right:12px;margin-bottom:2px; padding-top:10px;cursor: pointer;background:url(../../images/platform/transition/qiehuanbg3.gif) no-repeat;}
+#transition .liebiao ul li a{color:#474646; text-decoration:none;}
+#transition .liebiao ul li.xuanzhong{color:blue;}
+#transition .liebiao ul li a:hover{color:#c2b502;}
+#transition #workflowDefinitionDiv {overflow:auto;}
+
+/************************ 流转页面结束 ****************************************************************/
+
+.r_r{
+     font-size:13px;
+   }
+.r_r span{
+   float:left;
+   height:30px; line-height:30px;
+} 
+.r_r td a{text-decoration:none; color:#000000; font-size:12px; display:block; display:inline;}
+.r_r td a:hover{ color:#0066FF;}
+table#list_table_1#tishi{ font-size:12px;}
+
+
+/************* 没有数据显示  ***************/
+table .nodata{color:gray;text-align: center;font-size: 12px;}
+font.nodata{color:gray; text-align:left; text-indent:20px;font-size: 12px; background:url(../../images/ebcm/common/warning.gif) no-repeat; width:500px;} 
+
+
+/*表格上面行样式*/
+table#list_table_1 tr td.tabletit{height:30px;font-weight:bold;background:#cbe1ff url(../../images/platform/config.gif) 10px 6px no-repeat; color:#031d40; text-indent:28px; font-size:13px;}
+table.list_table_sub tr td.tabletit{height:30px;font-weight:bold;background:#cbe1ff url(../../images/platform/config.gif) 10px 6px no-repeat; color:#031d40; text-indent:28px; font-size:13px; text-align:left; float:left;}
+.tabletit{clear:both;height:24px; line-height:24px;font-weight:bold;/*background:url(../../images/platform/config.gif) 2px 4px no-repeat; */color:#333333; /*text-indent:24px; */font-size:13px; text-align:left; float:left; display:block;}
+
+
+#list_table_00{}
+#list_table_00 tr td{height:26px; line-height:26px; color:#3c3c3c; background:#fff;}
+#list_table_00 tr td.td-lable1{color:#3c3c3c; font-size:12px; font-weight:bold; text-align:right; padding-right:6px;}
+#list_table_00 tr td.td-text1{ font-size:12px; text-align:left; padding-left:6px;}
+#list_table_00 tr td.td-text1 input{}
+
+
+/*表格样式.list_table_sub*/  
+table.list_table_sub{border: 1px solid #98b8e2; border-bottom:none; border-right:none; background:#fff; font-size:12px;}
+table.list_table_sub tr td{font-size: 12px;padding:0px 4px; line-height:22px; background: #fff;border-right:1px solid #98b8e2; border-bottom:1px solid #98b8e2;}
+table.list_table_sub thead td{text-align:center;background: #e1eefe; color:#616161; font-weight:bold; line-height:22px; height:22px; border-bottom:1px solid #98b8e2;}
+table.list_table_sub tbody td{table-layout: fixed;word-wrap:break-word;word-break:break-all;}
+table.list_table_sub tbody tr.even td{background: #F4F9FF;}
+table.list_table_sub tbody tr.selected td{background: #3d80df;color: #ffffff;}/*自然状态*/ 
+table.list_table_sub tbody tr.ruled td{color: #000;background-color:#CBE1FF; }/*鼠标经过*/
+table.list_table_sub tbody tr.chlick td{color: #000;background-color:#cbe1ff; }/*鼠标点击*/
+table.list_table_sub tr td font{font-size: 12px;}
+
+
+.tabDiv{ height:32px; width:100%; background:url(../../images/ebcm/common/tab_bg.jpg) repeat-x;}
+.tabDiv ul{ margin:0; padding:0; list-style:none;}
+.tabDiv ul li{ float:left; width:71px; height:32px; text-align:center; line-height:32px; cursor:hand; margin-left:2px;}
+.tabDiv .tab_selected{ background:url(../../images/ebcm/common/tab_qiehuan.jpg) 0 0 no-repeat; width:71px; height:32px; float:left; display:block; color:#0074d6; font-weight:bold; line-height:35px; overflow:hidden;}
+.tabDiv .tab_unselected{ background:url(../../images/ebcm/common/tab_qiehuan.jpg) -73px 0 no-repeat; width:71px; height:32px; float:left; display:block; color:#9c9fa2;}
+.color_font{ color:#FFFFFF;}
+.line_st_w{border-top:1px solid #2385e8; height:0; overflow:hidden; margin:-6px auto 2px auto;}
+.kuang_st_w{ border:1px solid #b5b5b5; width:33%;}

@@ -1,0 +1,30 @@
+.tab-container{
+	background: white;
+}
+.etabs-tabs {
+	border-bottom: 1px solid #ddd;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+.etabs-tabs>li {
+	margin-bottom: -1px;
+	position: relative;
+	display: inline-block;
+}
+.etabs-tabs>li.active>a, .etabs-tabs>li.active>a:focus, .etabs-tabs>li.active>a:hover {
+	color: #555;
+	cursor: default;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-bottom-color: transparent;
+}
+.etabs-tabs>li>a {
+	margin-right: 2px;
+	line-height: 1.42857143;
+	border: 1px solid transparent;
+	border-radius: 4px 4px 0 0;
+	position: relative;
+	display: block;
+	padding: 10px 15px;
+}

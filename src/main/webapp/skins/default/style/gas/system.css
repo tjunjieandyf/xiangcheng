@@ -1,0 +1,169 @@
+@charset "utf-8";
+html{height:100%;}
+body,ul,dl,dd,h1,h2,h3,p,form{margin:0;padding:0;font:normal 12px/1.5 "Microsoft YaHei",Arial, Helvetica, sans-serif;}
+body{ background:white;}
+input, textarea, keygen, select, button {font:normal 12px/1.5 "Microsoft YaHei",Arial, Helvetica, sans-serif;}
+ul{list-style-type:none;}img{border:none; vertical-align:middle;}
+em,i{font-style:normal;}
+big,small{font:normal 12px/1.5 "Microsoft YaHei";}table{border-collapse:collapse;}
+a:link,a:visited{ text-decoration:none;}
+a:hover,a:active{ text-decoration:none; outline:none;}
+.space{height:8px; clear:both; overflow:hidden;}
+/** 区域管理按钮样式 */
+.btn_areamanager{
+	background-color:#007AFF;
+	border:1px solid #95B8E7;
+	border-radius:2px;
+	font-size:12px;
+	color:#fff;
+	cursor:pointer;
+	font-weight:bold;
+	font-family:微软雅黑;
+	height:20px;
+	padding:0 16px;
+	text-align:center;
+	text-decoration:none;
+}
+.btn_areamanager:hover{
+	background-color:#0097e9;
+	border:1px solid #0087d1;
+	color:#fff;
+}
+/*查询列表样式*/
+.choibox{
+	border-bottom:1px solid #e0e0e0; 
+	background:#f7f7f7; 
+	padding:3px 10px 3px 10px;
+	height: 29px;
+	color: #555
+}
+.choibox table.choitable{
+	float:right;
+}
+
+.choibox ul.choiul{
+	list-style: none;
+}
+.choibox ul.choiul li{
+	float:left;
+	margin: auto 5px;
+	height: 36px;
+	
+}
+.choibox span.toolspan{
+  padding: 0 10px;
+  line-height: 29px;
+  float: right;
+  position: relative;
+  display: inline-block;
+  height: 29px;
+}
+.choibox span.toolspan a{
+	padding:5px;
+}
+
+.choibox span.titlespan{
+  float: left;
+  font-size: 14px;
+  font-weight: bolder;
+  margin: 5px;
+  color:#393939;
+}
+
+/*按钮样式*/
+.toolsBtn{
+	border: none;
+	height: 25px;
+	line-height: 25px;
+	background: #2f7fe3;
+	color:white;
+	font-size: 14px;
+	text-align: center;
+	cursor: pointer;
+	margin: 1px 5px;
+	margin-left: 3px;
+	display: inline-block;
+	padding: 0 15px 0 15px;
+}
+.toolsBtn:hover{background: #2f7fe3; color: white;}
+
+.toolsBtn:focus{outline:none;}
+/** 城市站点文本框样式 */
+.choiceInput {
+  padding: 1px 0 1px 2px;
+  border: 1px solid #c4c4c4;
+  height: 18px;
+  line-height: 18px;
+  width: 90px;
+  font-size: 12px;
+  vertical-align: middle;
+}
+.choiceInput_hover {
+  padding: 1px 0 1px 2px;
+  border:  1px solid #3D9CCC;
+  height: 18px;
+  line-height: 18px;
+  width: 90px;
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+/** 打印excel表格样式 */
+.icon-excel{
+	background:url('../../images/gas/xtpz/xxfb/page_excel.png') no-repeat center center;	
+}
+
+/** 外部气象数据展示页面，模拟按钮样式 */
+.icon-1{ background: no-repeat 5px center;}
+.icon-2{ background: no-repeat 5px center;}
+.icon-3{ background: no-repeat 5px center;}
+.icon-4{ background: no-repeat 5px center;}
+.icon-1:hover,.icon-2:hover,.icon-3:hover,.icon-4:hover{ color: #fff; }
+.icon-1:hover{ background:#0087d1 no-repeat 5px center;}
+.icon-2:hover{ background:#0087d1 no-repeat 5px center;}
+.icon-3:hover{ background:#0087d1 no-repeat 5px center;}
+.icon-4:hover{ background:#0087d1 no-repeat 5px center;}
+
+/** 外部气象数据展示页面 */
+.imageMa{margin-left:30px;margin-top: 16px;}
+.imageMa a img{ border:none;}
+.imageMa a:visited{none;}
+.imageMa  a{display:block;text-decoration:none;}
+.imageMa  a:hover{box-shadow:0 0 20px 0px #000; background: #eee \9;}
+.imageMa a img{margin-bottom:5px;border:none;}
+.imageMa a strong{display:block; text-align:center;font-size:20px; margin-bottom:8px; color:#00578f;}
+.imageMa a span{font-family: microsoft yahei;display:block; text-align:center; font-size:18px;color: #3BACED;}
+#container .selected a{box-shadow:0 0 20px 0px #000; background: #eee \9;opacity: 0.7;}
+#container .selected i{background: url(../../images/ewaq/selected.png);position:absolute;right:16px;bottom:16px; width: 62px;height: 62px;color: #00578f;}
+/*数据交换展示图片选择样式*/
+.sjjhImgSelected a{box-shadow:0 0 20px 0px #000; background: #eee \9;opacity: 0.7;}
+.sjjhImgSelected i{background: url(../../images/ewaq/selected.png);position:absolute;right:16px;bottom:16px; width: 62px;height: 62px;color: #00578f;}
+
+#outer_container{
+	position:fixed;
+	bottom:-30px;	/*-160px to hide*/
+	margin:0px 0px 30px 0px;
+	height:130px;
+	padding:0;
+	/*-webkit-box-reflect:
+		below 5px -webkit-gradient(
+			linear,
+			left top,
+			left bottom,
+			from(transparent),
+			color-stop(0.6, transparent),
+			to(rgb(18, 18, 18))
+		);
+		*/
+}
+
+/** 气象数据展示 动画、聚焦、对比按钮样式 */
+.qxsjzsDiv {font-size: 14px;font-family: "Microsoft YaHei",Arial, Helvetica, sans-serif}
+.qxsjzsDiv a{text-decoration:none;color:#939393;padding: 5px;display:inline-block;}
+.qxsjzsDiv a:hover{background-color:#0095D3;color:white;height:25px;}
+.qxsjzsDivSelected {background: #CEF1FF;color: #0C46A3;font-weight: bold;};
+
+/** 通用按钮样式 */
+.gentlyBtn{ border: none; width: 100px; height: 30px; background: #e0ecff; color: #6c86b0; font-size: 14px; text-align: center; line-height: 30px; cursor: pointer; margin: 0 5px;}
+.gentlyBtn:hover{background: #1c81e9; color: white;}
+

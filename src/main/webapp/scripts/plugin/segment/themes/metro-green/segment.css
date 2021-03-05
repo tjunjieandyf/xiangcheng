@@ -1,0 +1,30 @@
+.ui-segment{
+	color: #16A892;
+	border: 1px solid #16A892;
+	/*border-radius: 4px;*/
+	display:inline-block;
+	font-family: 'Microsoft YaHei',Arial, Helvetica, sans-serif;
+}
+.ui-segment span.option.active{
+	background-color: #16A892;
+	color: white;
+}
+.ui-segment span.option{
+	font-size: 12px;
+	padding-left: 10px;
+	padding-right: 10px;
+	height: 20px;
+	text-align:center;
+	display:inline-block;
+	line-height: 20px;
+	margin: 0px;
+	float:left;
+	cursor:pointer;
+	border-right:1px solid #16A892;
+}
+.ui-segment span.option:last-child{
+	border-right: none;
+}
+.segment-select{
+	display:none;
+}

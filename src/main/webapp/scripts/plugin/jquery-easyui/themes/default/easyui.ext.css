@@ -1,0 +1,1602 @@
+@CHARSET "UTF-8";
+/*** 页面滚动条*/
+html {
+	scrollbar-3dlight-color: #D4D0C8; /*- 最外左 -*/
+	scrollbar-highlight-color: #FFF; /*- 左二 -*/
+	scrollbar-face-color: #F0F0F0; /*- 面子 -*/
+	scrollbar-arrow-color: #B7B7B7; /*- 箭头 -*/
+	scrollbar-shadow-color: #808080; /*- 右二 -*/
+	scrollbar-darkshadow-color: #D7DCE0; /*- 右一 -*/
+	scrollbar-base-color: #D7DCE0; /*- 基色 -*/
+	scrollbar-track-color: #F4F4F4; /*- 滑道 -*/
+	font-size: 12px;
+}
+
+body {
+	font-family: "微软雅黑"
+}
+
+textarea {
+	width: 80%;
+	overflow: hidden;
+	word-break: break-all;
+	word-wrap: break-word;
+	border: 1px solid #C7C7C7;
+	color: #474747;
+}
+
+/*编辑页面验证错误样式*/
+div.errorMessage {
+	border: 1px solid #CC9933;
+	background: #FFFFCC url(images/validatebox_warning.png) no-repeat 2px
+		1px;
+	padding-left: 2px;
+	text-indent: 20px;
+	line-height: 20px;
+}
+
+.list-panel-header {
+	padding: 5px;
+	line-height: 15px;
+	color: #15428b;
+	font-weight: bold;
+	background: url(images/panel_title.png) repeat-x;
+	position: relative;
+	border: 1px solid #99BBE8;
+}
+
+.datagrid-table {
+	margin: 0;
+	overflow: auto;
+	zoom: 1;
+	padding: 0;
+	height: 30px;
+	line-height: 30px;
+	width: 98%;
+}
+
+.datagrid-table td input[type="text"] {
+	border: none;
+	outline: none;
+	border: 1px solid rgb(209, 218, 226);
+	color: #474747;
+	height: 26px;
+	line-height: 26px;
+/* 	width: 85%; */
+	padding: 0 5px 0 5px;
+}
+
+.datagrid-table td .half {
+	width: 39% !important;
+}
+
+.datagrid-table td select {
+	color: #474747;
+	height: 23px;
+	line-height: 23px;
+	margin-top: 2px;
+}
+
+.datagrid-table td {
+	height: 25px;
+	border-right: 1px solid #DBE7F7;
+	border-bottom: 1px solid #DBE7F7;
+	/* overflow: hidden; */
+	padding: 0;
+	margin: 0;
+	padding: 3px 5px 3px 2px !important;
+	white-space: nowrap; /*不换行*/
+	/* 	word-wrap: break-word; */
+}
+
+.style-table td input[type="text"] {
+	border: none;
+	outline: none;
+ 	color: #474747;
+	height: 26px;
+	line-height: 21px;
+ 	padding: 0 5px 0 5px;
+ 	height:20px;
+	width:180px;
+    }
+    
+  .style-table td {
+	height: 25px;
+  	padding: 0;
+	margin: 0;
+	padding: 3px 5px 3px 2px !important;
+	white-space: nowrap;  
+ }
+
+.datagrid-table td.removesetNowrap {
+	white-space: normal; /*文本换行*/
+	word-wrap: normal;
+}
+
+.datagrid-bgcolor {
+	/*  background: #EFF8FF;  */
+	background: #EAF2FF;
+}
+
+.datagrid-table tr:hover {
+	background: rgb(234, 242, 255);
+}
+
+.datagrid-table-ext{
+	margin: 0;
+	overflow: auto;
+	zoom: 1;
+	padding: 0;
+	height: 30px;
+	line-height: 30px;
+	width: 98%;
+}
+
+.datagrid-table-ext thead tr{
+	background-color: #b7dbfc;
+	color: #1a70c0;
+}
+
+.datagrid-table-ext td {
+	height: 38px;
+	border-bottom: 1px solid #DBE7F7;
+	/* overflow: hidden; */
+	padding: 0;
+	margin: 0;
+	padding: 3px 5px 3px 2px !important;
+	white-space: nowrap; /*不换行*/
+	/* 	word-wrap: break-word; */
+}
+
+.tools-ext{
+	width: 71%;
+	border: none;
+	position: fixed;
+}
+
+.td {
+	width: 50% !important;
+	padding-right: 30px !important;
+	padding-left: 10px !important;
+	background-color: #fff;
+	/**/
+}
+
+.td input {
+	width: 80% !important;
+	border: 1px solid red !important;
+}
+
+.label-2 {
+	text-align: right;
+	width: 20%;
+}
+
+.text-2 {
+	text-align: left;
+	width: 80%;
+}
+
+.label-4 {
+	text-align: right;
+	width: 15%;
+}
+
+.text-4 {
+	text-align: left;
+	width: 35%;
+}
+
+.label-6 {
+	text-align: right;
+	width: 13%;
+}
+
+.text-6 {
+	text-align: left;
+	width: 20%;
+}
+
+.label-8 {
+	text-align: right;
+	width: 10%;
+}
+
+.text-8 {
+	text-align: left;
+	width: 15%;
+}
+
+.tip-msg {
+	border: 1px solid #F3F0CC;
+	z-index: 10010;
+	padding: 6px;
+	text-align: center;
+	position: absolute;
+	top: 0;
+	display: none;
+}
+
+.icon-tip-msg {
+	width: 16px;
+	display: inline-block;
+	margin-right: 8px;
+}
+
+.tip-msg-img {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	cursor: pointer;
+}
+
+.tip-success {
+	background: url('icons/ext/success.png') no-repeat center 0px;
+}
+
+.tip-success-msg {
+	background: #F0FFE2;
+}
+
+.tip-fail {
+	background: url('icons/ext/fail.png') no-repeat center 0px;
+}
+
+.tip-fail-msg {
+	background: #FFF1F1;
+}
+
+.tip-info-msg {
+	background: #FFFFEA;
+}
+
+.help_button {
+	position: fixed;
+	right: 0px;
+	cursor: pointer;
+	z-index: 20001;
+	top: 50%;
+}
+
+.help_div {
+	position: fixed;
+	z_index: 20000;
+	bottom: 0;
+	width: 380px;
+	height: 100%;
+	background-color: #FFFFFF;
+	font-size: 10.5pt;
+	border: 1px solid #5cc26f;
+	display: none;
+}
+
+.help_div strong {
+	display: block;
+	margin: 0 0 10px 0;
+	background: #5cc26f;
+	color: #fff;
+	padding: 2px 5px;
+}
+
+.panel-toolbar {
+	text-align: right;
+	overflow: hidden;
+}
+
+.panel-tool {
+	height: 30px;
+	line-height: 30px;
+	/* 	top: 4px!important; */
+	margin-right: 0;
+}
+
+.btn-ext {
+	/*margin-top:-5px;*/
+	
+}
+
+.readonly {
+	background-color: #EEEEEE;
+}
+
+.rowStyle {
+	color: red;
+	font-style: italic;
+}
+
+.tree-no-children {
+	background: url('images/tree-gray_collapsed.png') center no-repeat;
+	width: 16px;
+	height: 18px;
+	display: inline-block;
+}
+
+.timebox-menu-td {
+	text-align: center;
+	cursor: pointer;
+	-moz-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+}
+
+.timebox-menu-hover {
+	background-color: #eaf2ff;
+	color: #000000;
+}
+
+.timebox-selected {
+	background-color: #ffe48d;
+	color: #000000;
+	border: 1px solid #ffab3f;
+	padding: 0;
+}
+
+.timebox-menu {
+	font-size: 12px;
+	border: 1px solid rgb(149, 184, 231);
+	padding: 2px 2px 2px 2px;
+	background-color: white;
+}
+
+.timebox-selected {
+	background-color: #ffe48d;
+	color: #000000;
+	border: 1px solid #ffab3f;
+	padding: 0;
+}
+
+.timebox-hover {
+	background-color: #eaf2ff;
+	color: #000000;
+}
+/*设置单行文字超出则用省略号代替*/
+.setEllipsis {
+	width: 100%;
+	display: inline-block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+a, a:hover, a:visited, a:active {
+	text-decoration: none;
+	color: inherit;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, div, span, font, label, select, button
+a, ul, ol, li, dl, dt, dd, label, th, td, ul li, textarea, input {
+	font-size: 12px;
+	font-family: 'Microsoft YaHei';
+}
+
+textarea, input, select, button, pre {
+	font-family: '微软雅黑';
+}
+
+html {
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+	word-wrap: break-word;
+}
+
+button, input, optgroup, select, textarea {
+	color: inherit;
+	font: inherit;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+ul, ol {
+	padding-left: 0;
+	list-style-type: none;
+}
+
+button {
+	overflow: visible;
+}
+
+button, select {
+	text-transform: none;
+}
+
+button, html input[type="button"], input[type="reset"], input[type="submit"]
+	{
+	-webkit-appearance: button;
+	cursor: pointer;
+}
+
+button[disabled], html input[disabled] {
+	cursor: default;
+}
+
+button::-moz-focus-inner, input::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+
+input {
+	line-height: normal;
+}
+
+input[type="checkbox"], input[type="radio"] {
+	box-sizing: border-box;
+	padding: 0;
+	cursor: pointer;
+}
+
+input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button
+	{
+	height: auto;
+}
+
+input[type="search"] {
+	-webkit-appearance: textfield;
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
+}
+
+input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration
+	{
+	-webkit-appearance: none;
+}
+/* 重置input checkbox的默认样式 */
+input[type=checkbox] {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 15px;
+	height: 15px;
+	margin: 0;
+	cursor: pointer;
+	/*         vertical-align: bottom; */
+	background: url(../default/images/nogou.png) center no-repeat;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	position: relative;
+}
+
+input[type=checkbox]:active {
+	border-color: #A9A9A9;
+	background: white;
+}
+
+input[type=checkbox]:checked {
+	background: #fff;
+}
+
+input[type=checkbox]:checked::after {
+	content: ' ';
+	display: block;
+	position: absolute;
+	background: url(../default/images/gou.png) no-repeat !important;
+	width: 15px;
+	height: 15px;
+	top: 0px;
+	right: 0px;
+	left: 0px;
+}
+
+input[type=checkbox]:focus {
+	outline: none;
+	border-color: #A9A9A9;
+}
+
+/* 结束重置 */
+fieldset {
+	border: 1px solid #c0c0c0;
+	margin: 0 2px;
+	padding: 0.35em 0.625em 0.75em;
+}
+
+legend {
+	border: 0;
+	padding: 0;
+}
+
+label {
+	cursor: pointer;
+}
+
+textarea {
+	overflow: auto !important;
+	resize: none;
+	outline: none;
+	line-height: 25px;
+}
+
+optgroup {
+	font-weight: bold;
+}
+/* 重置默认样式结束*/
+/* query样式修改 */
+#list_table_query {
+	background: #fff;
+	border-collapse: collapse;
+}
+
+#list_table_query tr {
+	height: 35px;
+}
+/* 顶部栏修改 */
+.panel-header {
+	height: 40px;
+	background: #DBE8F8 !important;
+	filter: none;
+	border: none;
+	padding: 0;
+	/*margin-bottom: -5px;*/
+}
+
+.panel-title {
+	border-bottom: 1px solid #E8E8E8
+}
+
+.panel-header .panel-title {
+	height: 40px;
+	line-height: 40px;
+	font-size: 15px;
+	background: #fff;
+}
+
+#list_table_query .td-lable {
+	color: #333333;
+	vertical-align: middle;
+	text-align: right;
+}
+/* 搜索框的修改 */
+#list_table_query tr td input {
+	vertical-align: middle;
+	border: 1px solid #dedede;
+	height: 26px;
+	line-height: 26px;
+	vertical-align: middle;
+	padding-left: 5px;
+}
+
+#list_table_query tr td select {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	opacity: 0;
+	cursor: pointer;
+	height: 100%;
+	font-size: 12px
+}
+
+#list_table_query .butn {
+	border: none;
+	cursor: pointer;
+	background: #46b530;
+	color: white;
+	width: 84px;
+	text-align: center;
+	height: 65px;
+	line-height: 65px;
+	vertical-align: middle;
+	font-size: 18px;
+}
+
+#list_table_query .adv {
+	color: #107add;
+	margin-left: 15px;
+}
+
+#list_table_query option {
+	font-size: 13px
+}
+
+.btnbox {
+	height: 60px;
+	overflow: hidden;
+}
+
+.btnbox .btn {
+	width: 84px;
+	border: 1px solid #8fc0ef;
+	text-align: center;
+	line-height: 30px;
+	color: #107add;
+	float: right;
+	margin: 15px 10px 0 0;
+	font-size: 12px;
+	cursor: pointer;
+	background: white;
+	padding: 0;
+}
+
+.btnbox .btn.on, .btnbox .btn:hover {
+	background: #107add;
+	color: white;
+	opacity: 0.9;
+	border: 1px solid #107add;
+}
+
+.list-table {
+	width: 100%;
+	height: 450px;
+}
+
+.list-table>table {
+	width: 100%;
+}
+
+.datagrid-cell-c1-FXYMC {
+	width: 250px ! important;
+}
+
+.datagrid-header-inner {
+	background-color: #dff2ff!important;
+}
+
+.datagrid-header, .datagrid-td-rownumber {
+	border: none;
+	height: 100%;
+}
+
+.datagrid-htable, .datagrid-ftable {
+	color: #296093;
+	height: 40px;
+}
+
+.datagrid-header {
+	height: 40px !important;
+}
+
+.datagrid-cell, .datagrid-cell-group, .datagrid-header-rownumber,
+	.datagrid-cell-rownumber {
+	height: 38px;
+	line-height: 38px;
+}
+
+.lines-no .datagrid-body td {
+	border: none;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.datagrid-body {
+	background-color: white;
+}
+
+.datagrid-body {
+	background-color: #fff;
+}
+
+.datagrid-header td, .datagrid-body td, .datagrid-footer td {
+	border-right: none;
+}
+
+.datagrid-header td, .datagrid-body td, .datagrid-footer td {
+	border-bottom: 1px solid #e3e9ee;
+}
+
+.datagrid-row-alt {
+	background: rgb(248, 252, 255);
+}
+.datagrid-row-over, .datagrid-header-selected{background: #9cc8e7;}
+.panel-body {
+	color: #666666;
+}
+
+.datagrid-header .datagrid-cell span {
+	font-size: 14px;
+}
+
+.datagrid-cell, .datagrid-cell-group, .datagrid-header-rownumber,
+	.datagrid-cell-rownumber {
+	color: #4F4F4F;
+}
+
+.datagrid-row {
+	color: #4F4F4F;
+}
+
+.datagrid-row-selected {
+	background: #eaf2ff none repeat scroll 0% 0%;
+	color: #1268A8;
+}
+
+.datagrid-header, .datagrid-td-rownumber {
+	background: transparent linear-gradient(to bottom, #FFF 0px, #FFF 100%)
+		repeat-x scroll 0% 0%;
+}
+
+.datagrid-header .datagrid-cell span {
+	color: #333;
+	font-size: 12px;
+}
+
+.datagrid-pager {
+	background: rgb(255, 250, 250) none repeat scroll 0% 0%;
+}
+
+.datagrid-table {
+	border: none !important;
+}
+
+.datagrid-toolbar {
+	padding: 1px 0px;
+}
+
+.l-btn-left, .panel-title {
+	color: #4892D6;
+}
+
+.l-btn-icon-left .l-btn-icon {
+	left: 0;
+}
+
+.panel-header .l-btn-plain {
+	margin: 0px 5px 0 5px;
+}
+
+.panel-header .l-btn-icon-left .l-btn-text {
+	margin: 0;
+	padding: 0;
+	height: 20px;
+	line-height: 20px;
+	/*border: 1px solid #3498db;*/
+}
+/*.panel-header .l-btn-icon-left .l-btn-text:hover{*/
+/*color: white;*/
+/*background: #3498db;*/
+/*border:1px solid #107add;*/
+/*}*/
+.datagrid-cell, .datagrid-cell-group, .datagrid-header-rownumber,
+	.datagrid-cell-rownumber {
+	font-size: 14px;
+	height: 100%;
+	vertical-align: middle;
+	text-align: center;
+/* 	color:#1a70c0; */
+}
+
+#findForm .datagrid-table td {
+	border: none;
+}
+
+#autoform .datagrid-table td {
+	padding: 3px 0;
+}
+
+#editGgdmjFrame .panel-header {
+	border-bottom: 1px solid #E3E9EE;
+}
+
+.datagrid-table .text-2>input {
+	border: none;
+	padding: 0 5px;
+	margin: 0 5px;
+}
+
+#center>.panel-toolbar {
+	position: absolute;
+	top: 7px;
+	right: 15px;
+	background: #3498db;
+}
+
+.l-btn-plain:hover {
+	border-radius: 0;
+	-webkit-border-radius: 0;
+}
+
+#center>.panel-toolbar {
+	height: initial;
+}
+
+#center>.panel-toolbar .l-btn-plain .l-btn-left.l-btn-icon-left .l-btn-text
+	{
+	color: #107add;
+	margin: 0;
+	background: white;
+	padding: 0px 10px;
+}
+
+#center>.panel-toolbar .l-btn-plain .l-btn-left.l-btn-icon-left .l-btn-text:hover
+	{
+	background: #107add !important;
+	color: white !important;
+}
+
+#center>.panel-toolbar .l-btn-plain .l-btn-left.l-btn-icon-left>.l-btn-icon.icon-save
+	{
+	background: none;
+	z-index: -99;
+}
+
+.icon-select {
+	background: url('icons/peopleselect.png') no-repeat center center;
+	width: 16px;
+	height: 16px;
+}
+
+.icon-close {
+	background: url('icons/peopleclear.png') no-repeat center center;
+	width: 16px;
+	height: 16px;
+}
+
+.panel-header {
+	border: none;
+	border-bottom: 1px solid #E8E8E8 !important;
+}
+
+.panel-header, .panel-body {
+	border: none;
+}
+
+#systemNumberForm {
+	margin-top: 15px !important;
+}
+
+#systemNumberForm .datagrid-table {
+	border-top: 1px solid #DBE7F7 !important;
+}
+
+#systemNumberForm .datagrid-table .text-3>input[type=button] {
+	background: none;
+	border: none;
+	background-color: #DBE8F8;
+	color: #5F5F5F;
+	padding: 3px 12px;
+	border-radius: 2px;
+	border: 1px solid #DBE8F8;
+}
+
+#systemNumberForm .datagrid-table .text-3>textarea {
+	margin-top: 7px;
+	border: none;
+	border: 1px solid #DEDDDD;
+}
+
+#leftToolbar .datagrid-table td, #ggdmzFindForm  .datagrid-table td {
+	border: none;
+}
+
+#autoform .datagrid-table tr:first-child td {
+	border-top: 1px solid #DBE7F7;
+}
+
+#leftFindForm table tr:nth-child(2) td {
+	border-bottom: none;
+}
+
+#ggdmzListFrame .datagrid-view .datagrid-body tr td {
+	height: 28px;
+	line-height: 28px;
+	vertical-align: middle;
+}
+
+#ggdmzListFrame .datagrid-view .datagrid-body tr td>input[type=text] {
+	height: 30px !important;
+	line-height: 30px;
+	padding: 0;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+#ggdmzListFrame  .datagrid-view .datagrid-body tr td>span {
+	height: 28px !important;
+	line-height: 28px !important;
+	display: table-cell;
+}
+
+#ggdmzListFrame  .datagrid-view .datagrid-body tr td .combo .combo-text
+	{
+	height: 28px !important;
+	line-height: 28px !important;
+}
+
+#ggdmzListFrame  .datagrid-view .datagrid-body tr td .combo-arrow {
+	background-color: white !important;
+	height: 28px !important;
+}
+
+.combo-p .panel-body.panel-body-noheader {
+	border: 1px solid #95B8E7;
+}
+
+#findForm .selectBox {
+	display: inline-block;
+	border: 1px solid #dedede;
+	width: 80%;
+	height: 30px;
+	line-height: 30px;
+	position: relative;
+	padding: 0 20px 0 5px;
+	vertical-align: middle;
+	background: url('../default/images/arrowdown.png') no-repeat 97% center;
+	background-color: white;
+}
+
+#findForm .selectBox select {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	opacity: 0;
+	filter: alpha(opacity = 0);
+	cursor: pointer;
+}
+
+#findForm .text-4 .combo.datebox, #findForm .text-4 .combo.datebox>input
+	{
+	height: 28px !important;
+	line-height: 28px !important;
+	border-color: #dedede !important;
+}
+
+#findForm .text-4 .combo.datebox .combo-arrow {
+	height: 28px !important;
+}
+
+.home-page {
+	height: 100%;
+	overflow: hidden;
+}
+
+#ggdmzListFrame .panel.datagrid, #ggdmzListFrame .panel-header.panel-header-noborder,
+	#ggdmzListFrame .datagrid-wrap.panel-body-noborder {
+	width: 100% !important;
+}
+
+#users ul li {
+	padding: 0 !important;
+}
+
+.skins {
+	display: none;
+	position: absolute;
+	left: -20px;
+	top: 25px;
+	border: 1px solid #ABABAB;
+	height: 30px;
+	z-index: 9999;
+	background: #fff;
+	width: 90px;
+}
+
+.skins div {
+	width: 12px;
+	height: 12px;
+	line-height: 12px;
+	border: 2px solid #fff;
+	padding: 3px;
+	margin: 3px;
+	float: left;
+	cursor: pointer;
+}
+
+.skins span {
+	width: 12px;
+	height: 12px;
+	display: inline-block;
+	vertical-align: inherit !important;
+}
+
+.skins .curSkin {
+	border: 2px solid #A6A6A6;
+	cursor: default;
+}
+
+.head, .head-left {
+	overflow: visible !important;
+}
+
+.leftMenusClass1 {
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+.leftMenusClass2 {
+	overflow-y: auto overflow-x:auto
+}
+
+.ms-box {
+	display: inline-block;
+	position: relative;
+	width: 100% !important;
+}
+
+.ms-box .multiselect {
+	height: 30px;
+	line-height: 30px;
+	background: #FFF url(../default/images/icon_arrow_bot_x.png) no-repeat
+		98% center;
+	padding-right: 20px;
+}
+
+.ms-box>input[type="text"] {
+	width: 100%;
+}
+
+.ms-box .ms-content {
+	left: 0px;
+	display: block;
+	background: #f3f3f3;
+	width: 100%;
+	overflow: auto;
+	z-index: 5;
+	position: absolute;
+	border: 1px solid #41A7EB;
+}
+
+.ms-box .ms-content ul {
+	list-style: none;
+	margin: 0;
+}
+
+.ms-box .ms-content ul li {
+	display: block;
+	text-align: left;
+	cursor: default;
+	line-height: 12px;
+	padding: 10px;
+}
+
+.ms-box .ms-content ul li input {
+	vertical-align: bottom;
+	margin-right: 3px;
+}
+
+.ms-box .ms-content ul li:hover {
+	background: #41A7EB;
+	color: #F5F5F5;
+}
+
+.ms-box .ms-content ul li.selected {
+	background: #41A7EB;
+	color: #F5F5F5;
+}
+
+.ms-box .ms-content ul li.selected:hover {
+	background: #41A7EB;
+	color: #F5F5F5;
+}
+
+.datagrid-table {
+	table-layout: fixed !important;
+	background: white;
+}
+
+.datagrid-table td {
+	overflow: hidden !important;
+	white-space: nowrap !important;
+	text-overflow: ellipsis !important;
+}
+
+.datagrid-header-row, .datagrid-row {
+	height: 35px !important;
+}
+
+#findForm .combo.datebox>input {
+	width: 85% !important;
+	border: none !important;
+	height: 20px !important;
+}
+
+#leftFindForm .datagrid-table td {
+	overflow: inherit !important;
+}
+
+.panel-header .panel-title {
+	/* background: #fff url(../images/sider_tit_tag.png) no-repeat 8px center; */
+	padding-left: 20px;
+}
+
+.datagrid-table tr:hover {
+	background: none;
+}
+/* 修改滚动条样式 */
+/* ::-webkit-scrollbar {
+	width: 7px;
+	height: 7px;
+} */
+
+.l-btn:hover {
+	border: 1px solid #3498db;
+}
+
+::-webkit-scrollbar-track-piece {
+	background-color: transparent;
+}
+
+body::-webkit-scrollbar-track-piece {
+	background-color: white;
+}
+
+::-webkit-scrollbar-track-piece:no-button {
+	
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #c7c7c7;
+	border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:active {
+	background-color: #c7c7c7;
+}
+
+.datagrid-header, .datagrid-toolbar, .datagrid-pager,
+	.datagrid-footer-inner {
+	border-color: white;
+}
+
+.datagrid-toolbar, .datagrid-pager {
+	background: white;
+}
+/*.datagrid-toolbar >form{*/
+/*border-top: 1px solid #E8E8E8;margin-top: 3px!important;*/
+/*}*/
+.datagrid-view {
+	margin-top: -2px;
+}
+
+::-webkit-scrollbar-button:vertical {
+	width: 2px;
+}
+
+::-webkit-scrollbar-button:horizontal {
+	width: 2px;
+}
+
+::-webkit-scrollbar-button:vertical:start:decrement {
+	background-color: white;
+}
+
+::-webkit-scrollbar-button:vertical:end:increment {
+	background-color: white;
+}
+
+::-webkit-scrollbar-button:horizontal:start:decrement {
+	background-color: white;
+}
+
+::-webkit-scrollbar-button:horizontal:end:increment {
+	background-color: white;
+}
+
+.combo {
+	position: relative;
+}
+
+.combo-arrow {
+	position: absolute;
+	top: 0;
+	right: 2px;
+}
+
+.datagrid-header td.datagrid-header-over {
+	background-color: #B7DBFC;
+}
+
+/*编辑页面公共样式*/
+.datagrid-table {
+	width: 100%;
+	border: none;
+	border-color: white
+}
+
+.datagrid-table tr, .datagrid-table td {
+	border: none !important;
+	height: 35px;
+	line-height: 35px;
+	font-size: 12px
+}
+
+table .tableLabel { /*width: 20%*/
+	
+}
+
+table .tableData { /*width: 30%*/
+	
+}
+
+table .tableDataFull {
+	width: 80%
+}
+
+.tableData input[type=text], .tableData input[type=number], .tableData input[type=email],
+	.tableData input[type=search], .tableData input[type=password] {
+	/*border: none !important;border-bottom: 1px solid #E8E8E8 !important;*/
+	border: 1px solid #E8E8E8;
+}
+
+.tableDataFull input {
+	height: 80px !important;
+	border: 1px solid #E8E8E8 !important;
+}
+
+.tableData .combo {
+	border: 1px solid #E8E8E8;
+	width: 100%;
+	line-height: 20px
+}
+
+.combo-p .panel-body.panel-body-noheader {
+	border: 1px solid #E8E8E8;
+	border-top: none
+}
+
+.combo-arrow {
+	background-color: white
+}
+
+.combo-text {
+	font-size: 12px !important
+}
+
+.combobox-item, .combobox-group {
+	font-size: 13px
+}
+
+.tableLabel {
+	font-size: 12px !important
+}
+
+.tableData {
+	font-size: 12px !important
+}
+
+/*2016-4-26*/
+/*easyui日期选择框图标*/
+/*.tableData .datebox{width: 100% !important}*/
+.tableData .datebox .combo-arrow {
+	background: url(images/icon_calader.png) center no-repeat !important;
+}
+
+.datebox .combo-arrow {
+	background: url(images/icon_calader.png) center no-repeat !important;
+}
+
+.tableData .datebox .combo-arrow.on, .tableData .datebox .combo-arrow:hover
+	{
+	background: url(images/icon_calader_b.png) center no-repeat !important;
+}
+
+.abs {
+	position: absolute
+}
+
+.icon {
+	display: block;
+	width: 20px;
+	height: 20px;
+	top: 10px;
+	right: 0;
+	cursor: pointer;
+}
+
+.icon_search {
+	background: url(images/icon_search.png) center no-repeat;
+}
+
+.icon_search:hover {
+	background: url(images/icon_search.png) center no-repeat;
+}
+
+.icon_items {
+	background: url(images/icon_items.png) center no-repeat;
+}
+
+.icon_items:hover {
+	background: url(images/icon_items_b.png) center no-repeat;
+}
+
+.tableData .combo .combo-arrow {
+	background: url(images/icon_arrow_bot.png) center no-repeat;
+}
+.tableData .combo .combo-arrow:hover {
+	background: url(images/icon_arrow_bot_b.png) center no-repeat;
+}
+
+.datagrid-table .combo .combo-arrow {
+	background: url(images/combo_arrow.png) no-repeat scroll right center transparent !important;
+	opacity : 1.0 !important;
+}
+
+.datagrid-table .combo .combo-arrow:hover {
+	background: url(images/combo_arrow.png) no-repeat scroll right center transparent !important;
+}
+
+.tableData>p {
+	width: 100%;
+	overflow: hidden;
+	border-bottom: 1px solid #e8e9e9
+}
+
+.tableData .edit-block {
+	border-bottom: 1px solid #E8E8E8
+}
+
+.edit-block input {
+	border: none;
+	height: 100%;
+	-webkit-user-modify: read-write-plaintext-only;
+	outline: none !important;
+}
+
+.layout-split-north {
+	border-bottom: 2px solid #E6EEF8;
+}
+
+.layout-split-south {
+	border-top: 2px solid #FFFFFF;
+}
+
+.layout-split-east {
+	border-left: 2px solid #FFFFFF;
+}
+
+.layout-split-west {
+	border-right: 2px solid #E6EEF8;
+}
+
+.datagrid-table tr td {
+	background-color: white !important;
+}
+
+/*2015-05-20*/
+.datagrid-table tr td input[type=button] {
+	background-color: white !important;
+	border: 1px solid #3498DB
+}
+
+select {
+	border: none;
+	border: 1px solid #E8E8E8;
+	/*很关键：将默认的select选择框样式清除*/
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	/*在选择框的最右侧中间显示小箭头图片*/
+	background: url(images/combo_arrow.png) no-repeat scroll right center
+		transparent;
+	/*为下拉小箭头留出一点位置，避免被文字覆盖*/
+	/* padding-right: 14px; */
+	outline: none;
+}
+
+/*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+select::-ms-expand {
+	display: none;
+}
+
+.radiobox {
+	display: inline-block;
+	position: relative;
+	padding: 0 5px;
+	*zoom: 1;
+	height: 15px;
+}
+
+.radiobox .radio-icon {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	background: url("images/radio.png") no-repeat;
+	position: relative;
+	top: 3px;
+	*top: -10px;
+	background-size: cover
+}
+
+.radiobox .radio-icon.on {
+	background: url("images/radio_check.png") no-repeat;
+	background-size: cover
+}
+
+.radiobox span {
+	*position: relative;
+	*top: -10px;
+}
+
+input[type=checkbox] {
+	background: url("images/checkbox.png") no-repeat;
+}
+
+/*2016-5-23 selectBox*/
+.combo {
+	border: 1px solid #E8E8E8;
+/* 	width: 90% !important; */
+}
+
+.tableLabel .combo .combo-text {
+	border: none; 
+	width: 90% !important
+}
+
+.tableData .combo .combo-text {
+	border: none; 
+	width: 90% !important
+}
+
+.datagrid-table .combo .combo-text {
+	border: none; 
+	width: 90% !important
+}
+
+.datebox {
+	border: 1px solid #E8E8E8
+}
+
+.datebox input {
+	border: none !important;
+}
+
+.datebox .combo-arrow {
+	background-image: url("images/icon_calader.png")
+}
+
+.datebox .combo-arrow:hover {
+	background-image: url("images/icon_calader_b.png")
+}
+
+.panel-toolbar {
+	background-color: white !important;
+}
+
+.icon-save {
+	display: none
+}
+
+.icon-search {
+	display: none
+}
+.icon-ok {
+	display: none
+}
+.l-btn-text {
+	width: 50px;
+	height: 20px;
+	line-height: 20px;
+	color: #3498DB;
+	display: inline-block;
+	background: #3498DB;
+	margin: 0;
+	padding: 0
+}
+
+.l-btn-icon-left .l-btn-text {
+	margin: 0 !important;
+	background: #3498DB;
+	color: white
+}
+
+.l-btn-icon-left {
+	border: none;
+}
+/*div>span>.l-btn-icon-left .l-btn-text:hover{background: #3498DB;color: white}*/
+/*div>span>.l-btn-icon-left .l-btn-empty:hover{background: white;color: #3498DB}*/
+.l-btn-icon-left {
+	border: none;
+}
+
+.l-btn-text.l-btn-empty {
+	border: none;
+	background: white
+}
+
+.l-btn-plain {
+	background: transparent;
+	margin: 0 !important;
+	padding: 0;
+	padding-top: 3px;
+	border: none;
+	margin-right: 10px !important;
+	margin-top: 2px !important;
+}
+
+.l-btn-plain:hover {
+	background: transparent;
+	padding: 0;
+	border: none;
+	margin-right: 10px
+}
+
+/*.tableLabel .combo-arrow{background: url(images/icon_arrow_bot.png) no-repeat center}*/
+.tableLabel .combo-arrow {
+	background: url(images/icon_arrow_bot.png) no-repeat center
+}
+
+.tableLabel .combo-arrow-hover {
+	background: url(images/icon_arrow_bot_b.png) no-repeat center
+}
+
+/*含有自定义头的表格样式*/
+.customHeader .datagrid-header {
+	height: 100% !important;
+}
+/**/
+.window .messager-button a {
+	background: white
+}
+
+.window .messager-button a:hover {
+	background: white;
+	border: none
+}
+
+.window a span {
+	color: white;
+	background: #3498DB
+}
+
+.menu {
+	background: #3498DB;
+	border: 1px solid #3498DB
+}
+
+.menu-item {
+	color: white
+}
+
+.menu-item:hover {
+	color: white;
+	border: none;
+	background: #3498DB
+}
+
+.menu-line {
+	border: none
+}
+
+.icon-redo {
+	background: none !important;
+}
+
+.icon-edit {
+	background: none !important;
+}
+
+.icon-add {
+	background: none !important;
+}
+
+.icon-manager-ext {
+	background: none !important;
+}
+
+.icon-remove {
+	background: none !important;
+}
+
+.menu-text {
+	text-align: center;
+	width: 100%;
+	padding: 0
+}
+
+.menu-text:hover {
+	background: white;
+	color: #3498DB;
+}
+
+.window, .window .window-body {
+	border: none
+}
+
+.messager-body {
+	width: 100%;
+	border: none
+}
+/*.panel-body.panel-body-noborder.layout-body{margin-top: 3px}*/
+.layout-body>form {
+	margin-top: 8px
+}
+
+.panel-body.layout-body>.datagrid-none {
+	margin-top: 8px
+}
+
+.tabs-panels>.panel .panel-toolbar {
+	border-bottom: 1px solid #E8E8E8
+}
+
+.tabs-panels>.panel .panel-body>.panel .datagrid-toolbar>form {
+	border-top: 1px solid #E8E8E8;
+	margin-top: 5px !important
+}

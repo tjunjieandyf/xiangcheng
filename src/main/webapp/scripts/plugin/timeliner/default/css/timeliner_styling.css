@@ -1,0 +1,97 @@
+/*
+ * CSS for Timeliner 1.2
+ *
+ * This CSS is for styling the plugin.
+ * Use timeliner.css for functionality changes.
+ */
+
+
+/* Each slide */
+#timeliner .slide{
+	background-color:#fff;
+}
+/* The timeline background */
+#timeliner .timeline{
+	background:#ddd;
+	border-top:1px solid #ccc;
+	border-bottom:1px solid #fff;
+}
+/* The timeline fill bar */
+#timeliner .innertimeline{
+	background:#cf3300;
+}
+/* The time display */
+#timeliner .timedisplay{
+	color:#777;
+}
+/* Each node */
+#timeliner .node{
+	background:url(../images/node.png) center no-repeat;
+	width:26px;
+	height:26px;
+	opacity: 0;
+}
+#timeliner .node:hover{
+	background:url(../images/node_active.png) center no-repeat;
+	width:26px;
+	height:26px;
+	opacity: 1;
+}
+/* The active node */
+#timeliner .node_active{
+	background:url(../images/node_active.png) center no-repeat;
+	opacity: 1;
+}
+/* Each node tooltip */
+#timeliner .tooltip{
+	background:#fff;
+	padding:5px 8px;
+	-webkit-border-radius:6px;
+	-moz-border-radius:6px;
+	border-radius:6px;
+	opacity:0.8;
+	filter:alpha(opacity=80);
+}
+/* The time display inside a tooltip */
+#timeliner .tooltiptime{
+	font-size:8pt;
+	font-weight:bold;
+}
+/* The pause/play button */
+#timeliner .pause, #timeliner .play{
+	width:80px;
+	height:80px;
+	-webkit-border-radius:6px;
+	-moz-border-radius:6px;
+	border-radius:6px;
+	-webkit-box-shadow:0 0 10px #bbb;
+	-moz-box-shadow:0 0 10px #bbb;
+	box-shadow:0 0 10px #bbb;
+}
+/* The pause button */
+#timeliner .pause{
+	background:#fff url(../images/pause.gif) center no-repeat;
+}
+/* The play button */
+#timeliner .play{
+	background:#fff url(../images/play.gif) center no-repeat;
+}
+/* The previous/next buttons */
+#timeliner .previous, #timeliner .next{
+	width:43px;
+	height:50px;
+}
+/* The previous button */
+#timeliner .previous{
+	background:#fff url(../images/previous.gif) center no-repeat;
+	-webkit-border-radius:6px 0 0 6px;
+	-moz-border-radius:6px 0 0 6px;
+	border-radius:6px 0 0 6px;
+}
+/* The next button */
+#timeliner .next{
+	background:#fff url(../images/next.gif) center no-repeat;
+	-webkit-border-radius:0 6px 6px 0;
+	-moz-border-radius:0 6px 6px 0;
+	border-radius:0 6px 6px 0;
+}

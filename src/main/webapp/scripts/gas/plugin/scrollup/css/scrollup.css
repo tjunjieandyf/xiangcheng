@@ -1,0 +1,25 @@
+@charset "utf-8";
+/*
+ *scrollup插件必须导入fontawesome/css/font-awesome.min.css样式文件
+ *用<div>、<span>或者<a>标签加class="scrollup"装载
+ */
+
+/*scrollup按钮样式*/
+
+.scrollup{
+  border: 0;
+  position: fixed;
+  right: 2px;
+  bottom: 2px;
+  z-index: 11;
+  font-size: 13px;
+  padding: 3px 7px;
+  display: none;
+  color: #FFF!important;
+  background-color: #555!important;
+  border-color: #555;
+}
+.scrollup:focus{
+	background-color: #555!important;
+	border-color: #555;
+}

@@ -1,0 +1,174 @@
+@CHARSET "UTF-8";
+.tags-wrap {
+	background: white;
+	border: 1px solid #C7C7C7;
+	padding: 2px;
+	overflow: auto;
+	display: inline-block;
+}
+.tags-wrap .tag {
+	border: 1px solid #DBE7F7;
+    display: block;
+    float: left;
+    padding: 0 6px;
+  	line-height: 23px;
+  	background: rgb(248, 251, 255);
+	color: #0C4696;
+  	margin: 5px;
+  	border-radius: 2px;
+}
+
+.tags-wrap .tag.selected, .add-tags-wrap .tag.selected {
+	background: rgb(130, 182, 251);
+	color: white;
+}
+
+
+.tags-wrap .tag .delBtn {
+	background: none;
+	border: none;
+	color: #71A4EC;
+	padding: 0 0 0 4px;
+	cursor: pointer;
+	outline: none;
+	font-family: cursive;
+}
+
+.tags-wrap .tag.selected .delBtn {
+	color: white;
+}
+
+.tags-wrap input {
+	outline: none;
+	border: none;
+	margin: 8px 0 6px 5px;
+	float: left;
+}
+
+.tags-tool {
+	display: inline-block;
+	margin-left: 4px;
+	position: relative;
+	bottom: 5px;
+}
+
+.tags-tool:hover {
+	/* background-color: rgb(201, 221, 248); */
+}
+
+.tags-tool button {
+	cursor: pointer;
+}
+
+
+.tagInput {
+	background: white;
+	padding-right: 58px;
+}
+
+.tagInput>div {
+	display: inline-block;
+	height: 100%;
+	float: left;
+	overflow: hidden;
+}
+
+.tagInput .tools .tip-tool {
+	display: inline-block;
+	width: 20px;
+	height: 100%;
+	background-position-y: 50%;
+	margin-left: 7px;
+	margin-bottom: 1px;
+	cursor: pointer;
+}
+
+.tagInput .tools .add-tool {
+	display: inline-block;
+	width: 16px;
+	height: 100%;
+	/* border: 1px solid #E9F6FF; */
+	cursor: pointer;
+	background-position-y: 50%;
+}
+
+.tagInput .tools {
+	height: 100%;
+	display: inline-block;
+	float: right;
+}
+
+.tagInput .tools select {
+	float: right;
+	margin-top: 4px;
+}
+
+.tagInput .tag, .show-tip .tag, .add-tip .tag {
+	border: 1px solid #DBE7F7;
+    display: block;
+    float: left;
+    padding: 0 6px;
+  	line-height: 20px;
+  	background: rgb(248, 251, 255);
+	color: #0C4696;
+  	margin: 4px 5px;
+  	border-radius: 2px;
+  	cursor: default;
+}
+
+
+.show-tip {
+	max-width: 300px;
+}
+.add-tip {
+	width: 300px;
+	border: 1px solid #D1E2F9;
+}
+.add-tip header {
+	background-color: #E0ECFF;
+	border-bottom: 1px solid #95BDF4;
+	height: 20px;
+	vertical-align: bottom;
+	width: 100%;
+	display: block;
+}
+
+.add-tip form {
+	margin: 6px auto;
+	width: 251px;
+}
+
+.add-tip>div {
+	border-top: 1px solid #E8F0F9;
+}
+
+.add-tags-wrap .tag {
+	cursor: pointer;
+	padding: 2px 8px;
+}
+
+.search-btn {
+	border: none;
+	padding: 0;
+	background: none;
+	outline: none;
+	cursor: pointer;
+	margin-left: 5px;
+}
+
+.add-tip .search-btn i {
+  	vertical-align: middle;
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	margin: 0 3px 2px;
+}
+
+.empty-text {
+	margin: 0;
+	display: inline;
+	color: rgb(151, 151, 151);
+}
+
+.clearfix:after {content:"\200B"; display:block; height:0; clear:both; }
+.clearfix { *zoom:1; }

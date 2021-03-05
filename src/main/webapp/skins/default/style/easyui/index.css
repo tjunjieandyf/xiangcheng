@@ -1,0 +1,28 @@
+@charset "utf-8";
+/* CSS Document */
+body, h1, h2, h3, h4, h5, h6, p, div, form, img, ul, ol, li, dl, dt, dd, label{margin:0;padding:0; list-style:none; font-size:12px;}
+div,form,img,ul,ol,li,dl,dt,dd {margin:0; padding:0; border:0; }
+li{list-style-type:none;}
+img{vertical-align:top;}
+em,i {font-style:normal;}
+h1,h2,h3,h4,h5,h6 { margin:0;padding:0;font-size:12px;font-weight:normal;}
+
+/*clear*/
+.clear{ clear:both; font-size:1px; line-height:1px;}
+
+
+.topall{height:148px; background:url(../../images/easyui/topbg.gif) repeat-x; margin:0px; padding:0px;overflow: hidden;}
+.top1{height:56px; width:100%;}
+.logo{width:480px; height:52px; background:url(../../images/easyui/logobg.png) no-repeat; float:left;}
+.tuichuhuanfu{ width:141px; height:30px; background:url(../../images/easyui/tuichuhuanfubg.png) no-repeat; float:right;}
+.urserinf{float:right; color:#305796; margin-right:10px; line-height:28px;}
+.arrow{position:absolute; top:0px;left:-50%; margin-left:100%; background:url(../../images/easyui/collapse.png) no-repeat; width:42px; height:15px;}
+.arrow a{width:42px; height:15px; display:block; overflow:hidden; text-indent:-100000px;}
+.collapse{position:absolute; top:0px;left:-50%; margin-left:100%; background:url(../../images/easyui/arrow.png) no-repeat; width:42px; height:15px;}
+.collapse a{width:42px; height:15px; display:block; overflow:hidden; text-indent:-100000px;}
+.top2{height:92px;}
+.dhannui{width:110px; height:92px; float:left; text-align:center;}
+.dhannui dl{}
+.dhannui dl.xuanzhong{width:110px; height:92px; display:block; background:url(../../images/easyui/hoverbg.png) no-repeat;}
+.dhannui dl dt{ padding-top:3px;}
+.dhannui dl dd a{line-height:28px; font-size:14px;color:#0146b6; font-weight:bold; text-decoration:none;}

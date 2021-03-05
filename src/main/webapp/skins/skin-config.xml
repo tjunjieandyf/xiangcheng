@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>皮肤配置文件</comment>
+	<entry key="skins.default">清雅</entry>
+	<entry key="skins.yellow">淡雅</entry>
+	<entry key="skins.green">淡绿</entry>
+	<entry key="skins.blood_orange">红橙</entry>
+	<entry key="skins.brown">红棕</entry>
+</properties>

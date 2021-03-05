@@ -1,0 +1,14 @@
+.rel{position: relative;}
+.abs{position: absolute;}
+/* -- 3.0 Main structure -- */
+.switchBox td {white-space:nowrap;}
+.switch_box_l{width: 9px;height: 21px;background: url(../../../images/ybyj/typechange/switch_box_l.png) no-repeat;}
+.switch_box_r{width: 9px;height: 21px;background: url(../../../images/ybyj/typechange/switch_box_r.png) no-repeat;}
+.switch_box_c{height: 21px;line-height: 21px;background: url(../../../images/ybyj/typechange/switch_box_c.png) repeat-x;}
+.switchBtn{height: 20px;line-height:20px;padding: 0 5px; text-align:center;color:#fff;font-family:'Microsoft YaHei';background: url(../../../images/ybyj/typechange/btnSwitch_c.png) repeat-x;top: 0px;left: 0px;cursor: pointer;z-index:888;}
+.switchBox .swichTxt{position:absolute;height: 20px;padding: 0 3px;line-height:20px;text-align:center;font-family:'Microsoft YaHei';color: #797e81;text-decoration: none;}
+.switchBtn-l{width: 10px;height: 20px;line-height:20px; text-align:center;color:#fff;font-family:'Microsoft YaHei';background: url(../../../images/ybyj/typechange/btnSwitch_l.png) no-repeat;position:absolute;top: 0px;left: -7px;cursor: pointer;}
+.switchBtn-r{width: 10px;height: 20px;line-height:20px; text-align:center;color:#fff;font-family:'Microsoft YaHei';background: url(../../../images/ybyj/typechange/btnSwitch_r.png) no-repeat;position:absolute;top: 0px;right: -7px;cursor: pointer;}
+
+
+

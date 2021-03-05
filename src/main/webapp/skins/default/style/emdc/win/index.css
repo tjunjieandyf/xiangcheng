@@ -1,0 +1,170 @@
+@charset "utf-8";
+@import url(base.css);
+
+
+/* -- 3.0 Main structure -- */
+body, html { height: 100%; }
+.body {  overflow-y: hidden;}
+.bg_wrapper{position: absolute;top:0;left: 0;width: 100%;height: 100%;min-width:1300px;z-index: -11;background: #ddd;}
+.body_wrapper { width: 100%; height: 100%;}
+#warming{
+		width: 200px;height: 28px;
+		z-index: 2;font-size:14px;
+		font-weight:bolder;word-spacing:2px;
+		padding-top:5px;position: absolute;
+		left:45%;top:5%;color: white;
+		background-color: #B6B6B6;vertical-align: middle;
+		border-radius:3px;opacity:0.9;
+	}
+.icon-arrow{position: absolute;top:50%;margin-top: -40px;right:40px;background: url(../../../images/emdc/win/icon_arrow.png) no-repeat;width: 80px;height: 80px;}
+.icon-arrow:hover{background: url(../../../images/emdc/win/icon_arrow_on.png) no-repeat;width: 80px;height: 80px;}
+.body_main{margin-top: 50px;}
+.body_ctn { min-width: 1300px;height: 100%; margin: 0 auto;position: relative; }
+.body_head { width: 100%; margin: 0 auto;overflow: hidden; }
+.body_head .items-left { float: left; margin-left: 10%;}
+.body_head .h_logo { float: left; width: 64px; height: 64px; margin-top: 10px; background: url(../../../images/emdc/win/logo_2.png) no-repeat; }
+.body_head .h_logoTxt { float: left; margin: 18px 0 0 10px; }
+.body_head .h_logoTxt .h_t { font-size: 30px; color: #fff; font-family: 'Microsoft YaHei'; letter-spacing: 3px; }
+.body_head .items-right { float: right; padding-top: 20px;padding-right: 40px; }
+.body_head .tool a { float: left; height: 40px; line-height: 40px; font-size: 20px; padding-left: 20px; color: #fff; font-family: 'Microsoft YaHei'; }
+.body_head .tool .setting {dislay:inline-block; float:right;color: white;}
+.body_head .tool .logo{dislay:inline-block; float:right;width: 40px;}
+.body_head .tool img{width:100%; height:100%; vertical-align: top;}
+.body_head .tool .logout { margin-left: 15px; float:right; padding: 0 20px; background: url(../../../images/emdc/win/icon_logout_on.png) no-repeat center center; }
+.body_head .tool .logout:hover {background: url(../../../images/emdc/win/icon_logout.png) no-repeat center center; }
+.body_head .tool .changeBg { margin-left: 15px;float:right ; padding: 0 15px; background: url(../../../images/emdc/win/changeBg_on.png) no-repeat center center; }
+.body_head .tool .changeBg:hover {background: url(../../../images/emdc/win/changeBg.png) no-repeat center center; }
+/*内容区*/
+/*内容区*/
+.module-box { width: 1200px; margin: 0 auto; position: relative;overflow:hidden;}
+.module-box .module-inner{position: relative; white-space: nowrap;left: 0;letter-spacing: -4px;}
+.module-box .module { display: inline-block; margin-right: 60px; position: relative; letter-spacing:0;}
+.module-box .module .item-list { position: relative; height: 493px; }
+.module-box .module-1 { width: 252px; }
+.module-box .module-2 { width: 378px; }
+.module-box .module-3 { width: 252px;margin-right: 88px; }
+.module-box .module .item { display: block; overflow: hidden;float:left;position: relative;margin:0 10px 10px 0; text-decoration: none; font-family: 'Microsoft YaHei'; text-align: center; cursor:pointer;}
+.module-box .module .item-icon.smaller { animation: scale .5s  ease-in-out both normal; -moz-animation: scale .5s  ease-in-out both normal; -webkit-animation: scale .5s  ease-in-out both normal; -o-animation: scale .5s ease-in-out both normal; }
+.show { animation: show .5s ease-in-out both normal; -moz-animation: show .5s ease-in-out both normal; -webkit-animation: show .5s ease-in-out both normal; -o-animation: show .5s ease-in-out both normal; }
+.page-tool{margin-top: 5px; text-align: center }
+.page-tool>li{width: 17px; height: 16px;display: inline-block; margin-left:10px; }
+.page-tool>li>a:hover,
+.page-tool>li>a.on{
+	text-decoration: none;
+	background: url(../../../images/emdc/win/page-icon-focus.png);
+}
+.page-tool .icon-page{display: block; width: 100%; height: 100%; background: url(../../../images/emdc/win/page-icon-normal.png);}
+
+@-webkit-keyframes show {
+	0% { opacity: 0; -webkit-transform: translateY(70%) }
+	100% { opacity: 1; -webkit-transform: translateY(0px) }
+}
+@-moz-keyframes show {
+	0% { opacity: 0; -moz-transform: translateY(70%) }
+	100% { opacity: 1; -moz-transform: translateY(0px) }
+}
+@-ms-keyframes show {
+	0% { opacity: 0; -ms-transform: translateY(70%) }
+	100% { opacity: 1; -ms-transform: translateY(0px) }
+}
+@keyframes show {
+	0% { opacity: 0; transform: translateY(70%) }
+	100% { opacity: 1; transform: translateY(0px) }
+}
+
+/*缩小*/
+@-webkit-keyframes scale {
+	0% { -webkit-transform: scale(1); }
+	100% { -webkit-transform: scale(0.65); }
+}
+@-moz-keyframes scale {
+	0% { -moz-transform: scale(1); }
+	100% { -moz-transform: scale(0.65); }
+}
+@-ms-keyframes scale {
+	0% { -ms-transform: scale(1); }
+	100% { -ms-transform: scale(0.65); }
+}
+
+/*放大*/
+@keyframes scale1 {
+	0% { transform: scale(0.65); }
+	100% { transform: scale(1); }
+}
+@-webkit-keyframes scale1 {
+	0% { -webkit-transform: scale(0.65); }
+	100% { -webkit-transform: scale(1); }
+}
+@-moz-keyframes scale1 {
+	0% { -moz-transform: scale(0.65); }
+	100% { -moz-transform: scale(1); }
+}
+@-ms-keyframes scale1 {
+	0% { -ms-transform: scale(0.65); }
+	100% { -ms-transform: scale(1); }
+}
+@keyframes scale1 {
+	0% { transform: scale(0.65); }
+	100% { transform: scale(1); }
+}
+
+.module .item.w1{width: 116px;}
+.module .item.w2{width: 242px;}
+.module .item.w3{width: 368px;}
+
+.module .opt_1 {background: #14cdd4; }
+.module .opt_2 {background: #f73f73; }
+.module .opt_3 {background: #0279ff; }
+.module .opt_4 {background: #30aa24; }
+.module .opt_5 {background: #822aba; }
+.module .opt_6 {background: #2555cf; }
+.module .opt_7 {background: #f05829; }
+.module .opt_8 {background: #2995f0; }
+.module .opt_9 {background: #55cf0b; }
+.module .opt_10 {background: #ea4583;}
+.module .opt_11 {background: #0279ff;}
+.module .opt_12 {background: #9e00a6;}
+.module .opt_13 {background: #0053ea;}
+.module .opt_14 {background: #4a2988;}
+.module .opt_15 {background: #ff8400;}
+
+.opt_one{width: 116px;height: 116px;}
+.opt_two{width: 242px;height: 116px;}
+.opt_big{width: 242px;height: 242px;}
+.opt_one>img,
+.opt_two>img{width: 55px; height: 55px;margin-top:20px;}
+.opt_big>img{width: 79px; height:81px; margin-top:80px;}
+.module .bgCol_1 { background: #14cdd4; }
+.module .bgCol_2 { background: #f73f73; }
+.module .bgCol_3 { background: #0279ff; }
+.module .bgCol_4 { background: #30aa24; }
+.module .bgCol_5 { background: #822aba; }
+.module .bgCol_6 { background: #2555cf; }
+.module .bgCol_7 { background: #f05829; }
+.module .bgCol_8 { background: #2995f0; }
+.module .bgCol_9 { background: #55cf0b; }
+.module .bgCol_10 { background: #ea4583;}
+.module .bgCol_11 { background: #0279ff;}
+.module .bgCol_12 { background: #9e00a6;}
+.module .bgCol_13 { background: #0053ea;}
+.module .bgCol_14 { background: #4a2988;}
+.module .bgCol_15 { background: #ff8400;}
+
+
+.module .tit { font-size: 22px;  font-family: 'Microsoft YaHei'; color: #fff;  margin-bottom: 10px; }
+.module p { color: #fff; font-family: 'Microsoft YaHei'; line-height: 24px; }
+.module .p { text-align: left; }
+.module .item-icon { margin-bottom: 5px; animation: scale1 .5s  ease-in-out both normal; -moz-animation: scale1 .5s  ease-in-out both normal; -webkit-animation: scale1 .5s  ease-in-out both normal; -o-animation: scale1 .5s ease-in-out both normal; }
+.module .item-txt { font-size: 14px; text-align: left; position: absolute;bottom:0;left:0;padding: 0 10px; }
+.module .news { width: 28px; height: 28px; line-height: 28px; color: #fff; font-weight: bold; position: absolute; top: 13px; right: 24px; background: url(../../../images/emdc/win/icon_dot_red.png) no-repeat; }
+.module .in-text { width: 100%; position: absolute; left: 0; bottom: 12px; text-align: center; font-size: 16px; line-height: 30px; }
+.module .in-text em { color: #fff; font-size: 20px; }
+
+/*执法一张图*/
+.mapbox{height: 350px;padding: 10px;background: url(../../../images/emdc/win/bg_opa.png) repeat; float:left;}
+.maplist {margin-top: 10px;}
+.maplist li{background: url(../../../images/emdc/win/icon_dot.png) no-repeat left center;padding-left: 20px;}
+.maplist li a{display: block;font-size: 14px;color: #fff;padding: 8px 0;padding-left: 30px;}
+.maplist li a.icon-x-1{background: url(../../../images/emdc/win/icon_x_1.png) no-repeat left center;}
+.maplist li a.icon-x-2{background: url(../../../images/emdc/win/icon_x_2.png) no-repeat left center;}
+.maplist li a.icon-x-3{background: url(../../../images/emdc/win/icon_x_3.png) no-repeat left center;}

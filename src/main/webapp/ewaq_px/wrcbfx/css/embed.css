@@ -1,0 +1,67 @@
+.embed {
+	background-color: #033953 !important;
+}
+.embed .px-pop {
+	background-color: #033953 !important;
+}
+.embed .px-item {
+	background-color: #033953 !important;
+	font-size: 16px !important;
+}
+.embed .px-item h3 {
+	font-size: 16px !important;
+}
+.embed .px-message select {
+	color: white;
+    background-color: #056a99!important;
+    border: 1px solid #056a99!important;
+}
+.embed .px-message label.timer {
+	color: white;
+}
+	
+.embed .el-range-editor.el-input__inner {
+	background: #014667!important;
+    color: #fff!important;
+    border: none!important;
+}
+.embed .el-range-input {
+    background: unset!important;
+    color: #fff!important;
+}
+.embed .el-range-separator {
+    color: #fff!important;
+}
+
+.embed.px-item {
+    background-color: #033953 !important;
+	color: #fff!important;
+}
+
+.embed .px-conclusion-mess {
+	background-color: #014667 !important;
+	color: white;
+	font-size: 16px !important;
+}
+
+.embed .px-item {
+	background-color: #033953 !important;
+	color: #fff!important;
+}
+
+::-webkit-scrollbar {
+    width: 0px !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,43 @@
+/* CSS Document */
+body{ margin:0; padding:0;}
+.fav_size{ width:98%;margin-left:1%;}
+.fav_title{ width:100%; height:32px;line-height:32px; float:left}
+.fav_title span{font-size:16px; line-height:32px; font-weight:bold; text-indent:20px;}
+.fav_title em{ font-style:normal;float:right;font-size:12px; height:12px; background:url(images/icon_sc.gif) left center no-repeat; width:200px; text-indent:20px; color:#border:1px solid #c2d4f4;}
+tr.folder1 td{ background:url(../../images/platform/favorites/bg.jpg) left top repeat-x;}
+tr.open_folder1 td{height:34px;background:url(../../images/platform/favorites/bg.jpg) left top repeat-x;}
+tr.content{background:#FFFFFF;text-indent: 50px; line-height: 30px; background:url(../../images/platform/favorites/icon_1.gif) left center no-repeat; text-indent:20px;}
+a:link span.header{color:#FFFFFF;text-indent:20px;font-weight:bold;text-decoration: none;} 
+a:visited span.header{color:#FFFFFF;text-indent:20px;font-weight:bold;text-decoration: none;}
+a:link span.folder1{color:#338ae7;text-indent:5px;font-weight:bold;text-decoration: none; font-size:12px; cursor:hand;}
+a:visited span.folder1{color:#338ae7;text-indent:5px;font-weight:bold;text-decoration: none; font-size:12px; cursor:hand;}
+.children_st{ background:url(../../images/platform/favorites/icon_1.gif) left center no-repeat; margin-left:2%;width:96%;border-bottom:1px dashed #CCCCCC; overflow:hidden; float:left; }
+.del_st{ width:30px; height:32px; background:url(../../images/platform/favorites/del.gif) left center no-repeat; float:right; display:block; cursor:hand; margin-right:20%;}
+.del_font_st{ float:right; color:#7e7e7e; font-size:12px; text-align:center;}
+.edit_st{ width:30px; height:32px; background:url(../../images/platform/favorites/images/edit.gif) left center no-repeat; float:right; display:block; cursor:hand;}
+.edit_font_st{ float:right; color:#2b85e6; font-size:12px;  text-align:center;}
+ 
+/**收藏夹列表样式*/
+.box_sc {background-color: #FFF;}
+.wdsc {text-align:left;background-color: #d2effe;height: 37px;line-height: 37px;font-size: 14px;font-weight: bold;padding-left: 10px;color: #333333;border: 1px solid #d9dadb;}
+.wdsc .scbt{font-size:14px;font-weight:bold; line-height: 37px;text-indent:10px; float:left; font-family:'微软雅黑';}
+.wdsc .xzsc{float: right;padding-right: 5px;}
+.wdsc .xzsc a{background:url(../../images/platform/workshop/favorites/xzsc.gif) left center no-repeat; width:89px;}
+.wdsc .xzsc a:hover{text-decoration: none;}
+.box_sc ul{list-style: none;padding:0;margin:0;}
+.box_sc ul li{list-style: none;padding:0;margin:0;}
+.sc_xg li{display: block;text-decoration: none;text-align: left;line-height: 35px;}
+.sc_xg li div{border-bottom: 1p solid #d9dadb;color: #575757;margin:0;}
+.sc_xg .sub_items div{border-bottom: 1p dotted #9b9b9b;}
+.li-hover{background-color: #e2f4fe;}
+.sc_xg .sc_folder{background:url(../../images/platform/workshop/favorites/fav_folder.gif) 5px center no-repeat;padding-left:25px;}
+.sc_xg .sc_folder_open{background:url(../../images/platform/workshop/favorites/fav_folder_open.gif) 5px center no-repeat;padding-left:25px;}
+.sc_xg .sc_item{background:url(../../images/platform/workshop/favorites/fav_item.gif) 5px center no-repeat;padding-left:25px;}
+.sc_xg .cz{float: right;margin-right:12px;display: block;}
+.sc_xg .cz:hover{text-decoration: none;}
+.sc_xg .edit{background:url(../../images/platform/workshop/favorites/edit.gif) center center no-repeat;width:16px;}
+.sc_xg .del{background:url(../../images/platform/workshop/favorites/del.gif) center center no-repeat;width:16px;}
+.sc_xg .add{background:url(../../images/platform/workshop/favorites/add.png) center center no-repeat;width:16px;}
+
+.sc_xg ul{list-style: none;margin-left:30px;display:none;}
+
