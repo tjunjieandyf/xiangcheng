@@ -352,10 +352,17 @@
 	
 	<!--业务 规则插入对应的负责人 -->
 	<insert id="insertTaskRecord">
-	INSERT INTO T_GZRW_JBXX (XH, YWLX, YWZLX, YWGLXH, RWBH, RWLY, RWMC, RWNR, SJKSSJ, SJJSSJ,
-   	RWCSYY, YQBJSJ, FZJG, BLR, CJSJ, CJR, TYPE)
-	VALUES (#{XH}, #{YWLX}, #{YWZLX}, #{YWGLXH}, #{RWBH}, #{RWLY}, #{RWMC}, #{RWNR}, #{SJKSSJ}, 
-	#{SJJSSJ}, #{RWCSYY}, #{YQBJSJ}, #{FZJG}, #{BLR}, #{CJSJ}, #{CJR}, #{TYPE})
+	INSERT INTO T_GZRW_JBXX (XH, YWLX, YWZLX, RWBH, RWNR, SJKSSJ,
+   	RWCSYY, YQBJSJ, FZJG, BLR, CJSJ, CJR, TYPE,YJGLNR,YJGLZ,YJSITE,YJJB,ZDBH,YJGZ
+   	<if test="ZXSJ != null">
+   	,ZXSJ
+   	</if>
+   	)
+	VALUES (#{XH}, #{YWLX}, #{YWZLX}, #{RWBH}, #{RWNR}, #{SJKSSJ}, #{RWCSYY}, #{YQBJSJ}, #{FZJG},
+	 #{BLR}, #{CJSJ}, #{CJR}, #{TYPE},#{YJGLNR},#{YJGLZ},#{YJSITE},#{YJJB},#{ZDBH},#{YJGZ}
+	 <if test="ZXSJ != null">
+   	,#{ZXSJ}
+   	</if>)
 	</insert>
 	
 	<!-- 根据业务查询负责人和科室 -->

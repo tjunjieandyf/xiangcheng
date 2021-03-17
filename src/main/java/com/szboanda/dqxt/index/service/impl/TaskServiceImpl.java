@@ -22,7 +22,6 @@ import com.szboanda.dqxt.index.dao.TaskDAO;
 import com.szboanda.dqxt.index.exception.TaskException;
 import com.szboanda.dqxt.index.service.ITaskService;
 import com.szboanda.dqxt.index.util.NumberUtil;
-import com.szboanda.dqxt.rwzx.dao.TaskCenterDataDAO;
 import com.szboanda.platform.common.utils.CollectionUtils;
 import com.szboanda.platform.common.utils.LoggerUtil;
 import com.szboanda.platform.common.utils.MapUtils;
@@ -50,9 +49,6 @@ public class TaskServiceImpl extends BaseBusinessService implements ITaskService
 
     @Autowired
     private TaskDAO dao;
-    
-    @Autowired
-    private TaskCenterDataDAO taskCenterDataDAO;
     
     /*
      * (non-Javadoc)
@@ -255,54 +251,48 @@ public class TaskServiceImpl extends BaseBusinessService implements ITaskService
                     param.put("YJGLNR", arryToStr(nrArr, ";"));
                     param.put("YJGLZ", arryToStr(glzArr, ";"));
                     param.put("YJGZ", obj.get("YJGZ"));
-                    param.put("YJLXXXMC", obj.get("YJLXXXMC"));
+                    param.put("YJSITE", obj.get("YJSITE"));
                     param.put("SJKSSJ", obj.get("YJSJ"));
 					//需要修改
-					param.put("YWLX", obj.get("YWLX"));
-					param.put("YWZLX", obj.get("YWZLX"));
-					param.put("YWGLXH", obj.get("YWGLXH"));
-					param.put("RWLY", obj.get("RWLY"));
-					param.put("RWMC", obj.get("RWMC"));
-					param.put("RWNR", obj.get("RWNR"));
-//					param.put("SJKSSJ", obj.get("SJKSSJ"));
-					param.put("SJJSSJ", obj.get("SJJSSJ"));
-					param.put("RWCSYY", obj.get("RWCSYY"));
-					param.put("YQBJSJ", obj.get("YQBJSJ"));
+					param.put("YWLX", obj.get("YJLX"));
+					param.put("YWZLX", obj.get("YJZLX"));
+					param.put("RWBH", obj.get("YWBH"));
+					param.put("RWNR", obj.get("YJNR"));
+					param.put("RWCSYY", obj.get("CSYY"));
+					//要去办结时间需要根据配置表自动获取
 					param.put("TYPE", obj.get("TYPE"));
+					if(obj.containsKey("ZXSJ")){
+					   param.put("ZXSJ",DateUtils.parseDate(obj.getString("ZXSJ"), "yyyy-MM-dd HH:mm:ss"));     
+					}
 					
 					listData.add(param);
 				}
 			}
 			// 根据业务类型查询对应负责人和科室
-//			if (!BeanUtils.emptyCollection(listData)) {
-//				for (Map<String, Object> params : listData) {
-//					List<Map<String, Object>> resultList = dao.getTransactorByBusinessId(params);
-//					if (resultList != null && resultList.size() > 0) {
-//						String rwxh = Toolkit.getUUID(); // 生成任务序号
-//					    Map<String, Object> resultMap = resultList.get(0);
-//						String zrksxh = MapUtil.getStr(resultMap, "ZRKSXH"); // 责任科室编号
-//						String ksclr = MapUtil.getStr(resultMap, "KSCLR"); // 科室处理人
-//						int blqx = MapUtil.getInt(resultMap, "BLQX"); // 任务期限
-//						String sjkssj = MapUtil.getStr(params, "SJKSSJ");// 任务开始时间
-//						// 任务要求办结时间
-//						DateTime yqbjsj =  DateUtil.offset(DateUtil.parse(sjkssj), DateField.DAY_OF_MONTH, blqx);
-//						String yqbjsjStr = DateUtil.format(yqbjsj, "yyyy-MM-dd HH:mm:ss");
-//						params.put("SJKSSJ", DateUtils.parseDate(sjkssj));
-//						params.put("SJJSSJ", DateUtils.parseDate(MapUtil.getStr(params, "SJJSSJ")));
-//						params.put("YQBJSJ", DateUtils.parseDate(yqbjsjStr));
-//						params.put("FZJG", zrksxh);
-//						params.put("BLR", ksclr);
-//						params.put("RWBH", rwxh);
-//						params.put("XH", Toolkit.getUUID());
-//						params.put("CJSJ", new Date());
-//						params.put("CJR", Toolkit.getCurrUser() == null ? "SYSTEM" : Toolkit.getCurrUser().getName());
-//						index = dao.insertTaskRecord(params);
-//						if(index>0){
-//						    taskCenterDataDAO.updateMark(params);
-//						}
-//					}
-//				}
-//			}
+			if (!BeanUtils.emptyCollection(listData)) {
+				for (Map<String, Object> params : listData) {
+					List<Map<String, Object>> resultList = dao.getTransactorByBusinessId(params);
+					if (resultList != null && resultList.size() > 0) {
+					    Map<String, Object> resultMap = resultList.get(0);
+						String zrksxh = MapUtil.getStr(resultMap, "ZRKSXH"); // 责任科室编号
+						String ksclr = MapUtil.getStr(resultMap, "KSCLR"); // 科室处理人
+						int blqx = MapUtil.getInt(resultMap, "BLQX"); // 任务期限
+						String sjkssj = MapUtil.getStr(params, "SJKSSJ");// 任务开始时间
+						// 任务要求办结时间
+						DateTime yqbjsj =  DateUtil.offset(DateUtil.parse(sjkssj), DateField.DAY_OF_MONTH, blqx);
+						String yqbjsjStr = DateUtil.format(yqbjsj, "yyyy-MM-dd HH:mm:ss");
+						params.put("SJKSSJ", DateUtils.parseDate(sjkssj));
+						params.put("YQBJSJ", DateUtils.parseDate(yqbjsjStr));
+						params.put("FZJG", zrksxh);
+						params.put("BLR", ksclr);
+						params.put("XH", Toolkit.getUUID());
+						params.put("CJSJ", new Date());
+						params.put("CJR","SYSTEM");
+						index = dao.insertTaskRecord(params);
+					}
+				}
+			}
+			
 		} catch (Exception e) {
 			errorMsg = e.getMessage();
 			index = 0;
@@ -383,16 +373,17 @@ public class TaskServiceImpl extends BaseBusinessService implements ITaskService
         if(content.indexOf("[")==-1||content.indexOf("]")==-1){
             return null;
         }
-        String newContent = content.substring(1, content.length());
+        String newContent = content.substring(1, content.length()-1);
         return newContent.split(split);
     }
     
     private String arryToStr(String [] arr,String split){
-        StringBuilder sBuilder = new StringBuilder();
+        StringBuilder sBuilder = new StringBuilder("[");
         for(String str:arr){
             sBuilder.append(str+split);
         }
         sBuilder.deleteCharAt(sBuilder.lastIndexOf(split));
+        sBuilder.append("]");
         return sBuilder.toString();
     }
 }
