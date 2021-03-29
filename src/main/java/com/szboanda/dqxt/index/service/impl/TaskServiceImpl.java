@@ -233,6 +233,8 @@ public class TaskServiceImpl extends BaseBusinessService implements ITaskService
 
     @Override
 	public Map<String, Object> insertTaskRecord(Map<String, Object> dataMap) {
+        //查看dataMap中before增强返回值
+        System.out.println(dataMap);
 		String dataStr = MapUtil.getStr(dataMap, "businessData");
 		int index = 0; 
 		String errorMsg = ""; // 错误信息
@@ -289,11 +291,14 @@ public class TaskServiceImpl extends BaseBusinessService implements ITaskService
 						params.put("CJSJ", new Date());
 						params.put("CJR","SYSTEM");
 						index = dao.insertTaskRecord(params);
+					}else{
+					    LoggerUtil.error(this.getClass(), "该预警未配置负责科室和负责人");
 					}
 				}
 			}
 			
 		} catch (Exception e) {
+		    LoggerUtil.error(this.getClass(), e.getMessage());
 			errorMsg = e.getMessage();
 			index = 0;
 		}
@@ -378,6 +383,9 @@ public class TaskServiceImpl extends BaseBusinessService implements ITaskService
     }
     
     private String arryToStr(String [] arr,String split){
+        if(arr==null){
+            return null;
+        }
         StringBuilder sBuilder = new StringBuilder("[");
         for(String str:arr){
             sBuilder.append(str+split);

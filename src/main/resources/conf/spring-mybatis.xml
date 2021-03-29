@@ -149,5 +149,23 @@
 	</aop:config>
 	
 	<!-- 声明事务Oracle 结束 -->
+	<!-- 预警任务第三方接口调用切面配置 -->
+	<beans:bean id="thirdPartyServiceAspect" class="com.szboanda.thirdparty.aspect.ThirdPartyServiceAspect">
+		<beans:property name="serviceList">
+            <beans:list>
+            	<beans:ref bean="dingding"></beans:ref>
+            	<beans:ref bean="wechat"></beans:ref>
+            </beans:list>
+        </beans:property>
+	</beans:bean>
+	<aop:config>
+ 		<aop:pointcut id="triggerService" expression="execution(* com.szboanda.dqxt.index.service.impl.TaskServiceImpl.insertTaskRecord(..))" />
+ 		<aop:aspect ref="thirdPartyServiceAspect">
+            <!-- 前置通知 -->
+           <!--  <aop:before method="before" pointcut-ref="triggerService"/> -->
+           <!-- 后置通知 -->
+            <aop:before method="after" pointcut-ref="triggerService"/>
+        </aop:aspect>
+	</aop:config>
 	
 </beans:beans>

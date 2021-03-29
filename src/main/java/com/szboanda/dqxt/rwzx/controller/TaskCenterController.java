@@ -22,8 +22,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.szboanda.business.BaseBusinessController;
 import com.szboanda.dqxt.rwzx.service.ITaskCenterService;
-import com.szboanda.mobile.decision.yjrwbl.exception.WarningTaskException;
-import com.szboanda.mobile.decision.yjrwbl.service.IWarningTaskService;
 import com.szboanda.platform.common.utils.MapUtils;
 import com.szboanda.platform.common.utils.Toolkit;
 import com.szboanda.platform.file.service.IFileService;
@@ -46,9 +44,6 @@ public class TaskCenterController extends BaseBusinessController{
     @Autowired
     private ITaskCenterService taskCenterService;
     
-    @Autowired
-    private IWarningTaskService warningTaskService;
-    
     /**
      * 文件操作接口
      */
@@ -64,7 +59,7 @@ public class TaskCenterController extends BaseBusinessController{
      */
     @RequestMapping(value = "/queryTasks", method = { RequestMethod.POST })
     @ResponseBody
-    public Map<String, Object> queryTasks(@RequestBody Map<String, Object> params) throws WarningTaskException {
+    public Map<String, Object> queryTasks(@RequestBody Map<String, Object> params) {
         Map<String, Object> result = super.getSuccessMap();
         int pageNum = getPageNum(params);//获取分页数
         int pageSize = getPageSize(params);//获取分页长度
@@ -83,36 +78,17 @@ public class TaskCenterController extends BaseBusinessController{
      * @return
      * @throws WarningTaskException
      */
-    @RequestMapping(value = "/getTaskById/{xh}", method = { RequestMethod.GET })
-    @ResponseBody
-    public Map<String, Object> getTaskById(@PathVariable(value="xh")String xh) throws WarningTaskException {
-        return getTaskById(xh, "");
-    }
-
-    /**
-     * 污染源在线监测
-     * 废水废气企业达标率
-     * @param    param 业务集合
-     * @return   返回某个业务Map信息
-     * @throws   WarningTaskException
-     */
     @RequestMapping(value = "/getTaskById/{xh}/{type}", method = { RequestMethod.GET })
     @ResponseBody
-    public Map<String, Object> getTaskById(@PathVariable(value="xh")String xh,@PathVariable(value="type")String type) throws WarningTaskException {
+    public Map<String, Object> getTaskById(@PathVariable(value="xh")String xh) {
         Map<String, Object> result = super.getSuccessMap();
         //新版本中pc端和钉钉接口返回一致，调用warningTaskService中方法
         //获取当前用户，并根据用户获取部门信息和角色信息
-        UserVO user = getCurrUser();
-        String xtzh = null;
-        if(user!=null){
-            xtzh = user.getXtzh();
-        }
-//        result.put("data", warningTaskService.getTaskById(xh,xtzh));
         result.put("data", taskCenterService.getTaskById(xh));
         result.put("status", "000");
         return result;
     }
-    
+
 	/**
 	 * 获取所有部门科室
 	 * @param param
@@ -122,7 +98,7 @@ public class TaskCenterController extends BaseBusinessController{
 	 */
 	@RequestMapping(value = "/getAllDepartments", method = { RequestMethod.GET })
 	@ResponseBody
-	public Map<String, Object> getAllDepartments() throws WarningTaskException {
+	public Map<String, Object> getAllDepartments(){
 		Map<String, Object> result = super.getSuccessMap();
 		result.put("data", taskCenterService.getAllDepartments());
 		return result;
@@ -137,7 +113,7 @@ public class TaskCenterController extends BaseBusinessController{
 	 */
 	@RequestMapping(value = "/getYjRwDepartments", method = { RequestMethod.GET })
 	@ResponseBody
-	public Map<String, Object> getYJRWDepartments() throws WarningTaskException {
+	public Map<String, Object> getYJRWDepartments(){
 		Map<String, Object> result = super.getSuccessMap();
 		result.put("data", taskCenterService.getYjRwDepartments());
 		return result;
@@ -152,7 +128,7 @@ public class TaskCenterController extends BaseBusinessController{
 	 */
 	@RequestMapping(value = "/getAllWarningTypes", method = { RequestMethod.GET })
 	@ResponseBody
-	public Map<String, Object> getAllWarningTypes() throws WarningTaskException {
+	public Map<String, Object> getAllWarningTypes() {
 		Map<String, Object> result = super.getSuccessMap();
 		CommonCodeCache cache = Toolkit.getBean("CommonCodeCache", CommonCodeCache.class);
 		List<Map<String, Object>> commoncodeList = cache.getCommonCodeByTypeId("YJRWLX");
@@ -178,10 +154,9 @@ public class TaskCenterController extends BaseBusinessController{
 	 */
 	@RequestMapping(value = "/taskFeedback", method = { RequestMethod.POST })
 	@ResponseBody
-	public Map<String, Object> taskFeedback(@RequestBody Map<String, Object> params) 
-			throws WarningTaskException {
+	public Map<String, Object> taskFeedback(@RequestBody Map<String, Object> params) {
 		Map<String, Object> result = super.getSuccessMap();
-		if(warningTaskService.saveTaskFeedBack(params,false)>0){
+		if(taskCenterService.taskFeedback(params)>0){
             result = super.getSuccessMap();
             result.put("status", "000");
         }else{

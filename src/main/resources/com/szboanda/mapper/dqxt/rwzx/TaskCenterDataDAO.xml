@@ -2,12 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.szboanda.dqxt.rwzx.dao.TaskCenterDataDAO">
-	<resultMap type="java.util.Map" id="TaskMap">
+	<resultMap type="java.util.Map" id="airMap">
 		<result column="XH" property="XH" jdbcType="VARCHAR" javaType="string" />
-		<result column="SBWZ" property="SBWZ" jdbcType="VARCHAR" javaType="string" />
-		<result column="BJSJ" property="BJSJ" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" />
-		<result column="IMG" property="IMG" jdbcType="VARCHAR" javaType="string" />
+		<result column="SITENAME" property="SITE" jdbcType="VARCHAR" javaType="string" />
+		<result column="MONITORTIME" property="TIME" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp" />
+		<result column="SO2" property="SO2" jdbcType="INTEGER" javaType="int" />
+		<result column="NO2" property="NO2" jdbcType="INTEGER" javaType="int" />
+		<result column="PM10" property="PM10" jdbcType="INTEGER" javaType="int" />
+		<result column="PM25" property="PM25" jdbcType="INTEGER" javaType="int" />
+		<result column="CO" property="CO" jdbcType="DOUBLE" javaType="double" />
+		<result column="O3" property="O3" jdbcType="INTEGER" javaType="int" />
+		<result column="AQIVALUE" property="AQIVALUE" jdbcType="INTEGER" javaType="int" />
+		<result column="AQILEVEL" property="AQILEVEL" jdbcType="VARCHAR" javaType="string" />
+		<result column="PORTID" property="PORTID" jdbcType="VARCHAR" javaType="string" />
 	</resultMap>
+	
+	<!-- 国控站小时数据 -->
+	<select id="queryAirStationHourData" resultMap="airMap">
+		SELECT XH,SITENAME,MONITORTIME,SO2,NO2,PM10,PM25,CO,O3,AQIVALUE,AQILEVEL,PORTID FROM U_HJZL_XC.T_HJZL_KQZDZ_ZDHOURAQI WHERE XH = #{XH}
+	</select>
+	
+	<!-- 地表水小时数据 -->
+	<select id="queryDBSStationHourData" resultType="map">
+		SELECT ZDMC,HLMC,SSJD,PH,NVL("DO", 0)"DO",CODMN,NVL(COD, 0) COD, NVL(NH3N, 0)NH3N,NVL(TP, 0)TP,NVL(TN, 0)TN,NVL(ZYJT, 0)ZYJT,NVL(HFF, 0)HFF,SZLB,JCSJ FROM U_HJZL_XC.T_SJZX_SHJ_ZDJC_HOUR  WHERE XH = #{XH}
+	</select>
+	
+	<!-- 废水小时数据全天列表 -->
+	<select id="queryXScbFsZdxx" resultType="map">
+		SELECT ZAD_DATA1 PH,ZAD_DATA5 COD,ZAD_DATA32 NH3N,ZAD_DATA36 TP,ZAD_DATA34 TN,ZAD_DATA19 ZT,to_char(TSTAMP,'yyyy-MM-dd') "DAY",to_char(TSTAMP,'HH24') "HOUR" FROM U_ZXJK_XC.T_FS_INFECTANT_HOUR WHERE TO_CHAR(TSTAMP,'YYYY-MM-DD')=TO_CHAR(SYSDATE,'YYYY-MM-DD')
+		AND PORTID=#{XH} ORDER BY TSTAMP ASC 
+	</select>
 	
 	<!-- 查询空气站分钟数据-->
 	<select id="queryAirStationMinuteData" resultType="java.util.Map">
@@ -26,12 +50,12 @@
 	</select>
 	
 	<!--查询空气站小时数据  -->
-	<select id="queryAirStationHourData" resultType="java.util.Map">
+	<!-- <select id="queryAirStationHourData" resultType="java.util.Map">
 		SELECT CDMC, CDBH, JCSJ, AQI, SO2, NO2,PM10,CO,PM25,O3_1H O3 FROM T_SJZX_HJZL_DQZD_XSPJSJ
 		WHERE CDBH = #{CDBH} AND JCSJ <![CDATA[>=]]> 
 		TO_DATE( #{STARTTIME}, 'yyyy-MM-dd HH24:mi:ss') AND JCSJ <![CDATA[<=]]>
 		TO_DATE(#{ENDTIME}, 'yyyy-MM-dd HH24:mi:ss') ORDER BY JCSJ DESC
-	</select>
+	</select> -->
 	
 	<!--查询自动水站小时数据  -->
 	<select id="queryWaterStationHourData" resultType="java.util.Map">
@@ -66,9 +90,9 @@
 	</select>
 	
 	<!--查询秸秆焚烧数据 -->
-	<select id="queryJGData" resultMap="TaskMap">
+	<!-- <select id="queryJGData" resultMap="TaskMap">
 		SELECT XH,SBWZ,BJSJ,IMG FROM T_SPJK_JG_BJXX WHERE XH=#{YWGLXH}
-	</select>
+	</select> -->
 	
 	<update id="updateMark" parameterType="java.util.Map">
 		UPDATE T_SPJK_JG_BJXX SET SFSCRW ='1'  WHERE XH=#{YWGLXH}

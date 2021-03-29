@@ -48,8 +48,8 @@
 	
 	<!-- 查询业务信息集合 -->
 	<select id="queryTasks" parameterType="java.util.Map" resultType="java.util.Map">
-		SELECT A.XH, A.YWLX, A.YWZLX, A.YWGLXH, A.RWBH, A.RWLY, A.RWMC, A.RWNR, A.SJKSSJ, A.SJJSSJ, A.RWCSYY, 
-		A.YQBJSJ, A.SFCQ, A.FZJG, A.BLR, A.BZ, A.CJSJ, A.CJR, A.XGSJ, A.XGR, A.BJQK,A.FKR ,A.FKSJ ,A.FKNR ,A.SFBJ,
+		SELECT A.XH, A.YWLX, A.YWZLX,A.RWBH, A.RWNR, A.SJKSSJ, A.RWCSYY, 
+		A.YQBJSJ, A.SFCQ, A.FZJG, A.BLR, A.CJSJ, A.CJR, A.XGSJ, A.XGR, A.BJQK,A.FKR ,A.FKSJ ,A.FKNR ,A.SFBJ,
 		TO_CHAR(A.SJKSSJ, 'yyyy-MM-dd HH24:mi:ss') BJSJ, A.TYPE,
 		 C.YHMC, B.ZZJC
 		FROM 
@@ -57,7 +57,7 @@
 		LEFT JOIN U_WRYDTGL_XC.T_ADMIN_RMS_ZZJG B ON A .FZJG = B.ZZBH
 		LEFT JOIN U_WRYDTGL_XC.T_ADMIN_RMS_YH C ON A .BLR = C.YHID
 		WHERE 
-		    1=1
+		    YWLX IN ('DBSYJ','WRYZXYJ','DQYJ')
 	    	<if test="STARTTIME != null and STARTTIME !=''">
 	      		AND A.CJSJ <![CDATA[>=]]> to_date(#{STARTTIME},'yyyy-mm-dd,hh24:mi:ss')
 			</if>
@@ -110,12 +110,8 @@
 	
 	<!-- 根据XH查询某个业务信息 -->
 	<select id="getTaskById" parameterType="string" resultMap="TaskMap">
-		<!-- SELECT A.TYPE,A.XH, A.YWLX, A.YWZLX, A.YWGLXH, A.RWBH, A.RWLY, A.RWMC, A.RWNR, A.SJKSSJ, A.SJJSSJ, A.RWCSYY, A.TYPE, 
-		A.YQBJSJ, A.SFCQ, A.FZJG, A.BLR, A.BZ, A.CJSJ, A.CJR, A.XGSJ, A.XGR, A.BJQK,A.FKR ,A.FKSJ ,A.FKNR ,A.SFBJ, C.YHMC, B.ZZJC FROM T_GZRW_JBXX A LEFT 
-		JOIN T_ADMIN_RMS_ZZJG B ON A.FZJG = B.ZZBH LEFT JOIN T_ADMIN_RMS_YH C
-		ON A .BLR = C.XTZH WHERE A.XH = #{XH} -->
 		SELECT 
-			A.BLR as CBBLR,A.FKSJ,A.FKNR,A.FKR,A.TYPE,A.XH,A.RWBH,A.YWGLXH,A.SJKSSJ,A.YQBJSJ,A.RWNR,A.YWLX,A.YWZLX,A.RWLY,A.SFBJ,A.BJQK,A.LZZT,B.ZZQC AS ZZJC,C.YHMC 
+			A.BLR as CBBLR,A.FKSJ,A.FKNR,A.FKR,A.TYPE,A.XH,A.RWBH,A.SJKSSJ,A.YQBJSJ,A.RWNR,A.YWLX,A.YWZLX,A.YJGZ,A.YJGLNR,A.SFBJ,A.BJQK,B.ZZQC AS ZZJC,C.YHMC 
 		FROM (
 			SELECT 
 				*
@@ -124,15 +120,15 @@
 			WHERE
 				XH = #{XH} 
 			)A LEFT JOIN (
-			SELECT ZZBH,ZZQC FROM T_ADMIN_RMS_ZZJG
+			SELECT ZZBH,ZZQC FROM U_WRYDTGL_XC.T_ADMIN_RMS_ZZJG
 		)B ON A.FZJG = B.ZZBH 
 		LEFT JOIN (
 			SELECT
-				XTZH,
+				YHID,
 				YHMC
 			FROM
-				T_ADMIN_RMS_YH
-		) C ON A .BLR = C.XTZH
+				U_WRYDTGL_XC.T_ADMIN_RMS_YH
+		) C ON A .BLR = C.YHID
 	</select>
 
 	<!-- 根据ID查询附件信息 -->
@@ -145,7 +141,7 @@
 	
 	<!--根据关键字模糊查询  -->
 	<select id="getAllDepartments" resultType="java.util.Map">
-		SELECT ZZBH, ZZJC FROM T_ADMIN_RMS_ZZJG WHERE SFYX = '1'
+		SELECT ZZBH, ZZJC FROM U_WRYDTGL_XC.T_ADMIN_RMS_ZZJG WHERE SFYX = '1'
 	</select>
 	
 	<!-- 任务反馈 -->
@@ -156,4 +152,43 @@
 		WHERE XH = #{XH}
 	</update>
 	
+	<!-- 插入流转信息 -->
+	<insert id="insertLzxx">
+		INSERT INTO T_GZRW_LZXX(XH,RWBH,FKSJ
+		) VALUES(#{XH},#{RWBH},#{FKSJ})
+	</insert>
+	
+	<update  id="updateLzxx">
+		UPDATE T_GZRW_LZXX SET XH=XH 
+		<if test="BLR!=null and BLR!=''">
+		,BLR=#{BLR}
+		</if>
+		<if test="XBBLR!=null and XBBLR!=''">
+		,XBBLR=#{XBBLR}
+		</if>
+		<if test="FKNR!=null and FKNR!=''">
+		,FKNR=#{FKNR}
+		</if>
+		<if test="FKSJ!=null">
+		,FKSJ=#{FKSJ}
+		</if>
+		<if test="FKZT!=null and FKZT!=''">
+		,FKZT=#{FKZT}
+		</if>
+		WHERE XH = #{XH}
+	</update>
+	<!-- 获取流转状态 -->
+	<select id="queryLzzt" resultType="string">
+		SELECT LZZT FROM T_GZRW_JBXX WHERE XH = #{XH}
+	</select>
+	
+	<!-- 获取该任务的流转记录 -->
+	<select id="listLzxx" resultType="map">
+		SELECT a.XH,a.RWBH,a.FKNR,a.FKSJ,b.YHMC as BLR FROM T_GZRW_LZXX  a LEFT JOIN T_ADMIN_RMS_YH b ON a.BLR = b.XTZH 
+		WHERE a.RWBH=#{RWBH} ORDER BY a.FKSJ ASC
+	</select>
+	
+	<select id="queryLzxx" resultType="int">
+		SELECT COUNT(1) FROM T_GZRW_LZXX WHERE RWBH=#{RWBH} AND BLR =#{BLR}
+	</select>
 </mapper>

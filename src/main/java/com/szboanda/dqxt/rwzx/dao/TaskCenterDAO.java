@@ -55,17 +55,6 @@ public interface TaskCenterDAO extends BaseDAO {
      */
     List<Map<String, Object>> getAllDepartments();
     
-    /**
-     * 查询附件信息
-     * @Title: queryFjxx
-     * @Description: TODO
-     * @param @param xh
-     * @param @return   
-     * @return List<Map<String,Object>>   
-     * @throws
-     * @author 朱传露
-     */
-    List<Map<String, Object>> queryFjxx(@Param("XH")String xh);
     
     /**
      * 任务反馈
@@ -78,5 +67,46 @@ public interface TaskCenterDAO extends BaseDAO {
      * @author 朱传露
      */
     int taskFeedback(Map<String, Object> param);
+    
+    /**
+     * 查询附件
+     * @param xh 序号
+     * @return
+     */
+    List<Map<String, Object>> queryFjxx(@Param("XH")String xh);
+    
+    /**
+     * 插入流转信息
+     * @param params
+     * @return
+     */
+    int insertLzxx(Map<String, Object> params);
+    
+    /**
+     * 更新流转信息
+     * @param params
+     * @return
+     */
+    int updateLzxx(Map<String, Object> params);
+    /**
+     * 获取任务的流转状态
+     * @param xh
+     * @return
+     */
+    String queryLzzt(@Param("XH")String xh);
+    
+    /**
+     * 获取该任务的流转记录
+     * @param rwbh
+     * @return
+     */
+    List<Map<String, Object>> listLzxx(@Param("RWBH")String rwbh);
+    
+    /**
+     * 根据rwbh和blr查询流转信息
+     * @param params
+     * @return
+     */
+    int queryLzxx(Map<String, Object> params);
     
 }
