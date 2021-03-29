@@ -33,8 +33,29 @@ public interface TaskCenterDataDAO extends BaseDAO {
 	List<Map<String, Object>> queryDBSStationHourData(@Param("XH")String XH);
 	
 	/**
+	 * 查询报警当日小时废水数据
 	 * @param XH
 	 * @return
 	 */
-	List<Map<String, Object>> queryXScbFsZdxx(@Param("XH")String XH);
+	List<Map<String, Object>> queryXScbFsZdxx(@Param("XH")String XH,@Param("DATE")String date);
+	
+	/**
+	 * 查询报警当日小时废气数据
+	 * @param XH
+	 * @return
+	 */
+	List<Map<String, Object>> queryXscbFqZdxx(@Param("XH")String XH,@Param("DATE")String date);
+	
+	/**
+	 * 查询4小时废气数据
+	 * @param param
+	 * @return
+	 */
+	List<Map<String, Object>> queryXSHZFqZdxx(@Param("XH")String XH,@Param("STARTDATE")String start,@Param("ENDDATE")String end);
+	/**
+	 * 查询4小时废水数据
+	 * @param param
+	 * @return
+	 */
+	List<Map<String, Object>> queryXSHZFsZdxx(@Param("XH")String XH,@Param("STARTDATE")String start,@Param("ENDDATE")String end);
 }

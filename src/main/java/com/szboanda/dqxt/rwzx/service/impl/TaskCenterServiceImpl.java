@@ -7,7 +7,6 @@
 
 package com.szboanda.dqxt.rwzx.service.impl;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -15,7 +14,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -219,7 +217,7 @@ public class TaskCenterServiceImpl extends BaseBusinessService implements ITaskC
 
             // 空气质量
             Map<String, Object> kqMap = getShowData(dataMap);
-            result.put("list", kqMap);
+            result.put("dataMap", kqMap);
             // getShowData方法中有涉及时间处理的部分，所以在该方法调用之后调用parseDate方法
             String[] fields = { "SJKSSJ", "YQBJSJ" };
             parseDate(dataMap, PATRRN, fields);
@@ -348,109 +346,66 @@ public class TaskCenterServiceImpl extends BaseBusinessService implements ITaskC
      * @return
      */
     private Map<String, Object> getShowData(Map<String, Object> dataMap) {
-        Map<String, Object> param = new HashMap<>();
         // 业务类型
         String ywlx = MapUtils.getString(dataMap, "YWLX");
         String ywzlx = MapUtils.getString(dataMap, "YWZLX");
         // 数据类型
         String type = MapUtils.getString(dataMap, "TYPE");
-//        String endTime = DateUtil.format(MapUtils.getTimestamp(dataMap, "SJKSSJ"), "yyyy-MM-dd HH:mm:ss");
-        String rwbh = null;
+        String endTime = null;
+        String rwbh = MapUtils.getString(dataMap, "RWBH");
         Map<String, Object> result = new HashMap<>();
-//        // 站点编号
-//        DateTime endDate = null;
-//        // 小时数据, 最近24小时
-//        if ("HOUR".equals(type)) {
-//            endDate = DateUtil.offset(DateUtil.parse(endTime), DateField.HOUR, -24);
-//        } else {
-//            endDate = DateUtil.offset(DateUtil.parse(endTime), DateField.MINUTE, -15);
-//        }
-//        String startTime = DateUtil.format(endDate, "yyyy-MM-dd HH:mm:ss");
-//        param.put("STARTTIME", startTime);
-//        param.put("ENDTIME", endTime);
         
         List<Map<String, Object>> dbsList = null;
         // 大气质量
         if ("DQYJ".equals(ywlx)) {
-            rwbh = MapUtils.getString(dataMap, "RWBH");
             if ("HOUR".equals(type)) {
                 result = dataDao.queryAirStationHourData(rwbh);
                 String [] filter = {"TIME"};
                 parseDate(result, "yyyy-MM-dd HH:mm:ss", filter);
             } 
-        } else if ("DBSYJ".equals(ywlx)) {// 地表水预警
-            rwbh = MapUtils.getString(dataMap, "RWBH");
+        } else if ("DBSYJ".equals(ywlx)) {
+            // 地表水预警
             dbsList = dataDao.queryDBSStationHourData(rwbh);
             if(CollectionUtils.isNotEmpty(dbsList)){
                 result = dbsList.get(0);
                 String [] filter = {"JCSJ"};
                 parseDate(result, "yyyy-MM-dd HH:mm:ss", filter);
             }
-        } else if ("WRYZXYJ".equals(ywlx)) {// 污染源在线
-            rwbh = MapUtils.getString(dataMap, "RWBH");
+        } else if ("WRYZXYJ".equals(ywlx)) {
+            // 污染源在线
             //日数据，小时超标累计三次
             //当天小时数据，超标因子
+            endTime = DateUtil.format(MapUtils.getTimestamp(dataMap, "SJKSSJ"), "yyyy-MM-dd");
             if(ywzlx.indexOf("CBBJ")>-1){
                 if(ywzlx.indexOf("_FQ")>-1){
-                    
+                    dbsList = dataDao.queryXscbFqZdxx(rwbh,endTime);
                 }else{
-                    dbsList = dataDao.queryXScbFsZdxx(rwbh);
-                    result.put("dataList", dbsList);
-                    result.put("cbyzList", strToList(MapUtils.getString(dataMap, "YJGLNR")));
+                    dbsList = dataDao.queryXScbFsZdxx(rwbh,endTime);
                 }
-            }else if(ywzlx.indexOf("LXHZ")>-1){
-                if(ywzlx.indexOf("_FQ")>-1){
-                    
-                }else{
-                    
-                }
+                result.put("dataList", dbsList);
+                result.put("cbyzList", strToList(MapUtils.getString(dataMap, "YJGLNR")));
             }else{
-                if(ywzlx.indexOf("_FQ")>-1){
-                    
+                rwbh = MapUtils.getString(dataMap, "ZDBH");
+                endTime = DateUtil.format(MapUtils.getTimestamp(dataMap, "SJKSSJ"), "yyyy-MM-dd HH:mm:ss");
+                DateTime startDate = null;
+                if(ywzlx.indexOf("LXHZ")>-1){
+                    //往前推5小时
+                   startDate = DateUtil.offset(DateUtil.parse(endTime), DateField.HOUR, -5);
                 }else{
-                    
+                    startDate = DateUtil.offset(DateUtil.parse(endTime), DateField.MINUTE, -150);
                 }
+                if(ywzlx.indexOf("_FQ")>-1){
+                    dbsList = dataDao.queryXSHZFqZdxx(rwbh,DateUtil.format(startDate,"yyyy-MM-dd HH:mm:ss"),endTime);
+                }else{
+                    dbsList = dataDao.queryXSHZFsZdxx(rwbh,DateUtil.format(startDate,"yyyy-MM-dd HH:mm:ss"),endTime);
+                }
+                result.put("dataList", dbsList);
+                result.put("cbyzList", strToList(MapUtils.getString(dataMap, "YJGLNR")));
             }
         }
         return result;
     }
 
-    /**
-     * 统一构造返回列表方法
-     * @param dataList
-     * @param filters
-     * @return
-     */
-    private Map<String, Object> initData(List<Map<String, Object>> dataList, String[] filters) {
-        Map<String, Object> result = new HashMap<>();
-        List<String> timeList = new ArrayList<>();
-
-        if (CollectionUtils.isNotEmpty(dataList)) {
-            for (String key : dataList.get(0).keySet()) {
-                List<Double> tempList = new ArrayList<>();
-                for (Map<String, Object> map : dataList) {
-                    if (arrContains(filters, key)) {
-                        continue;
-                    } else {
-                        if ("JCSJ".equals(key)) {
-                            timeList.add(DateFormatUtils.format(MapUtils.getTimestamp(map, key), "yyyy-MM-dd HH:mm:ss"));
-                        } else {
-                            tempList.add(MapUtils.getBigDecimal(map, key, 4).doubleValue());
-                        }
-                    }
-                }
-
-                if ("JCSJ".equals(key)) {
-                    result.put("timeList", timeList);
-                } else {
-                    String listName = key.toLowerCase() + "List";
-                    result.put(listName, tempList);
-                }
-            }
-        }
-
-        return result;
-    }
 
     /**
      * 判断数组包含某个字符串
