@@ -7,7 +7,8 @@
 	<select id="getNeedHandleTasksGroupByDept" resultType="java.util.Map">
 		SELECT
 			A.NUM,
-			B.ZZJC AS FZJG
+			B.ZZJC AS FZJG,
+			B.ZZBH
 		FROM
 			(
 				SELECT
@@ -90,7 +91,7 @@
 				ZZBH,
 				ZZJC
 			FROM
-				U_WRYDTGL_XC.T_ADMIN_RMS_ZZJG
+				T_ADMIN_RMS_ZZJG
 		) B ON A.FZJG = B.ZZBH
 	</select>
 	
@@ -179,15 +180,10 @@
 	
 	<!-- 查询当月/当年倒序排列各科室任务数列表排在前五的 -->
 	<select id="getOrderedTaskCountGroupbyDept" parameterType="String" resultType="java.util.Map">
-	SELECT G.FZJG,G.NUM,G.BJ FROM (
-	　　	SELECT T.*, ROWNUM R FROM (
-	　　　　	SELECT 
-				*
-			FROM(
 				SELECT
 					Y.ZZJC AS FZJG,
 					X.NUM,
-					X.BJ
+					nvl(X.BJ,0) BJ
 				FROM(
 					SELECT
 						A.FZJG,
@@ -251,12 +247,9 @@
 						FROM
 							U_WRYDTGL_XC.T_ADMIN_RMS_ZZJG
 					) Y ON X.FZJG = Y.ZZBH	
-				)
 				ORDER BY 
 					NUM
 				DESC	
-	　　) T WHERE ROWNUM <![CDATA[<=]]>5
-	) G WHERE R <![CDATA[>]]> 0
 	</select>
 	
 	<select id="listTaskGroupByMarkType" resultType="map">

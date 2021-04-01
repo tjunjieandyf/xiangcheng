@@ -83,5 +83,11 @@
 		  <artifactId>powerdata-platform-module-cas-client</artifactId>
 		  <version>4.1.2-HOST-ALPHA</version>
 		</dependency>
+		
+		<dependency>
+	     <groupId>com.szboanda.platform</groupId>
+	     <artifactId>powerdata-platform-module-job</artifactId>
+     	<version>4.2.0-RELEASE</version>
+ </dependency>
 	</dependencies>
 </project>

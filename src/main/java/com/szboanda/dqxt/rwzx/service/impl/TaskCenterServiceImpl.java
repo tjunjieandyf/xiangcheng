@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.solr.common.util.Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -58,59 +59,56 @@ public class TaskCenterServiceImpl extends BaseBusinessService implements ITaskC
     public Map<String, Object> queryTasks(int pageNum, int pageSize, Map<String, Object> param) throws TaskCenterException {
         try {
             param = modelHandel(param);
-            DataHelper.startPage(pageNum, pageSize);
+            initDataHepler(pageNum, pageSize, param);
             // 根据查询条件查询任务列表
             List<Map<String, Object>> list = null;
             Map<String, Object> result = new HashMap<String, Object>();
-            // 排序处理
-            @SuppressWarnings("unchecked")
-            List<Map<String, Object>> orders = (List<Map<String, Object>>) param.get("order");
-            StringBuffer orderByStr = new StringBuffer();
-            if (CollectionUtils.isNotEmpty(orders)) {
-                for (Map<String, Object> order : orders) {
-                    String field = MapUtils.getString(order, "field");
-                    String direction = MapUtils.getString(order, "direction");
-                    orderByStr.append(field).append(" ").append(direction);
-                }
-            }
-            DataHelper.startPage(pageNum, pageSize, orderByStr.toString());
             // starttime,endtime字符串转时间
             if (StringUtils.isNotEmpty(MapUtils.getString(param, "search"))) {
                 SQLUtils.fillLike(param, "search", true, true);
             }
-
+            UserVO user = getCurrUser();
+//            if(user!=null&&"1".equals(user.getSfyx())){
+//                if(dao.queryUsersRole("预警查看角色", user.getXtzh())==0){
+//                    param.put("YHID", user.getXtzh());
+//                }
+//                list = dao.queryTasks(param);
+//            }
             list = dao.queryTasks(param);
             if (CollectionUtils.isNotEmpty(list)) {
-                // 同样的条件查询出超时任务列表
-                List<Map<String, Object>> overtimeList = dao.queryOvertimeTasks(param);
-                // 0-绿色，1-黄色，2-红色
-                for (Map<String, Object> map : list) {
-                    map.put("MARKTYPE", 0);
-                }
-
-                // 合并列表,超时任务列表如果不为空，任务列表肯定不为空
-                if (CollectionUtils.isNotEmpty(overtimeList)) {
+                //预警任务
+                if(MapUtils.getBoolean(param, "TYPE")){
+                    // 同样的条件查询出超时任务列表
+                    List<Map<String, Object>> overtimeList = dao.queryOvertimeTasks(param);
+                    // 0-绿色，1-黄色，2-红色
                     for (Map<String, Object> map : list) {
-                        for (Map<String, Object> overtimeMap : overtimeList) {
-                            if (MapUtils.getString(overtimeMap, "XH").equals(MapUtils.getString(map, "XH"))) {
-                                overtimeMap.remove("XH");
-                                parseDate(overtimeMap, "yyyy年MM月dd HH:mm:ss", new String[] { "YQBJSJ" });
-                                map.put("OVERTIME", overtimeMap);
-                                map.put("MARKTYPE", 2);
-                            } else {
-                                Date kssj = MapUtils.getUtilDate(map, "SJKSSJ");
-                                Date jssj = MapUtils.getUtilDate(map, "YQBJSJ");
-                                int jg = DateUtils.getDateDiff(kssj, new Date(), Calendar.HOUR);
-                                int total = DateUtils.getDateDiff(kssj, jssj, Calendar.HOUR);
-                                double resultRate = (double) jg / total;
-                                if (resultRate > 0.5 && resultRate <= 1.0) {
-                                    map.put("MARKTYPE", 1);
+                        map.put("MARKTYPE", 0);
+                    }
+    
+                    // 合并列表,超时任务列表如果不为空，任务列表肯定不为空
+                    if (CollectionUtils.isNotEmpty(overtimeList)) {
+                        for (Map<String, Object> map : list) {
+                            for (Map<String, Object> overtimeMap : overtimeList) {
+                                if (MapUtils.getString(overtimeMap, "XH").equals(MapUtils.getString(map, "XH"))) {
+                                    overtimeMap.remove("XH");
+                                    parseDate(overtimeMap, "yyyy年MM月dd HH:mm:ss", new String[] { "YQBJSJ" });
+                                    map.put("OVERTIME", overtimeMap);
+                                    map.put("MARKTYPE", 2);
+                                } else {
+                                    Date kssj = MapUtils.getUtilDate(map, "SJKSSJ");
+                                    Date jssj = MapUtils.getUtilDate(map, "YQBJSJ");
+                                    int jg = DateUtils.getDateDiff(kssj, new Date(), Calendar.HOUR);
+                                    int total = DateUtils.getDateDiff(kssj, jssj, Calendar.HOUR);
+                                    double resultRate = (double) jg / total;
+                                    if (resultRate > 0.5 && resultRate <= 1.0) {
+                                        map.put("MARKTYPE", 1);
+                                    }
                                 }
                             }
                         }
                     }
                 }
-
+                //TODO 加一个YWLXMC字段
                 if (CollectionUtils.isNotEmpty(list)) {
                     String[] fields = { "SJKSSJ", "YQBJSJ" };
                     for (Map<String, Object> temp : list) {
@@ -129,7 +127,8 @@ public class TaskCenterServiceImpl extends BaseBusinessService implements ITaskC
             throw new TaskCenterException("任务中心获取预警任务列表异常", e);
         }
     }
-
+    
+    
     @Override
     public Map<String, Object> getTaskById(String xh) throws TaskCenterException {
         try {
@@ -137,17 +136,17 @@ public class TaskCenterServiceImpl extends BaseBusinessService implements ITaskC
             UserVO user = this.getCurrUser();
             Map<String, Object> result = new HashMap<>();
             Map<String, Object> dataMap = dao.getTaskById(xh);
-            String ywlx = MapUtils.getString(dataMap, "YWLX");
-            CommonCodeCache cache = Toolkit.getBean("CommonCodeCache", CommonCodeCache.class);
-            List<Map<String, Object>> commoncodeList = cache.getCommonCodeByTypeId("YJRWLX");
-            for (Map<String, Object> map : commoncodeList) {
-                String dm = MapUtils.getString(map, "DM");
-                String dmmc = MapUtils.getString(map, "DMMC");
-                if (ywlx.equals(dm)) {
-                    dataMap.put("YWLXMC", dmmc);
-                    break;
-                }
-            }
+//            String ywlx = MapUtils.getString(dataMap, "YWLX");
+//            CommonCodeCache cache = Toolkit.getBean("CommonCodeCache", CommonCodeCache.class);
+//            List<Map<String, Object>> commoncodeList = cache.getCommonCodeByTypeId("YJRWLX");
+//            for (Map<String, Object> map : commoncodeList) {
+//                String dm = MapUtils.getString(map, "DM");
+//                String dmmc = MapUtils.getString(map, "DMMC");
+//                if (ywlx.equals(dm)) {
+//                    dataMap.put("YWLXMC", dmmc);
+//                    break;
+//                }
+////            }
             Map<String, Object> commonMap = getCommonCode(MapUtils.getString(dataMap, "YWLX"), MapUtils.getString(dataMap, "YWZLX"));
             if (CollectionUtils.isNotEmpty(commonMap)) {
                 String dmmc = MapUtils.getString(commonMap, "DMMC");
@@ -194,20 +193,7 @@ public class TaskCenterServiceImpl extends BaseBusinessService implements ITaskC
                     lzxxMap.put("fjxx", attachmentArray);
                     lzxxResult.add(lzxxMap);
                 }
-            } else {
-                // if("1".equals(MapUtils.getString(dataMap, "SFBJ"))){
-                // parseDate(dataMap, PATRRN, new String[] { "FKSJ" });
-                // // 对于之前没有流转但是已经完成反馈的信息做兼容
-                // Map<String, Object> tempMap = new HashMap<>();
-                // List<Map<String, Object>> attachmentArray =
-                // warningTaskDao.queryFjxx(xh);
-                // tempMap.put("fjxx", attachmentArray);
-                // tempMap.put("BLR", MapUtils.getString(dataMap, "BLR"));
-                // tempMap.put("FKNR", MapUtils.getString(dataMap, "FKNR"));
-                // tempMap.put("FKSJ", MapUtils.getString(dataMap, "FKSJ"));
-                // lzxxResult.add(tempMap);
-                // }
-            }
+            } 
             result.put("lzList", lzxxResult);
 
             // 删除无用属性
@@ -221,21 +207,14 @@ public class TaskCenterServiceImpl extends BaseBusinessService implements ITaskC
             // getShowData方法中有涉及时间处理的部分，所以在该方法调用之后调用parseDate方法
             String[] fields = { "SJKSSJ", "YQBJSJ" };
             parseDate(dataMap, PATRRN, fields);
-            if ("WRYZXYJ".equals(MapUtils.getString(dataMap, "YWLX"))) {
-                if (kqMap.containsKey("FQ")) {
-                    // 废气标记
-                    result.put("YWTYPE", true);
-                } else {
-                    // 废水标记
-                    result.put("YWTYPE", false);
-                }
-            }
             result.put("detail", dataMap);
 
             if (user != null) {
                 result.put("currentUser", user.getYhmc());
+                result.put("currentXtzh", user.getXtzh());
             } else {
                 result.put("currentUser", "");
+                result.put("currentXtzh", "");
             }
             return result;
         } catch (Exception e) {
@@ -253,13 +232,46 @@ public class TaskCenterServiceImpl extends BaseBusinessService implements ITaskC
             throw new TaskCenterException("查询所有的部门科室出错", e);
         }
     }
-
+    
+    @Override
+    public Map<String, Object> getNoticeById(String xh) {
+        return null;
+    }
+    
+    @Override
+    public List<Map<String, Object>> getYwlx(boolean flag) {
+        CommonCodeCache cache = Toolkit.getBean("CommonCodeCache", CommonCodeCache.class);
+        List<Map<String, Object>> list = new ArrayList<>();
+        List<Map<String, Object>> typeList = null;
+        if(flag){
+            typeList = cache.getCommonCodeByTypeId("YJTYPE");
+        }else{
+            typeList = cache.getCommonCodeByTypeId("NOTICETYPE");
+        }
+        for (Map<String, Object> map : typeList) {
+            String dm = MapUtils.getString(map, "DM");
+            String dmmc = MapUtils.getString(map, "DMMC");
+            Map<String, Object> temp = new HashMap<String, Object>();
+            temp.put("VALUE", dm);
+            temp.put("NAME", dmmc);
+            list.add(temp);
+        }
+        return list;
+    }
+    
     @Override
     public List<Map<String, Object>> getYjRwDepartments() throws TaskCenterException {
         try {
             CommonCodeCache cache = Toolkit.getBean("CommonCodeCache", CommonCodeCache.class);
             List<Map<String, Object>> yjRwDepList = cache.getCommonCodeByTypeId("YJRWBM");
-            return yjRwDepList;
+            List<Map<String, Object>> list = new ArrayList<>();
+            for(Map<String, Object> dept:yjRwDepList){
+                Map<String, Object> tempMap = new HashMap<>();
+                tempMap.put("ZZBH", MapUtils.getString(dept, "DM"));
+                tempMap.put("ZZJC", MapUtils.getString(dept, "DMMC"));
+                list.add(tempMap);
+            }
+            return list;
         } catch (Exception e) {
             LoggerUtil.error(this.getClass(), "查询预警任务部门科室出错！", e);
             throw new TaskCenterException("查询预警任务部门科室出错", e);
@@ -268,25 +280,79 @@ public class TaskCenterServiceImpl extends BaseBusinessService implements ITaskC
 
     @Override
     public int taskFeedback(Map<String, Object> param) {
+        /*
+         * fkzt字段办结状态
+         */
+        final String FKZT_BJ = "1";
+        /*
+         * fkzt字段流转状态
+         */
+        final String FKZT_LZ = "0";
+        /*
+         * lzzt字段流转中状态
+         */
+        final String LZZT_LZZ = "1";
+        /*
+         * lzzt字段流转之后办结状态
+         */
+        final String LZZT_LZBJ = "2";
         try {
             String fksj = MapUtils.getString(param, "FKSJ");
             if (!StringUtils.isEmpty(fksj)) {
                 param.put("FKSJ", DateUtils.parseDate(fksj));
             }
-            Map<String, Object> task = dao.getTaskById(MapUtils.getString(param, "XH"));
-            Date kssj = MapUtils.getUtilDate(task, "SJKSSJ");
-            Date jssj = MapUtils.getUtilDate(task, "YQBJSJ");
-            int jg = DateUtils.getDateDiff(kssj, new Date(), Calendar.HOUR);
-            int total = DateUtils.getDateDiff(kssj, jssj, Calendar.HOUR);
-            double result = (double) jg / total;
-            if (result >= 1.0) {
-                param.put("MARKTYPE", 2);
-            } else if (result > 0.5) {
-                param.put("MARKTYPE", 1);
-            } else {
-                param.put("MARKTYPE", 0);
+            param.put("BJQK", MapUtils.getString(param, "SFBJ"));
+            String xh = MapUtils.getString(param, "XH");
+            
+            Map<String, Object> fkMap = new HashMap<>();
+            fkMap.put("XH",MapUtils.getString(param, "FKXH"));
+            fkMap.put("FKNR", MapUtils.getString(param, "FKNR"));
+            fkMap.put("FKSJ", DateUtils.parseDate(fksj));
+            String blr = MapUtils.getString(param, "FKR");
+            Map<String, Object> blrMap = dao.queryUesrInfo(blr);
+            fkMap.put("BLR",blr);
+            fkMap.put("BLRMC",MapUtils.getString(blrMap, "YHMC"));
+            fkMap.put("BLRBMBH",MapUtils.getString(blrMap, "BMBH"));
+            fkMap.put("BLRBMMC",MapUtils.getString(blrMap, "BMMC"));
+            String sfbj = MapUtils.getString(param, "SFBJ");
+            if("0".equals(sfbj)){
+                param.put("LZZT", LZZT_LZZ);
+                //流转
+                fkMap.put("FKZT", FKZT_LZ);
+                String xbblr = MapUtils.getString(param, "XBBLR");
+                if(StringUtils.isNotEmpty(xbblr)){
+                    Map<String, Object> xbblrMap = dao.queryUesrInfo(xbblr);
+                    fkMap.put("XBBLR",xbblr);
+                    fkMap.put("XBBLRMC",MapUtils.getString(xbblrMap, "YHMC"));
+                    fkMap.put("XBBLRBMBH",MapUtils.getString(xbblrMap, "BMBH"));
+                    fkMap.put("XBBLRBMMC",MapUtils.getString(xbblrMap, "BMMC"));
+                }
+            }else{
+                //办结
+                fkMap.put("FKZT", FKZT_BJ);
+                if(LZZT_LZZ.equals(dao.queryLzzt(xh))){
+                    //状态改为2
+                    param.put("LZZT", LZZT_LZBJ);
+                }
+                Map<String, Object> task = dao.getTaskById(xh);
+                Date kssj = MapUtils.getUtilDate(task, "SJKSSJ");
+                Date jssj = MapUtils.getUtilDate(task, "YQBJSJ");
+                int jg = DateUtils.getDateDiff(kssj, new Date(), Calendar.HOUR);
+                int total = DateUtils.getDateDiff(kssj, jssj, Calendar.HOUR);
+                double result = (double) jg / total;
+                if (result >= 1.0) {
+                    param.put("MARKTYPE", 2);
+                } else if (result > 0.5) {
+                    param.put("MARKTYPE", 1);
+                } else {
+                    param.put("MARKTYPE", 0);
+                }
             }
-            return dao.taskFeedback(param);
+            
+            if(dao.taskFeedback(param)>0){
+                return dao.updateLzxx(fkMap);
+            }
+            return 0;
         } catch (Exception e) {
             LoggerUtil.error(this.getClass(), "查询所有的部门科室出错！", e);
             throw new TaskCenterException("查询所有的部门科室出错", e);
@@ -444,9 +510,16 @@ public class TaskCenterServiceImpl extends BaseBusinessService implements ITaskC
         return result;
     }
 
+    /**
+     * 判断是否需要插入流转信息，并对lzList进行修改
+     * @param list
+     * @return
+     */
     private Map<String, Object> needInsertLzxx(List<Map<String, Object>> list) {
         Map<String, Object> result = new HashMap<>();
+        List<Map<String, Object>> tempList = new ArrayList<>();
         if (CollectionUtils.isEmpty(list)) {
+            //当下没有相关流转信息
             result.put("NEED", true);
             result.put("XH", Toolkit.getUUID());
         } else {
@@ -455,12 +528,18 @@ public class TaskCenterServiceImpl extends BaseBusinessService implements ITaskC
             for (int i = 0, len = list.size(); i < len; i++) {
                 Map<String, Object> map = list.get(i);
                 if (StringUtils.isEmpty(MapUtils.getString(map, "FKNR"))) {
+                    //有新建lzxx记录，且该记录为初始状态
                     result.clear();
                     result.put("NEED", false);
                     result.put("DATA", map);
-                    list.remove(i);
+                }else{
+                    tempList.add(map);
                 }
             }
+            list.clear();
+        }
+        for(Map<String, Object> tempMap:tempList){
+            list.add(tempMap);
         }
         return result;
     }
@@ -479,4 +558,43 @@ public class TaskCenterServiceImpl extends BaseBusinessService implements ITaskC
         return Arrays.asList(arr);
         
     }
+    
+    /**
+     * 判断该用户对应该任务是有有权限办理
+     * @param cbblr 初步办理人账号
+     * @param list 流转信息list
+     * @param xtzh 该用户系统账号
+     * @return 该用户有权限则返回true 否则返回false
+     */
+    private boolean hasAuth(String cbblr,List<Map<String, Object>> list,String xtzh){
+        if(StringUtils.isEmpty(xtzh)){
+            return false;
+        }
+        if(xtzh.equals(cbblr)){
+            return true;
+        }
+        for(Map<String, Object> map:list){
+            if(xtzh.equals(MapUtils.getString(map, "XBBLR"))){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private void initDataHepler(int pageNum, int pageSize, Map<String, Object> param){
+        DataHelper.startPage(pageNum, pageSize);
+        // 排序处理
+        @SuppressWarnings("unchecked")
+        List<Map<String, Object>> orders = (List<Map<String, Object>>) param.get("order");
+        StringBuffer orderByStr = new StringBuffer();
+        if (CollectionUtils.isNotEmpty(orders)) {
+            for (Map<String, Object> order : orders) {
+                String field = MapUtils.getString(order, "field");
+                String direction = MapUtils.getString(order, "direction");
+                orderByStr.append(field).append(" ").append(direction);
+            }
+        }
+        DataHelper.startPage(pageNum, pageSize, orderByStr.toString());
+    }
+
 }

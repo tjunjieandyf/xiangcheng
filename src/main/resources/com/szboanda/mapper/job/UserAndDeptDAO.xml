@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.szboanda.job.dao.UserAndDeptDAO">
+
+	<select id="queryUsers" parameterType="java.util.Map" resultType="map">
+		SELECT XTZH,BMBH,SFYX,YHMC FROM T_ADMIN_RMS_YH
+	</select>
+	
+	<select id="queryDepts" parameterType="java.util.Map" resultType="map">
+		SELECT XH,ZZBH,ZZJC,ZZQC,ZZDH FROM T_ADMIN_RMS_ZZJG
+	</select>
+	
+	<insert id="insertUser">
+		insert into T_ADMIN_RMS_YH(YHID,XTZH,BMBH,SFYX,YHMC,YHMM) values(#{YHID},#{XTZH},#{BMBH},#{SFYX},#{YHMC},#{YHMM})
+	</insert>
+	
+	<insert id="insertDept">
+		insert into T_ADMIN_RMS_ZZJG(XH,ZZBH,ZZJC,ZZQC,ZZDH,SJZZXH, SFYX,PXH,PYJX) 
+		values(#{XH},#{ZZBH},#{ZZJC},#{ZZQC},#{ZZDH},#{SJZZXH}, #{SFYX},#{PXH},#{PYJX})
+	</insert>
+	<update id="updateUser">
+		UPDATE T_ADMIN_RMS_YH SET BMBH=#{BMBH},SFYX=#{SFYX},YHMC=#{YHMC} WHERE XTZH = #{YHID}
+	</update>
+	<update id="updateDept">
+		UPDATE T_ADMIN_RMS_ZZJG SET ZZBH=#{ZZBH},ZZJC=#{ZZJC},ZZQC=#{ZZQC},ZZDH=#{ZZDH},
+		SJZZXH=#{SJZZXH},SFYX=#{SFYX},PXH=#{PXH},PYJX=#{PYJX} WHERE XH=#{XH}
+	</update>
+	<delete id="deleteUser">
+		DELETE FROM T_ADMIN_RMS_YH WHERE XTZH=#{YHID}
+	</delete>
+	
+	<delete id="deletDept">
+		DELETE FROM T_ADMIN_RMS_ZZJG WHERE XH=#{XH}
+	</delete>
+</mapper>

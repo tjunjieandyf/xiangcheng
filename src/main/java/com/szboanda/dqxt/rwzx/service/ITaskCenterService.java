@@ -28,13 +28,20 @@ public interface ITaskCenterService {
      * @throws TaskCenterException
      */
     Map<String, Object> queryTasks(int pageNum, int pageSize, Map<String, Object> param) throws TaskCenterException;
-
+    
     /**
      * 根据序号查询任务信息详细信息
      * @param param
      * @return
      */
     Map<String, Object> getTaskById(String xh);
+    
+    /**
+     * 查看通知详细信息
+     * @param xh
+     * @return
+     */
+    Map<String, Object> getNoticeById(String xh);
     
     /**
      * 获取所有部门科室
@@ -60,5 +67,12 @@ public interface ITaskCenterService {
      * @author 朱传露
      */
     int taskFeedback(Map<String, Object> param);
+    
+    /**
+     * 获取业务类型，true获取预警的类型，false获取通知的类型
+     * @param xh 序号
+     * @return
+     */
+    List<Map<String, Object>> getYwlx(boolean flag);
     
 }

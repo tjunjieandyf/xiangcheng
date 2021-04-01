@@ -17,6 +17,14 @@
 		<result column="YWLX" property="YWLX" jdbcType="VARCHAR" javaType="string" />
 		<result column="YWZLX" property="YWZLX" jdbcType="VARCHAR" javaType="string" />
 	</resultMap>
+	
+	<resultMap type="java.util.Map" id="userMap">
+		<result column="YHID" property="YHID" jdbcType="VARCHAR" javaType="string" />
+		<result column="YHMC" property="YHMC" jdbcType="VARCHAR" javaType="string" />
+		<result column="BMBH" property="BMBH" jdbcType="VARCHAR" javaType="string" />
+		<result column="ZZJC" property="BMMC" jdbcType="VARCHAR" javaType="string" />
+	</resultMap>
+	
 
 	<!-- 设置业务所有字段信息 -->
 	<sql id="allColumns">
@@ -53,7 +61,13 @@
 		TO_CHAR(A.SJKSSJ, 'yyyy-MM-dd HH24:mi:ss') BJSJ, A.TYPE,
 		 C.YHMC, B.ZZJC
 		FROM 
-			(SELECT * FROM T_GZRW_JBXX WHERE YWLX IN ('DQYJ','DBSYJ','WRYZXYJ')) A 
+			(SELECT * FROM T_GZRW_JBXX WHERE 1=1 
+			<if test="TYPE">
+			AND YWLX IN ('DQYJ','DBSYJ','WRYZXYJ')
+			</if>
+			<if test="!TYPE">
+			AND YWLX NOT IN ('DQYJ','DBSYJ','WRYZXYJ')
+			</if>) A 
 		LEFT JOIN U_WRYDTGL_XC.T_ADMIN_RMS_ZZJG B ON A .FZJG = B.ZZBH
 		LEFT JOIN U_WRYDTGL_XC.T_ADMIN_RMS_YH C ON A .BLR = C.YHID
 		WHERE 1=1
@@ -140,14 +154,16 @@
 	
 	<!--根据关键字模糊查询  -->
 	<select id="getAllDepartments" resultType="java.util.Map">
-		SELECT ZZBH, ZZJC FROM U_WRYDTGL_XC.T_ADMIN_RMS_ZZJG WHERE SFYX = '1'
+		SELECT ZZBH, ZZJC FROM T_ADMIN_RMS_ZZJG WHERE SFYX = '1'
 	</select>
 	
 	<!-- 任务反馈 -->
 	<update id="taskFeedback">
 		UPDATE T_GZRW_JBXX SET 
-		FKR = #{FKR}, FKSJ = #{FKSJ}, FKNR = #{FKNR}, SFBJ = #{SFBJ},MARKTYPE=#{MARKTYPE},
-		BJQK = '1'
+		SFBJ = #{SFBJ},MARKTYPE=#{MARKTYPE},BJQK = #{BJQK}
+		<if test="LZZT!=null and LZZT !=''">
+		,LZZT=#{LZZT}
+		</if> 
 		WHERE XH = #{XH}
 	</update>
 	
@@ -162,8 +178,26 @@
 		<if test="BLR!=null and BLR!=''">
 		,BLR=#{BLR}
 		</if>
+		<if test="BLRMC!=null and BLRMC!=''">
+		,BLRMC=#{BLRMC}
+		</if>
+		<if test="BLRBMBH!=null and BLRBMBH!=''">
+		,BLRBMBH=#{BLRBMBH}
+		</if>
+		<if test="BLRBMMC!=null and BLRBMMC!=''">
+		,BLRBMMC=#{BLRBMMC}
+		</if>
 		<if test="XBBLR!=null and XBBLR!=''">
 		,XBBLR=#{XBBLR}
+		</if>
+		<if test="XBBLRMC!=null and XBBLRMC!=''">
+		,XBBLRMC=#{XBBLRMC}
+		</if>
+		<if test="XBBLRBMBH!=null and XBBLRBMBH!=''">
+		,XBBLRBMBH=#{XBBLRBMBH}
+		</if>
+		<if test="XBBLRBMMC!=null and XBBLRBMMC!=''">
+		,XBBLRBMMC=#{XBBLRBMMC}
 		</if>
 		<if test="FKNR!=null and FKNR!=''">
 		,FKNR=#{FKNR}
@@ -176,18 +210,40 @@
 		</if>
 		WHERE XH = #{XH}
 	</update>
+	
 	<!-- 获取流转状态 -->
 	<select id="queryLzzt" resultType="string">
 		SELECT LZZT FROM T_GZRW_JBXX WHERE XH = #{XH}
 	</select>
 	
+	<update id="updateLzzt">
+		UPDATE T_GZRW_JBXX SET LZZT = #{LZZT} WHERE XH = #{XH}
+	</update>
+	
 	<!-- 获取该任务的流转记录 -->
 	<select id="listLzxx" resultType="map">
-		SELECT a.XH,a.RWBH,a.FKNR,a.FKSJ,b.YHMC as BLR FROM T_GZRW_LZXX  a LEFT JOIN T_ADMIN_RMS_YH b ON a.BLR = b.XTZH 
-		WHERE a.RWBH=#{RWBH} ORDER BY a.FKSJ ASC
+		SELECT XH,RWBH,FKNR,FKSJ,BLRMC as BLR FROM T_GZRW_LZXX 
+		WHERE RWBH=#{RWBH} ORDER BY FKSJ ASC
 	</select>
 	
 	<select id="queryLzxx" resultType="int">
 		SELECT COUNT(1) FROM T_GZRW_LZXX WHERE RWBH=#{RWBH} AND BLR =#{BLR}
+	</select>
+	
+	<select id="queryUesrInfo" resultMap="userMap">
+		SELECT YH.YHID,YH.YHMC,YH.BMBH,ZZJG.ZZJC FROM U_WRYDTGL_XC.T_ADMIN_RMS_YH YH 
+		LEFT JOIN U_WRYDTGL_XC.T_ADMIN_RMS_ZZJG ZZJG ON YH.BMBH = ZZJG.XH WHERE YHID = #{YHID}
+	</select>
+	
+	<select id="queryUsersRole" resultType="int">
+		SELECT COUNT(*) FROM U_SJZX_XC.T_ADMIN_RMS_YH YH 
+		LEFT JOIN U_SJZX_XC.T_ADMIN_RMS_YHYJSGXB TARY 
+		ON YH.YHID=TARY.YHID 
+		LEFT JOIN U_SJZX_XC.T_ADMIN_RMS_JS TARJ 
+		ON TARY.JSBH = TARJ.XH WHERE YH.XTZH=#{XTZH} AND TARJ.JSMC=#{ROLE}
+	</select>
+	
+	<select id="queryNoticeUser" resultType="int">
+		SELECT COUNT(*) FROM T_YWTZ_YH WHERE YHID = #{XTZH}
 	</select>
 </mapper>

@@ -270,30 +270,34 @@ public class TaskServiceImpl extends BaseBusinessService implements ITaskService
 					listData.add(param);
 				}
 			}
+			
 			// 根据业务类型查询对应负责人和科室
 			if (!BeanUtils.emptyCollection(listData)) {
 				for (Map<String, Object> params : listData) {
-					List<Map<String, Object>> resultList = dao.getTransactorByBusinessId(params);
-					if (resultList != null && resultList.size() > 0) {
-					    Map<String, Object> resultMap = resultList.get(0);
-						String zrksxh = MapUtil.getStr(resultMap, "ZRKSXH"); // 责任科室编号
-						String ksclr = MapUtil.getStr(resultMap, "KSCLR"); // 科室处理人
-						int blqx = MapUtil.getInt(resultMap, "BLQX"); // 任务期限
-						String sjkssj = MapUtil.getStr(params, "SJKSSJ");// 任务开始时间
-						// 任务要求办结时间
-						DateTime yqbjsj =  DateUtil.offset(DateUtil.parse(sjkssj), DateField.DAY_OF_MONTH, blqx);
-						String yqbjsjStr = DateUtil.format(yqbjsj, "yyyy-MM-dd HH:mm:ss");
-						params.put("SJKSSJ", DateUtils.parseDate(sjkssj));
-						params.put("YQBJSJ", DateUtils.parseDate(yqbjsjStr));
-						params.put("FZJG", zrksxh);
-						params.put("BLR", ksclr);
-						params.put("XH", Toolkit.getUUID());
-						params.put("CJSJ", new Date());
-						params.put("CJR","SYSTEM");
-						index = dao.insertTaskRecord(params);
-					}else{
-					    LoggerUtil.error(this.getClass(), "该预警未配置负责科室和负责人");
-					}
+				    if(!isNoticeType(MapUtils.getString(params, "YWLX"))){
+    					List<Map<String, Object>> resultList = dao.getTransactorByBusinessId(params);
+    					if (resultList != null && resultList.size() > 0) {
+    					    Map<String, Object> resultMap = resultList.get(0);
+    						String zrksxh = MapUtil.getStr(resultMap, "ZRKSXH"); // 责任科室编号
+    						String ksclr = MapUtil.getStr(resultMap, "KSCLR"); // 科室处理人
+    						int blqx = MapUtil.getInt(resultMap, "BLQX"); // 任务期限
+    						String sjkssj = MapUtil.getStr(params, "SJKSSJ");// 任务开始时间
+    						// 任务要求办结时间
+    						DateTime yqbjsj =  DateUtil.offset(DateUtil.parse(sjkssj), DateField.DAY_OF_MONTH, blqx);
+    						String yqbjsjStr = DateUtil.format(yqbjsj, "yyyy-MM-dd HH:mm:ss");
+    						params.put("SJKSSJ", DateUtils.parseDate(sjkssj));
+    						params.put("YQBJSJ", DateUtils.parseDate(yqbjsjStr));
+    						params.put("FZJG", zrksxh);
+    						params.put("BLR", ksclr);
+    						
+    					}else{
+    					    LoggerUtil.error(this.getClass(), "该预警未配置负责科室和负责人");
+    					}
+				    }
+				    params.put("XH", Toolkit.getUUID());
+                    params.put("CJSJ", new Date());
+                    params.put("CJR","SYSTEM");
+                    index = dao.insertTaskRecord(params);
 				}
 			}
 			
@@ -393,5 +397,21 @@ public class TaskServiceImpl extends BaseBusinessService implements ITaskService
         sBuilder.deleteCharAt(sBuilder.lastIndexOf(split));
         sBuilder.append("]");
         return sBuilder.toString();
+    }
+    
+    /**
+     * 区分是否是通知类型
+     * @param type
+     * @return
+     */
+    private boolean isNoticeType(String type){
+        CommonCodeCache cache = Toolkit.getBean("CommonCodeCache", CommonCodeCache.class);
+        List<Map<String, Object>> noticeList = cache.getCommonCodeByTypeId("NOTICETYPE");
+        for(Map<String, Object> map:noticeList){
+            if(MapUtils.getString(map, "DM").equals(type)){
+                return true;
+            }
+        }
+        return false;
     }
 }

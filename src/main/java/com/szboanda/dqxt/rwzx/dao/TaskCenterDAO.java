@@ -109,4 +109,32 @@ public interface TaskCenterDAO extends BaseDAO {
      */
     int queryLzxx(Map<String, Object> params);
     
+    /**查询用户的名称，部门等信息
+     * @param yhid
+     * @return
+     */
+    Map<String,Object> queryUesrInfo(@Param("YHID")String yhid);
+    
+    /**
+     * 更新流转状态
+     * @param xh
+     * @param lzzt
+     * @return
+     */
+    int updateLzzt(@Param("XH")String xh,@Param("LZZT")String lzzt);
+    
+    /**
+     * 查询该该用户是否是某个角色
+     * @param role 角色名称
+     * @param xtzh 系统账号
+     * @return
+     */
+    int queryUsersRole(@Param("ROLE")String role,@Param("XTZH")String xtzh);
+    
+    /**
+     * 查询该用户是否在通知列表中
+     * @param xtzh
+     * @return
+     */
+    int queryNoticeUser(@Param("XTZH")String xtzh);
 }

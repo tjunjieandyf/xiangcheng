@@ -24,7 +24,6 @@ import com.szboanda.business.BaseBusinessController;
 import com.szboanda.dqxt.rwzx.service.ITaskCenterService;
 import com.szboanda.platform.common.utils.MapUtils;
 import com.szboanda.platform.common.utils.Toolkit;
-import com.szboanda.platform.file.service.IFileService;
 import com.szboanda.platform.rms.user.mode.UserVO;
 import com.szboanda.platform.system.commoncode.cache.CommonCodeCache;
 
@@ -44,11 +43,6 @@ public class TaskCenterController extends BaseBusinessController{
     @Autowired
     private ITaskCenterService taskCenterService;
     
-    /**
-     * 文件操作接口
-     */
-    @Autowired
-    private IFileService fileService;
 
     /**
      * 查询【移动决策-预警任务办理】业务集合信息
@@ -80,11 +74,15 @@ public class TaskCenterController extends BaseBusinessController{
      */
     @RequestMapping(value = "/getTaskById/{xh}/{type}", method = { RequestMethod.GET })
     @ResponseBody
-    public Map<String, Object> getTaskById(@PathVariable(value="xh")String xh) {
+    public Map<String, Object> getTaskById(@PathVariable(value="xh")String xh,@PathVariable(value="type")boolean type) {
         Map<String, Object> result = super.getSuccessMap();
         //新版本中pc端和钉钉接口返回一致，调用warningTaskService中方法
         //获取当前用户，并根据用户获取部门信息和角色信息
-        result.put("data", taskCenterService.getTaskById(xh));
+        if(type){
+            result.put("data", taskCenterService.getTaskById(xh));
+        }else{
+            result.put("data", taskCenterService.getNoticeById(xh));
+        }
         result.put("status", "000");
         return result;
     }
@@ -126,22 +124,11 @@ public class TaskCenterController extends BaseBusinessController{
 	 * @return 返回某个业务Map信息
 	 * @throws WarningTaskException
 	 */
-	@RequestMapping(value = "/getAllWarningTypes", method = { RequestMethod.GET })
+	@RequestMapping(value = "/getAllWarningTypes/{type}", method = { RequestMethod.GET })
 	@ResponseBody
-	public Map<String, Object> getAllWarningTypes() {
+	public Map<String, Object> getAllWarningTypes(@PathVariable(value="type")boolean type) {
 		Map<String, Object> result = super.getSuccessMap();
-		CommonCodeCache cache = Toolkit.getBean("CommonCodeCache", CommonCodeCache.class);
-		List<Map<String, Object>> commoncodeList = cache.getCommonCodeByTypeId("YJRWLX");
-		List<Map<String, Object>> dataMap = new ArrayList<Map<String, Object>>();
-		for (Map<String, Object> map : commoncodeList) {
-			String dm = MapUtils.getString(map, "DM");
-			String dmmc = MapUtils.getString(map, "DMMC");
-			Map<String, Object> temp = new HashMap<String, Object>();
-			temp.put("VALUE", dm);
-			temp.put("NAME", dmmc);
-			dataMap.add(temp);
-		}
-		result.put("data", dataMap);
+		result.put("data", taskCenterService.getYwlx(type));
 		return result;
 	}
 	
@@ -166,24 +153,9 @@ public class TaskCenterController extends BaseBusinessController{
 		return result;
 	}
 	
-	/**
-     * 根据文件id删除文件
-     * 
-     * @param fileId
-     *            文件id
-     * @return 删除文件的个数
-     */
-    @RequestMapping(value = "/deletefile/{id}")
-    @ResponseBody
-    public Map<String, Object> deleteFile(@PathVariable("id") String fileId) throws Exception {
-        // 返回数据
-    	Map<String, Object> result = super.getSuccessMap();
-    	int count = this.fileService.deleteFileById(fileId);
-		if (count <=  0) {
-			result = super.getFailMap();
-		}
-		result.put("data", count);
-		return result;
+	@RequestMapping(value = "/listUsers", method = { RequestMethod.GET })
+	@ResponseBody
+    public Map<String, Object> listUsers() {
+	    return null;
     }
-	
 }
