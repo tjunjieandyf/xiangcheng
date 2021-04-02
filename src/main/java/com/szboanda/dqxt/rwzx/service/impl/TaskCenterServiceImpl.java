@@ -75,6 +75,31 @@ public class TaskCenterServiceImpl extends BaseBusinessService implements ITaskC
 //                list = dao.queryTasks(param);
 //            }
             list = dao.queryTasks(param);
+            CommonCodeCache cache = Toolkit.getBean("CommonCodeCache", CommonCodeCache.class);
+            List<Map<String, Object>> yjList = cache.getCommonCodeByTypeId("YJTYPE");
+            List<Map<String, Object>> noticeList = cache.getCommonCodeByTypeId("NOTICETYPE");
+            for(Map<String, Object> taskMap:list){
+                String ywlx = MapUtils.getString(taskMap, "YWLX");
+                if(MapUtils.getBoolean(param, "TYPE")){
+                    for (Map<String, Object> map : yjList) {
+                        String dm = MapUtils.getString(map, "DM");
+                        String dmmc = MapUtils.getString(map, "DMMC");
+                        if (ywlx.equals(dm)) {
+                            taskMap.put("YWLXMC", dmmc);
+                            break;
+                        }
+                    }
+                }else{
+                    for (Map<String, Object> map : noticeList) {
+                        String dm = MapUtils.getString(map, "DM");
+                        String dmmc = MapUtils.getString(map, "DMMC");
+                        if (ywlx.equals(dm)) {
+                            taskMap.put("YWLXMC", dmmc);
+                            break;
+                        }
+                    }
+                }
+            }
             if (CollectionUtils.isNotEmpty(list)) {
                 //预警任务
                 if(MapUtils.getBoolean(param, "TYPE")){
@@ -108,7 +133,7 @@ public class TaskCenterServiceImpl extends BaseBusinessService implements ITaskC
                         }
                     }
                 }
-                //TODO 加一个YWLXMC字段
+                
                 if (CollectionUtils.isNotEmpty(list)) {
                     String[] fields = { "SJKSSJ", "YQBJSJ" };
                     for (Map<String, Object> temp : list) {
@@ -136,17 +161,17 @@ public class TaskCenterServiceImpl extends BaseBusinessService implements ITaskC
             UserVO user = this.getCurrUser();
             Map<String, Object> result = new HashMap<>();
             Map<String, Object> dataMap = dao.getTaskById(xh);
-//            String ywlx = MapUtils.getString(dataMap, "YWLX");
-//            CommonCodeCache cache = Toolkit.getBean("CommonCodeCache", CommonCodeCache.class);
-//            List<Map<String, Object>> commoncodeList = cache.getCommonCodeByTypeId("YJRWLX");
-//            for (Map<String, Object> map : commoncodeList) {
-//                String dm = MapUtils.getString(map, "DM");
-//                String dmmc = MapUtils.getString(map, "DMMC");
-//                if (ywlx.equals(dm)) {
-//                    dataMap.put("YWLXMC", dmmc);
-//                    break;
-//                }
-////            }
+            String ywlx = MapUtils.getString(dataMap, "YWLX");
+            CommonCodeCache cache = Toolkit.getBean("CommonCodeCache", CommonCodeCache.class);
+            List<Map<String, Object>> commoncodeList = cache.getCommonCodeByTypeId("YJTYPE");
+            for (Map<String, Object> map : commoncodeList) {
+                String dm = MapUtils.getString(map, "DM");
+                String dmmc = MapUtils.getString(map, "DMMC");
+                if (ywlx.equals(dm)) {
+                    dataMap.put("YWLXMC", dmmc);
+                    break;
+                }
+            }
             Map<String, Object> commonMap = getCommonCode(MapUtils.getString(dataMap, "YWLX"), MapUtils.getString(dataMap, "YWZLX"));
             if (CollectionUtils.isNotEmpty(commonMap)) {
                 String dmmc = MapUtils.getString(commonMap, "DMMC");
@@ -235,7 +260,19 @@ public class TaskCenterServiceImpl extends BaseBusinessService implements ITaskC
     
     @Override
     public Map<String, Object> getNoticeById(String xh) {
-        return null;
+        Map<String, Object> dataMap = dao.getTaskById(xh);
+        String ywlx = MapUtils.getString(dataMap, "YWLX");
+        CommonCodeCache cache = Toolkit.getBean("CommonCodeCache", CommonCodeCache.class);
+        List<Map<String, Object>> commoncodeList = cache.getCommonCodeByTypeId("NOTICETYPE");
+        for (Map<String, Object> map : commoncodeList) {
+            String dm = MapUtils.getString(map, "DM");
+            String dmmc = MapUtils.getString(map, "DMMC");
+            if (ywlx.equals(dm)) {
+                dataMap.put("YWLXMC", dmmc);
+                break;
+            }
+        }
+        return dataMap;
     }
     
     @Override
@@ -277,6 +314,17 @@ public class TaskCenterServiceImpl extends BaseBusinessService implements ITaskC
             throw new TaskCenterException("查询预警任务部门科室出错", e);
         }
     }
+    
+    @Override
+    public List<Map<String, Object>> listUsers() {
+        String xtzh = null;
+        UserVO user =getCurrUser();
+        if(user!=null&&"1".equals(user.getSfyx())){
+            xtzh = user.getXtzh();
+        }
+        return dao.listUsers(xtzh);
+    }
+
 
     @Override
     public int taskFeedback(Map<String, Object> param) {
@@ -444,10 +492,13 @@ public class TaskCenterServiceImpl extends BaseBusinessService implements ITaskC
             endTime = DateUtil.format(MapUtils.getTimestamp(dataMap, "SJKSSJ"), "yyyy-MM-dd");
             if(ywzlx.indexOf("CBBJ")>-1){
                 if(ywzlx.indexOf("_FQ")>-1){
+                    result.put("type", "FQ");
                     dbsList = dataDao.queryXscbFqZdxx(rwbh,endTime);
                 }else{
+                    result.put("type", "FS");
                     dbsList = dataDao.queryXScbFsZdxx(rwbh,endTime);
                 }
+                
                 result.put("dataList", dbsList);
                 result.put("cbyzList", strToList(MapUtils.getString(dataMap, "YJGLNR")));
             }else{
@@ -461,8 +512,10 @@ public class TaskCenterServiceImpl extends BaseBusinessService implements ITaskC
                     startDate = DateUtil.offset(DateUtil.parse(endTime), DateField.MINUTE, -150);
                 }
                 if(ywzlx.indexOf("_FQ")>-1){
+                    result.put("type", "FQ");
                     dbsList = dataDao.queryXSHZFqZdxx(rwbh,DateUtil.format(startDate,"yyyy-MM-dd HH:mm:ss"),endTime);
                 }else{
+                    result.put("type", "FS");
                     dbsList = dataDao.queryXSHZFsZdxx(rwbh,DateUtil.format(startDate,"yyyy-MM-dd HH:mm:ss"),endTime);
                 }
                 result.put("dataList", dbsList);

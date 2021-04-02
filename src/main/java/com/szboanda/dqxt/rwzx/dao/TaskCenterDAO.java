@@ -137,4 +137,11 @@ public interface TaskCenterDAO extends BaseDAO {
      * @return
      */
     int queryNoticeUser(@Param("XTZH")String xtzh);
+    
+    /**
+     * 查询除该用户之外的用户
+     * @param xtzh
+     * @return
+     */
+    List<Map<String, Object>> listUsers(@Param("XTZH")String xtzh);
 }

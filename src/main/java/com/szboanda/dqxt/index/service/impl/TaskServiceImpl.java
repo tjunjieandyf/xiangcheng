@@ -131,6 +131,7 @@ public class TaskServiceImpl extends BaseBusinessService implements ITaskService
                 for(Entry<String, Object> entry:bjlMap.entrySet()){
                     Map<String, Object> resultMap = new HashMap<>();
                     resultMap.put("CJSJ", entry.getKey());
+                    @SuppressWarnings("unchecked")
                     Map<String, Object> map = (Map<String, Object>) entry.getValue();
                     List<Map<String, Object>> rList = new ArrayList<>();
                     for(Entry<String, Object> innerEntry:map.entrySet()){

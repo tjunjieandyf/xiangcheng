@@ -246,4 +246,11 @@
 	<select id="queryNoticeUser" resultType="int">
 		SELECT COUNT(*) FROM T_YWTZ_YH WHERE YHID = #{XTZH}
 	</select>
+	
+	<select id="listUsers" resultType="map">
+		select XTZH,YHMC from t_admin_rms_yh where 1=1 
+		<if test="XTZH!='' and XTZH !=null">
+		AND XTZH <![CDATA[<>]]> #{XTZH}
+		</if>
+	</select>
 </mapper>

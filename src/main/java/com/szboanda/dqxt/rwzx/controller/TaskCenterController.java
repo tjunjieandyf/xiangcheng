@@ -7,9 +7,6 @@
 
 package com.szboanda.dqxt.rwzx.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.szboanda.business.BaseBusinessController;
 import com.szboanda.dqxt.rwzx.service.ITaskCenterService;
-import com.szboanda.platform.common.utils.MapUtils;
-import com.szboanda.platform.common.utils.Toolkit;
 import com.szboanda.platform.rms.user.mode.UserVO;
-import com.szboanda.platform.system.commoncode.cache.CommonCodeCache;
 
 /**
 * @Title:任务中心controller

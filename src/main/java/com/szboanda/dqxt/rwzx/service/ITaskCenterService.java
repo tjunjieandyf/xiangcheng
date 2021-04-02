@@ -75,4 +75,10 @@ public interface ITaskCenterService {
      */
     List<Map<String, Object>> getYwlx(boolean flag);
     
+    /**
+     * 查询出当前用户之外的所有用户
+     * @return
+     */
+    List<Map<String, Object>> listUsers();
+    
 }
